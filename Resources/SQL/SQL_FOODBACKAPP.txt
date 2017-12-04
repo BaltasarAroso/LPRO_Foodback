@@ -1,0 +1,75 @@
+CREATE TABLE users (
+  username varchar NOT NULL PRIMARY KEY,
+  password varchar NOT NULL,
+  name varchar,
+  email varchar,   
+  address varchar,
+  birth date,
+  premium varchar
+ );
+
+CREATE TABLE establishment (
+  id serial PRIMARY KEY,
+  name varchar NOT NULL,
+  id_cat integer REFERENCES category,
+  address varchar,  
+  zone varchar,
+  city varchar,   
+  email varchar,
+  contact numerical,
+  username varchar,
+  password varchar,
+  open_date date,
+  delivey boolean,
+  price integer,
+  schedule1 integer,
+  schedule2 integer
+);
+
+CREATE TABLE comment (
+  id serial PRIMARY KEY,
+  text varchar NOT NULL,   
+  id_estab integer REFERENCES establishment,
+  comment_user varchar REFERENCES users,
+  respondes_to varchar REFERENCES users,
+  date_time timestamp,
+  photo boolean,
+  rate integer
+);
+
+CREATE TABLE category (
+  id serial PRIMARY KEY,
+  name varchar NOT NULL UNIQUE       
+);
+
+CREATE TABLE info (
+  id serial PRIMARY KEY,
+  name varchar NOT NULL UNIQUE     
+);
+
+
+CREATE TABLE cuisine(
+  id serial PRIMARY KEY,
+  name varchar NOT NULL UNIQUE     
+);
+
+CREATE TABLE hasinfo (
+  id serial PRIMARY KEY,
+  id_estab integer REFERENCES establishment,  
+  id_info integer REFERENCES info      
+);
+
+CREATE TABLE hascuisine (
+  id serial PRIMARY KEY,
+  id_estab integer REFERENCES establishment,  
+  id_cuisine integer REFERENCES cuisine     
+);
+
+CREATE TABLE orders (
+  id serial PRIMARY KEY,
+  username varchar REFERENCES users,
+  id_estab integer REFERENCES establishment,
+  state varchar,
+  order integer,
+  quantity integer
+);
