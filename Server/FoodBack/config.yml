@@ -1,0 +1,20 @@
+#server configurations
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+
+
+
+#database configurations
+database:
+  driverClass: org.postgresql.Driver
+  user: sibd17g21
+  password: batatinhas
+  url: jdbc:postgresql://dbm.fe.up.pt:5432/sibd17g21?currentSchema=foodback
+
+
+logging:
+  level: INFO
+  loggers:
+    com.lpro: DEBUG
