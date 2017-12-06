@@ -1,6 +1,7 @@
 package com.lpro.fbrest.db;
 
 import java.util.Date;
+import java.util.List;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -29,6 +30,10 @@ public interface UserDAO {
 			+ "FROM users "
 			+ "WHERE username = :username")
 	User getUser(@Bind("username") String username);
+	
+	@SqlQuery("SELECT * "
+			+ "FROM users")
+	List<User> getAllUsers();
 	
 	
 	

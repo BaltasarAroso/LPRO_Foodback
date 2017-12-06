@@ -45,7 +45,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new UsersResource(userdao));
 		
 		
-		//Auth configurations
+		//Auth configurations - de momento a usar Basic Auth
 		environment.jersey().register(new AuthDynamicFeature(
 				new BasicCredentialAuthFilter.Builder<User>()
 				.setAuthenticator(new UserAuthenticator(userdao))

@@ -3,27 +3,37 @@ package com.lpro.fbrest.core;
 import java.security.Principal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User implements Principal{
 	
 	@JsonProperty
 	private String username;
+	
 	@JsonProperty
 	private String password;
+	
 	@JsonProperty
 	private String name;
+	
 	@JsonProperty
 	private String email;
+	
 	@JsonProperty
 	private String address;
+	
 	@JsonProperty
+	//serialização da data não está a funcionar bem quando a data é 06-03-1996 passa para 05-03-1996
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy") 
 	private Date birth;
+	
 	@JsonProperty
 	private String premium;
+
 	
 	public User() {
-		
+		super();
 	}
 	
 	public User(String username, String password, String name, String email, String address, Date birth,
