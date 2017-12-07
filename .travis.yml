@@ -4,8 +4,9 @@ language: java
 before_install:
   - ulimit -c unlimited -S
 script:
-  - ./mvnw test -B
-  - ./mvnw site -pl docs -B
+  - ./mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - ./mvn test -B
+  - ./mvn site -pl docs -B
 cache:
   directories:
     - $HOME/.m2
