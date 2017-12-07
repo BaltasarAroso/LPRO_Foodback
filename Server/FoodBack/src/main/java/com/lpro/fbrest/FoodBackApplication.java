@@ -25,6 +25,8 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
     public String getName() {
         return "FoodBack";
     }
+    
+    
 
     @Override
     public void initialize(final Bootstrap<FoodBackConfiguration> bootstrap) {
