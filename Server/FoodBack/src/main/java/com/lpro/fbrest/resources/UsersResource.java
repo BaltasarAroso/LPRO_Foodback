@@ -2,7 +2,6 @@ package com.lpro.fbrest.resources;
 
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
@@ -20,15 +19,29 @@ import com.lpro.fbrest.db.UserDAO;
 
 import io.dropwizard.auth.Auth;
 
+/**
+ * @author Daniel
+ *
+ */
 @Path("/users")
 public class UsersResource {
 
+	/**
+	 * DAO for User Class
+	 */
 	private UserDAO userdao;
 	
+	/**
+	 * @param userdao DAO for User Class
+	 */
 	public UsersResource(UserDAO userdao) {
 		this.userdao = userdao;
 	}
 	
+	/**
+	 * @param user It's the new user that must be inserted in the database
+	 * @return Returns a Response Object that tells the client if the user was inserted or not
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response newUser(@NotNull @Valid User user) {
@@ -41,11 +54,27 @@ public class UsersResource {
 					user.getBirth(),
 					user.getPremium());
 		} catch (Exception e) {
-			return Response.serverError().entity("User already exists").build();
+			return Response.serverError().entity("Error inserting user, it may already exist!").build();
 		}
 		return Response.ok().build();
 	}
 	
+	/**
+	 * @param user Is the User that made the request
+	 * @return	Returns a List with all users
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> getAllUsers(@Auth User user) {
+		return userdao.getAllUsers();
+	}
+	
+	/**
+	 * @param username The name of the User to be found
+	 * @return Returns a User if it was found
+	 * 
+	 * If there is no user with this username a WebApplicationException is thrown with the http code 404 (not found)
+	 */
 	@GET
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -58,13 +87,12 @@ public class UsersResource {
 		return user;
 	}
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getAllUsers(@Auth User user) {
-		return userdao.getAllUsers();
-	}
-	
-	
+
+	//teste para ver se autenticação funciona
+	/**
+	 * @param user
+	 * @return
+	 */
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/secured_hello")
