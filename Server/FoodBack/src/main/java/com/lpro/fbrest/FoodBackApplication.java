@@ -39,9 +39,6 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
     public void run(final FoodBackConfiguration configuration,
                     final Environment environment) {
     	
-    		//Print Configuration Values:
-    		System.out.println("mycustomconfig: " + configuration.getMycustomconfig());
-    	
     		//Database configurations
     		final DBIFactory factory = new DBIFactory();
 		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");

@@ -14,10 +14,6 @@ database:
   url: jdbc:postgresql://db.fe.up.pt:5432/siem1701?currentSchema=foodback
 
 
-#Custom configuration
-mycustomconfig: Custom config loaded!!!
-
-
 logging:
   level: INFO
   loggers:
