@@ -2,7 +2,6 @@ package com.lpro.fbrest.resources;
 
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
