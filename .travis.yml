@@ -3,6 +3,7 @@ sudo: false
 language: java
 before_install:
   - ulimit -c unlimited -S
+before_script: cd Server/FoodBack
 cache:
   directories:
     - $HOME/.m2
