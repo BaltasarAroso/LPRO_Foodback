@@ -34,7 +34,5 @@ public interface UserDAO {
 	@SqlQuery("SELECT * "
 			+ "FROM users")
 	List<User> getAllUsers();
-	
-	
-	
+
 }
