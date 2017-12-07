@@ -1,0 +1,20 @@
+dist: trusty
+sudo: false
+language: java
+before_install:
+  - ulimit -c unlimited -S
+script:
+  - ./mvnw test -B
+  - ./mvnw site -pl docs -B
+cache:
+  directories:
+    - $HOME/.m2
+
+matrix:
+  include:
+    - os: linux
+      jdk: oraclejdk8
+      addons:
+        apt:
+          packages:
+            - oracle-java8-installer
