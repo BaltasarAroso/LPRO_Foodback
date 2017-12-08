@@ -20,6 +20,6 @@ public class UserMapper implements ResultSetMapper<User>{
 						r.getString("email"),
 						r.getString("address"),
 						birth,
-						r.getString("premium"));
+						r.getBoolean("premium"));
 	}
 }

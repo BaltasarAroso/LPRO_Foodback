@@ -1,12 +1,11 @@
 package com.lpro.fbrest.api;
 
-import java.security.Principal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class User implements Principal{
+public class User {
 	
 	@JsonProperty
 	private String username;
@@ -29,7 +28,7 @@ public class User implements Principal{
 	private LocalDate birth;
 	
 	@JsonProperty
-	private String premium;
+	private boolean premium;
 
 	
 	public User() {
@@ -37,7 +36,7 @@ public class User implements Principal{
 	}
 	
 	public User(String username, String password, String name, String email, String address, LocalDate birth,
-			String premium) {
+			boolean premium) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -84,10 +83,10 @@ public class User implements Principal{
 	public void setBirth(LocalDate date) {
 		this.birth = date;
 	}
-	public String getPremium() {
+	public boolean getPremium() {
 		return premium;
 	}
-	public void setPremium(String premium) {
+	public void setPremium(boolean premium) {
 		this.premium = premium;
 	}
 	
@@ -101,7 +100,7 @@ public class User implements Principal{
 				this.name.equals(user.getName()) &&
 				this.email.equals(user.getEmail()) &&
 				this.address.equals(user.getAddress()) &&
-				this.premium.equals(user.getPremium()) &&
+				(this.premium == user.getPremium()) &&
 				this.birth.equals(user.getBirth()) )
 			return true;
 		else return false;			

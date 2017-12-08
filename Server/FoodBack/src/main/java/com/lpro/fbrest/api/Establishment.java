@@ -1,21 +1,17 @@
 package com.lpro.fbrest.api;
 
-import java.security.Principal;
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Establishment implements Principal{
+public class Establishment {
 	
 	@JsonProperty
-	private Integer id;
+	private int id;
 	
 	@JsonProperty
 	private String name;
 
 	@JsonProperty
-	private Integer id_cat;
+	private int category_id;
 	
 	@JsonProperty
 	private String address;
@@ -30,7 +26,7 @@ public class Establishment implements Principal{
 	private String email;
 	
 	@JsonProperty
-	private Integer contact;
+	private String contact;
 	
 	@JsonProperty
 	private String username;
@@ -39,34 +35,21 @@ public class Establishment implements Principal{
 	private String password;
 	
 	@JsonProperty
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy") 
-	private LocalDate open_date;     //tipo de variavel?? -> LocalDate 
+	private Boolean delivery;
 	
 	@JsonProperty
-	private Boolean delivey;
-	
-	@JsonProperty
-	private Integer price;
-	
-	@JsonProperty
-	private Integer schedule1;
-	
-	@JsonProperty
-	private Integer schedule2;
+	private int avg_price;
 	
 	public Establishment() {
 		super();
 	}
 	
-	
-	//Constructor
-	public Establishment(Integer id, String name, Integer id_cat, String address, String zone, String city, String email,
-			Integer contact, String username, String password, LocalDate open_date, Boolean delivey, Integer price,
-			Integer schedule1, Integer schedule2) {
+	public Establishment(int id, String name, int category_id, String address, String zone, String city, String email,
+			String contact, String username, String password, boolean delivery, int avg_price) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.id_cat = id_cat;
+		this.category_id = category_id;
 		this.address = address;
 		this.zone = zone;
 		this.city = city;
@@ -74,193 +57,116 @@ public class Establishment implements Principal{
 		this.contact = contact;
 		this.username = username;
 		this.password = password;
-		this.open_date = open_date;
-		this.delivey = delivey;
-		this.price = price;
-		this.schedule1 = schedule1;
-		this.schedule2 = schedule2;
+		this.delivery = delivery;
+		this.avg_price = avg_price;
 	}
+	
 
 	
-	
-	public String getUsername() {
-		return username;
+	public int getId() {
+		return id;
 	}
-	
-	public void setUsername(String username) {
-		this.username = username;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-	public Integer getId() {
-		return id;
+	public int getCategory_id() {
+		return category_id;
 	}
 
-
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
 	}
-
-
-
-	public Integer getId_cat() {
-		return id_cat;
-	}
-
-
-
-	public void setId_cat(Integer id_cat) {
-		this.id_cat = id_cat;
-	}
-
-
 
 	public String getAddress() {
 		return address;
 	}
 
-
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
 
 	public String getZone() {
 		return zone;
 	}
 
-
-
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
-
-
 
 	public String getCity() {
 		return city;
 	}
 
-
-
 	public void setCity(String city) {
 		this.city = city;
 	}
-
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
-	public Integer getContact() {
+	public String getContact() {
 		return contact;
 	}
 
-
-
-	public void setContact(Integer contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 
+	public String getUsername() {
+		return username;
+	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public String getPassword() {
 		return password;
 	}
 
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-
-	public LocalDate getOpen_date() {
-		return open_date;
+	public Boolean getDelivery() {
+		return delivery;
 	}
 
-
-
-	public void setOpen_date(LocalDate open_date) {
-		this.open_date = open_date;
+	public void setDelivery(Boolean delivery) {
+		this.delivery = delivery;
 	}
 
-
-
-	public Boolean getDelivey() {
-		return delivey;
+	public int getAvg_price() {
+		return avg_price;
 	}
 
-
-
-	public void setDelivey(Boolean delivey) {
-		this.delivey = delivey;
+	public void setAvg_price(int avg_price) {
+		this.avg_price = avg_price;
 	}
 
-
-
-	public Integer getPrice() {
-		return price;
-	}
-
-
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-
-
-	public Integer getSchedule1() {
-		return schedule1;
-	}
-
-
-
-	public void setSchedule1(Integer schedule1) {
-		this.schedule1 = schedule1;
-	}
-
-
-
-	public Integer getSchedule2() {
-		return schedule2;
-	}
-
-
-
-	public void setSchedule2(Integer schedule2) {
-		this.schedule2 = schedule2;
-	}
-	
 	public boolean equals(Object o) {
 		if(o == null) return false;
 		if(!(o instanceof Establishment)) return false;
 		
 		Establishment restaurante = (Establishment)o;
-		if(this.id.equals(restaurante.getId()) &&
+		if(this.id == restaurante.getId() &&
 				this.name.equals(restaurante.getName()) &&
-				this.id_cat.equals(restaurante.getId_cat()) &&
+				this.category_id == restaurante.getCategory_id() &&
 				this.address.equals(restaurante.getAddress()) &&
 				this.zone.equals(restaurante.getZone()) &&
 				this.city.equals(restaurante.getCity()) &&
@@ -268,11 +174,8 @@ public class Establishment implements Principal{
 				this.contact.equals(restaurante.getContact()) &&
 				this.username.equals(restaurante.getUsername()) &&
 				this.password.equals(restaurante.getPassword()) &&
-				this.open_date.equals(restaurante.getOpen_date()) &&
-				this.delivey.equals(restaurante.getDelivey()) &&
-				this.price.equals(restaurante.getPrice()) &&
-				this.schedule1.equals(restaurante.getSchedule1()) &&
-				this.schedule2.equals(restaurante.getSchedule2()))
+				this.delivery.equals(restaurante.getDelivery()) &&
+				this.avg_price == restaurante.getAvg_price())
 			return true;
 		else return false;			
 	}

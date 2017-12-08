@@ -1,13 +1,16 @@
 package com.lpro.fbrest;
 
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.skife.jdbi.v2.DBI;
 
-import com.lpro.fbrest.api.User;
-import com.lpro.fbrest.auth.UserAuthenticator;
-import com.lpro.fbrest.db.EstablishmentDAO;
-import com.lpro.fbrest.db.UserDAO;
+import com.lpro.fbrest.auth.Client;
+import com.lpro.fbrest.auth.ClientAuthenticator;
+import com.lpro.fbrest.auth.ClientAuthorizer;
+import com.lpro.fbrest.db.ClientDAO;
 import com.lpro.fbrest.resources.EstablishmentsResource;
 import com.lpro.fbrest.resources.UsersResource;
+import com.lpro.fbrest.service.EstablishmentService;
+import com.lpro.fbrest.service.UserService;
 
 import io.dropwizard.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
@@ -42,23 +45,24 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
     		//Database configurations
     		final DBIFactory factory = new DBIFactory();
 		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
-		final UserDAO userdao = jdbi.onDemand(UserDAO.class);
-		final EstablishmentDAO establishmentdao = jdbi.onDemand(EstablishmentDAO.class);
+		final ClientDAO clientdao = jdbi.onDemand(ClientDAO.class);
 		
 		
 		//Resource configurations
-		environment.jersey().register(new UsersResource(userdao));
-		environment.jersey().register(new EstablishmentsResource(establishmentdao));
+		environment.jersey().register(new UsersResource(jdbi.onDemand(UserService.class)));
+		environment.jersey().register(new EstablishmentsResource(jdbi.onDemand(EstablishmentService.class)));
 		
 		
 		
 		//Auth configurations - de momento a usar Basic Auth
 		environment.jersey().register(new AuthDynamicFeature(
-				new BasicCredentialAuthFilter.Builder<User>()
-				.setAuthenticator(new UserAuthenticator(userdao))
+				new BasicCredentialAuthFilter.Builder<Client>()
+				.setAuthenticator(new ClientAuthenticator(clientdao))
+				.setAuthorizer(new ClientAuthorizer())
 				.setRealm("SECURITY REALM")
 				.buildAuthFilter()));
-		environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
+		environment.jersey().register(new AuthValueFactoryProvider.Binder<>(Client.class));
+		environment.jersey().register(RolesAllowedDynamicFeature.class);
     }
 
 }

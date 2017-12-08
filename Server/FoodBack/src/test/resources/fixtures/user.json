@@ -4,6 +4,6 @@
 	"name": "Daniel",
 	"email": "email@mail.com",
 	"address": "Minha morada",
-	"premium": "blabla",
+	"premium": true,
 	"birth": "06-03-1996" 
 }
