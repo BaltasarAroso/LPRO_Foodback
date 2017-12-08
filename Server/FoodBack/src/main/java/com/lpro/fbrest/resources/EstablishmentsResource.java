@@ -20,16 +20,30 @@ import com.lpro.fbrest.db.EstablishmentDAO;
 
 
 
-	@Path("/establishment")
+	/**
+	 * @author Beatriz 
+	 *
+	 */
+	@Path("/establishments")
 	public class EstablishmentsResource {
 		
+		/**
+		 * DAO for the class Establishment
+		 */
 		private EstablishmentDAO establishmentdao;
 		
+		/**
+		 * @param establishmentdao DAO for the class Establishment
+		 */
 		public EstablishmentsResource(EstablishmentDAO establishmentdao) {
 			this.establishmentdao = establishmentdao;
 	
 		}
 		
+		/**
+		 * @param establishment new establishment to be inserted in the database
+		 * @return Response object with http status 
+		 */
 		@POST
 		@Consumes(MediaType.APPLICATION_JSON)
 		public Response newEstablishment(@NotNull @Valid Establishment establishment) {
@@ -59,12 +73,19 @@ import com.lpro.fbrest.db.EstablishmentDAO;
 			return Response.ok().build();	
 		}
 		
+		/**
+		 * @return All establishments
+		 */
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<Establishment> getAllEstablishments() {
 			return establishmentdao.getAllEstablishments();
 		}
 		
+		/**
+		 * @param name of the wanted establishment
+		 * @return Establishment with the name specified
+		 */
 		@GET
 		@Path("/{name}")     //MUDAR O PARAM NAME PARA UMA QUERY (por causa dos espaços)
 		@Produces(MediaType.APPLICATION_JSON)
@@ -77,8 +98,12 @@ import com.lpro.fbrest.db.EstablishmentDAO;
 			return establishment;
 		}
 		
+		/**
+		 * @param establishment the be edited
+		 * @return Response object with http status
+		 */
 		@PUT
-		@Path("/update/{name}")
+		@Path("/{name}") //retirei "update" do caminho porque por ser PUT sabe-se logo que é para fazer update
 		@Consumes(MediaType.APPLICATION_JSON)
 		public Response changeEstablishment(@NotNull @Valid Establishment establishment) {
 			try {

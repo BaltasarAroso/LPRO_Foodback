@@ -1,6 +1,6 @@
 package com.lpro.fbrest.db;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
@@ -27,7 +27,7 @@ public interface EstablishmentDAO {
 					@Bind("contact") Integer contact,
 					@Bind("username") String username,
 					@Bind("password") String password,
-					@Bind("open_date") Date open_date,
+					@Bind("open_date") LocalDate open_date,
 					@Bind("delivey") Boolean delivey,
 					@Bind("price") Integer price,
 					@Bind("schedule1") Integer schedule1,
@@ -59,7 +59,7 @@ public interface EstablishmentDAO {
 			@Bind("contact") Integer contact,
 			@Bind("username") String username,
 			@Bind("password") String password,
-			@Bind("open_date") Date open_date,
+			@Bind("open_date") LocalDate open_date,
 			@Bind("delivey") Boolean delivey,
 			@Bind("price") Integer price,
 			@Bind("schedule1") Integer schedule1,

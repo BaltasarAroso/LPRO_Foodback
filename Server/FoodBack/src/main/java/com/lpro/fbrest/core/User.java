@@ -1,7 +1,7 @@
 package com.lpro.fbrest.core;
 
 import java.security.Principal;
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,7 +26,7 @@ public class User implements Principal{
 	@JsonProperty
 	//serialização da data não está a funcionar bem quando a data é 06-03-1996 passa para 05-03-1996
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy") 
-	private Date birth;
+	private LocalDate birth;
 	
 	@JsonProperty
 	private String premium;
@@ -36,7 +36,7 @@ public class User implements Principal{
 		super();
 	}
 	
-	public User(String username, String password, String name, String email, String address, Date birth,
+	public User(String username, String password, String name, String email, String address, LocalDate birth,
 			String premium) {
 		super();
 		this.username = username;
@@ -78,10 +78,10 @@ public class User implements Principal{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Date getBirth() {
+	public LocalDate getBirth() {
 		return birth;
 	}
-	public void setBirth(Date date) {
+	public void setBirth(LocalDate date) {
 		this.birth = date;
 	}
 	public String getPremium() {
@@ -89,5 +89,21 @@ public class User implements Principal{
 	}
 	public void setPremium(String premium) {
 		this.premium = premium;
+	}
+	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof User)) return false;
+		
+		User user = (User)o;
+		if(this.username.equals(user.getUsername()) &&
+				this.password.equals(user.getPassword()) &&
+				this.name.equals(user.getName()) &&
+				this.email.equals(user.getEmail()) &&
+				this.address.equals(user.getAddress()) &&
+				this.premium.equals(user.getPremium()) &&
+				this.birth.equals(user.getBirth()) )
+			return true;
+		else return false;			
 	}
 }

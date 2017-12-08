@@ -9,9 +9,9 @@ server:
 #database configurations
 database:
   driverClass: org.postgresql.Driver
-  user: siem1701
-  password: beabea
-  url: jdbc:postgresql://db.fe.up.pt:5432/siem1701?currentSchema=foodback
+  user: sibd17g21
+  password: batatinhas
+  url: jdbc:postgresql://dbm.fe.up.pt:5432/sibd17g21?currentSchema=foodback
 
 
 logging:

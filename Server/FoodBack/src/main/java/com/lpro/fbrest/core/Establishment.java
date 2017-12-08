@@ -1,8 +1,9 @@
 package com.lpro.fbrest.core;
 
 import java.security.Principal;
-import java.sql.Date;
+import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Establishment implements Principal{
@@ -38,7 +39,8 @@ public class Establishment implements Principal{
 	private String password;
 	
 	@JsonProperty
-	private Date open_date;     //tipo de variavel??
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy") 
+	private LocalDate open_date;     //tipo de variavel?? -> LocalDate 
 	
 	@JsonProperty
 	private Boolean delivey;
@@ -59,7 +61,7 @@ public class Establishment implements Principal{
 	
 	//Constructor
 	public Establishment(Integer id, String name, Integer id_cat, String address, String zone, String city, String email,
-			Integer contact, String username, String password, Date open_date, Boolean delivey, Integer price,
+			Integer contact, String username, String password, LocalDate open_date, Boolean delivey, Integer price,
 			Integer schedule1, Integer schedule2) {
 		super();
 		this.id = id;
@@ -193,13 +195,13 @@ public class Establishment implements Principal{
 
 
 
-	public Date getOpen_date() {
+	public LocalDate getOpen_date() {
 		return open_date;
 	}
 
 
 
-	public void setOpen_date(Date open_date) {
+	public void setOpen_date(LocalDate open_date) {
 		this.open_date = open_date;
 	}
 
@@ -249,6 +251,30 @@ public class Establishment implements Principal{
 
 	public void setSchedule2(Integer schedule2) {
 		this.schedule2 = schedule2;
+	}
+	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Establishment)) return false;
+		
+		Establishment restaurante = (Establishment)o;
+		if(this.id.equals(restaurante.getId()) &&
+				this.name.equals(restaurante.getName()) &&
+				this.id_cat.equals(restaurante.getId_cat()) &&
+				this.address.equals(restaurante.getAddress()) &&
+				this.zone.equals(restaurante.getZone()) &&
+				this.city.equals(restaurante.getCity()) &&
+				this.email.equals(restaurante.getEmail()) &&
+				this.contact.equals(restaurante.getContact()) &&
+				this.username.equals(restaurante.getUsername()) &&
+				this.password.equals(restaurante.getPassword()) &&
+				this.open_date.equals(restaurante.getOpen_date()) &&
+				this.delivey.equals(restaurante.getDelivey()) &&
+				this.price.equals(restaurante.getPrice()) &&
+				this.schedule1.equals(restaurante.getSchedule1()) &&
+				this.schedule2.equals(restaurante.getSchedule2()))
+			return true;
+		else return false;			
 	}
 
 }
