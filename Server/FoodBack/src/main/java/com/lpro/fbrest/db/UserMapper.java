@@ -2,6 +2,7 @@ package com.lpro.fbrest.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
@@ -12,12 +13,13 @@ public class UserMapper implements ResultSetMapper<User>{
 
 	@Override
 	public User map(int index, ResultSet r, StatementContext ctx) throws SQLException {
+		LocalDate birth = r.getDate("birth") == null ? null :  r.getDate("birth").toLocalDate();
 		return new User(r.getString("username"),
-						r.getString("password"),
+						null,
 						r.getString("name"),
 						r.getString("email"),
 						r.getString("address"),
-						r.getDate("birth"),
+						birth,
 						r.getString("premium"));
 	}
 }

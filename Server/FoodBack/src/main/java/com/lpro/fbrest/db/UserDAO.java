@@ -1,6 +1,6 @@
 package com.lpro.fbrest.db;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
@@ -22,7 +22,7 @@ public interface UserDAO {
 					@Bind("name") String name,
 					@Bind("email") String email,
 					@Bind("address") String address,
-					@Bind("birth") Date birth,
+					@Bind("birth") LocalDate birth,
 					@Bind("premium") String premium);
 	
 	//usa-se @SqlQuery para ir buscar info mas é preciso um mapper se for para preencher um objeto
@@ -36,5 +36,9 @@ public interface UserDAO {
 	List<User> getAllUsers();
 	
 	
-	
+	@SqlQuery("SELECT * "
+			+ "FROM users "
+			+ "WHERE username = :username AND password = :password")
+	User getUserByNameAndPassword(@Bind("username") String username, @Bind("password") String password);
+
 }

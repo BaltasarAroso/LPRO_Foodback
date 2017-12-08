@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 public class FoodBackConfiguration extends Configuration {
-    
+	
 	@Valid
     @NotNull
     private DataSourceFactory database = new DataSourceFactory();

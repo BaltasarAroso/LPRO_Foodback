@@ -4,7 +4,9 @@ import org.skife.jdbi.v2.DBI;
 
 import com.lpro.fbrest.auth.UserAuthenticator;
 import com.lpro.fbrest.core.User;
+import com.lpro.fbrest.db.EstablishmentDAO;
 import com.lpro.fbrest.db.UserDAO;
+import com.lpro.fbrest.resources.EstablishmentsResource;
 import com.lpro.fbrest.resources.UsersResource;
 
 import io.dropwizard.Application;
@@ -25,6 +27,8 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
     public String getName() {
         return "FoodBack";
     }
+    
+    
 
     @Override
     public void initialize(final Bootstrap<FoodBackConfiguration> bootstrap) {
@@ -39,10 +43,13 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
     		final DBIFactory factory = new DBIFactory();
 		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
 		final UserDAO userdao = jdbi.onDemand(UserDAO.class);
+		final EstablishmentDAO establishmentdao = jdbi.onDemand(EstablishmentDAO.class);
 		
 		
 		//Resource configurations
 		environment.jersey().register(new UsersResource(userdao));
+		environment.jersey().register(new EstablishmentsResource(establishmentdao));
+		
 		
 		
 		//Auth configurations - de momento a usar Basic Auth
