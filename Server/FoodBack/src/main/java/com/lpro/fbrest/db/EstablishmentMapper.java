@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
-import com.lpro.fbrest.core.Establishment;
+import com.lpro.fbrest.api.Establishment;
 
 public class EstablishmentMapper implements ResultSetMapper<Establishment>{
 

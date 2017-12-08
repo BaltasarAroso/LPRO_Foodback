@@ -2,8 +2,8 @@ package com.lpro.fbrest;
 
 import org.skife.jdbi.v2.DBI;
 
+import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.auth.UserAuthenticator;
-import com.lpro.fbrest.core.User;
 import com.lpro.fbrest.db.EstablishmentDAO;
 import com.lpro.fbrest.db.UserDAO;
 import com.lpro.fbrest.resources.EstablishmentsResource;

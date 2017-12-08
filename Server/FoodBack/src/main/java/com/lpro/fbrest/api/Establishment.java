@@ -1,4 +1,4 @@
-package com.lpro.fbrest.core;
+package com.lpro.fbrest.api;
 
 import java.security.Principal;
 import java.time.LocalDate;

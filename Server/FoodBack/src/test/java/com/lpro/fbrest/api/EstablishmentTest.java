@@ -1,6 +1,4 @@
-package com.lpro.fbrest.core;
-
-import com.lpro.fbrest.core.Establishment;
+package com.lpro.fbrest.api;
 
 import static io.dropwizard.testing.FixtureHelpers.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,6 +8,7 @@ import java.time.LocalDate;
 import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lpro.fbrest.api.Establishment;
 
 public class EstablishmentTest {
 

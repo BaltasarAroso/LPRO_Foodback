@@ -8,7 +8,7 @@ import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
-import com.lpro.fbrest.core.Establishment;
+import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.db.EstablishmentMapper;
 
 @RegisterMapper(EstablishmentMapper.class)

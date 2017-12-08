@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
-import com.lpro.fbrest.core.User;
+import com.lpro.fbrest.api.User;
 
 public class UserMapper implements ResultSetMapper<User>{
 

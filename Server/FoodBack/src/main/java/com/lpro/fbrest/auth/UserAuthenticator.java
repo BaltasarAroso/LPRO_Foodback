@@ -2,7 +2,7 @@ package com.lpro.fbrest.auth;
 
 import java.util.Optional;
 
-import com.lpro.fbrest.core.User;
+import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.db.UserDAO;
 
 import io.dropwizard.auth.AuthenticationException;

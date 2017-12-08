@@ -14,7 +14,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lpro.fbrest.core.User;
+import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.db.UserDAO;
 
 import io.dropwizard.auth.Auth;
