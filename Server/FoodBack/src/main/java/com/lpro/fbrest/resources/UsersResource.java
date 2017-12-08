@@ -86,18 +86,5 @@ public class UsersResource {
 		user.setPassword(null);
 		return user;
 	}
-	
-
-	//teste para ver se autenticação funciona
-	/**
-	 * @param user
-	 * @return
-	 */
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/secured_hello")
-	public String getGreeting(@Auth User user) {
-		return "Hello " + user.getName() + "!";
-	}
 
 }
