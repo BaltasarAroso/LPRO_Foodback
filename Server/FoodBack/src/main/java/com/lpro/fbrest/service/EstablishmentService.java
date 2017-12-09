@@ -43,6 +43,12 @@ public abstract class EstablishmentService {
 		try {
 			clientdao().insertEstablishmentClient(establishment.getUsername(), establishment.getPassword(), establishment_id);
 		} catch(Exception e) {
+			try {
+				establishmentdao().deleteEstablishment(establishment_id);
+			} catch(Exception err) {
+				err.printStackTrace();
+				throw new WebApplicationException(500);
+			}
 			e.printStackTrace();
 			throw new WebApplicationException(500);
 		}

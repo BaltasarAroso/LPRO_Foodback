@@ -15,7 +15,6 @@ import com.lpro.fbrest.db.UserMapper;
 @RegisterMapper(UserMapper.class)
 public interface UserDAO {
 	
-	//usa-se @sqlupdate para inserts/updates etc
 	@SqlUpdate("INSERT INTO users "
 			+ "VALUES (DEFAULT, :name, :email, :address, :birth, :premium)")
 	@GetGeneratedKeys
@@ -24,15 +23,18 @@ public interface UserDAO {
 					@Bind("address") String address,
 					@Bind("birth") LocalDate birth,
 					@Bind("premium") boolean premium);
-
-	//usa-se @SqlQuery para ir buscar info mas é preciso um mapper se for para preencher um objeto
+	
+	@SqlUpdate("DELETE FROM users "
+			+ "WHERE id = :user_id")
+	public void deleteUser(@Bind("user_id") long id);
+	
 	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium "
 			+ "FROM users JOIN credential ON users_id = users.id "
 			+ "WHERE username = :username")
-	User getUserByUsername(@Bind("username") String username);
+	public User getUserByUsername(@Bind("username") String username);
 	
 	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium "
 			+ "FROM users JOIN credential ON users_id = users.id")
-	List<User> getAllUsers();
+	public List<User> getAllUsers();
 	
 }

@@ -35,6 +35,12 @@ public abstract class UserService {
 		try {
 			clientdao().insertUserClient(user.getUsername(), user.getPassword(), user_id);
 		} catch(Exception e) {
+			try {
+				userdao().deleteUser(user_id);
+			} catch(Exception err) {
+				err.printStackTrace();
+				throw new WebApplicationException(500);
+			}
 			e.printStackTrace();
 			throw new WebApplicationException(500);
 		}

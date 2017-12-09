@@ -19,36 +19,40 @@ public interface EstablishmentDAO {
 			+ "VALUES (DEFAULT, :name, :category_id, :address, :zone, :city, :email, :contact, :delivery, :avg_price)")
 	@GetGeneratedKeys
 	public long insertEstablishemnt(@Bind("name") String name,
-							@Bind("category_id") int category_id,
-							@Bind("address") String address,
-							@Bind("zone") String zone,
-							@Bind("city") String city,
-							@Bind("email") String email,
-							@Bind("contact") String contact,
-							@Bind("delivery") Boolean delivery,
-							@Bind("avg_price") int avg_price);
+									@Bind("category_id") int category_id,
+									@Bind("address") String address,
+									@Bind("zone") String zone,
+									@Bind("city") String city,
+									@Bind("email") String email,
+									@Bind("contact") String contact,
+									@Bind("delivery") Boolean delivery,
+									@Bind("avg_price") int avg_price);
+	
+	@SqlUpdate("DELETE FROM establishment "
+			+ "WHERE id = :establishment_id")
+	public void deleteEstablishment(@Bind("establishment_id") long establishment_id);
 	
 	@SqlQuery("SELECT * "
 			+ "FROM establishment")
-	List<Establishment> getAllEstablishments();	
+	public List<Establishment> getAllEstablishments();	
 
 	@SqlQuery("SELECT * "
 			+ "FROM establishment "
 			+ "WHERE name = :name")
-	Establishment getEstablishment(@Bind("name") String name);
+	public Establishment getEstablishment(@Bind("name") String name);
 	
 	//Para atualizar os parametros de um restaurante de acesso à base de dados
 	@SqlUpdate("UPDATE establishment "
 			+"SET name = :name, category_id = :category_id, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price "
 			+"WHERE id = :id")
-	void updateEstablishment(@Bind("id") int id,
-							@Bind("name") String name,
-							@Bind("category_id") int category_id,
-							@Bind("address") String address,
-							@Bind("zone") String zone,
-							@Bind("city") String city,
-							@Bind("email") String email,
-							@Bind("contact") String contact,
-							@Bind("delivery") boolean delivery,
-							@Bind("avg_price") int avg_price);
+	public void updateEstablishment(@Bind("id") int id,
+									@Bind("name") String name,
+									@Bind("category_id") int category_id,
+									@Bind("address") String address,
+									@Bind("zone") String zone,
+									@Bind("city") String city,
+									@Bind("email") String email,
+									@Bind("contact") String contact,
+									@Bind("delivery") boolean delivery,
+									@Bind("avg_price") int avg_price);
 }
