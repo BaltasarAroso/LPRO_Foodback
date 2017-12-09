@@ -26,12 +26,12 @@ public interface UserDAO {
 					@Bind("premium") boolean premium);
 
 	//usa-se @SqlQuery para ir buscar info mas é preciso um mapper se for para preencher um objeto
-	@SqlQuery("SELECT username, name, email, address, birth, premium "
+	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium "
 			+ "FROM users JOIN credential ON users_id = users.id "
 			+ "WHERE username = :username")
 	User getUserByUsername(@Bind("username") String username);
 	
-	@SqlQuery("SELECT username, name, email, address, birth, premium "
+	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium "
 			+ "FROM users JOIN credential ON users_id = users.id")
 	List<User> getAllUsers();
 	

@@ -7,8 +7,10 @@ import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.auth.ClientAuthenticator;
 import com.lpro.fbrest.auth.ClientAuthorizer;
 import com.lpro.fbrest.db.ClientDAO;
+import com.lpro.fbrest.resources.CommentsResource;
 import com.lpro.fbrest.resources.EstablishmentsResource;
 import com.lpro.fbrest.resources.UsersResource;
+import com.lpro.fbrest.service.CommentService;
 import com.lpro.fbrest.service.EstablishmentService;
 import com.lpro.fbrest.service.UserService;
 
@@ -51,7 +53,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		//Resource configurations
 		environment.jersey().register(new UsersResource(jdbi.onDemand(UserService.class)));
 		environment.jersey().register(new EstablishmentsResource(jdbi.onDemand(EstablishmentService.class)));
-		
+		environment.jersey().register(new CommentsResource(jdbi.onDemand(CommentService.class)));
 		
 		
 		//Auth configurations - de momento a usar Basic Auth

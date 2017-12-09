@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class User {
 	
 	@JsonProperty
+	private long id;
+	
+	@JsonProperty
 	private String username;
 	
 	@JsonProperty
@@ -35,9 +38,10 @@ public class User {
 		super();
 	}
 	
-	public User(String username, String password, String name, String email, String address, LocalDate birth,
+	public User(long id, String username, String password, String name, String email, String address, LocalDate birth,
 			boolean premium) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.name = name;
@@ -47,6 +51,14 @@ public class User {
 		this.premium = premium;
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -95,7 +107,8 @@ public class User {
 		if(!(o instanceof User)) return false;
 		
 		User user = (User)o;
-		if(this.username.equals(user.getUsername()) &&
+		if(this.id == user.getId() &&
+				this.username.equals(user.getUsername()) &&
 				this.password.equals(user.getPassword()) &&
 				this.name.equals(user.getName()) &&
 				this.email.equals(user.getEmail()) &&

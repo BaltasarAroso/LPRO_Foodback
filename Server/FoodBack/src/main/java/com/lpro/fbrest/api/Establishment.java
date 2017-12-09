@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Establishment {
 	
 	@JsonProperty
-	private int id;
+	private long id;
 	
 	@JsonProperty
 	private String name;
@@ -44,7 +44,7 @@ public class Establishment {
 		super();
 	}
 	
-	public Establishment(int id, String name, int category_id, String address, String zone, String city, String email,
+	public Establishment(long id, String name, int category_id, String address, String zone, String city, String email,
 			String contact, String username, String password, boolean delivery, int avg_price) {
 		super();
 		this.id = id;
@@ -63,11 +63,11 @@ public class Establishment {
 	
 
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -16,7 +16,8 @@ public class UserTest {
 
     @Test
     public void serializesToJSON() throws Exception {
-        final User person = new User("dan",
+        final User person = new User(4,
+        								"dan",
         								"mypass",
         								"Daniel",
         								"email@mail.com",
@@ -32,13 +33,14 @@ public class UserTest {
     
     @Test
     public void deserializesFromJSON() throws Exception {
-        final User person = new User("dan",
-				"mypass",
-				"Daniel",
-				"email@mail.com",
-				"Minha morada",
-				LocalDate.parse("1996-03-06"),
-				true);
+        final User person = new User(4,
+					        			"dan",
+									"mypass",
+									"Daniel",
+									"email@mail.com",
+									"Minha morada",
+									LocalDate.parse("1996-03-06"),
+									true);
           
         assertThat(MAPPER.readValue(fixture("fixtures/user.json"), User.class)).isEqualTo(person);
     }

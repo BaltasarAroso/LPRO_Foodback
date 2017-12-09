@@ -14,7 +14,8 @@ public class UserMapper implements ResultSetMapper<User>{
 	@Override
 	public User map(int index, ResultSet r, StatementContext ctx) throws SQLException {
 		LocalDate birth = r.getDate("birth") == null ? null :  r.getDate("birth").toLocalDate();
-		return new User(r.getString("username"),
+		return new User(r.getLong("id"),
+						r.getString("username"),
 						null,
 						r.getString("name"),
 						r.getString("email"),
