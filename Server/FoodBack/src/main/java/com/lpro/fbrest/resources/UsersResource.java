@@ -21,17 +21,18 @@ import io.dropwizard.auth.Auth;
 /**
  * @author Daniel
  *
+ * Resource to manage users
  */
 @Path("/users")
 public class UsersResource {
 
 	/**
-	 * DAO for User Class
+	 * Service for User Class
 	 */
 	private UserService userService;
 	
 	/**
-	 * @param userdao DAO for User Class
+	 * @param userService Service for User Class
 	 */
 	public UsersResource(UserService userService) {
 		this.userService = userService;

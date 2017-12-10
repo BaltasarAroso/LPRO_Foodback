@@ -24,22 +24,33 @@ import io.dropwizard.setup.Environment;
 
 public class FoodBackApplication extends Application<FoodBackConfiguration> {
 
+    /**
+     * @param args of the command lime
+     * @throws Exception If something goes wrong
+     */
     public static void main(final String[] args) throws Exception {
         new FoodBackApplication().run(args);
     }
 
+    /* (non-Javadoc)
+     * @see io.dropwizard.Application#getName()
+     */
     @Override
     public String getName() {
         return "FoodBack";
     }
     
-    
-
+    /* (non-Javadoc)
+     * @see io.dropwizard.Application#initialize(io.dropwizard.setup.Bootstrap)
+     */
     @Override
     public void initialize(final Bootstrap<FoodBackConfiguration> bootstrap) {
         // TODO: application initialization
     }
 
+    /* (non-Javadoc)
+     * @see io.dropwizard.Application#run(io.dropwizard.Configuration, io.dropwizard.setup.Environment)
+     */
     @Override
     public void run(final FoodBackConfiguration configuration,
                     final Environment environment) {

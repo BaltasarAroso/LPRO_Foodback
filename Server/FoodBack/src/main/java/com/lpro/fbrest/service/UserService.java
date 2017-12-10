@@ -14,13 +14,19 @@ import com.lpro.fbrest.db.UserDAO;
 
 public abstract class UserService {
 	
+	private static final String SUCCESS = "Success...";
+	
 	@CreateSqlObject
 	abstract ClientDAO clientdao();
 	
 	@CreateSqlObject
 	abstract UserDAO userdao();
 	
-	public void newUser(User user) {
+	/**
+	 * @param user User to be created
+	 * @return String SUCCESS if successful
+	 */
+	public String newUser(User user) {
 		long user_id;
 		Client prev = clientdao().getClient(user.getUsername());
 		if(prev != null) throw new WebApplicationException(Response.serverError()
@@ -44,12 +50,20 @@ public abstract class UserService {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
 		}
+		return SUCCESS;
 	}
 	
+	/**
+	 * @return list with all users
+	 */
 	public List<User> getAllUsers() {
 		return userdao().getAllUsers();
 	}
 	
+	/**
+	 * @param username Username to be searched
+	 * @return User if it exists
+	 */
 	public User getUserByUsername(String username) {
 		User user = userdao().getUserByUsername(username);
 		if(user == null) {

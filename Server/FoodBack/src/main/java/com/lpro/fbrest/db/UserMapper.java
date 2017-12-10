@@ -9,8 +9,16 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
 import com.lpro.fbrest.api.User;
 
+/**
+ * @author Daniel
+ *
+ * Mapper for UserDAO
+ */
 public class UserMapper implements ResultSetMapper<User>{
 
+	/* (non-Javadoc)
+	 * @see org.skife.jdbi.v2.tweak.ResultSetMapper#map(int, java.sql.ResultSet, org.skife.jdbi.v2.StatementContext)
+	 */
 	@Override
 	public User map(int index, ResultSet r, StatementContext ctx) throws SQLException {
 		LocalDate birth = r.getDate("birth") == null ? null :  r.getDate("birth").toLocalDate();

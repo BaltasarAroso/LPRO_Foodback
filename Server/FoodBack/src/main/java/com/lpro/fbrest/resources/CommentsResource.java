@@ -20,15 +20,31 @@ import com.lpro.fbrest.service.CommentService;
 
 import io.dropwizard.auth.Auth;
 
+/**
+ * @author Daniel
+ *
+ * Resource to manage comments
+ */
 @Path("/comments")
 public class CommentsResource {
 
+	/**
+	 * Service to access comments
+	 */
 	private CommentService commentService;
 	
+	/**
+	 * @param commentService to access comment
+	 */
 	public CommentsResource(CommentService commentService) {
 		this.commentService = commentService;
 	}
 	
+	/**
+	 * @param client Client that is making the comment
+	 * @param comment Comment to be created
+	 * @return Response.ok() if comment was successfully created
+	 */
 	@POST
 	@RolesAllowed("USER")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -40,6 +56,10 @@ public class CommentsResource {
 		return Response.ok().build();
 	}
 	
+	/**
+	 * @param establishment_id Id of the establishment
+	 * @return List of comments made to the establishment specified
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{establishment_id}")
@@ -47,6 +67,11 @@ public class CommentsResource {
 		return commentService.getEstablishmentComments(establishment_id);
 	}
 	
+	/**
+	 * @param client Client that wants to delete his now comment
+	 * @param comment Comment to be deleted
+	 * @return Response.ok() if comment was successfully deleted
+	 */
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteComment(@Auth Client client, Comment comment) {

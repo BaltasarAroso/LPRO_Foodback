@@ -9,11 +9,18 @@ import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 import com.lpro.fbrest.api.Comment;
 import com.lpro.fbrest.db.CommentDAO;
 
+/**
+ * @author Daniel
+ *
+ */
 public abstract class CommentService {
-	
+
 	@CreateSqlObject
 	abstract CommentDAO commentdao();
 	
+	/**
+	 * @param comment Comment to be inserted 
+	 */
 	public void newComment(Comment comment) {
 		try {
 			commentdao().insertComment(comment.getEstablishment_id(),
@@ -26,6 +33,9 @@ public abstract class CommentService {
 		}
 	}
 	
+	/**
+	 * @param comment Comment to be deleted
+	 */
 	public void deleteComment(Comment comment) {
 		try {
 			commentdao().deleteComment(comment.getId());
@@ -35,6 +45,10 @@ public abstract class CommentService {
 		}
 	}
 	
+	/**
+	 * @param establishment_id Id of the establishment 
+	 * @return Comments made to the establishment specified
+	 */
 	public List<Comment> getEstablishmentComments(long establishment_id) {
 		try {
 			return commentdao().getEstablishmentComments(establishment_id);

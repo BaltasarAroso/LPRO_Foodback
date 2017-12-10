@@ -31,12 +31,12 @@ import io.dropwizard.auth.Auth;
 	public class EstablishmentsResource {
 		
 		/**
-		 * DAO for the class Establishment
+		 * Service for the class Establishment
 		 */
 		private EstablishmentService establishmentService;
 		
 		/**
-		 * @param establishmentdao DAO for the class Establishment
+		 * @param establishmentService Service for the class Establishment
 		 */
 		public EstablishmentsResource(EstablishmentService establishmentService) {
 			this.establishmentService = establishmentService;
@@ -75,7 +75,8 @@ import io.dropwizard.auth.Auth;
 		}
 		
 		/**
-		 * @param establishment the be edited
+		 * @param client Client that owns the establishment to be edited
+		 * @param newestablishment The establishment the be edited
 		 * @return Response object with http status
 		 */
 		@PUT
