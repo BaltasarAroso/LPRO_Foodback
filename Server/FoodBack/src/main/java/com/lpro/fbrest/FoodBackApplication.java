@@ -9,6 +9,7 @@ import com.lpro.fbrest.auth.ClientAuthorizer;
 import com.lpro.fbrest.db.ClientDAO;
 import com.lpro.fbrest.resources.CommentsResource;
 import com.lpro.fbrest.resources.EstablishmentsResource;
+import com.lpro.fbrest.resources.ImagesResource;
 import com.lpro.fbrest.resources.UsersResource;
 import com.lpro.fbrest.service.CommentService;
 import com.lpro.fbrest.service.EstablishmentService;
@@ -18,6 +19,7 @@ import io.dropwizard.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
+import io.dropwizard.forms.MultiPartBundle;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -45,7 +47,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
      */
     @Override
     public void initialize(final Bootstrap<FoodBackConfiguration> bootstrap) {
-        // TODO: application initialization
+        bootstrap.addBundle(new MultiPartBundle());
     }
 
     /* (non-Javadoc)
@@ -65,6 +67,8 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new UsersResource(jdbi.onDemand(UserService.class)));
 		environment.jersey().register(new EstablishmentsResource(jdbi.onDemand(EstablishmentService.class)));
 		environment.jersey().register(new CommentsResource(jdbi.onDemand(CommentService.class)));
+		
+		environment.jersey().register(new ImagesResource());
 		
 		
 		//Auth configurations - de momento a usar Basic Auth

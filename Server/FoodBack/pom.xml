@@ -63,6 +63,10 @@
 	        	<artifactId>mockito-core</artifactId>
 	        	<scope>test</scope>
         </dependency>
+        <dependency>
+	        	<groupId>io.dropwizard</groupId>
+	        	<artifactId>dropwizard-forms</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
