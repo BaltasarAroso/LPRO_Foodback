@@ -12,6 +12,10 @@ import io.dropwizard.auth.Auth;
 @Path("/credentials")
 public class CredentialsResource {
 
+	/**
+	 * @param client Client that sent credentials
+	 * @return OK if client can access resource
+	 */
 	@GET
 	@Path("/user")
 	@RolesAllowed("USER")
@@ -19,6 +23,10 @@ public class CredentialsResource {
 		return Response.ok().build();
 	}
 	
+	/**
+	 * @param client Client that sent credentials
+	 * @return OK if client can access resource
+	 */
 	@GET
 	@Path("/establishment")
 	@RolesAllowed("ESTABLISHMENT")
