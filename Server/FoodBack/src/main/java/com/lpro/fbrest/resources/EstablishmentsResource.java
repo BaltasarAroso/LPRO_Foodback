@@ -80,7 +80,7 @@ import io.dropwizard.auth.Auth;
 		 * @return Response object with http status
 		 */
 		@PUT
-		@RolesAllowed("ESTABLISHMENT")
+		@RolesAllowed("ESTABLISHMENT"	)
 		@Consumes(MediaType.APPLICATION_JSON)
 		public Response changeEstablishment(@Auth Client client, @NotNull Establishment newestablishment) {
 			establishmentService.editEstablishment(client.getEstablishment_id(), newestablishment);
