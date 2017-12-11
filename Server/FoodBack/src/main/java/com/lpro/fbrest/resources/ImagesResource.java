@@ -10,11 +10,16 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+
+import com.lpro.fbrest.auth.Client;
+
+import io.dropwizard.auth.Auth;
 
 @Path("/images")
 public class ImagesResource {
@@ -24,11 +29,18 @@ public class ImagesResource {
 	@Path("/users")
 	@RolesAllowed("USER")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadUserImage(@FormDataParam("file") InputStream fileInputStream,
+	public Response uploadUserImage(@Auth Client client, @FormDataParam("file") InputStream fileInputStream,
 									@FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
 		
-		String filePath = contentDispositionHeader.getFileName();
-		saveFile(fileInputStream, filePath);
+		String fileName = contentDispositionHeader.getFileName();
+		if(!fileName.endsWith(".jpg") &&
+				!fileName.endsWith(".jpeg") &&
+				!fileName.endsWith(".png") &&
+				!fileName.endsWith(".gif"))
+			throw new WebApplicationException(400);
+		
+		saveFile(fileInputStream, "uploads/" + Integer.toString(client.getUsers_id()) 
+							+ fileName.substring(fileName.lastIndexOf('.')));
 		
 		return Response.ok().build();
 	}
