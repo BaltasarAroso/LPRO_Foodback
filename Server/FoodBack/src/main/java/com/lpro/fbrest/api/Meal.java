@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Meal {
 	
 	@JsonProperty
-	private int id;
+	private long id;
 
 	@JsonProperty
 	private String meal;
@@ -14,25 +14,25 @@ public class Meal {
 	private int price;
 	
 	@JsonProperty
-	private int establishemnt_id;
+	private int establishment_id;
 	
 	public Meal() {
 		super();
 	}
 
-	public Meal(String meal, int price, int establishemnt_id) {
+	public Meal(long id, String meal, int price, int establishment_id) {
 		super();
 		this.id = id;
 		this.meal = meal;
 		this.price = price;
-		this.establishemnt_id = establishemnt_id;
+		this.establishment_id = establishment_id;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -52,12 +52,13 @@ public class Meal {
 		this.price = price;
 	}
 
-	public int getEstablishemnt_id() {
-		return establishemnt_id;
+	public int getEstablishment_id() {
+		return establishment_id;
 	}
 
-	public void setEstablishemnt_id(int establishemnt_id) {
-		this.establishemnt_id = establishemnt_id;
+	public void setEstablishment_id(int establishment_id) {
+		this.establishment_id = establishment_id;
 	}
+
 
 }

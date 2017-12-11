@@ -18,13 +18,19 @@ public interface MealDAO {
 	@GetGeneratedKeys
 	long insertMeal(@Bind("meal") String meal,
 					@Bind("price") int price,
-					@Bind("establishemnt_id") int establishemnt_id);
+					@Bind("establishment_id") int establishment_id);
 
 	
 	@SqlQuery("SELECT id, meal, price, establishment_id "
 			+ "FROM meal "
 			+ "WHERE establishment_id = :establishment_id")
 	List<Meal> getAllMeals(@Bind("establishment_id") int establishment_id);
+
+	@SqlQuery("SELECT id, meal, price, establishment_id "
+			+ "FROM meal "
+			+ "WHERE establishment_id = :establishment_id AND meal = :meal")
+	Meal getMealbyName(@Bind("establishment_id") int establishment_id, @Bind("meal") String meal);
+
 	
 
 }

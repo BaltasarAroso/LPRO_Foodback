@@ -10,9 +10,11 @@ import com.lpro.fbrest.db.ClientDAO;
 import com.lpro.fbrest.resources.CommentsResource;
 import com.lpro.fbrest.resources.EstablishmentsResource;
 import com.lpro.fbrest.resources.ImagesResource;
+import com.lpro.fbrest.resources.MealsResource;
 import com.lpro.fbrest.resources.UsersResource;
 import com.lpro.fbrest.service.CommentService;
 import com.lpro.fbrest.service.EstablishmentService;
+import com.lpro.fbrest.service.MealService;
 import com.lpro.fbrest.service.UserService;
 
 import io.dropwizard.Application;
@@ -67,6 +69,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new UsersResource(jdbi.onDemand(UserService.class)));
 		environment.jersey().register(new EstablishmentsResource(jdbi.onDemand(EstablishmentService.class)));
 		environment.jersey().register(new CommentsResource(jdbi.onDemand(CommentService.class)));
+		environment.jersey().register(new MealsResource(jdbi.onDemand(MealService.class)));
 		
 		environment.jersey().register(new ImagesResource());
 		
