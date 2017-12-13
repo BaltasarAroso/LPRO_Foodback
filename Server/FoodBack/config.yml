@@ -11,7 +11,7 @@ database:
   driverClass: org.postgresql.Driver
   user: sibd17g21
   password: batatinhas
-  url: jdbc:postgresql://dbm.fe.up.pt:5432/sibd17g21?currentSchema=foodback
+  url: jdbc:postgresql://dbm.fe.up.pt:5432/sibd17g21?currentSchema=test
 
 
 logging:
