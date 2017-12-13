@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ConnectionError"></activity>
+        <activity android:name=".ConnectionError" />
+        <activity android:name=".EstablishmentRegister" />
+        <activity android:name=".Homepage"></activity>
     </application>
 
 </manifest>
