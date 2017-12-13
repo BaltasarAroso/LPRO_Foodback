@@ -19,79 +19,88 @@
         app:layout_constraintVertical_bias="0.075"
         app:srcCompat="@drawable/foodback_logo" />
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Nome de Estabelecimento"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="137dp" />
 
-    <Spinner
-        android:id="@+id/category"
-        android:layout_width="333dp"
-        android:layout_height="41dp"
-        android:prompt="Categoria"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="195dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/establishment_name"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="137dp" />
 
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Morada"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="244dp" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Email"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="296dp" />
-
-    <EditText
-        android:id="@+id/contact"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Contacto"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="341dp" />
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Username"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="386dp" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="334dp"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="text"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="431dp" />
+        <Spinner
+            android:id="@+id/category"
+            android:layout_width="333dp"
+            android:layout_height="41dp"
+            android:prompt="Categoria"
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="195dp" />
 
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="185dp"
-        android:layout_height="32dp"
-        android:background="#f16521"
-        android:text="Registar Estabelecimento"
-        android:textSize="12sp"
-        android:textColor="#fff"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="555dp" />
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/address"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="244dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/e_mail"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="296dp" />
+
+        <EditText
+            android:id="@+id/contact"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/contact"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="341dp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/username"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="386dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="431dp" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="185dp"
+            android:layout_height="32dp"
+            android:background="#f16521"
+            android:text="@string/register_establishment"
+            android:textSize="12sp"
+            android:textColor="#fff"
+            tools:layout_editor_absoluteX="113dp"
+            tools:layout_editor_absoluteY="555dp" />
+
+
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
