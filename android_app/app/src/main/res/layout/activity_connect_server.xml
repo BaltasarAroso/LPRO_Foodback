@@ -17,8 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.382"
-        app:srcCompat="@drawable/foodback_logo"
-        android:onClick="changelayout"/>
+        app:srcCompat="@drawable/foodback_logo" />
 
     <TextView
         android:id="@+id/textView2"

@@ -1,116 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.foodback.foodback.EstablishmentRegister">
-
+-->
     <com.google.android.flexbox.FlexboxLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".EstablishmentRegister"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        app:flexWrap="wrap"
-        app:alignItems="stretch"
-        app:alignContent="stretch" >
+        app:justifyContent="center"
+        app:alignContent="center"
+        app:alignItems="center"
+        app:flexDirection="column"
+        android:layout_gravity="center">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:contentDescription="@string/logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.075"
-            app:srcCompat="@drawable/foodback_logo" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_marginBottom="40dp"
+            app:srcCompat="@drawable/foodback_logo"
+            app:layout_alignSelf="center"/>
 
             <EditText
                 android:id="@+id/name"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/establishment_name"
-                android:inputType="text"
-                tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="137dp" />
+                android:inputType="text" />
 
             <Spinner
                 android:id="@+id/category"
-                android:layout_width="333dp"
-                android:layout_height="41dp"
-                tools:layout_editor_absoluteX="39dp"
-                tools:layout_editor_absoluteY="195dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:spinnerMode="dialog"
+                android:entries="@array/categories"
+                android:prompt="@string/category"/>
 
             <EditText
                 android:id="@+id/address"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="@string/address"
-                tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="244dp" />
+                android:inputType="text"/>
 
             <EditText
                 android:id="@+id/email"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:hint="@string/e_mail"
-                tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="296dp" />
+                android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/contact"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="@string/contact"
-                tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="341dp" />
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="@string/username"
-                tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="386dp" />
+                android:inputType="text"/>
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="431dp" />
+                android:inputType="textPassword" />
 
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="185dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:padding="10dp"
                 android:background="#f16521"
                 android:text="@string/register_establishment"
-                android:textSize="12sp"
                 android:textColor="#fff"
-                tools:layout_editor_absoluteX="113dp"
-                tools:layout_editor_absoluteY="555dp" />
-
-
-
-        </LinearLayout>
+                android:textSize="14sp" />
 
     </com.google.android.flexbox.FlexboxLayout>
 
-</android.support.constraint.ConstraintLayout>
+<!--</android.support.constraint.ConstraintLayout>-->
