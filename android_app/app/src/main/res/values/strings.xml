@@ -20,4 +20,7 @@
     <string name="bar">Bar</string>
     <string name="coffe">Café</string>
     <string name="dessert">Sobremesa</string>
+    <string name="login">LogIn</string>
+    <string name="jump_login">Saltar o login</string>
+    <string name="signup">Registar</string>
 </resources>

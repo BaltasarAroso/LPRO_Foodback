@@ -17,26 +17,44 @@ import retrofit2.Retrofit;
 
 public class RetrofitClient {
 
-    Gson gson = new GsonBuilder()
-            .setLenient()
-            .create();
+    protected OkHttpClient okHttpClient;
+    protected Retrofit retrofit;
+    Gson gson;
 
-    OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
-        @Override
-        public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
-            Request originalRequest = chain.request();
+    protected String username;
+    protected String password;
 
-            Request.Builder builder = originalRequest.newBuilder().header("Authorization",
-                    Credentials.basic("daniel", "123123123"));
+    public void startup() {
+        gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
-            Request newRequest = builder.build();
-            return chain.proceed(newRequest);
-        }
-    }).build();
+        okHttpClient= new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
+                Request originalRequest = chain.request();
 
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://172.30.1.92:8080")
-            .client(okHttpClient)
-            .build();
+                Request.Builder builder = originalRequest.newBuilder().header("Authorization",
+                        Credentials.basic(username, password));
+
+                Request newRequest = builder.build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://172.30.1.92:8080")
+                .client(okHttpClient)
+                .build();
+    }
+
+    public void setCredentials(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Retrofit getRetrofit() {
+        return this.retrofit;
+    }
 
 }
