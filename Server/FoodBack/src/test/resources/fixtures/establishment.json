@@ -1,7 +1,7 @@
 {
 	"id": "29",
 	"name": "Ristoranti Italiano",
-	"id_cat": "23",
+	"category_id": "23",
 	"address": "Morada",
 	"zone": "minha zona",
 	"city": "minha cidade",
@@ -9,9 +9,6 @@
 	"contact":  "999999999",
 	"username": "user",
 	"password": "pass",
-	"open_date": "25-03-2018",
-	"delivey": "true",
-	"price": "25",
-	"schedule1": "9",
-	"schedule2": "18"
+	"delivery": true,
+	"avg_price": "25"
 }

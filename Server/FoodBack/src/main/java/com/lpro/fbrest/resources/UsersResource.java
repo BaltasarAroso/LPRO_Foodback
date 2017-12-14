@@ -10,32 +10,32 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lpro.fbrest.core.User;
-import com.lpro.fbrest.db.UserDAO;
+import com.lpro.fbrest.api.User;
+import com.lpro.fbrest.service.UserService;
 
 import io.dropwizard.auth.Auth;
 
 /**
  * @author Daniel
  *
+ * Resource to manage users
  */
 @Path("/users")
 public class UsersResource {
 
 	/**
-	 * DAO for User Class
+	 * Service for User Class
 	 */
-	private UserDAO userdao;
+	private UserService userService;
 	
 	/**
-	 * @param userdao DAO for User Class
+	 * @param userService Service for User Class
 	 */
-	public UsersResource(UserDAO userdao) {
-		this.userdao = userdao;
+	public UsersResource(UserService userService) {
+		this.userService = userService;
 	}
 	
 	/**
@@ -45,17 +45,7 @@ public class UsersResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response newUser(@NotNull @Valid User user) {
-		try {
-			userdao.insertUser(user.getUsername(),
-					user.getPassword(),
-					user.getName(),
-					user.getEmail(),
-					user.getAddress(),
-					user.getBirth(),
-					user.getPremium());
-		} catch (Exception e) {
-			return Response.serverError().entity("Error inserting user, it may already exist!").build();
-		}
+		userService.newUser(user);
 		return Response.ok().build();
 	}
 	
@@ -66,7 +56,7 @@ public class UsersResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getAllUsers(@Auth User user) {
-		return userdao.getAllUsers();
+		return userService.getAllUsers();
 	}
 	
 	/**
@@ -79,12 +69,7 @@ public class UsersResource {
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(@PathParam("username") String username) {
-		User user = userdao.getUser(username);
-		if(user == null) {
-			throw new WebApplicationException(404);
-		}
-		user.setPassword(null);
-		return user;
+		return userService.getUserByUsername(username);
 	}
 
 }

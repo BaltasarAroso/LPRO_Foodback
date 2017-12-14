@@ -1,14 +1,14 @@
 package com.lpro.fbrest.db;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
-import com.lpro.fbrest.core.Establishment;
+import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.db.EstablishmentMapper;
 
 @RegisterMapper(EstablishmentMapper.class)
@@ -16,52 +16,43 @@ public interface EstablishmentDAO {
 	
 	//usa-se @sqlupdate para inserts/updates etc
 	@SqlUpdate("INSERT INTO establishment "
-			+ "VALUES (default, :name, :id_cat, :address, :zone, :city, :email, :contact, :username, :password, :open_date, :delivey, :price, :schedule1, :schedule2)")
-	void insertEstablishemnt(@Bind("id") Integer id, 
-					@Bind("name") String name,
-					@Bind("id_cat") Integer id_cat,
-					@Bind("address") String address,
-					@Bind("zone") String zone,
-					@Bind("city") String city,
-					@Bind("email") String email,
-					@Bind("contact") Integer contact,
-					@Bind("username") String username,
-					@Bind("password") String password,
-					@Bind("open_date") LocalDate open_date,
-					@Bind("delivey") Boolean delivey,
-					@Bind("price") Integer price,
-					@Bind("schedule1") Integer schedule1,
-					@Bind("schedule2") Integer schedule2);
+			+ "VALUES (DEFAULT, :name, :category_id, :address, :zone, :city, :email, :contact, :delivery, :avg_price)")
+	@GetGeneratedKeys
+	public long insertEstablishemnt(@Bind("name") String name,
+									@Bind("category_id") int category_id,
+									@Bind("address") String address,
+									@Bind("zone") String zone,
+									@Bind("city") String city,
+									@Bind("email") String email,
+									@Bind("contact") String contact,
+									@Bind("delivery") Boolean delivery,
+									@Bind("avg_price") int avg_price);
 	
-	//usa-se @SqlQuery para ir buscar info mas é preciso um mapper se for para preencher um objeto
-	@SqlQuery("SELECT * "
-			+ "FROM establishment "
-			+ "WHERE name = :name")
-	Establishment getEstablishment(@Bind("name") String name);
+	@SqlUpdate("DELETE FROM establishment "
+			+ "WHERE id = :establishment_id")
+	public void deleteEstablishment(@Bind("establishment_id") long establishment_id);
 	
 	@SqlQuery("SELECT * "
 			+ "FROM establishment")
-	List<Establishment> getAllEstablishments();
-	
+	public List<Establishment> getAllEstablishments();	
+
+	@SqlQuery("SELECT * "
+			+ "FROM establishment "
+			+ "WHERE name = :name")
+	public Establishment getEstablishment(@Bind("name") String name);
 	
 	//Para atualizar os parametros de um restaurante de acesso à base de dados
 	@SqlUpdate("UPDATE establishment "
-			+"SET name = :name, id_cat = :id_cat, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, username = :username, password = :password, open_date = :open_date, delivey = :delivey, price = :price, schedule1 = :schedule1, schedule2 = :schedule2 "
-			+"WHERE username = :username")
-	void updateEstablishment(
-			@Bind("id") Integer id, 
-			@Bind("name") String name,
-			@Bind("id_cat") Integer id_cat,
-			@Bind("address") String address,
-			@Bind("zone") String zone,
-			@Bind("city") String city,
-			@Bind("email") String email,
-			@Bind("contact") Integer contact,
-			@Bind("username") String username,
-			@Bind("password") String password,
-			@Bind("open_date") LocalDate open_date,
-			@Bind("delivey") Boolean delivey,
-			@Bind("price") Integer price,
-			@Bind("schedule1") Integer schedule1,
-			@Bind("schedule2") Integer schedule2);
+			+"SET name = :name, category_id = :category_id, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price "
+			+"WHERE id = :id")
+	public void updateEstablishment(@Bind("id") int id,
+									@Bind("name") String name,
+									@Bind("category_id") int category_id,
+									@Bind("address") String address,
+									@Bind("zone") String zone,
+									@Bind("city") String city,
+									@Bind("email") String email,
+									@Bind("contact") String contact,
+									@Bind("delivery") boolean delivery,
+									@Bind("avg_price") int avg_price);
 }
