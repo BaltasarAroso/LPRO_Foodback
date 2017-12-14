@@ -28,10 +28,10 @@ public abstract class OrderService{
 		}
 		try {
 			int i;
-			for(i=0; i< order.getId_meals().size(); i++) {
-				orderdao().insertMealOrder(order.getId_meals().get(i).getMeal_id(),
+			for(i=0; i< order.getMeals().size(); i++) {
+				orderdao().insertMealOrder(order.getMeals().get(i).getMeal_id(),
 						order_id,
-						order.getId_meals().get(i).getQuantity());
+						order.getMeals().get(i).getQuantity());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,14 +43,22 @@ public abstract class OrderService{
 
 	
 	public Order getOrder(long order_id) {
-		
+		Order order = null;
 		try {
-			Order order = orderdao().getOrder(order_id);
-			return order;
+			order = orderdao().getOrder(order_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);  //não tenho a certeza deste erro
 		}
+		if(order == null) throw new WebApplicationException(404);
+		try {	
+			order.setMeals(orderdao().getOrderMeals(order_id));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);  //não tenho a certeza deste erro
+		}
+		if(order.getMeals().isEmpty()) throw new WebApplicationException(404);
+		return order;
 		
 	} 
 	

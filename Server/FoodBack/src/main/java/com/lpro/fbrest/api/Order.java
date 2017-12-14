@@ -13,7 +13,7 @@ public class Order {
 	private List<Orders_meal> meals;
 	
 	@JsonProperty
-	private int user_id;
+	private long user_id;
 	
 	@JsonProperty
 	private String state;
@@ -22,7 +22,7 @@ public class Order {
 		super();
 	}
 
-	public Order(long id, List<Orders_meal> meals, int user_id, String state) {
+	public Order(long id, List<Orders_meal> meals, long user_id, String state) {
 		super();
 		this.id = id;
 		this.meals = meals;
@@ -38,19 +38,19 @@ public class Order {
 		this.id = id;
 	}
 
-	public List<Orders_meal> getId_meals() {
+	public List<Orders_meal> getMeals() {
 		return meals;
 	}
 
-	public void setId_meals(List<Orders_meal> meals) {
+	public void setMeals(List<Orders_meal> meals) {
 		this.meals = meals;
 	}
 
-	public int getUser_id() {
+	public long getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(long user_id) {
 		this.user_id = user_id;
 	}
 

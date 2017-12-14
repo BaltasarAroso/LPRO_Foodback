@@ -1,5 +1,7 @@
 package com.lpro.fbrest.db;
 
+import java.util.List;
+
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -7,6 +9,7 @@ import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import com.lpro.fbrest.api.Order;
+import com.lpro.fbrest.api.Orders_meal;
 
 
 @RegisterMapper(OrderMapper.class)
@@ -25,11 +28,16 @@ public interface OrderDAO {
 
 
 	
-	//Esta função ainda não está a funcionar
-	@SqlQuery("SELECT orders.users_id, orders.state, orders_meal.meal_id, orders_meal.quantity  "
-			+ "FROM orders JOIN orders_meal ON orders.id = orders_id  "
-			+"WHERE orders_id = :id")
-	public Order getOrder(@Bind("id") long id);
+	@SqlQuery("SELECT * "
+			+ "FROM orders "
+			+ "WHERE id = :order_id")
+	public Order getOrder(@Bind("order_id") long order_id);
+	
+	@RegisterMapper(Orders_mealMapper.class)
+	@SqlQuery("SELECT * "
+			+ "FROM orders_meal "
+			+ "WHERE orders_id = :order_id")
+	public List<Orders_meal> getOrderMeals(@Bind("order_id") long order_id);
 	
 
 	

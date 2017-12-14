@@ -1,7 +1,5 @@
 package com.lpro.fbrest.resources;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,7 +12,6 @@ import javax.ws.rs.core.Response;
 
 
 import com.lpro.fbrest.api.Order;
-import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.service.OrderService;
 
@@ -26,7 +23,7 @@ import io.dropwizard.auth.Auth;
  * @author beatrizcruz
  *
  */
-@Path("/order")
+@Path("/orders")
 public class OrdersResource {
 
 	private OrderService orderService;
