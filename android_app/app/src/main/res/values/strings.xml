@@ -16,4 +16,8 @@
         <item>Café</item>
         <item>Sobremesa</item>
     </string-array>
+    <string name="restaurant">Restaurante</string>
+    <string name="bar">Bar</string>
+    <string name="coffe">Café</string>
+    <string name="dessert">Sobremesa</string>
 </resources>
