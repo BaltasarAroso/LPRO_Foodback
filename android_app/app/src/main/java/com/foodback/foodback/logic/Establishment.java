@@ -1,33 +1,47 @@
 package com.foodback.foodback.logic;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Foodback on 14/12/2017.
  */
 
 public class Establishment {
 
+    @SerializedName("id")
     private long id;
 
+    @SerializedName("name")
     private String name;
 
+    @SerializedName("category_id")
     private int category_id;
 
+    @SerializedName("address")
     private String address;
 
+    @SerializedName("zone")
     private String zone;
 
+    @SerializedName("city")
     private String city;
 
+    @SerializedName("email")
     private String email;
 
+    @SerializedName("contact")
     private String contact;
 
+    @SerializedName("username")
     private String username;
 
+    @SerializedName("password")
     private String password;
 
+    @SerializedName("delivery")
     private Boolean delivery;
 
+    @SerializedName("avg_price")
     private int avg_price;
 
     public Establishment(long id, String name, int category_id, String address, String zone, String city, String email,
