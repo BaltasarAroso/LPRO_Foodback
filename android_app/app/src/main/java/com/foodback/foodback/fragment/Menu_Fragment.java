@@ -1,4 +1,4 @@
-package com.foodback.foodback;
+package com.foodback.foodback.fragment;
 
 import android.app.ListActivity;
 import android.os.Bundle;

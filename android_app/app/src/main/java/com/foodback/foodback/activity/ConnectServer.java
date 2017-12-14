@@ -1,10 +1,12 @@
-package com.foodback.foodback;
+package com.foodback.foodback.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+
+import com.foodback.foodback.R;
 
 public class ConnectServer extends AppCompatActivity {
 
