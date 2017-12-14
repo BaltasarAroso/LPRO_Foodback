@@ -7,7 +7,6 @@ import javax.ws.rs.WebApplicationException;
 import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 
 import com.lpro.fbrest.api.Meal;
-import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.db.MealDAO;
 
 public abstract class MealService {
@@ -16,9 +15,8 @@ public abstract class MealService {
 	abstract MealDAO mealdao();
 	
 	public void newMeal(Meal meal) {
-		long meal_id;
 		try {
-			meal_id = mealdao().insertMeal(meal.getMeal(), meal.getPrice(), meal.getEstablishment_id());
+			mealdao().insertMeal(meal.getMeal(), meal.getPrice(), meal.getEstablishment_id());
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
