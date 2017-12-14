@@ -8,6 +8,7 @@ import com.lpro.fbrest.auth.ClientAuthenticator;
 import com.lpro.fbrest.auth.ClientAuthorizer;
 import com.lpro.fbrest.db.ClientDAO;
 import com.lpro.fbrest.resources.CommentsResource;
+import com.lpro.fbrest.resources.CredentialsResource;
 import com.lpro.fbrest.resources.EstablishmentsResource;
 import com.lpro.fbrest.resources.ImagesResource;
 import com.lpro.fbrest.resources.MealsResource;
@@ -73,6 +74,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new CommentsResource(jdbi.onDemand(CommentService.class)));
 		environment.jersey().register(new MealsResource(jdbi.onDemand(MealService.class)));
 		environment.jersey().register(new OrdersResource(jdbi.onDemand(OrderService.class)));
+		environment.jersey().register(new CredentialsResource());
 		
 		environment.jersey().register(new ImagesResource());
 		
