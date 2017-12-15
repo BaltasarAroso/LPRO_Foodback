@@ -34,4 +34,9 @@ public class CredentialsResource {
 		return Response.ok().build();
 	}
 	
+	@GET
+	public Response verifyConnectivity() {
+		return Response.ok().build();
+	}
+	
 }

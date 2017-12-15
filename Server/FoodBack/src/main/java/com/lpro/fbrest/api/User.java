@@ -47,7 +47,6 @@ public class User {
 	 * birthdate of the user
 	 */
 	@JsonProperty
-	//serialização da data não está a funcionar bem quando a data é 06-03-1996 passa para 05-03-1996
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy") 
 	private LocalDate birth;
 	
