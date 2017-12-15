@@ -32,7 +32,7 @@ import io.dropwizard.setup.Environment;
 public class FoodBackApplication extends Application<FoodBackConfiguration> {
 
     /**
-     * @param args of the command lime
+     * @param args of the command line
      * @throws Exception If something goes wrong
      */
     public static void main(final String[] args) throws Exception {
