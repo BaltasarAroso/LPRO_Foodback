@@ -20,7 +20,7 @@ import retrofit2.http.Query;
  * Created by Foodback on 14/12/2017.
  */
 
-public interface RetrofitInterface {
+public interface FoodbackInterface {
 
 //    DELETE  /comments (com.lpro.fbrest.resources.CommentsResource)
 //    POST    /comments (com.lpro.fbrest.resources.CommentsResource)
@@ -37,107 +37,51 @@ public interface RetrofitInterface {
 //    POST    /users (com.lpro.fbrest.resources.UsersResource)
 //    GET     /users/{username} (com.lpro.fbrest.resources.UsersResource)
 
-//    @FormUrlEncoded
-//    @DELETE("/comments")
-//    Call deleteComment(@Field("comment_id") long comment_id);
-//
-//    @FormUrlEncoded
-//    @POST("/comments")
-//    Call<Long> newComment(@Field("comment") Comment comment);
-//
-//    @FormUrlEncoded
-//    @GET("/comments/{establishment_id}")
-//    Call<List<Comment>> getEstablishmentComments(@Path("establishment_id") long establishment_id);
-//
-//    @FormUrlEncoded
-//    @GET("/credentials/establishment")
-//    Call<Response> verifyEstablishmentCredentials();
-//
-//    @FormUrlEncoded
-//    @GET("/credentials/user")
-//    Call<Response> verifyUserCredentials();
-//
-//    @FormUrlEncoded
-//    @GET("/establishments")
-//    Call<List<Establishment>> getAllEstablishments();
-//
-//    @FormUrlEncoded
-//    @POST("/establishments")
-//    Call<Response> newEstablishment(@Field("establishment") Establishment establishment);
-//
-//    @FormUrlEncoded
-//    @PUT("/establishments")
-//    Call<Response> changeEstablishment(@Field("newestablishment") Establishment newestablishment);
-//
-//    @FormUrlEncoded
-//    @GET("/establishments/{name}")
-//    Call<Establishment> getEstablishment(@Path("name") String name);
-//
-////    @FormUrlEncoded
-////    @POST("/images/users")
-////    Call<Response> uploadUserImage(@Field("client") Client client, @FormDataParam("file") InputStream fileInputStream,
-////                                   @FormDataParam("file") FormDataContentDisposition contentDispositionHeader);
-//
-//    @FormUrlEncoded
-//    @GET("/images/{image}")
-//    Call<Response> getImage(@Path("image") String image);
-//
-//
-//    @FormUrlEncoded
-//    @GET("/users")
-//    Call<List<User>> getAllUsers(@Query("user") User user);
-//
-//    @FormUrlEncoded
-//    @POST("/users")
-//    Call<Response> newUser(@Field("user") User user);
-//
-//    @FormUrlEncoded
-//    @GET("/users/{username}")
-//    Call<User> getUser(@Path("username") String username);
+    public static final String BASE_URL = "http://172.30.1.92:8080/";
 
 
-    @DELETE("/comments")
+    @DELETE("comments")
     Call deleteComment(@Field("comment_id") long comment_id);
 
-    @POST("/comments")
+    @POST("comments")
     Call<Long> newComment(@Field("comment") Comment comment);
 
-    @GET("/comments/{establishment_id}")
+    @GET("comments/{establishment_id}")
     Call<List<Comment>> getEstablishmentComments(@Path("establishment_id") long establishment_id);
 
-    @GET("/credentials/establishment")
+    @GET("credentials/establishment")
     Call<ResponseBody> verifyEstablishmentCredentials();
 
     @GET("credentials/user")
     Call<ResponseBody> verifyUserCredentials();
 
-    @GET("/establishments")
+    @GET("establishments")
     Call<List<Establishment>> getAllEstablishments();
 
-    @POST("/establishments")
+    @POST("establishments")
     Call<ResponseBody> newEstablishment(@Field("establishment") Establishment establishment);
 
-    @PUT("/establishments")
+    @PUT("establishments")
     Call<ResponseBody> changeEstablishment(@Field("newestablishment") Establishment newestablishment);
 
-    @GET("/establishments/{name}")
+    @GET("establishments/{name}")
     Call<Establishment> getEstablishment(@Path("name") String name);
 
-//    @POST("/images/users")
+//    @POST("images/users")
 //    Call<Response> uploadUserImage(@Field("client") Client client, @FormDataParam("file") InputStream fileInputStream,
 //                                   @FormDataParam("file") FormDataContentDisposition contentDispositionHeader);
 
-    @GET("/images/{image}")
+    @GET("images/{image}")
     Call<ResponseBody> getImage(@Path("image") String image);
 
 
-    @GET("/users")
+    @GET("users")
     Call<List<User>> getAllUsers(@Query("user") User user);
 
-    @POST("/users")
+    @POST("users")
     Call<ResponseBody> newUser(@Field("user") User user);
 
-    @GET("/users/{username}")
+    @GET("users/{username}")
     Call<User> getUser(@Path("username") String username);
 
 

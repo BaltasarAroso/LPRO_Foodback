@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.foodback.foodback.config.RetrofitClient;
-import com.foodback.foodback.config.RetrofitInterface;
+import com.foodback.foodback.config.FoodbackInterface;
 import com.foodback.foodback.R;
 
 import okhttp3.ResponseBody;
@@ -21,7 +21,8 @@ public class LogIn extends AppCompatActivity {
     protected EditText editusername;
     protected EditText editpassword;
     protected Button btnLogin;
-//    RetrofitInterface userService;
+    RetrofitClient retrofitClient;
+    FoodbackInterface services;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,6 @@ public class LogIn extends AppCompatActivity {
         editusername = (EditText) findViewById(R.id.username);
         editpassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.loginButton);
-
-//        userService = RetrofitAPI.getUserService();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,12 +62,13 @@ public class LogIn extends AppCompatActivity {
 
     private void tryLogin(String username, String password) {
         try {
-            RetrofitClient retrofit = new RetrofitClient();
-            retrofit.setCredentials(username, password);
-            retrofit.startup();
+            retrofitClient = new RetrofitClient();
+            retrofitClient.setCredentials(username, password);
+            retrofitClient.startup();
 
-            RetrofitInterface services = retrofit.getRetrofit().create(RetrofitInterface.class);
+            services = retrofitClient.retrofit.create(FoodbackInterface.class);
             Call<ResponseBody> call = services.verifyUserCredentials();
+
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

@@ -3,8 +3,6 @@ package com.foodback.foodback.config;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-import com.foodback.foodback.R;
 
 /**
  * Created by Foodback.
@@ -14,7 +12,7 @@ public class Controller implements Callback<ResponseBody> {
 
     public void start() {
         RetrofitClient retrofit = new RetrofitClient();
-        RetrofitInterface services = retrofit.retrofit.create(RetrofitInterface.class);
+        FoodbackInterface services = retrofit.retrofit.create(FoodbackInterface.class);
         Call<ResponseBody> call = services.verifyUserCredentials();
         call.enqueue(this);
     }
