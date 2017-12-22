@@ -88,3 +88,11 @@ CREATE TABLE orders_meal (
 	quantity INTEGER NOT NULL,
 	PRIMARY KEY(meal_id, orders_id)
 );
+
+CREATE TABLE establishment_image (
+	id SERIAL PRIMARY KEY,
+	establishment_id INTEGER REFERENCES establishment
+		ON DELETE SET NULL ON UPDATE CASCADE,
+	extension VARCHAR(8) NOT NULL,
+	profile BOOLEAN NOT NULL
+);
