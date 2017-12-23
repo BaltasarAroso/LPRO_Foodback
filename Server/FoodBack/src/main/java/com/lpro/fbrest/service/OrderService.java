@@ -16,15 +16,13 @@ public abstract class OrderService{
 	@CreateSqlObject
 	abstract OrderDAO orderdao();
 
-	
-	//adiciona uma nova encomenda a um utilizador se este ainda não tiver nenhuma
 	public String newOrder(Order order, Client client)  {
 		long order_id;
 		try {
 			order_id = orderdao().insertOrder(client.getUsers_id(), order.getState());
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new WebApplicationException(500);  //não tenho a certeza deste erro
+			throw new WebApplicationException(500);  
 		}
 		try {
 			int i;
@@ -35,12 +33,11 @@ public abstract class OrderService{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new WebApplicationException(500);  //não tenho a certeza deste erro
+			throw new WebApplicationException(500);  
 		}
 		
 		return SUCCESS;
 	}
-
 	
 	public Order getOrder(long order_id) {
 		Order order = null;
@@ -48,20 +45,17 @@ public abstract class OrderService{
 			order = orderdao().getOrder(order_id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new WebApplicationException(500);  //não tenho a certeza deste erro
+			throw new WebApplicationException(500);  
 		}
 		if(order == null) throw new WebApplicationException(404);
 		try {	
 			order.setMeals(orderdao().getOrderMeals(order_id));
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new WebApplicationException(500);  //não tenho a certeza deste erro
+			throw new WebApplicationException(500);  
 		}
 		if(order.getMeals().isEmpty()) throw new WebApplicationException(404);
 		return order;
 		
 	} 
-	
-	
-
 }
