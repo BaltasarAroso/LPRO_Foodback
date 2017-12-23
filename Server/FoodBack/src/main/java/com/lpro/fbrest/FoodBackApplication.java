@@ -7,6 +7,7 @@ import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.auth.ClientAuthenticator;
 import com.lpro.fbrest.auth.ClientAuthorizer;
 import com.lpro.fbrest.db.ClientDAO;
+import com.lpro.fbrest.db.EstablishmentImageDAO;
 import com.lpro.fbrest.resources.CommentsResource;
 import com.lpro.fbrest.resources.CredentialsResource;
 import com.lpro.fbrest.resources.EstablishmentsResource;
@@ -66,7 +67,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
     		final DBIFactory factory = new DBIFactory();
 		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
 		final ClientDAO clientdao = jdbi.onDemand(ClientDAO.class);
-		
+		final EstablishmentImageDAO establishmentImageDao = jdbi.onDemand(EstablishmentImageDAO.class);
 		
 		//Resource configurations
 		environment.jersey().register(new UsersResource(jdbi.onDemand(UserService.class)));
@@ -76,7 +77,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new OrdersResource(jdbi.onDemand(OrderService.class)));
 		environment.jersey().register(new CredentialsResource());
 		
-		environment.jersey().register(new ImagesResource());
+		environment.jersey().register(new ImagesResource(establishmentImageDao));
 		
 		
 		//Auth configurations - de momento a usar Basic Auth

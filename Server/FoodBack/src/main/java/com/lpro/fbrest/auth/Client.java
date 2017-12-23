@@ -20,11 +20,11 @@ public class Client implements Principal {
 	/**
 	 * id of user if it is a user
 	 */
-	private int users_id;
+	private long users_id;
 	/**
 	 * id of establishment if it is a establishment
 	 */
-	private int establishment_id;
+	private long establishment_id;
 	
 	/**
 	 * @param username Username of the client
@@ -78,28 +78,28 @@ public class Client implements Principal {
 	/**
 	 * @return user id
 	 */
-	public int getUsers_id() {
+	public long getUsers_id() {
 		return users_id;
 	}
 
 	/**
 	 * @param users_id Id of the user
  	 */
-	public void setUsers_id(int users_id) {
+	public void setUsers_id(long users_id) {
 		this.users_id = users_id;
 	}
 
 	/**
 	 * @return establishment_id
 	 */
-	public int getEstablishment_id() {
+	public long getEstablishment_id() {
 		return establishment_id;
 	}
 
 	/**
 	 * @param establishment_id Id of the establishment
 	 */
-	public void setEstablishment_id(int establishment_id) {
+	public void setEstablishment_id(long establishment_id) {
 		this.establishment_id = establishment_id;
 	}
 	
