@@ -29,15 +29,31 @@ import com.lpro.fbrest.db.EstablishmentImageDAO;
 
 import io.dropwizard.auth.Auth;
 
+/**
+ * @author Daniel
+ *
+ */
 @Path("/images")
 public class ImagesResource {
 
+	/**
+	 * DAO to access establishment image persistent storage
+	 */
 	private EstablishmentImageDAO establishmentImageDao;
 	
+	/**
+	 * @param establishmentImageDao DAO to access establishment image persistent storage
+	 */
 	public ImagesResource(EstablishmentImageDAO establishmentImageDao) {
 		this.establishmentImageDao = establishmentImageDao;
 	}
 	
+	/**
+	 * @param client Client that authenticated
+	 * @param fileInputStream Input Stream to receive image
+	 * @param contentDispositionHeader To get file name in client device
+	 * @return Response to let client know if request was successful
+	 */
 	@POST
 	@Path("/establishment")
 	@RolesAllowed("ESTABLISHMENT")
@@ -75,6 +91,12 @@ public class ImagesResource {
 		return Response.ok().build();
 	}
 	
+	/**
+	 * @param client Client that authenticated
+	 * @param fileInputStream Input Stream to receive image
+	 * @param contentDispositionHeader To get file name in client device
+	 * @return Response to let client know if request was successful
+	 */
 	@POST
 	@Path("/establishment/profile")
 	@RolesAllowed("ESTABLISHMENT")
@@ -131,6 +153,10 @@ public class ImagesResource {
 		return Response.ok().build();
 	}
 	
+	/**
+	 * @param imageName Name of the image to download
+	 * @return Response with image in its body
+	 */
 	@GET
 	@Path("/{imageName}")
 	@Produces("image/*")
@@ -145,6 +171,10 @@ public class ImagesResource {
 	  return Response.ok(f, mt).build();
 	}
 
+	/**
+	 * @param establishment_id ID of establishment to get its profile image
+	 * @return Profile image name
+	 */
 	@GET
 	@Path("/establishment/profile/{establishment_id}")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -159,6 +189,10 @@ public class ImagesResource {
 				+ establishmentImageDao.getImageExtension(profileId);
 	}
 	
+	/**
+	 * @param establishment_id ID of establishment to get all image names
+	 * @return List of image names
+	 */
 	@GET
 	@Path("/establishment/{establishment_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -178,6 +212,11 @@ public class ImagesResource {
 		return imageNames;
 	}
 	
+	/**
+	 * @param client Client that authenticated
+	 * @param imageName Name of the image to be deleted
+	 * @return Response to let client know if action was executed 
+	 */
 	@DELETE
 	@Path("/{imageName}")
 	@RolesAllowed("ESTABLISHMENT")
@@ -195,6 +234,10 @@ public class ImagesResource {
 		return Response.ok().build();
 	}
 	
+	/**
+	 * @param fileInputStream Input Stream from where the file comes
+	 * @param filePath Path to save file
+	 */
 	private void saveFile(InputStream fileInputStream, String filePath) {
 		try {
             OutputStream outputStream = new FileOutputStream(new File(filePath));
