@@ -71,6 +71,18 @@ public abstract class UserService {
 		}
 		return user;
 	}
+
+	/**
+	 * @param users_id Id of user to upgrade
+	 */
+	public void upgradePremium(long users_id) {
+		try {
+			userdao().upgradePremium(users_id);		
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+	}
 	
 
 }
