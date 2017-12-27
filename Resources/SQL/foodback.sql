@@ -105,3 +105,22 @@ CREATE TABLE featured (
 	added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	duration NUMERIC(3,0) NOT NULL
 );
+
+CREATE TABLE report_type (
+	type VARCHAR(16) PRIMARY KEY
+);
+
+INSERT INTO report_type VALUES ('bad_comment');
+INSERT INTO report_type VALUES ('bad_info');
+
+CREATE TABLE report (
+	id SERIAL PRIMARY KEY,
+	type VARCHAR(16) REFERENCES report_type
+		ON UPDATE CASCADE ON DELETE CASCADE NOT NULL,
+	report VARCHAR(256) NOT NULL,
+	comment_id INTEGER REFERENCES comment
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	establishment_id INTEGER REFERENCES establishment
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	reporter_id INTEGER REFERENCES users
+);
