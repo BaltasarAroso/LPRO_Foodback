@@ -24,7 +24,7 @@ import io.dropwizard.auth.Auth;
  *
  */
 @Path("/answers")
-public class AnswerResource {
+public class AnswersResource {
 
 	/**
 	 * Service to access Persistent Storage
@@ -34,7 +34,7 @@ public class AnswerResource {
 	/**
 	 * @param answerService Service to access persistent storage
 	 */
-	public AnswerResource(AnswerService answerService) {
+	public AnswersResource(AnswerService answerService) {
 		this.answerService = answerService;
 	}
 	
