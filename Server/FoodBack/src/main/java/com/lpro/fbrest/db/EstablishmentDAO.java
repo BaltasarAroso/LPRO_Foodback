@@ -19,7 +19,7 @@ public interface EstablishmentDAO {
 			+ "VALUES (DEFAULT, :name, :category_id, :address, :zone, :city, :email, :contact, :delivery, :avg_price)")
 	@GetGeneratedKeys
 	public long insertEstablishemnt(@Bind("name") String name,
-									@Bind("category_id") int category_id,
+									@Bind("category_id") long category_id,
 									@Bind("address") String address,
 									@Bind("zone") String zone,
 									@Bind("city") String city,
@@ -45,9 +45,9 @@ public interface EstablishmentDAO {
 	@SqlUpdate("UPDATE establishment "
 			+"SET name = :name, category_id = :category_id, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price "
 			+"WHERE id = :id")
-	public void updateEstablishment(@Bind("id") int id,
+	public void updateEstablishment(@Bind("id") long id,
 									@Bind("name") String name,
-									@Bind("category_id") int category_id,
+									@Bind("category_id") long category_id,
 									@Bind("address") String address,
 									@Bind("zone") String zone,
 									@Bind("city") String city,

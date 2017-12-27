@@ -66,7 +66,7 @@ public abstract class EstablishmentService {
 		return establishment;
 	}
 	
-	public void editEstablishment(int establishment_id ,Establishment establishment) {
+	public void editEstablishment(long establishment_id ,Establishment establishment) {
 		try {
 			establishmentdao().updateEstablishment(
 						establishment_id,
