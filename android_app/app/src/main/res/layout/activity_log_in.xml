@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="@string/register"
-            android:text="@string/signup" />
+            android:text="@string/signup"/>
 
 
     </com.google.android.flexbox.FlexboxLayout>

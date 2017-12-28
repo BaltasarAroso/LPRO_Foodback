@@ -24,4 +24,6 @@
     <string name="jump_login">Saltar o login</string>
     <string name="signup">Registar</string>
     <string name="register">Registar</string>
+    <string name="user_name">Nome de Utilizador</string>
+    <string name="register_user">Registar</string>
 </resources>

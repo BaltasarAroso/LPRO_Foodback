@@ -1,7 +1,9 @@
 package com.foodback.foodback.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,8 @@ public class LogIn extends AppCompatActivity {
     RetrofitClient retrofitClient;
     FoodbackInterface services;
 
+    protected EditText signup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,15 @@ public class LogIn extends AppCompatActivity {
                 if(validateLogin(username, password)){
                     tryLogin(username, password);
                 }
+            }
+
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LogIn.this, UserRegister.class);
+                startActivity(i);
             }
 
         });
