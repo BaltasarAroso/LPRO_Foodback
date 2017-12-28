@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foodback.foodback.config.RetrofitClient;
 import com.foodback.foodback.config.FoodbackInterface;
 import com.foodback.foodback.R;
+import com.foodback.foodback.logic.User;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -26,7 +28,11 @@ public class LogIn extends AppCompatActivity {
     RetrofitClient retrofitClient;
     FoodbackInterface services;
 
-    protected EditText signup;
+    /* --------------------------------------------------- */
+
+    protected TextView linksignup;
+
+    /* --------------------------------------------------- */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,8 @@ public class LogIn extends AppCompatActivity {
         editusername = (EditText) findViewById(R.id.username);
         editpassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.loginButton);
+
+        linksignup = (TextView) findViewById(R.id.signup);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,14 +59,21 @@ public class LogIn extends AppCompatActivity {
 
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
+        /* --------------------------------------------------- */
+
+        linksignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LogIn.this, UserRegister.class);
+                Intent i = new Intent();
+                i.setClass(LogIn.this, UserRegister.class);
                 startActivity(i);
             }
 
         });
+
+        /* --------------------------------------------------- */
+
+
     }
 
     private boolean validateLogin (String username, String password) {
@@ -104,5 +119,4 @@ public class LogIn extends AppCompatActivity {
         }
 
     }
-
 }

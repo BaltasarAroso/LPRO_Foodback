@@ -1,23 +1,28 @@
 package com.foodback.foodback.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.logic.Establishment;
 
 
 public class UserRegister extends AppCompatActivity {
 
-    private EditText editname, editaddress, editemail, editcontact, editusername, editpassword;
+    protected EditText editname, editaddress, editemail, editcontact, editusername, editpassword;
 
-    private Button buttonRegister;
+    protected Button buttonRegister;
 
-    private String name, address, email, contact, username, password;
+    protected String name, address, email, contact, username, password;
+
+    protected TextView linkestab_signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +39,24 @@ public class UserRegister extends AppCompatActivity {
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
+        linkestab_signup = (TextView) findViewById(R.id.estab_signup);
+
         // Adding listener to button
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             // confirm register
             register();
+            }
+
+        });
+
+        linkestab_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            Intent i = new Intent();
+            i.setClass(UserRegister.this, EstablishmentRegister.class);
+            startActivity(i);
             }
 
         });
@@ -99,7 +116,7 @@ public class UserRegister extends AppCompatActivity {
     }
 
     private void onRegisterSuccess() {
-
+        // TODO register the user on success
     }
 
 }

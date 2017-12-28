@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,22 +8,16 @@
     tools:context="com.foodback.foodback.activity.LogIn">
 
 
-    <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.google.android.flexbox.FlexboxLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="0dp"
-        android:layout_height="478dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        app:alignContent="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:alignItems="center"
         app:flexDirection="column"
         app:justifyContent="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".activity.EstablishmentRegister">
+        >
 
         <ImageView
             android:id="@+id/imageView"
@@ -38,17 +33,14 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="@string/username"
-            android:inputType="text"
-            tools:layout_editor_absoluteX="135dp"
-            tools:layout_editor_absoluteY="110dp" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            tools:layout_editor_absoluteY="156dp" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/loginButton"
@@ -58,9 +50,7 @@
             android:padding="10dp"
             android:text="@string/login"
             android:textColor="#fff"
-            android:textSize="14sp"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="251dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/jump_login"
@@ -81,8 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/register"
-            android:text="@string/signup"/>
+            android:text="@string/signup"
+            android:clickable="true"/>
 
 
     </com.google.android.flexbox.FlexboxLayout>
