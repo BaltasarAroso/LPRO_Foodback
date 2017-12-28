@@ -16,7 +16,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
     protected EditText editname, editaddress, editemail, editcontact, editusername, editpassword;
     protected Spinner editcategory;
 
-    protected Button buttonRegister;
+    protected Button buttonRegisterEstab;
 
     protected String name, category, address, email, contact, username, password;
 
@@ -34,10 +34,10 @@ public class EstablishmentRegister extends AppCompatActivity  {
         editusername = (EditText) findViewById(R.id.editusername);
         editpassword = (EditText) findViewById(R.id.editpassword);
 
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        buttonRegisterEstab = (Button) findViewById(R.id.buttonRegisterEstab);
 
         // Adding listener to button
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        buttonRegisterEstab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // confirm register
