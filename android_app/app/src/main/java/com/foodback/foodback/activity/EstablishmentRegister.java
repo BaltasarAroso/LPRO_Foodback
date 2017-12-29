@@ -26,13 +26,13 @@ public class EstablishmentRegister extends AppCompatActivity  {
         setContentView(R.layout.activity_establishment_register);
 
         // Initializing Views
-        editname = (EditText) findViewById(R.id.editname);
-        editcategory = (Spinner) findViewById(R.id.editcategory);
-        editaddress = (EditText) findViewById(R.id.editaddress);
-        editemail = (EditText) findViewById(R.id.editemail);
-        editcontact = (EditText) findViewById(R.id.editcontact);
-        editusername = (EditText) findViewById(R.id.editusername);
-        editpassword = (EditText) findViewById(R.id.editpassword);
+        editname = (EditText) findViewById(R.id.name);
+        editcategory = (Spinner) findViewById(R.id.category);
+        editaddress = (EditText) findViewById(R.id.address);
+        editemail = (EditText) findViewById(R.id.email);
+        editcontact = (EditText) findViewById(R.id.contact);
+        editusername = (EditText) findViewById(R.id.username);
+        editpassword = (EditText) findViewById(R.id.password);
 
         buttonRegisterEstab = (Button) findViewById(R.id.buttonRegisterEstab);
 

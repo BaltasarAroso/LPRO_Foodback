@@ -32,4 +32,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
+    // used for sdp resizing windows in xml
+    compile 'com.intuit.sdp:sdp-android:1.0.5'
+
 }

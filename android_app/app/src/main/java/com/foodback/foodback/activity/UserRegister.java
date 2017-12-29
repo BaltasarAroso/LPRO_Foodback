@@ -30,12 +30,12 @@ public class UserRegister extends AppCompatActivity {
         setContentView(R.layout.activity_user_register);
 
         // Initializing Views
-        editname = (EditText) findViewById(R.id.editname);
-        editaddress = (EditText) findViewById(R.id.editaddress);
-        editemail = (EditText) findViewById(R.id.editemail);
-        editcontact = (EditText) findViewById(R.id.editcontact);
-        editusername = (EditText) findViewById(R.id.editusername);
-        editpassword = (EditText) findViewById(R.id.editpassword);
+        editname = (EditText) findViewById(R.id.name);
+        editaddress = (EditText) findViewById(R.id.address);
+        editemail = (EditText) findViewById(R.id.email);
+        editcontact = (EditText) findViewById(R.id.contact);
+        editusername = (EditText) findViewById(R.id.username);
+        editpassword = (EditText) findViewById(R.id.password);
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 

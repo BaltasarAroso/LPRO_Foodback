@@ -18,78 +18,90 @@
         app:alignItems="center"
         app:flexDirection="column"
         app:justifyContent="center"
+        app:layout_goneMarginBottom="@android:@dimen/_4sdp"
         >
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="200dp"
-            android:layout_height="70dp"
-            android:layout_marginBottom="40dp"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
             android:contentDescription="@string/logo"
             app:layout_alignSelf="center"
             app:srcCompat="@drawable/foodback_logo" />
 
         <EditText
-            android:id="@+id/editname"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_45sdp"
             android:hint="@string/establishment_name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="@dimen/_12sdp" />
 
         <Spinner
-            android:id="@+id/editcategory"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:id="@+id/category"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_45sdp"
             android:spinnerMode="dialog"
             android:entries="@array/categories"
-            android:prompt="@string/category"/>
+            android:prompt="@string/category"
+            android:textSize="@dimen/_12sdp" />
 
         <EditText
-            android:id="@+id/editaddress"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/address"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_45sdp"
             android:hint="@string/address"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textSize="@dimen/_12sdp"/>
 
         <EditText
-            android:id="@+id/editemail"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_45sdp"
             android:hint="@string/e_mail"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/_12sdp" />
 
         <EditText
-            android:id="@+id/editcontact"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/contact"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_45sdp"
             android:hint="@string/contact"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="@dimen/_12sdp" />
 
         <EditText
-            android:id="@+id/editusername"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/username"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_45sdp"
             android:hint="@string/username"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textSize="@dimen/_12sdp"
+            android:padding="@dimen/_1sdp"
+            />
 
         <EditText
-            android:id="@+id/editpassword"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/password"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_45sdp"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="@dimen/_12sdp"
+            android:padding="@dimen/_1sdp"
+            />
 
 
         <Button
             android:id="@+id/buttonRegisterEstab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:padding="10dp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:padding="@dimen/_2sdp"
             android:background="#f16521"
             android:text="@string/register_establishment"
             android:textColor="#fff"
-            android:textSize="14sp" />
+            android:textSize="@dimen/_10sdp" />
 
     </com.google.android.flexbox.FlexboxLayout>
 
