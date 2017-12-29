@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:layout_margin="@dimen/_10sdp"
     tools:context="com.foodback.foodback.activity.EstablishmentRegister">
 
 
@@ -22,7 +22,7 @@
             android:id="@+id/imageView"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="@dimen/_70sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:contentDescription="@string/logo"
             app:layout_alignSelf="center"
             app:srcCompat="@drawable/foodback_logo" />
@@ -88,8 +88,8 @@
         <Button
             android:id="@+id/buttonRegisterEstab"
             android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_55sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginVertical="@dimen/_20sdp"
             android:background="#f16521"
             android:text="@string/register_establishment"
             android:textColor="#fff"
