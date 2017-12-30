@@ -24,4 +24,6 @@
     <string name="jump_login">Saltar o login</string>
     <string name="user_name">Nome</string>
     <string name="signup">Registar</string>
+
+    <string name="search">Pesquisa</string>
 </resources>
