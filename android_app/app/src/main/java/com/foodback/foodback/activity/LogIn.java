@@ -103,7 +103,7 @@ public class LogIn extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         Toast.makeText(LogIn.this, "Login successful!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(LogIn.this, "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogIn.this, "Error! Incorrect data!", Toast.LENGTH_SHORT).show();
                     }
                 }
 

@@ -44,12 +44,12 @@
             android:textSize="@dimen/_10sdp" />
 
         <Button
-            android:id="@+id/buttonRegisterEstab"
-            android:layout_width="@dimen/_150sdp"
+            android:id="@+id/loginButton"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginVertical="@dimen/_30sdp"
             android:background="#f16521"
-            android:text="@string/register_establishment"
+            android:text="@string/login"
             android:textColor="#fff"
             android:textSize="@dimen/_8sdp" />
 
