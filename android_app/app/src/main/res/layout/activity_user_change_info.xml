@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/_10sdp"
-    tools:context="com.foodback.foodback.activity.EstablishmentChangeInfos">
+    tools:context="com.foodback.foodback.activity.UserChangeInfo">
 
 
     <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,15 +45,6 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/establishment_name"
                     android:inputType="text"
-                    android:textSize="@dimen/_10sdp" />
-
-                <Spinner
-                    android:id="@+id/category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/categories"
-                    android:prompt="@string/category"
-                    android:spinnerMode="dialog"
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
@@ -97,10 +88,10 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <CheckBox
-                    android:id="@+id/delivery"
+                    android:id="@+id/premium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/delivery"
+                    android:hint="@string/premium"
                     android:textSize="@dimen/_10sdp" />
 
                 <TextView
@@ -137,7 +128,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <Button
-                    android:id="@+id/buttonChangeEstab"
+                    android:id="@+id/buttonChangeUser"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginVertical="@dimen/_20sdp"

@@ -30,7 +30,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.UserRegister" />
-        <activity android:name=".activity.EstablishmentChangeInfos"></activity>
+        <activity android:name=".activity.EstablishmentChangeInfo" />
+        <activity android:name=".activity.UserChangeInfo"></activity>
     </application>
 
 </manifest>
