@@ -1,11 +1,13 @@
 package com.foodback.foodback.activity;
 
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,10 +17,12 @@ public class UserChangeInfo extends AppCompatActivity {
 
     protected EditText editname, editaddress, editzone, editcity, editemail, editcontact, editusername, editpassword;
     protected CheckBox editpremium;
+    protected DatePicker editbirth;
 
     protected Button buttonChangeUser;
 
     protected String name, address, zone, city, email, contact, username, password, premium;
+    protected Integer day, month, year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class UserChangeInfo extends AppCompatActivity {
         editcontact = findViewById(R.id.contact);
         editusername = findViewById(R.id.username);
         editpassword = findViewById(R.id.password);
+        editbirth = findViewById(R.id.birth);
         editpremium = findViewById(R.id.premium);
 
         buttonChangeUser = (Button) findViewById(R.id.buttonChangeUser);
@@ -68,6 +73,10 @@ public class UserChangeInfo extends AppCompatActivity {
         username = editusername.getText().toString();
         password = editpassword.getText().toString();
         premium = editpremium.getText().toString();
+
+        day = editbirth.getDayOfMonth();
+        month = editbirth.getMonth() + 1;
+        year = editbirth.getYear();
     }
 
     private boolean validateChangesUser() {

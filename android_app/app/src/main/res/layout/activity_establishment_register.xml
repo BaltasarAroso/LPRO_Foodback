@@ -18,112 +18,119 @@
         app:justifyContent="center"
         >
 
-        <TableLayout
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:stretchColumns="1">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:contentDescription="@string/logo"
-                app:layout_alignSelf="center"
-                app:srcCompat="@drawable/foodback_logo" />
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
+            <TableLayout
+                android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
-                android:hint="@string/user_name"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp" />
+                android:layout_gravity="center"
+                android:stretchColumns="1">
 
-            <Spinner
-                android:id="@+id/category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/categories"
-                android:prompt="@string/category"
-                android:spinnerMode="dialog"
-                android:textSize="@dimen/_10sdp" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:contentDescription="@string/logo"
+                    app:layout_alignSelf="center"
+                    app:srcCompat="@drawable/foodback_logo" />
 
-            <EditText
-                android:id="@+id/address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/address"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp"/>
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/user_name"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
 
-            <EditText
-                android:id="@+id/zone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/zone"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp" />
+                <Spinner
+                    android:id="@+id/category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/categories"
+                    android:prompt="@string/category"
+                    android:spinnerMode="dialog"
+                    android:textSize="@dimen/_10sdp" />
 
-            <EditText
-                android:id="@+id/city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/city"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp" />
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp"/>
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/e_mail"
-                android:inputType="textEmailAddress"
-                android:textSize="@dimen/_10sdp" />
+                <EditText
+                    android:id="@+id/zone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/zone"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
 
-            <EditText
-                android:id="@+id/contact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/contact"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp" />
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/city"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/username"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp" />
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/e_mail"
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/_10sdp" />
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textSize="@dimen/_10sdp" />
+                <EditText
+                    android:id="@+id/contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/contact"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
 
-            <CheckBox
-                android:id="@+id/delivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/delivery"
-                android:textSize="@dimen/_10sdp" />
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/username"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
 
-            <Button
-                android:id="@+id/buttonRegisterEstab"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_20sdp"
-                android:background="#f16521"
-                android:text="@string/register_establishment"
-                android:textColor="#fff"
-                android:textSize="@dimen/_8sdp" />
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/_10sdp" />
 
-        </TableLayout>
+                <CheckBox
+                    android:id="@+id/delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/delivery"
+                    android:textSize="@dimen/_10sdp" />
+
+                <Button
+                    android:id="@+id/buttonRegisterEstab"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:background="#f16521"
+                    android:text="@string/register_establishment"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_8sdp" />
+
+            </TableLayout>
+
+        </ScrollView>
 
     </com.google.android.flexbox.FlexboxLayout>
 
