@@ -31,7 +31,11 @@
         </activity>
         <activity android:name=".activity.UserRegister" />
         <activity android:name=".activity.EstablishmentChangeInfo" />
-        <activity android:name=".activity.UserChangeInfo"></activity>
+        <activity android:name=".activity.UserChangeInfo" />
+        <activity
+            android:name=".activity.UserMenu"
+            android:label="@string/title_activity_user_menu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

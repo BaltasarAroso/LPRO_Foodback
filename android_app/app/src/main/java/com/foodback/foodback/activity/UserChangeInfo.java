@@ -1,10 +1,16 @@
 package com.foodback.foodback.activity;
 
+import android.content.Context;
 import android.content.IntentFilter;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -126,4 +132,10 @@ public class UserChangeInfo extends AppCompatActivity {
         //TODO change the Estab parameters on success
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View myView = inflater.inflate(R.layout.activity_user_change_info, container, false);
+        return myView;
+    }
 }
