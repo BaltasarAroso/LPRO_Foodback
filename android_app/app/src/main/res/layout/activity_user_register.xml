@@ -21,12 +21,16 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbarStyle="outsideOverlay"
             android:fillViewport="true">
 
             <TableLayout
-                android:layout_width="@dimen/_250sdp"
+                android:layout_width="match_parent"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:stretchColumns="1">
 
                 <ImageView

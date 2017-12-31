@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.foodback.foodback.R;
 
-public class UserChangeInfo extends AppCompatActivity {
+public class UserChangeInfo extends Fragment {
 
     protected EditText editname, editaddress, editzone, editcity, editemail, editcontact, editusername, editpassword;
     protected CheckBox editpremium;
@@ -31,23 +31,28 @@ public class UserChangeInfo extends AppCompatActivity {
     protected Integer day, month, year;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_change_info);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View myView = inflater.inflate(R.layout.activity_user_change_info, container, false);
+        return myView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
         // Initializing Views
-        editname = findViewById(R.id.name);
-        editaddress = findViewById(R.id.address);
-        editemail = findViewById(R.id.email);
-        //editzone = findViewById(R.id.zone);
-        //editcity = findViewById(R.id.city);
-        editcontact = findViewById(R.id.contact);
-        editusername = findViewById(R.id.username);
-        editpassword = findViewById(R.id.password);
-        editbirth = findViewById(R.id.birth);
-        editpremium = findViewById(R.id.premium);
+        editname = getView().findViewById(R.id.name);
+        editaddress = getView().findViewById(R.id.address);
+        editemail = getView().findViewById(R.id.email);
+        //editzone = getView().findViewById(R.id.zone);
+        //editcity = getView().findViewById(R.id.city);
+        editcontact = getView().findViewById(R.id.contact);
+        editusername = getView().findViewById(R.id.username);
+        editpassword = getView().findViewById(R.id.password);
+        editbirth = getView().findViewById(R.id.birth);
+        editpremium = getView().findViewById(R.id.premium);
 
-        buttonChangeUser = (Button) findViewById(R.id.buttonChangeUser);
+        buttonChangeUser = getView().findViewById(R.id.buttonChangeUser);
 
         // Adding listener to button
         buttonChangeUser.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +68,7 @@ public class UserChangeInfo extends AppCompatActivity {
     private void changeUser() {
         initialize();
         if (!validateChangesUser()) {
-            Toast.makeText(this, "Changes in User have failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Changes in User have failed", Toast.LENGTH_SHORT).show();
         } else {
             onChangeUserSuccess();
         }
@@ -132,10 +137,5 @@ public class UserChangeInfo extends AppCompatActivity {
         //TODO change the Estab parameters on success
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View myView = inflater.inflate(R.layout.activity_user_change_info, container, false);
-        return myView;
-    }
+
 }

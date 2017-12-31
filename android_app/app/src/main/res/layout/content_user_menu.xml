@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.foodback.foodback.activity.UserMenu"
-    tools:showIn="@layout/app_bar_user_menu">
+    tools:showIn="@layout/app_bar_user_menu"
+    android:id="@+id/user_menu">
 
 </android.support.constraint.ConstraintLayout>
