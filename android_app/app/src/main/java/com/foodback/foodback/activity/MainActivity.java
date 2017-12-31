@@ -49,12 +49,13 @@ public class MainActivity extends AppCompatActivity {
         if (menuItemThatWasSelected == R.id.action_search) {
            Context context  = MainActivity.this;
            String message = "Search clicked";
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+           Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
 
     void makeSearchQuery() {
         String query = mSearchBoxEditText.getText().toString();
+
     }
 }

@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 public class Menu_Fragment extends ListActivity{
 
-    String menu_options[] = {"Homepage"};
+    String menu_options[] = {};
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);

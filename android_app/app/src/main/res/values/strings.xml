@@ -26,4 +26,13 @@
     <string name="signup">Registar</string>
 
     <string name="search">Pesquisa</string>
+    <string name="confpass">Confirmação da palavra-passe</string>
+    <string name="newpass">Nova palavra-passe</string>
+    <string name="oldpass">Antiga palavra-passe</string>
+    <string name="changepass">Alteração da palavra-passe</string>
+    <string name="zone">Zona</string>
+    <string name="city">Cidade</string>
+    <string name="delivery">Entregas ao Domicílio</string>
+    <string name="change_estab_info">Alterar</string>
+    <string name="premium">Aceder ao Serviço Premium</string>
 </resources>

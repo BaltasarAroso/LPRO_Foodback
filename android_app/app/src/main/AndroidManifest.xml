@@ -29,7 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UserRegister"></activity>
+        <activity android:name=".activity.UserRegister" />
+        <activity android:name=".activity.EstablishmentChangeInfos"></activity>
     </application>
 
 </manifest>
