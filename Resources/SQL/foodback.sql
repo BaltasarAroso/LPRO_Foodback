@@ -13,7 +13,9 @@ CREATE TABLE users (
 	email VARCHAR(64),
 	address VARCHAR(64),
 	birth DATE,
-	premium BOOLEAN DEFAULT false
+	premium BOOLEAN DEFAULT false,
+	zone VARCHAR(32),
+	city VARCHAR(32)
 );
 
 CREATE TABLE category (
