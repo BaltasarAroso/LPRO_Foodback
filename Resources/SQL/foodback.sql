@@ -32,7 +32,9 @@ CREATE TABLE establishment (
 	email VARCHAR(64),
 	contact VARCHAR(16),
 	delivery BOOLEAN DEFAULT FALSE,
-	avg_price INTEGER
+	avg_price INTEGER,
+	schedule1 VARCHAR(64),
+	schedule2 VARCHAR(64)
 );
 
 CREATE TABLE credential (
