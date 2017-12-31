@@ -29,6 +29,8 @@ public class UserMapper implements ResultSetMapper<User>{
 						r.getString("email"),
 						r.getString("address"),
 						birth,
-						r.getBoolean("premium"));
+						r.getBoolean("premium"),
+						r.getString("zone"),
+						r.getString("city"));
 	}
 }

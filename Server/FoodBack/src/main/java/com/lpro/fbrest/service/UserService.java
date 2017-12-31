@@ -33,7 +33,13 @@ public abstract class UserService {
 													.entity("Username already taken!")
 													.build());
 		try {
-			user_id = userdao().insertUser(user.getName(), user.getEmail(), user.getAddress(), user.getBirth(), user.getPremium());
+			user_id = userdao().insertUser(user.getName(), 
+										user.getEmail(), 
+										user.getAddress(), 
+										user.getBirth(), 
+										user.getPremium(),
+										user.getZone(),
+										user.getCity());
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);

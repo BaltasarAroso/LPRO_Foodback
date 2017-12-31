@@ -23,7 +23,9 @@ public class UserTest {
         								"email@mail.com",
         								"Minha morada",
         								LocalDate.parse("1996-03-06"),
-        								true);
+        								true,
+        								"Minha zona filho",
+        								"Cidade fixe");
 
         final String expected = MAPPER.writeValueAsString(
                 MAPPER.readValue(fixture("fixtures/user.json"), User.class));
@@ -40,7 +42,9 @@ public class UserTest {
 									"email@mail.com",
 									"Minha morada",
 									LocalDate.parse("1996-03-06"),
-									true);
+									true,
+	    								"Minha zona filho",
+	    								"Cidade fixe");
           
         assertThat(MAPPER.readValue(fixture("fixtures/user.json"), User.class)).isEqualTo(person);
     }

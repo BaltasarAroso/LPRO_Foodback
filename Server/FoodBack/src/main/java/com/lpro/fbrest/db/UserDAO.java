@@ -26,16 +26,20 @@ public interface UserDAO {
 	 * @param address Address of the user
 	 * @param birth Birth date of the user
 	 * @param premium If user is premium or nor
+	 * @param zone Zone of the user
+	 * @param city City of the user  
 	 * @return id of inserted user
 	 */
 	@SqlUpdate("INSERT INTO users "
-			+ "VALUES (DEFAULT, :name, :email, :address, :birth, :premium)")
+			+ "VALUES (DEFAULT, :name, :email, :address, :birth, :premium, :zone, :city)")
 	@GetGeneratedKeys
 	public long insertUser(@Bind("name") String name,
 					@Bind("email") String email,
 					@Bind("address") String address,
 					@Bind("birth") LocalDate birth,
-					@Bind("premium") boolean premium);
+					@Bind("premium") boolean premium,
+					@Bind("zone") String zone,
+					@Bind("city") String city);
 	
 	/**
 	 * @param id Id of user to be deleted
@@ -50,7 +54,7 @@ public interface UserDAO {
 	 * @param username Username to be searched
 	 * @return User if it exists
 	 */
-	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium "
+	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium, zone, city "
 			+ "FROM users JOIN credential ON users_id = users.id "
 			+ "WHERE username = :username")
 	public User getUserByUsername(@Bind("username") String username);
@@ -58,7 +62,7 @@ public interface UserDAO {
 	/**
 	 * @return List with all users
 	 */
-	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium "
+	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium, zone, city "
 			+ "FROM users JOIN credential ON users_id = users.id")
 	public List<User> getAllUsers();
 
