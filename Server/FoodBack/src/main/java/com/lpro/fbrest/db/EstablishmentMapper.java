@@ -23,6 +23,8 @@ public class EstablishmentMapper implements ResultSetMapper<Establishment>{
 						null,
 						null,
 						r.getBoolean("delivery"),
-						r.getInt("avg_price"));
+						r.getInt("avg_price"),
+						r.getString("schedule1"),
+						r.getString("schedule2"));
 	}
 }

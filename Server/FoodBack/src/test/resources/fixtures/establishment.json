@@ -10,5 +10,7 @@
 	"username": "user",
 	"password": "pass",
 	"delivery": true,
-	"avg_price": "25"
+	"avg_price": "25",
+	"schedule1": "Horário 1",
+	"schedule2": "Horário 2"
 }

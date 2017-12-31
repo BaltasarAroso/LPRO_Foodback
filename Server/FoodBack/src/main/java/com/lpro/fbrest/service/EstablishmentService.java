@@ -35,7 +35,9 @@ public abstract class EstablishmentService {
 																	establishment.getEmail(), 
 																	establishment.getContact(), 
 																	establishment.getDelivery(), 
-																	establishment.getAvg_price());	
+																	establishment.getAvg_price(),
+																	establishment.getSchedule1(),
+																	establishment.getSchedule2());	
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
@@ -78,7 +80,9 @@ public abstract class EstablishmentService {
 						establishment.getEmail(),
 						establishment.getContact(),
 						establishment.getDelivery(),
-						establishment.getAvg_price()
+						establishment.getAvg_price(),
+						establishment.getSchedule1(),
+						establishment.getSchedule2()
 					);
 			}
 							

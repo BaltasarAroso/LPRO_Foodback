@@ -40,12 +40,19 @@ public class Establishment {
 	@JsonProperty
 	private int avg_price;
 	
+	@JsonProperty
+	private String schedule1;
+	
+	@JsonProperty
+	private String schedule2;
+	
 	public Establishment() {
 		super();
 	}
 	
 	public Establishment(long id, String name, int category_id, String address, String zone, String city, String email,
-			String contact, String username, String password, boolean delivery, int avg_price) {
+			String contact, String username, String password, Boolean delivery, int avg_price, String schedule1,
+			String schedule2) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,10 +66,10 @@ public class Establishment {
 		this.password = password;
 		this.delivery = delivery;
 		this.avg_price = avg_price;
+		this.schedule1 = schedule1;
+		this.schedule2 = schedule2;
 	}
-	
 
-	
 	public long getId() {
 		return id;
 	}
@@ -158,6 +165,22 @@ public class Establishment {
 	public void setAvg_price(int avg_price) {
 		this.avg_price = avg_price;
 	}
+	
+	public String getSchedule1() {
+		return schedule1;
+	}
+
+	public void setSchedule1(String schedule1) {
+		this.schedule1 = schedule1;
+	}
+
+	public String getSchedule2() {
+		return schedule2;
+	}
+
+	public void setSchedule2(String schedule2) {
+		this.schedule2 = schedule2;
+	}
 
 	public boolean equals(Object o) {
 		if(o == null) return false;
@@ -175,9 +198,12 @@ public class Establishment {
 				this.username.equals(restaurante.getUsername()) &&
 				this.password.equals(restaurante.getPassword()) &&
 				this.delivery.equals(restaurante.getDelivery()) &&
-				this.avg_price == restaurante.getAvg_price())
+				this.avg_price == restaurante.getAvg_price() &&
+				this.schedule1.equals(restaurante.getSchedule1()) &&
+				this.schedule2.equals(restaurante.getSchedule2())) 
 			return true;
 		else return false;			
 	}
+	
 
 }
