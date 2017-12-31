@@ -31,9 +31,9 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="@dimen/_200sdp"
-                    android:layout_height="@dimen/_70sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_20sdp"
                     android:contentDescription="@string/logo"
                     app:layout_alignSelf="center"
                     app:srcCompat="@drawable/foodback_logo" />
@@ -122,7 +122,7 @@
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginVertical="@dimen/_20sdp"
-                    android:background="#f16521"
+                    android:background="@color/colorLogo"
                     android:text="@string/signup"
                     android:textColor="#fff"
                     android:textSize="@dimen/_8sdp" />
