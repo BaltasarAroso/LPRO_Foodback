@@ -23,17 +23,44 @@
         <activity android:name=".activity.ConnectionError" />
         <activity android:name=".activity.EstablishmentRegister" />
         <activity android:name=".activity.LogIn">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".activity.UserRegister" />
-        <activity android:name=".activity.EstablishmentChangeInfo" />
         <activity
             android:name=".activity.UserMenu"
             android:label="@string/title_activity_user_menu"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".activity.EstablishmentMenu"
+            android:label="@string/title_activity_establishment_menu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".activity.AdminMenu"
+            android:label="@string/title_activity_admin_menu"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

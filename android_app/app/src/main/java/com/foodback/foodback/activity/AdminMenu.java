@@ -1,7 +1,6 @@
 package com.foodback.foodback.activity;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,20 +14,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
 
-import javax.security.auth.login.LoginException;
-
-public class UserMenu extends AppCompatActivity
+public class AdminMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_menu);
+        setContentView(R.layout.activity_admin_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -55,7 +51,7 @@ public class UserMenu extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user_menu, menu);
+        getMenuInflater().inflate(R.menu.admin_menu, menu);
         return true;
     }
 
@@ -81,21 +77,21 @@ public class UserMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_homepage) {
-
+            // Handle the camera action
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_delivery) {
 
-        } else if (id == R.id.nav_def) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new UserChangeInfo()).commit();
-            Toast.makeText(this, "definitions", Toast.LENGTH_LONG).show();
+        } else if (id == R.id.nav_notifications) {
 
+        } else if (id == R.id.nav_settings) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.admin_menu, new UserChangeInfo()).commit();
+            Toast.makeText(this, "definitions", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_logout) {
             Intent i = new Intent();
-            i.setClass(UserMenu.this, LogIn.class);
+            i.setClass(AdminMenu.this, LogIn.class);
             startActivity(i);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

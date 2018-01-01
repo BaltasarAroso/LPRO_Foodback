@@ -1,9 +1,12 @@
 package com.foodback.foodback.activity;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,7 +15,7 @@ import android.widget.Toast;
 
 import com.foodback.foodback.R;
 
-public class EstablishmentChangeInfo extends AppCompatActivity {
+public class EstablishmentChangeInfo extends Fragment {
 
     protected EditText editname, editaddress, editzone, editcity, editemail, editcontact, editusername, editpassword;
     protected Spinner editcategory;
@@ -23,23 +26,28 @@ public class EstablishmentChangeInfo extends AppCompatActivity {
     protected String name, category, address, zone, city, email, contact, username, password, delivery;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_establishment_change_info);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View myView = inflater.inflate(R.layout.activity_establishment_change_info, container, false);
+        return myView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
         // Initializing Views
-        editname = findViewById(R.id.name);
-        editcategory = findViewById(R.id.category);
-        editaddress = findViewById(R.id.address);
-        editemail = findViewById(R.id.email);
-        editzone = findViewById(R.id.zone);
-        editcity = findViewById(R.id.city);
-        editcontact = findViewById(R.id.contact);
-        editusername = findViewById(R.id.username);
-        editpassword = findViewById(R.id.password);
-        editdelivery = findViewById(R.id.delivery);
+        editname = getView().findViewById(R.id.name);
+        editcategory = getView().findViewById(R.id.category);
+        editaddress = getView().findViewById(R.id.address);
+        editemail = getView().findViewById(R.id.email);
+        editzone = getView().findViewById(R.id.zone);
+        editcity = getView().findViewById(R.id.city);
+        editcontact = getView().findViewById(R.id.contact);
+        editusername = getView().findViewById(R.id.username);
+        editpassword = getView().findViewById(R.id.password);
+        editdelivery = getView().findViewById(R.id.delivery);
 
-        buttonChangeEstab = (Button) findViewById(R.id.buttonChangeEstab);
+        buttonChangeEstab = getView().findViewById(R.id.buttonChangeEstab);
 
         // Adding listener to button
         buttonChangeEstab.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +63,7 @@ public class EstablishmentChangeInfo extends AppCompatActivity {
     private void changeEstab() {
         initialize();
         if (!validateChangesEstab()) {
-            Toast.makeText(this, "Changes in Establishment have failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Changes in Establishment have failed", Toast.LENGTH_SHORT).show();
         } else {
             onChangeEstabSuccess();
         }
