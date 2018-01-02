@@ -20,8 +20,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodbackClient {
 
-    //    protected static final String BASE_URL = "http://10.0.2.2:3000";
-    private static final String BASE_URL = "http://192.168.1.7:3000";
+//    protected static final String BASE_URL = "http://10.0.2.2:3000";
+    private static final String BASE_URL = "http://192.168.1.11:3000";
 
     public static Retrofit retrofit =  new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -79,7 +79,7 @@ public class FoodbackClient {
             }).build();
         }
 
-        Gson gson = new GsonBuilder().create();
+        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

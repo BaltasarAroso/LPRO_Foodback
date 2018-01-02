@@ -3,12 +3,12 @@ package com.foodback.foodback.logic;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Foodback on 14/12/2017.
+ * Created by Foodback.
  */
 
 public class Establishment {
 
-    private long id;
+    private Integer id;
 
     private String name;
 
@@ -30,9 +30,25 @@ public class Establishment {
 
     private Boolean delivery;
 
-    private int avg_price;
+    private Integer avg_price;
 
-    public Establishment(long id, String name, int category_id, String address, String zone, String city, String email,
+    public Establishment(String name, int category_id, String address, String zone, String city, String email,
+                         String contact, String username, String password, boolean delivery) {
+        this.id = null;
+        this.name = name;
+        this.category_id = category_id;
+        this.address = address;
+        this.zone = zone;
+        this.city = city;
+        this.email = email;
+        this.contact = contact;
+        this.username = username;
+        this.password = password;
+        this.delivery = delivery;
+        this.avg_price = null;
+    }
+
+    public Establishment(int id, String name, int category_id, String address, String zone, String city, String email,
                          String contact, String username, String password, boolean delivery, int avg_price) {
         this.id = id;
         this.name = name;
@@ -54,7 +70,7 @@ public class Establishment {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -151,7 +167,7 @@ public class Establishment {
         if(!(o instanceof Establishment)) return false;
 
         Establishment restaurante = (Establishment)o;
-        if(this.id == restaurante.getId() &&
+        return (this.id == restaurante.getId() &&
                 this.name.equals(restaurante.getName()) &&
                 this.category_id == restaurante.getCategory_id() &&
                 this.address.equals(restaurante.getAddress()) &&
@@ -162,9 +178,7 @@ public class Establishment {
                 this.username.equals(restaurante.getUsername()) &&
                 this.password.equals(restaurante.getPassword()) &&
                 this.delivery.equals(restaurante.getDelivery()) &&
-                this.avg_price == restaurante.getAvg_price())
-            return true;
-        else return false;
+                this.avg_price == restaurante.getAvg_price());
     }
 
 }

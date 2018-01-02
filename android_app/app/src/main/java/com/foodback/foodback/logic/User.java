@@ -1,6 +1,7 @@
 package com.foodback.foodback.logic;
 
-import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Foodback.
@@ -11,7 +12,7 @@ public class User {
     /**
      * user id
      */
-    private long id;
+    private Integer id;
 
     /**
      *  username
@@ -41,7 +42,7 @@ public class User {
     /**
      * user birthdate
      */
-    private LocalDate birth;
+    private Date birth;
 
     /**
      * is premium or not
@@ -49,6 +50,16 @@ public class User {
     private boolean premium;
 
     /**
+     * Zone of the user
+     */
+    private String zone;
+
+    /**
+     * City of the user
+     */
+    private String city;
+
+    /**
      * @param username username
      * @param password user password
      * @param name user real name
@@ -59,8 +70,9 @@ public class User {
      *
      * Constructor
      */
-    public User(String username, String password, String name, String email, String address, LocalDate birth,
-                boolean premium) {
+    public User(String username, String password, String name, String email, String address, Date birth,
+                boolean premium, String zone, String city) {
+        this.id = null;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -68,22 +80,27 @@ public class User {
         this.address = address;
         this.birth = birth;
         this.premium = premium;
+        this.zone = zone;
+        this.city = city;
     }
 
     /**
-     * @param id user id
-     * @param username username
-     * @param password user password
-     * @param name user real name
-     * @param email user email
-     * @param address user address
-     * @param birth user birth date
-     * @param premium is premium or not
+     * @param id Id of user
+     * @param username Username of user
+     * @param password Password of user
+     * @param name Name of user
+     * @param email Email of user
+     * @param address Address of user
+     * @param birth Birth date of user
+     * @param premium If user is premium or not
+     * @param zone Zone of the user
+     * @param city City of the user
      *
      * Constructor
      */
-    public User(long id, String username, String password, String name, String email, String address, LocalDate birth,
-                boolean premium) {
+    public User(Integer id, String username, String password, String name, String email, String address, Date birth,
+                boolean premium, String zone, String city) {
+        super();
         this.id = id;
         this.username = username;
         this.password = password;
@@ -92,6 +109,8 @@ public class User {
         this.address = address;
         this.birth = birth;
         this.premium = premium;
+        this.zone = zone;
+        this.city = city;
     }
 
     /**
@@ -104,7 +123,7 @@ public class User {
     /**
      * @param id user id
      */
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -171,13 +190,13 @@ public class User {
     /**
      * @return user birth date
      */
-    public LocalDate getBirth() {
+    public Date getBirth() {
         return birth;
     }
     /**
      * @param birth user birth date
      */
-    public void setBirth(LocalDate birth) {
+    public void setBirth(Date birth) {
         this.birth = birth;
     }
     /**
@@ -193,20 +212,48 @@ public class User {
         this.premium = premium;
     }
 
+    /**
+     * @return user zone
+     */
+    public String getZone() {
+        return zone;
+    }
+
+    /**
+     * @param zone user zone
+     */
+    public void setZone(String zone) {
+        this.zone = zone;
+    }
+
+    /**
+     * @return user city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city user city
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public boolean equals(Object o) {
         if(o == null) return false;
         if(!(o instanceof User)) return false;
 
         User user = (User)o;
-        if(this.id == user.getId() &&
+        return (this.id == user.getId() &&
                 this.username.equals(user.getUsername()) &&
                 this.password.equals(user.getPassword()) &&
                 this.name.equals(user.getName()) &&
                 this.email.equals(user.getEmail()) &&
                 this.address.equals(user.getAddress()) &&
                 (this.premium == user.getPremium()) &&
-                this.birth.equals(user.getBirth()) )
-            return true;
-        else return false;
+                this.birth.equals(user.getBirth()) &&
+                this.zone.equals(user.getZone()) &&
+                this.city.equals(user.getCity()));
     }
 }

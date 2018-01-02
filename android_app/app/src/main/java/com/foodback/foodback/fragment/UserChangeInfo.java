@@ -26,8 +26,7 @@ public class UserChangeInfo extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View myView = inflater.inflate(R.layout.activity_user_change_info, container, false);
-        return myView;
+        return inflater.inflate(R.layout.activity_user_change_info, container, false);
     }
 
     @Override
@@ -38,8 +37,8 @@ public class UserChangeInfo extends Fragment {
         editname = getView().findViewById(R.id.name);
         editaddress = getView().findViewById(R.id.address);
         editemail = getView().findViewById(R.id.email);
-        //editzone = getView().findViewById(R.id.zone);
-        //editcity = getView().findViewById(R.id.city);
+        editzone = getView().findViewById(R.id.zone);
+        editcity = getView().findViewById(R.id.city);
         editcontact = getView().findViewById(R.id.contact);
         editusername = getView().findViewById(R.id.username);
         editpassword = getView().findViewById(R.id.password);
@@ -71,8 +70,8 @@ public class UserChangeInfo extends Fragment {
     private void initialize() {
         name = editname.getText().toString();
         address = editaddress.getText().toString();
-        //zone = editzone.getText().toString();
-        //city = editcity.getText().toString();
+        zone = editzone.getText().toString();
+        city = editcity.getText().toString();
         email = editemail.getText().toString();
         contact = editcontact.getText().toString();
         username = editusername.getText().toString();
@@ -102,14 +101,14 @@ public class UserChangeInfo extends Fragment {
             editaddress.setError("Please enter a valid address");
             valid = false;
         }
-        /*if (zone.isEmpty()) {
+        if (zone.isEmpty()) {
             editzone.setError("Please enter a valid zone");
             valid = false;
         }
         if (city.isEmpty()) {
             editcity.setError("Please enter a valid city");
             valid = false;
-        }*/
+        }
         if (contact.isEmpty()) {
             editcontact.setError("Please enter a valid contact");
             valid = false;
