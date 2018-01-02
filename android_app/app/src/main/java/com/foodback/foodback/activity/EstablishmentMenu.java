@@ -77,14 +77,14 @@ public class EstablishmentMenu extends AppCompatActivity
 
         if (id == R.id.nav_homepage) {
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
+            fm.beginTransaction().replace(R.id.establishment_menu, new Homepage()).commit();
             Toast.makeText(this, "homepage", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_estabpage) {
 
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentChangeInfo()).commit();
-            Toast.makeText(this, "definitions", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "settings", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_logout) {
             Intent i = new Intent();
             i.setClass(EstablishmentMenu.this, LogIn.class);
