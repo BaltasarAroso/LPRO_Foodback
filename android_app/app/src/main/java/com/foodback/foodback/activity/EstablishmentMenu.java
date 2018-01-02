@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.EstablishmentChangeInfo;
+import com.foodback.foodback.fragment.Homepage;
 
 public class EstablishmentMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -75,7 +76,9 @@ public class EstablishmentMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_homepage) {
-
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
+            Toast.makeText(this, "homepage", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_estabpage) {
 
         } else if (id == R.id.nav_settings) {

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.fragment.UserChangeInfo;
 
 public class UserMenu extends AppCompatActivity
@@ -75,7 +76,9 @@ public class UserMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_homepage) {
-
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
+            Toast.makeText(this, "homepage", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_delivery) {
