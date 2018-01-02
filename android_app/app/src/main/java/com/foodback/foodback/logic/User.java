@@ -1,11 +1,9 @@
 package com.foodback.foodback.logic;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.time.LocalDate;
 
 /**
- * Created by Foodback on 14/12/2017.
+ * Created by Foodback.
  */
 
 public class User {
@@ -13,50 +11,64 @@ public class User {
     /**
      * user id
      */
-    @SerializedName("id")
     private long id;
 
     /**
      *  username
      */
-    @SerializedName("username")
     private String username;
 
     /**
      * user password
      */
-    @SerializedName("password")
     private String password;
 
     /**
      *  user real name
      */
-    @SerializedName("name")
     private String name;
 
     /**
      * user email
      */
-    @SerializedName("email")
     private String email;
 
     /**
      * user address
      */
-    @SerializedName("address")
     private String address;
 
     /**
      * user birthdate
      */
-    @SerializedName("birth")
     private LocalDate birth;
 
     /**
      * is premium or not
      */
-    @SerializedName("premium")
     private boolean premium;
+
+    /**
+     * @param username username
+     * @param password user password
+     * @param name user real name
+     * @param email user email
+     * @param address user address
+     * @param birth user birth date
+     * @param premium is premium or not
+     *
+     * Constructor
+     */
+    public User(String username, String password, String name, String email, String address, LocalDate birth,
+                boolean premium) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.birth = birth;
+        this.premium = premium;
+    }
 
     /**
      * @param id user id

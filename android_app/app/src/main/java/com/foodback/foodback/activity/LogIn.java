@@ -10,40 +10,39 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.foodback.foodback.config.RetrofitClient;
-import com.foodback.foodback.config.FoodbackInterface;
+import com.foodback.foodback.config.CredentialsEndpoints;
+//import com.foodback.foodback.utils.APIError;
+//import com.foodback.foodback.utils.ErrorUtils;
+
+import com.foodback.foodback.config.FoodbackClient;
 import com.foodback.foodback.R;
-import com.foodback.foodback.logic.User;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.config.FoodbackClient.setCredentials;
+
 public class LogIn extends AppCompatActivity {
 
     protected EditText editusername;
     protected EditText editpassword;
     protected Button btnLogin;
-    RetrofitClient retrofitClient;
-    FoodbackInterface services;
-
-    /* --------------------------------------------------- */
-
     protected TextView linksignup;
 
-    /* --------------------------------------------------- */
+    protected CredentialsEndpoints services;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        editusername = (EditText) findViewById(R.id.username);
-        editpassword = (EditText) findViewById(R.id.password);
-        btnLogin = (Button) findViewById(R.id.loginButton);
-
-        linksignup = (TextView) findViewById(R.id.signup);
+        editusername = findViewById(R.id.username);
+        editpassword = findViewById(R.id.password);
+        btnLogin = findViewById(R.id.loginButton);
+        linksignup = findViewById(R.id.signup);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +58,6 @@ public class LogIn extends AppCompatActivity {
 
         });
 
-        /* --------------------------------------------------- */
-
         linksignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,10 +67,6 @@ public class LogIn extends AppCompatActivity {
             }
 
         });
-
-        /* --------------------------------------------------- */
-
-
     }
 
     private boolean validateLogin (String username, String password) {
@@ -90,11 +83,10 @@ public class LogIn extends AppCompatActivity {
 
     private void tryLogin(String username, String password) {
         try {
-            retrofitClient = new RetrofitClient();
-            retrofitClient.setCredentials(username, password);
-            retrofitClient.startup();
+            setCredentials(username, password);
+            new FoodbackClient();
 
-            services = retrofitClient.retrofit.create(FoodbackInterface.class);
+            services = retrofit.create(CredentialsEndpoints.class);
             Call<ResponseBody> call = services.verifyUserCredentials();
 
             call.enqueue(new Callback<ResponseBody>() {
@@ -102,21 +94,24 @@ public class LogIn extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()) {
                         Toast.makeText(LogIn.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                        //change activity
                     } else {
-                        Toast.makeText(LogIn.this, "Error! Incorrect data!", Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(LogIn.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogIn.this, response.message(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    t.printStackTrace();
+                    Log.e("DEBUG",Log.getStackTraceString(t));
                     Toast.makeText(LogIn.this, "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch(Exception e) {
-            e.printStackTrace();
-            Toast.makeText(LogIn.this, "An error occured.", Toast.LENGTH_SHORT).show();
+            Log.e("DEBUG",Log.getStackTraceString(e));
+            Toast.makeText(LogIn.this, "An error occurred.", Toast.LENGTH_SHORT).show();
         }
-
     }
+
 }

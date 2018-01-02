@@ -37,8 +37,6 @@ public interface FoodbackInterface {
 //    POST    /users (com.lpro.fbrest.resources.UsersResource)
 //    GET     /users/{username} (com.lpro.fbrest.resources.UsersResource)
 
-    public static final String BASE_URL = "http://172.30.1.92:8080/";
-
 
     @DELETE("comments")
     Call deleteComment(@Field("comment_id") long comment_id);

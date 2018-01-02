@@ -50,6 +50,7 @@
     <string name="title_activity_admin_menu">Menu de Administrador</string>
     <string name="notifications">Notificações</string>
     <string name="coffee">Café</string>
+    <string name="tryagain">Tentar Novamente</string>
 
     <string-array name="search_list">
         <item>Pizzaria Toscano</item>
