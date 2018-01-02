@@ -1,7 +1,6 @@
-package com.foodback.foodback.activity;
+package com.foodback.foodback.fragment;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;

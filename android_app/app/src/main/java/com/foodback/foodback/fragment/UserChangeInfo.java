@@ -1,12 +1,6 @@
-package com.foodback.foodback.activity;
-
-import android.content.Context;
-import android.content.IntentFilter;
-import android.support.annotation.Nullable;
+package com.foodback.foodback.fragment;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,6 +130,4 @@ public class UserChangeInfo extends Fragment {
     private void onChangeUserSuccess() {
         //TODO change the Estab parameters on success
     }
-
-
 }

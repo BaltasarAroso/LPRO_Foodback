@@ -50,6 +50,7 @@
             android:name=".activity.EstablishmentMenu"
             android:label="@string/title_activity_establishment_menu"
             android:theme="@style/AppTheme.NoActionBar">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,6 +68,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".fragment.SearchField">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
     </application>
 

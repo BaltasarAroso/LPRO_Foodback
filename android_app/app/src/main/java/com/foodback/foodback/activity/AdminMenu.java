@@ -2,10 +2,7 @@ package com.foodback.foodback.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +14,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.SearchField;
+import com.foodback.foodback.fragment.UserChangeInfo;
 
 public class AdminMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,6 +64,7 @@ public class AdminMenu extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -77,7 +78,9 @@ public class AdminMenu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_homepage) {
-            // Handle the camera action
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
+            Toast.makeText(this, "homepage", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_delivery) {
