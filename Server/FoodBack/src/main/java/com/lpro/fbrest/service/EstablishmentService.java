@@ -35,7 +35,9 @@ public abstract class EstablishmentService {
 																	establishment.getEmail(), 
 																	establishment.getContact(), 
 																	establishment.getDelivery(), 
-																	establishment.getAvg_price());	
+																	establishment.getAvg_price(),
+																	establishment.getSchedule1(),
+																	establishment.getSchedule2());	
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
@@ -66,7 +68,7 @@ public abstract class EstablishmentService {
 		return establishment;
 	}
 	
-	public void editEstablishment(int establishment_id ,Establishment establishment) {
+	public void editEstablishment(long establishment_id ,Establishment establishment) {
 		try {
 			establishmentdao().updateEstablishment(
 						establishment_id,
@@ -78,7 +80,9 @@ public abstract class EstablishmentService {
 						establishment.getEmail(),
 						establishment.getContact(),
 						establishment.getDelivery(),
-						establishment.getAvg_price()
+						establishment.getAvg_price(),
+						establishment.getSchedule1(),
+						establishment.getSchedule2()
 					);
 			}
 							

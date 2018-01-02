@@ -13,7 +13,9 @@ CREATE TABLE users (
 	email VARCHAR(64),
 	address VARCHAR(64),
 	birth DATE,
-	premium BOOLEAN DEFAULT false
+	premium BOOLEAN DEFAULT false,
+	zone VARCHAR(32),
+	city VARCHAR(32)
 );
 
 CREATE TABLE category (
@@ -32,7 +34,9 @@ CREATE TABLE establishment (
 	email VARCHAR(64),
 	contact VARCHAR(16),
 	delivery BOOLEAN DEFAULT FALSE,
-	avg_price INTEGER
+	avg_price INTEGER,
+	schedule1 VARCHAR(64),
+	schedule2 VARCHAR(64)
 );
 
 CREATE TABLE credential (
@@ -61,7 +65,8 @@ CREATE TABLE comment (
 CREATE TABLE comment_answer (
 	id SERIAL PRIMARY KEY,
 	comment_id INTEGER REFERENCES comment 
-		ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
+		ON DELETE CASCADE ON UPDATE CASCADE NOT NULL UNIQUE,
+	answer VARCHAR(256),
 	time_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); 
 
@@ -87,4 +92,39 @@ CREATE TABLE orders_meal (
 		ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
 	quantity INTEGER NOT NULL,
 	PRIMARY KEY(meal_id, orders_id)
+);
+
+CREATE TABLE establishment_image (
+	id SERIAL PRIMARY KEY,
+	establishment_id INTEGER REFERENCES establishment
+		ON DELETE SET NULL ON UPDATE CASCADE,
+	extension VARCHAR(8) NOT NULL,
+	profile BOOLEAN NOT NULL
+);
+
+CREATE TABLE featured (
+	id SERIAL PRIMARY KEY,
+	meal_id INTEGER REFERENCES meal 
+		ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
+	added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	duration NUMERIC(3,0) NOT NULL
+);
+
+CREATE TABLE report_type (
+	type VARCHAR(16) PRIMARY KEY
+);
+
+INSERT INTO report_type VALUES ('bad_comment');
+INSERT INTO report_type VALUES ('bad_info');
+
+CREATE TABLE report (
+	id SERIAL PRIMARY KEY,
+	type VARCHAR(16) REFERENCES report_type
+		ON UPDATE CASCADE ON DELETE CASCADE NOT NULL,
+	report VARCHAR(256) NOT NULL,
+	comment_id INTEGER REFERENCES comment
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	establishment_id INTEGER REFERENCES establishment
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	reporter_id INTEGER REFERENCES users
 );

@@ -55,6 +55,18 @@ public class User {
 	 */
 	@JsonProperty
 	private boolean premium;
+	
+	/**
+	 * Zone of the user
+	 */
+	@JsonProperty
+	private String zone;
+	
+	/**
+	 * City of the user
+	 */
+	@JsonProperty
+	private String city;
 
 	
 	/**
@@ -73,11 +85,13 @@ public class User {
 	 * @param address Address of user
 	 * @param birth Birth date of user
 	 * @param premium If user is premium or not
+	 * @param zone Zone of the user
+	 * @param city City of the user
 	 * 
 	 * Constructor
 	 */
 	public User(long id, String username, String password, String name, String email, String address, LocalDate birth,
-			boolean premium) {
+			boolean premium, String zone, String city) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -87,8 +101,10 @@ public class User {
 		this.address = address;
 		this.birth = birth;
 		this.premium = premium;
+		this.zone = zone;
+		this.city = city;
 	}
-	
+
 	/**
 	 * @return id
 	 */
@@ -188,6 +204,34 @@ public class User {
 		this.premium = premium;
 	}
 	
+	/**
+	 * @return Zone of the user
+	 */
+	public String getZone() {
+		return zone;
+	}
+
+	/**
+	 * @param zone Zone of the user
+	 */
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+
+	/**
+	 * @return City of the user
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city City of the user
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	public boolean equals(Object o) {
 		if(o == null) return false;
 		if(!(o instanceof User)) return false;
@@ -200,7 +244,9 @@ public class User {
 				this.email.equals(user.getEmail()) &&
 				this.address.equals(user.getAddress()) &&
 				(this.premium == user.getPremium()) &&
-				this.birth.equals(user.getBirth()) )
+				this.birth.equals(user.getBirth()) &&
+				this.zone.equals(user.getZone()) &&
+				this.city.equals(user.getCity()))
 			return true;
 		else return false;			
 	}

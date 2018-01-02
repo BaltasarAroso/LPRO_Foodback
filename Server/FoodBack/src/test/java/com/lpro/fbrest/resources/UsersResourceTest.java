@@ -31,6 +31,8 @@ public class UsersResourceTest {
 	private static final String TEST_ADDRESS = "Minha morada";
 	private static final boolean TEST_PREMIUM = true;
 	private static final LocalDate TEST_BIRTH = LocalDate.parse("1996-03-06");
+	private static final String TEST_ZONE = "Minha zona filho";
+	private static final String TEST_CITY = "Cidade fixe";
 	
 	private static final String USERS_ENDPOINT = "/users";
 	
@@ -47,7 +49,9 @@ public class UsersResourceTest {
 									TEST_EMAIL,
 									TEST_ADDRESS,
 									TEST_BIRTH,
-									TEST_PREMIUM);
+									TEST_PREMIUM,
+									TEST_ZONE,
+									TEST_CITY);
 	
 	@Before
 	public void setup() {

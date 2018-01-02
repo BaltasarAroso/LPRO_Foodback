@@ -33,7 +33,13 @@ public abstract class UserService {
 													.entity("Username already taken!")
 													.build());
 		try {
-			user_id = userdao().insertUser(user.getName(), user.getEmail(), user.getAddress(), user.getBirth(), user.getPremium());
+			user_id = userdao().insertUser(user.getName(), 
+										user.getEmail(), 
+										user.getAddress(), 
+										user.getBirth(), 
+										user.getPremium(),
+										user.getZone(),
+										user.getCity());
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
@@ -70,6 +76,18 @@ public abstract class UserService {
 			throw new WebApplicationException(404);
 		}
 		return user;
+	}
+
+	/**
+	 * @param users_id Id of user to upgrade
+	 */
+	public void upgradePremium(long users_id) {
+		try {
+			userdao().upgradePremium(users_id);		
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
 	}
 	
 

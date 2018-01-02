@@ -7,17 +7,24 @@ import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.auth.ClientAuthenticator;
 import com.lpro.fbrest.auth.ClientAuthorizer;
 import com.lpro.fbrest.db.ClientDAO;
+import com.lpro.fbrest.db.EstablishmentImageDAO;
+import com.lpro.fbrest.resources.AnswersResource;
 import com.lpro.fbrest.resources.CommentsResource;
 import com.lpro.fbrest.resources.CredentialsResource;
 import com.lpro.fbrest.resources.EstablishmentsResource;
+import com.lpro.fbrest.resources.FeaturedResource;
 import com.lpro.fbrest.resources.ImagesResource;
 import com.lpro.fbrest.resources.MealsResource;
 import com.lpro.fbrest.resources.OrdersResource;
+import com.lpro.fbrest.resources.ReportsResource;
 import com.lpro.fbrest.resources.UsersResource;
+import com.lpro.fbrest.service.AnswerService;
 import com.lpro.fbrest.service.CommentService;
 import com.lpro.fbrest.service.EstablishmentService;
+import com.lpro.fbrest.service.FeaturedService;
 import com.lpro.fbrest.service.MealService;
 import com.lpro.fbrest.service.OrderService;
+import com.lpro.fbrest.service.ReportService;
 import com.lpro.fbrest.service.UserService;
 
 import io.dropwizard.Application;
@@ -66,7 +73,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
     		final DBIFactory factory = new DBIFactory();
 		final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
 		final ClientDAO clientdao = jdbi.onDemand(ClientDAO.class);
-		
+		final EstablishmentImageDAO establishmentImageDao = jdbi.onDemand(EstablishmentImageDAO.class);
 		
 		//Resource configurations
 		environment.jersey().register(new UsersResource(jdbi.onDemand(UserService.class)));
@@ -74,9 +81,12 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new CommentsResource(jdbi.onDemand(CommentService.class)));
 		environment.jersey().register(new MealsResource(jdbi.onDemand(MealService.class)));
 		environment.jersey().register(new OrdersResource(jdbi.onDemand(OrderService.class)));
+		environment.jersey().register(new FeaturedResource(jdbi.onDemand(FeaturedService.class)));
 		environment.jersey().register(new CredentialsResource());
+		environment.jersey().register(new AnswersResource(jdbi.onDemand(AnswerService.class)));
+		environment.jersey().register(new ReportsResource(jdbi.onDemand(ReportService.class)));
 		
-		environment.jersey().register(new ImagesResource());
+		environment.jersey().register(new ImagesResource(establishmentImageDao));
 		
 		
 		//Auth configurations - de momento a usar Basic Auth
