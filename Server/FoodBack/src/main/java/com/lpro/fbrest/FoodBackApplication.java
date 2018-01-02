@@ -6,6 +6,7 @@ import org.skife.jdbi.v2.DBI;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.auth.ClientAuthenticator;
 import com.lpro.fbrest.auth.ClientAuthorizer;
+import com.lpro.fbrest.auth.ClientUnauthorizedHandler;
 import com.lpro.fbrest.db.ClientDAO;
 import com.lpro.fbrest.db.EstablishmentImageDAO;
 import com.lpro.fbrest.resources.AnswersResource;
@@ -95,6 +96,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 				.setAuthenticator(new ClientAuthenticator(clientdao))
 				.setAuthorizer(new ClientAuthorizer())
 				.setRealm("SECURITY REALM")
+				.setUnauthorizedHandler(new ClientUnauthorizedHandler())
 				.buildAuthFilter()));
 		environment.jersey().register(new AuthValueFactoryProvider.Binder<>(Client.class));
 		environment.jersey().register(RolesAllowedDynamicFeature.class);
