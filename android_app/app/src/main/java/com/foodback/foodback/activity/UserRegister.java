@@ -90,7 +90,7 @@ public class UserRegister extends AppCompatActivity {
         if (!validate()) {
             Toast.makeText(this, "Signup has failed", Toast.LENGTH_SHORT).show();
         } else {
-            birth = new Date(editbirth.getYear()-1900, editbirth.getMonth()+1, editbirth.getDayOfMonth());
+            birth = new Date(editbirth.getYear()-1900, editbirth.getMonth(), editbirth.getDayOfMonth());
             user = new User(username, password, name, email, address, birth, premium, zone, city);
             onRegisterSuccess(user);
         }
@@ -176,7 +176,7 @@ public class UserRegister extends AppCompatActivity {
             });
         } catch(Exception e) {
             Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(UserRegister.this, "An error occurred.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserRegister.this, "Unexpected error.", Toast.LENGTH_SHORT).show();
         }
     }
 

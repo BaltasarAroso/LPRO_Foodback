@@ -65,7 +65,7 @@
             android:layout_width="@dimen/_250sdp"
             android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:background="@android:color/black"></View>
+            android:background="@android:color/black" />
 
         <TextView
             android:id="@+id/signup"
@@ -74,7 +74,8 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:text="@string/signup"
             android:textSize="@dimen/_10sdp"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:focusable="true" />
 
 
     </com.google.android.flexbox.FlexboxLayout>

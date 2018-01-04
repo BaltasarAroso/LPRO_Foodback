@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name">FoodBack</string>
-    <string name="loading">Loading</string>
+    <string name="loading">Loading…</string>
     <string name="logo">Logo</string>
     <string name="establishment_name">Nome de Estabelecimento</string>
     <string name="category">Categoria</string>
@@ -10,9 +10,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="register_establishment">Registar Estabelecimento</string>
-    <string-array name="categories">
-        <item>Restaurante Italiano</item>
-    </string-array>
     <string name="restaurant">Restaurante</string>
     <string name="bar">Bar</string>
     <string name="coffe">Café</string>
@@ -48,6 +45,7 @@
     <string name="notifications">Notificações</string>
     <string name="coffee">Café</string>
     <string name="tryagain">Tentar Novamente</string>
+    <string name="birthdate">Data de Nascimento:</string>
 
     <string-array name="search_list">
         <item>Pizzaria Toscano</item>

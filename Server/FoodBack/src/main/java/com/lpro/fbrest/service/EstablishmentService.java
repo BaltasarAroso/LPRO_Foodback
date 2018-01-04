@@ -3,6 +3,7 @@ package com.lpro.fbrest.service;
 import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
@@ -25,8 +26,9 @@ public abstract class EstablishmentService {
 		long establishment_id;
 		Client prev = clientdao().getClient(establishment.getUsername());
 		if(prev != null) throw new WebApplicationException(Response.serverError()
-													.entity("Username already taken!")
-													.build());
+				.entity("{ \"code\": 409, \"message\": \"Username already exists.\" }")
+				.type(MediaType.APPLICATION_JSON)
+				.build());
 		try {
 			establishment_id = establishmentdao().insertEstablishemnt(establishment.getName(), 
 																	establishment.getCategory_id(), 

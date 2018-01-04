@@ -18,7 +18,7 @@ public class ClientUnauthorizedHandler implements UnauthorizedHandler {
 	@Override
 	public Response buildResponse(String arg0, String arg1) {
 		return Response.status(Status.UNAUTHORIZED)
-				.entity("{ \"code\": 401, \"message\": \"Credentials are required to access this resource.\" }")
+				.entity("{ \"code\": 401, \"message\": \"Invalid username/password combination.\" }")
 				.type(MediaType.APPLICATION_JSON)
 				.build();
 	}

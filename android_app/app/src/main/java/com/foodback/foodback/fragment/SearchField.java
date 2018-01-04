@@ -2,21 +2,38 @@ package com.foodback.foodback.fragment;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.config.EstablishmentEndpoints;
+import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.APIError;
+import com.foodback.foodback.utils.ErrorUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.foodback.foodback.config.FoodbackClient.retrofit;
 
 public class SearchField extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
+    List<Establishment> allEstablishments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +42,8 @@ public class SearchField extends AppCompatActivity {
 
         ListView lv  = findViewById(R.id.search_list);
         ArrayList<String> arraySearch = new ArrayList<>();
-        arraySearch.addAll(Arrays.asList(getResources().getStringArray(R.array.search_list)));
+        Toast.makeText(this, "A preencher lista de estabelecimentos...", Toast.LENGTH_SHORT).show();
+        fillArray(arraySearch);
 
         adapter = new ArrayAdapter<String>(
                 SearchField.this,
@@ -33,6 +51,40 @@ public class SearchField extends AppCompatActivity {
                 arraySearch
         );
         lv.setAdapter(adapter);
+    }
+
+    private void fillArray(final ArrayList<String> possibilities) {
+        try{
+            EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
+            Call<List<Establishment>> call = services.getAllEstablishments();
+
+            call.enqueue(new Callback<List<Establishment>>() {
+                @Override
+                public void onResponse(Call<List<Establishment>> call, Response<List<Establishment>> response) {
+                    if(response.isSuccessful()) {
+                        allEstablishments = response.body();
+                        for(Establishment x: allEstablishments) {
+                            possibilities.add(x.getName());
+                        }
+                        Collections.sort(possibilities);
+                    } else {
+                        APIError apiError = ErrorUtils.parseError(response);
+                        Toast.makeText(getApplicationContext(), apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Establishment>> call, Throwable t) {
+                    Log.e("DEBUG",Log.getStackTraceString(t));
+                    Toast.makeText(getApplicationContext(), "Error getting server response.", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+        } catch(Exception e) {
+            Log.e("DEBUG",Log.getStackTraceString(e));
+            Toast.makeText(getApplicationContext(), "Unexpected error.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
