@@ -16,6 +16,8 @@ import com.foodback.foodback.config.CredentialsEndpoints;
 
 import com.foodback.foodback.config.FoodbackClient;
 import com.foodback.foodback.R;
+import com.foodback.foodback.utils.APIError;
+import com.foodback.foodback.utils.ErrorUtils;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -96,9 +98,9 @@ public class LogIn extends AppCompatActivity {
                         Toast.makeText(LogIn.this, "Login successful!", Toast.LENGTH_SHORT).show();
                         //change activity
                     } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(LogIn.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(LogIn.this, response.message(), Toast.LENGTH_SHORT).show();
+                        APIError apiError = ErrorUtils.parseError(response);
+                        Toast.makeText(LogIn.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(LogIn.this, response.message(), Toast.LENGTH_SHORT).show();
                     }
                 }
 

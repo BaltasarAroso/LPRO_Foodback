@@ -3,6 +3,8 @@ package com.lpro.fbrest.service;
 import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 
@@ -28,7 +30,10 @@ public abstract class UserService {
 	public String newUser(User user) {
 		long user_id;
 		Client prev = clientdao().getClient(user.getUsername());
-		if(prev != null) throw new WebApplicationException(409);
+		if(prev != null) throw new WebApplicationException(Response.serverError()
+				.entity("{ \"code\": 409, \"message\": \"Username already exists.\" }")
+				.type(MediaType.APPLICATION_JSON)
+				.build());
 		try {
 			user_id = userdao().insertUser(user.getName(), 
 										user.getEmail(), 
