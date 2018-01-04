@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 
 import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 
+import com.lpro.fbrest.api.Category;
 import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.db.ClientDAO;
@@ -87,6 +88,15 @@ public abstract class EstablishmentService {
 			}
 							
 		catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+	}
+	
+	public List<Category> getAllCategories(){
+		try {
+			return establishmentdao().getAllCategories();
+		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
 		}

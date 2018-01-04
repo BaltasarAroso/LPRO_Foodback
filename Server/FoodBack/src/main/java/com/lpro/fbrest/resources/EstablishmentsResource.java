@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.lpro.fbrest.api.Category;
 import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.service.EstablishmentService;
@@ -87,8 +88,14 @@ import io.dropwizard.auth.Auth;
 			return Response.ok().build();	
 		}
 		
+		/**
+		 * @return List of all categories
+		 */
+		@GET
+		@Path("/categories")
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Category> getAllCategories(){
+			return establishmentService.getAllCategories();
+		}
 		
-		
-		
-
 }

@@ -8,6 +8,7 @@ import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
+import com.lpro.fbrest.api.Category;
 import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.db.EstablishmentMapper;
 
@@ -59,4 +60,10 @@ public interface EstablishmentDAO {
 									@Bind("avg_price") int avg_price,
 									@Bind("schedule1") String schedule1,
 									@Bind("schedule2") String schedule2);
+	
+	@SqlQuery("SELECT * "
+			+ "FROM category")
+	@RegisterMapper(CategoryMapper.class)
+	public List<Category> getAllCategories();
+	
 }
