@@ -83,7 +83,7 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new MealsResource(jdbi.onDemand(MealService.class)));
 		environment.jersey().register(new OrdersResource(jdbi.onDemand(OrderService.class)));
 		environment.jersey().register(new FeaturedResource(jdbi.onDemand(FeaturedService.class)));
-		environment.jersey().register(new CredentialsResource());
+		environment.jersey().register(new CredentialsResource(clientdao));
 		environment.jersey().register(new AnswersResource(jdbi.onDemand(AnswerService.class)));
 		environment.jersey().register(new ReportsResource(jdbi.onDemand(ReportService.class)));
 		

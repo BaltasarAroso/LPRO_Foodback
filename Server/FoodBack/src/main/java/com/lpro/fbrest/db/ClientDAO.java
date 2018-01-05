@@ -59,5 +59,14 @@ public interface ClientDAO {
 	public void insertEstablishmentClient(@Bind("username") String username,
 										@Bind("password") String password,
 										@Bind("establishment_id") long establishment_id);
+	
+	/**
+	 * @param username New username to be inserted
+	 * @param password New password to be inserted
+	 */
+	@SqlUpdate("UPDATE credential "
+			+ "SET username = :username, password = :password "
+			+ "WHERE username = :lastusername")
+	public void updateClient(@Bind("username") String username, @Bind("password") String password, @Bind("lastusername") String lastusername);
 
 }
