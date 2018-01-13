@@ -3,12 +3,14 @@ package com.lpro.fbrest.auth;
 import java.security.Principal;
 
 /**
- * @author Daniel
- *
  * Principal for the Authentication process
  */
 public class Client implements Principal {
 	
+	/**
+	 * Id of Client
+	 */
+	private long id;
 	/**
 	 * user name of the client
 	 */
@@ -34,19 +36,38 @@ public class Client implements Principal {
 	 * 
 	 * Constructor
 	 */
-	public Client(String username, String role, int users_id, int establishment_id) {
+	public Client(long id, String username, String role, int users_id, int establishment_id) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.role = role;
 		this.users_id = users_id;
 		this.establishment_id = establishment_id;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.security.Principal#getName()
+	 */
 	@Override
 	public String getName() {
 		return username;
 	}
 
+	
+	/**
+	 * @return ID of client
+	 */
+	public long getId() {
+		return id;
+	}
+	
+	/**
+	 * @param id ID of client
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	/**
 	 * @return username
 	 */

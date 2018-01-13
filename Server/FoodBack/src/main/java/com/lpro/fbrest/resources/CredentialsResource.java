@@ -59,9 +59,10 @@ public class CredentialsResource {
 	 */
 	@PUT 
 	@PermitAll
-	public Response changePassword(@Auth Client client, @NotNull @FormParam("username") String username, @NotNull @FormParam("password") String password) {
+	public Response changePassword(@Auth Client client, @FormParam("username") String username, @FormParam("password") String password) {
 		try {
-			clientdao.updateClient(username, password, client.getUsername());
+			if(password != null) clientdao.updateClientPassword(password, client.getUsername());
+			if(username != null) clientdao.updateClientUsername(username, client.getUsername());
 		} catch( Exception e ) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);

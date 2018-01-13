@@ -20,7 +20,7 @@ public interface ClientDAO {
 	 * @param password Password to be searched
 	 * @return Client if there is one that matches arguments
 	 */
-	@SqlQuery("SELECT * "
+	@SqlQuery("SELECT credential.* , role "
 			+ "FROM credential JOIN role ON role_id = role.id "
 			+ "WHERE username = :username AND password = :password")
 	public Client getClientByNameAndPassword(@Bind("username") String username, @Bind("password") String password);
@@ -29,7 +29,7 @@ public interface ClientDAO {
 	 * @param username Username to be searched
 	 * @return Client if there is one that matches arguments
 	 */
-	@SqlQuery("SELECT *"
+	@SqlQuery("SELECT credential.* , role "
 			+ "FROM credential JOIN role ON role_id = role.id "
 			+ "WHERE username = :username")
 	public Client getClient(@Bind("username") String username);
@@ -62,11 +62,18 @@ public interface ClientDAO {
 	
 	/**
 	 * @param username New username to be inserted
+	 */
+	@SqlUpdate("UPDATE credential "
+			+ "SET username = :username "
+			+ "WHERE username = :lastusername")
+	public void updateClientUsername(@Bind("username") String username, @Bind("lastusername") String lastusername);
+	
+	/**
 	 * @param password New password to be inserted
 	 */
 	@SqlUpdate("UPDATE credential "
-			+ "SET username = :username, password = :password "
+			+ "SET password = :password "
 			+ "WHERE username = :lastusername")
-	public void updateClient(@Bind("username") String username, @Bind("password") String password, @Bind("lastusername") String lastusername);
+	public void updateClientPassword(@Bind("password") String password, @Bind("lastusername") String lastusername);
 
 }
