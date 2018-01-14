@@ -48,8 +48,12 @@ CREATE TABLE credential (
 	users_id INTEGER REFERENCES users
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	establishment_id INTEGER REFERENCES establishment
-		ON DELETE CASCADE ON UPDATE CASCADE
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	tmp_establishment_id INTEGER REFERENCES establishment_tmp
+		ON DELETE SET NULL ON UPDATE CASCADE
 );
+
+INSERT INTO credential VALUES (DEFAULT, 'admin', 'admin', 3, null, null);
 
 CREATE TABLE comment (
 	id SERIAL PRIMARY KEY,
@@ -82,7 +86,7 @@ CREATE TABLE orders (
 	id SERIAL PRIMARY KEY,
 	users_id INTEGER REFERENCES users 
 		ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
-	state VARCHAR(16)
+	state VARCHAR(64)
 );
 
 CREATE TABLE orders_meal (
@@ -127,4 +131,20 @@ CREATE TABLE report (
 	establishment_id INTEGER REFERENCES establishment
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	reporter_id INTEGER REFERENCES users
+);
+
+CREATE TABLE establishment_tmp (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(64),
+	category_id INTEGER REFERENCES category
+		ON DELETE SET NULL ON UPDATE CASCADE,
+	address VARCHAR(64),
+	zone VARCHAR(32),
+	city VARCHAR(32),
+	email VARCHAR(64),
+	contact VARCHAR(16),
+	delivery BOOLEAN DEFAULT FALSE,
+	avg_price INTEGER,
+	schedule1 VARCHAR(64),
+	schedule2 VARCHAR(64)
 );
