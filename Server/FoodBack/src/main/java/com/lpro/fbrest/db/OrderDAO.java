@@ -38,6 +38,11 @@ public interface OrderDAO {
 			+ "FROM orders_meal "
 			+ "WHERE orders_id = :order_id")
 	public List<Orders_meal> getOrderMeals(@Bind("order_id") long order_id);
+
+	@SqlQuery("SELECT * "
+			+ "FROM orders "
+			+ "WHERE users_id = :users_id")
+	public List<Order> getOrdersMadeByUser(@Bind("users_id") long users_id);
 	
 
 	

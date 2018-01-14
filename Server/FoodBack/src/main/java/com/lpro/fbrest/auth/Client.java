@@ -27,22 +27,28 @@ public class Client implements Principal {
 	 * id of establishment if it is a establishment
 	 */
 	private long establishment_id;
+	/**
+	 * id of tmp establishment 
+	 */
+	private long tmp_establishment_id;
 	
 	/**
 	 * @param username Username of the client
 	 * @param role Role of the client
 	 * @param users_id Id of the user
 	 * @param establishment_id Id of the establishment
+	 * @param tmp_establishment_id ID of the tmp establishment
 	 * 
 	 * Constructor
 	 */
-	public Client(long id, String username, String role, int users_id, int establishment_id) {
+	public Client(long id, String username, String role, long users_id, long establishment_id, long tmp_establishment_id) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.role = role;
 		this.users_id = users_id;
 		this.establishment_id = establishment_id;
+		this.tmp_establishment_id = tmp_establishment_id;
 	}
 
 	/* (non-Javadoc)
@@ -122,6 +128,20 @@ public class Client implements Principal {
 	 */
 	public void setEstablishment_id(long establishment_id) {
 		this.establishment_id = establishment_id;
+	}
+	
+	/**
+	 * @return ID of tmp establishment
+	 */
+	public long getTmp_establishment_id() {
+		return tmp_establishment_id;
+	}
+	
+	/**
+	 * @param tmp_establishment_id ID of tmp establishment
+	 */
+	public void setTmp_establishment_id(long tmp_establishment_id) {
+		this.tmp_establishment_id = tmp_establishment_id;
 	}
 	
 }

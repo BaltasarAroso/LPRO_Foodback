@@ -54,11 +54,11 @@ public interface ClientDAO {
 	 * 
 	 * Creates a establishment client entry
 	 */
-	@SqlUpdate("INSERT INTO credential (id, username, password, role_id, establishment_id) "
-			+ "VALUES (DEFAULT, :username, :password, 2, :establishment_id)")
+	@SqlUpdate("INSERT INTO credential (id, username, password, role_id, tmp_establishment_id) "
+			+ "VALUES (DEFAULT, :username, :password, 2, :tmp_establishment_id)")
 	public void insertEstablishmentClient(@Bind("username") String username,
 										@Bind("password") String password,
-										@Bind("establishment_id") long establishment_id);
+										@Bind("tmp_establishment_id") long tmp_establishment_id);
 	
 	/**
 	 * @param username New username to be inserted
@@ -75,5 +75,15 @@ public interface ClientDAO {
 			+ "SET password = :password "
 			+ "WHERE username = :lastusername")
 	public void updateClientPassword(@Bind("password") String password, @Bind("lastusername") String lastusername);
+	
+	/**
+	 * @param new_establishment_id ID to be inserted
+	 * @param last_establishment_id ID before insertion
+	 */
+	@SqlUpdate("UPDATE credential "
+			+ "SET establishment_id = :new_establishment_id "
+			+ "WHERE tmp_establishment_id = :tmp_establishment_id")
+	public void updateClientEstablishmentId(@Bind("new_establishment_id") long new_establishment_id, 
+											@Bind("tmp_establishment_id") long tmp_establishment_id);
 
 }
