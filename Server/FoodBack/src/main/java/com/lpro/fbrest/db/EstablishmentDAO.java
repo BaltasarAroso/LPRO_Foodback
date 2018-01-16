@@ -90,5 +90,21 @@ public interface EstablishmentDAO {
 	
 	@SqlQuery("SELECT * "
 			+ "FROM establishment_tmp")
-	public List<Establishment> getAllTmpEstablishments();	
+	public List<Establishment> getAllTmpEstablishments();
+
+	@SqlUpdate("UPDATE establishment_tmp "
+			+"SET name = :name, category_id = :category_id, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price, schedule1 = :schedule1, schedule2 = :schedule2 "
+			+"WHERE id = :id")
+	public void updateTmpEstablishment(@Bind("id") long id,
+									@Bind("name") String name,
+									@Bind("category_id") long category_id,
+									@Bind("address") String address,
+									@Bind("zone") String zone,
+									@Bind("city") String city,
+									@Bind("email") String email,
+									@Bind("contact") String contact,
+									@Bind("delivery") boolean delivery,
+									@Bind("avg_price") int avg_price,
+									@Bind("schedule1") String schedule1,
+									@Bind("schedule2") String schedule2);
 }

@@ -77,15 +77,14 @@ import io.dropwizard.auth.Auth;
 		}
 		
 		/**
-		 * @param client Client that owns the establishment to be edited
 		 * @param newestablishment The establishment the be edited
 		 * @return Response object with http status
 		 */
 		@PUT
-		@RolesAllowed("ESTABLISHMENT")
+		@RolesAllowed("ADMIN")
 		@Consumes(MediaType.APPLICATION_JSON)
-		public Response changeEstablishment(@Auth Client client, @NotNull Establishment newestablishment) {
-			establishmentService.editEstablishment(client.getEstablishment_id(), newestablishment);
+		public Response changeEstablishment(@NotNull Establishment newestablishment) {
+			establishmentService.editEstablishment(newestablishment.getId(), newestablishment);
 			return Response.ok().build();	
 		}
 		
@@ -125,6 +124,15 @@ import io.dropwizard.auth.Auth;
 				establishment.add(establishmentService.getTmpEstablishment(client.getTmp_establishment_id()));
 				return establishment;
 			}
+		}
+		
+		@PUT
+		@RolesAllowed("ESTABLISHMENT")
+		@Path("/tmp")
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response editTmpEstablishment(@Auth Client client, Establishment establishment) {
+			establishmentService.editTmpEstablishment(client, establishment);
+			return Response.ok().build();
 		}
 		
 }

@@ -86,4 +86,14 @@ public interface ClientDAO {
 	public void updateClientEstablishmentId(@Bind("new_establishment_id") long new_establishment_id, 
 											@Bind("tmp_establishment_id") long tmp_establishment_id);
 
+	@SqlUpdate("UPDATE credential "
+			+ "SET tmp_establishment_id = :tmp_id "
+			+ "WHERE id = :id")
+	public void addTmpEstablishment(@Bind("tmp_id") long tmp_id, @Bind("id") long id);
+
+	@SqlQuery("SELECT credential.* , role "
+			+ "FROM credential JOIN role ON role_id = role.id "
+			+ "WHERE tmp_establishment_id = :tmp_id")
+	public Client getClientByTmpEstablishment(@Bind("tmp_id") long tmp_establishment_id);
+
 }

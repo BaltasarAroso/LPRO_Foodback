@@ -75,6 +75,10 @@ public class UsersResource {
 		return userService.getUserByUsername(username);
 	}
 	
+	/**
+	 * @param client Client that authenticated
+	 * @return Response with OK http status
+	 */
 	@PUT
 	@Path("/upgrade")
 	@RolesAllowed("USER")
