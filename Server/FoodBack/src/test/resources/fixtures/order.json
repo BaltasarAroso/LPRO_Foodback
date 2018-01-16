@@ -1,0 +1,15 @@
+{
+	"id": "20",
+	"meals": [
+		{
+			"meal_id": "5",
+			"quantity": "10"
+		},
+		{
+			"meal_id": "10",
+			"quantity": "15"
+		}
+	],
+	"user_id": "1234",
+	"state": "Pronto"
+}

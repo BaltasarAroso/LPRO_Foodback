@@ -61,4 +61,17 @@ public class Featured {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Featured)) return false;
+		
+		Featured featured = (Featured)o;
+		if(this.id == featured.getId() &&
+				this.meal_id == featured.getMeal_id() &&
+				this.added_date.equals(featured.getAdded_date()) &&
+				this.duration == featured.getDuration())
+			return true;
+		else return false;			
+	}
 }

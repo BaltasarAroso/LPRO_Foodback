@@ -62,6 +62,17 @@ public class Order {
 		this.state = state;
 	}
 	
-	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Order)) return false;
+		
+		Order order = (Order)o;
+		if(this.id == order.getId() &&
+				this.meals.equals(order.getMeals()) &&
+				this.user_id == order.getUser_id() &&
+				this.state.equals(order.getState()))
+			return true;
+		else return false;			
+	}
 
 }

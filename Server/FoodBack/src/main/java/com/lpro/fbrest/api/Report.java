@@ -152,4 +152,19 @@ public class Report {
 	public void setReporter_id(long reporter_id) {
 		this.reporter_id = reporter_id;
 	}
+	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Report)) return false;
+		
+		Report report = (Report)o;
+		if(this.id == report.getId() &&
+				this.type.equals(report.getType()) &&
+				this.report.equals(report.getReport()) &&
+				this.comment_id == report.getComment_id() &&
+				this.establishment_id == report.getEstablishment_id() &&
+				this.reporter_id == report.getReporter_id())
+			return true;
+		else return false;			
+	}
 }

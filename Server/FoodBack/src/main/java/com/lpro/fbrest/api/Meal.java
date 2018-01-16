@@ -60,5 +60,16 @@ public class Meal {
 		this.establishment_id = establishment_id;
 	}
 
-
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Meal)) return false;
+		
+		Meal meal = (Meal)o;
+		if(this.id == meal.getId() &&
+				this.meal.equals(meal.getMeal()) &&
+				this.price == meal.getPrice() &&
+				this.establishment_id == meal.getEstablishment_id())
+			return true;
+		else return false;			
+	}
 }
