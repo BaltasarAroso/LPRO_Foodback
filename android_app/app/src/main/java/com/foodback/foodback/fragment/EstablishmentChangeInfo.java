@@ -34,11 +34,12 @@ import static com.foodback.foodback.config.FoodbackClient.retrofit;
 
 public class EstablishmentChangeInfo extends Fragment {
 
-    protected EditText editname, editaddress, editzone, editcity, editemail, editcontact, editusername, editpassword;
+    protected EditText editname, editaddress, editzone, editcity, editemail, editcontact, editavgprice, editschedule1, editschedule2, editusername, editpassword;
     protected Spinner editcategory;
     protected Button buttonChangeEstab;
 
-    protected String name, category, address, zone, city, email, contact, username, password;
+    protected String name, category, address, zone, city, email, contact, schedule1, schedule2, username, password;
+    protected Integer avg_price;
     protected Boolean delivery;
 
     protected Establishment estab;
@@ -64,6 +65,9 @@ public class EstablishmentChangeInfo extends Fragment {
         editzone = getView().findViewById(R.id.zone);
         editcity = getView().findViewById(R.id.city);
         editcontact = getView().findViewById(R.id.contact);
+        editavgprice = getView().findViewById(R.id.avg_price);
+        editschedule1 = getView().findViewById(R.id.schedule1);
+        editschedule2 = getView().findViewById(R.id.schedule2);
         editusername = getView().findViewById(R.id.username);
         editpassword = getView().findViewById(R.id.password);
 
@@ -93,7 +97,7 @@ public class EstablishmentChangeInfo extends Fragment {
 //                }
 //            }
 //            estab = new Establishment(name, category_id, address, zone, city, email,
-//                    contact, username, password, delivery);
+//                    contact, avg_price, schedule1, schedule2, username, password, delivery);
             onChangeEstabSuccess(estab);
         }
     }
@@ -106,6 +110,9 @@ public class EstablishmentChangeInfo extends Fragment {
         city = editcity.getText().toString();
         email = editemail.getText().toString();
         contact = editcontact.getText().toString();
+        avg_price = Integer.parseInt(editavgprice.getText().toString());;
+        schedule1 = editschedule1.getText().toString();
+        schedule2 = editschedule2.getText().toString();
         username = editusername.getText().toString();
         password = editpassword.getText().toString();
         delivery = ((CheckBox) getView().findViewById(R.id.delivery)).isChecked();
@@ -115,38 +122,12 @@ public class EstablishmentChangeInfo extends Fragment {
         boolean valid = true;
 
         // username must have something that not exceeds 32 characters
-        if (name.isEmpty() || name.length() > 32) {
-            editname.setError("Please enter a valid name");
+        if (name.length() > 32) {
+            editname.setError("Please enter a valid name (max size of 32 characters)");
             valid = false;
         }
-        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editemail.setError("Please enter a valid email");
-            valid = false;
-        }
-
-        // is needed to add more parameters of validation in this ones
-        if (address.isEmpty()) {
-            editaddress.setError("Please enter a valid address");
-            valid = false;
-        }
-        if (zone.isEmpty()) {
-            editzone.setError("Please enter a valid zone");
-            valid = false;
-        }
-        if (city.isEmpty()) {
-            editcity.setError("Please enter a valid city");
-            valid = false;
-        }
-        if (contact.isEmpty()) {
-            editcontact.setError("Please enter a valid contact");
-            valid = false;
-        }
-        if (username.isEmpty()) {
-            editusername.setError("Please enter a valid username");
-            valid = false;
-        }
-        if (password.isEmpty()) {
-            editpassword.setError("Please enter a valid password");
             valid = false;
         }
 

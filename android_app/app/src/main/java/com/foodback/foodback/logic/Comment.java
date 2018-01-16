@@ -141,6 +141,12 @@ public class Comment {
         this.comment = comment;
     }
 
+    /**
+     *
+     * @param o
+     * @return if all elements of this comment are equal
+     *         to the elements of the comment given by parameter
+     */
     public boolean equals(Object o) {
         if(o == null) return false;
         if(!(o instanceof Comment)) return false;
@@ -154,6 +160,8 @@ public class Comment {
                 this.comment.equals(comment.getComment()))
             return true;
         else return false;
+
+        //TODO I think this if else is unnecessary, we can just put "return" where if is like in Establishment and User.java from logic
     }
 
 }

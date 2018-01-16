@@ -46,6 +46,9 @@
     <string name="coffee">Café</string>
     <string name="tryagain">Tentar Novamente</string>
     <string name="birthdate">Data de Nascimento:</string>
+    <string name="price">Preço Médio</string>
+    <string name="schedule1">Horário 1</string>
+    <string name="schedule2">Horário 2</string>
 
     <string-array name="search_list">
         <item>Pizzaria Toscano</item>

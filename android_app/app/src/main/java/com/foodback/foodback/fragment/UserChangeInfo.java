@@ -87,38 +87,12 @@ public class UserChangeInfo extends Fragment {
         boolean valid = true;
 
         // username must have something that not exceeds 32 characters
-        if (name.isEmpty() || name.length() > 32) {
-            editname.setError("Please enter a valid name");
+        if (name.length() > 32) {
+            editname.setError("Please enter a valid name (max size of 32 characters)");
             valid = false;
         }
-        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editemail.setError("Please enter a valid email");
-            valid = false;
-        }
-
-        // is needed to add more parameters of validation in this ones
-        if (address.isEmpty()) {
-            editaddress.setError("Please enter a valid address");
-            valid = false;
-        }
-        if (zone.isEmpty()) {
-            editzone.setError("Please enter a valid zone");
-            valid = false;
-        }
-        if (city.isEmpty()) {
-            editcity.setError("Please enter a valid city");
-            valid = false;
-        }
-        if (contact.isEmpty()) {
-            editcontact.setError("Please enter a valid contact");
-            valid = false;
-        }
-        if (username.isEmpty()) {
-            editusername.setError("Please enter a valid username");
-            valid = false;
-        }
-        if (password.isEmpty()) {
-            editpassword.setError("Please enter a valid password");
             valid = false;
         }
 

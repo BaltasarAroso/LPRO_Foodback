@@ -98,6 +98,30 @@
                     android:inputType="text"
                     android:textSize="@dimen/_10sdp" />
 
+                <EditText
+                    android:id="@+id/avg_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/price"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/schedule1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/schedule1"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/schedule2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/schedule2"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
+
                 <CheckBox
                     android:id="@+id/delivery"
                     android:layout_width="wrap_content"
