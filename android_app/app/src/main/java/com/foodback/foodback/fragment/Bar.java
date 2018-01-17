@@ -27,4 +27,9 @@ public class Bar extends Fragment {
         return inflater.inflate(R.layout.tab_bar, container, false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
 }

@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.EstablishmentChangeInfo;
+import com.foodback.foodback.fragment.EstablishmentDelivery;
+import com.foodback.foodback.fragment.EstablishmentPage;
 import com.foodback.foodback.fragment.Homepage;
 
 public class EstablishmentMenu extends AppCompatActivity
@@ -80,7 +82,13 @@ public class EstablishmentMenu extends AppCompatActivity
             fm.beginTransaction().replace(R.id.establishment_menu, new Homepage()).commit();
             Toast.makeText(this, "homepage", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_estabpage) {
-
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentPage()).commit();
+            Toast.makeText(this, "estabpage", Toast.LENGTH_LONG).show();
+        } else if (id == R.id.nav_delivery) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentDelivery()).commit();
+            Toast.makeText(this, "estab_delivery", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentChangeInfo()).commit();

@@ -12,6 +12,12 @@
             android:id="@+id/nav_estabpage"
             android:icon="@drawable/ic_estabpage"
             android:title="@string/estabpage" />
+
+        <item
+            android:id="@+id/nav_delivery"
+            android:icon="@drawable/ic_delivery"
+            android:title="@string/delivery" />
+
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"

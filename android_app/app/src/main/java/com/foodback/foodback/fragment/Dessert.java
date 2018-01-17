@@ -27,4 +27,9 @@ public class Dessert extends Fragment {
         return inflater.inflate(R.layout.tab_dessert, container, false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
 }

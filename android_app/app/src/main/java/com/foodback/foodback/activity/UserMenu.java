@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.fragment.UserChangeInfo;
+import com.foodback.foodback.fragment.UserDelivery;
 
 public class UserMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,6 +83,9 @@ public class UserMenu extends AppCompatActivity
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_delivery) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
+            Toast.makeText(this, "user_delivery", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
@@ -99,4 +103,6 @@ public class UserMenu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    //TODO if user is premimium do display none to id advert
 }

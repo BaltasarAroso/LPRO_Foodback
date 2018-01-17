@@ -27,4 +27,9 @@ public class Notices extends Fragment {
         return inflater.inflate(R.layout.tab_notices, container, false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
 }

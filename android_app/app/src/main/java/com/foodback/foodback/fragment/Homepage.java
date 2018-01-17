@@ -29,8 +29,8 @@ public class Homepage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.fragment_homepage, container, false);
 
-        View admin_menu = (View)container.getParent();
-        appBar = (AppBarLayout) admin_menu.findViewById(R.id.appBar);
+        View menu = (View)container.getParent();
+        appBar = (AppBarLayout) menu.findViewById(R.id.appBar);
         tabLayout = new TabLayout(getActivity());
         tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
         appBar.addView(tabLayout);

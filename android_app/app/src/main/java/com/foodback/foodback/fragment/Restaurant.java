@@ -27,4 +27,9 @@ public class Restaurant extends Fragment {
         return inflater.inflate(R.layout.tab_restaurant, container, false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
 }

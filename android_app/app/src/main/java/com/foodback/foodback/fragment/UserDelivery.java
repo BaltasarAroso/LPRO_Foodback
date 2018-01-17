@@ -12,10 +12,10 @@ import com.foodback.foodback.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Coffee extends Fragment {
+public class UserDelivery extends Fragment {
 
 
-    public Coffee() {
+    public UserDelivery() {
         // Required empty public constructor
     }
 
@@ -24,11 +24,12 @@ public class Coffee extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.tab_coffee, container, false);
+        return inflater.inflate(R.layout.fragment_user_delivery, container, false);
     }
 
     @Override
     public void onStart() {
         super.onStart();
     }
+
 }

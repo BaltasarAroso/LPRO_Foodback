@@ -20,6 +20,11 @@
             android:name=".activity.UserMenu"
             android:label="@string/title_activity_user_menu"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.EstablishmentMenu"
@@ -30,11 +35,6 @@
             android:name=".activity.AdminMenu"
             android:label="@string/title_activity_admin_menu"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- <activity android:name=".fragment.SearchField" /> -->
     </application>

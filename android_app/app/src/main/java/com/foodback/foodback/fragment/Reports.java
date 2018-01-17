@@ -27,4 +27,8 @@ public class Reports extends Fragment {
         return inflater.inflate(R.layout.tab_reports, container, false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 }
