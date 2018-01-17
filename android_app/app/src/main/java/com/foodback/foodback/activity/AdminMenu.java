@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.Notifications;
 import com.foodback.foodback.fragment.UserChangeInfo;
 
 public class AdminMenu extends AppCompatActivity
@@ -86,7 +87,9 @@ public class AdminMenu extends AppCompatActivity
         } else if (id == R.id.nav_delivery) {
 
         } else if (id == R.id.nav_notifications) {
-
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.admin_menu, new Notifications()).commit();
+            Toast.makeText(this, "notifications", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.admin_menu, new UserChangeInfo()).commit();

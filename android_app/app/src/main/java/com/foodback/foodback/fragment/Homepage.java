@@ -63,6 +63,12 @@ public class Homepage extends Fragment {
         super.onStart();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        appBar.removeView(tabLayout);
+    }
+
     public class Menu_Wrapper extends FragmentStatePagerAdapter {
 
         private String[] titles = new String[] {"Restaurante", "Café", "Bar", "Sobremesa"};
