@@ -11,8 +11,6 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import com.lpro.fbrest.api.Comment;
 
 /**
- * @author Daniel
- *
  * DAO for comment persistent data
  */
 @RegisterMapper(CommentMapper.class)
@@ -28,8 +26,8 @@ public interface CommentDAO {
 	@SqlUpdate("INSERT INTO comment "
 			+ "VALUES (DEFAULT, :establishment_id, :commenter_id, DEFAULT, :rating, :comment)")
 	@GetGeneratedKeys
-	public long insertComment(@Bind("establishment_id") int establishment_id,
-							@Bind("commenter_id") int commenter_id,
+	public long insertComment(@Bind("establishment_id") long establishment_id,
+							@Bind("commenter_id") long commenter_id,
 							@Bind("rating") int rating,
 							@Bind("comment") String comment);
 	

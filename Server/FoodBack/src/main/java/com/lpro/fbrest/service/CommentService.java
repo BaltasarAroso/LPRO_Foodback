@@ -10,8 +10,7 @@ import com.lpro.fbrest.api.Comment;
 import com.lpro.fbrest.db.CommentDAO;
 
 /**
- * @author Daniel
- *
+ * Service for Comment management
  */
 public abstract class CommentService {
 
