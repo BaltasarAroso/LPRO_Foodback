@@ -8,6 +8,7 @@ import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 
 
 import com.lpro.fbrest.api.Order;
+import com.lpro.fbrest.api.Orders_meal;
 import com.lpro.fbrest.db.OrderDAO;
 
 /**
@@ -93,6 +94,53 @@ public abstract class OrderService{
 		}
 		if(order.getMeals().isEmpty()) throw new WebApplicationException(404);
 		return order;
+	}
+
+	/**
+	 * @param establishment_id ID of establishment 
+	 * @return List of Meals that have to be prepared
+	 */
+	public List<Orders_meal> getUnpreparedOrders(long establishment_id) {
+		List<Orders_meal> meals;
+		try {
+			meals = orderdao().getUnpreparedOrdersByEstablishmentId(establishment_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);  
+		}
+		if(meals == null) throw new WebApplicationException(404);
+		if(meals.isEmpty()) throw new WebApplicationException(404);
+		return meals;
+	}
+
+	/**
+	 * @param establishment_id ID of establishment that made request
+	 * @param orders_meal_id ID of orders_meal to change to "ready"
+	 */
+	public void orderIsReady(long establishment_id, long orders_meal_id) {
+		long golden_id = 0;
+		try {
+			golden_id = orderdao().getDishOwnerId(orders_meal_id);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);  
+		}
+		if(golden_id != establishment_id) throw new WebApplicationException(403);
+		
+		try {
+			orderdao().orders_mealIsReady(orders_meal_id);	
+			List<Orders_meal> order_meals = orderdao().getOrderMealsByOneOfTheOrdersId(orders_meal_id);
+			boolean ready = true;
+			for(int i = 0; i < order_meals.size() ; i++) {
+				if(!order_meals.get(i).getState().equals("ready")) ready = false;
+			}
+			if(ready) {
+				orderdao().orderIsReady(orders_meal_id);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);  
+		}
 	}
 
 }

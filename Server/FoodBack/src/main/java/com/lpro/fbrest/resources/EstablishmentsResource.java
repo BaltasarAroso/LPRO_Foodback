@@ -108,7 +108,7 @@ import io.dropwizard.auth.Auth;
 		}
 		
 		/**
-		 * @return All TMP establishments
+		 * @return All TMP establishments if client is admin, if it's an establishment returns his tmp establishment
 		 */
 		@GET
 		@RolesAllowed({"ADMIN", "ESTABLISHMENT"})
