@@ -10,8 +10,7 @@ import com.lpro.fbrest.api.Report;
 import com.lpro.fbrest.db.ReportDAO;
 
 /**
- * @author Daniel
- *
+ * Service for Report management
  */
 public abstract class ReportService {
 	

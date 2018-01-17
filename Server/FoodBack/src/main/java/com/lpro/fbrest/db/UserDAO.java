@@ -13,9 +13,7 @@ import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.db.UserMapper;
 
 /**
- * @author Daniel
- *
- * DAO for user persistent data
+ * DAO for user persistent data access
  */
 @RegisterMapper(UserMapper.class)
 public interface UserDAO {

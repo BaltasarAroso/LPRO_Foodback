@@ -12,6 +12,9 @@ import com.lpro.fbrest.api.Category;
 import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.db.EstablishmentMapper;
 
+/**
+ * DAO to access establishment data
+ */
 @RegisterMapper(EstablishmentMapper.class)
 public interface EstablishmentDAO {
 	

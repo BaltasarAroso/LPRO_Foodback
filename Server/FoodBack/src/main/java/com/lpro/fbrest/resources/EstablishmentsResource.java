@@ -23,11 +23,8 @@ import com.lpro.fbrest.service.EstablishmentService;
 
 import io.dropwizard.auth.Auth;
 
-
-
 	/**
-	 * @author Beatriz 
-	 *
+	 * Resource for establishment management
 	 */
 	@Path("/establishments")
 	public class EstablishmentsResource {
@@ -126,6 +123,11 @@ import io.dropwizard.auth.Auth;
 			}
 		}
 		
+		/**
+		 * @param client Client that authenticated
+		 * @param establishment Establishment to be inserted
+		 * @return Response with OK http status
+		 */
 		@PUT
 		@RolesAllowed("ESTABLISHMENT")
 		@Path("/tmp")

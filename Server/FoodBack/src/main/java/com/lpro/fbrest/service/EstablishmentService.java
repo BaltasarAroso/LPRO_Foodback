@@ -14,6 +14,9 @@ import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.db.ClientDAO;
 import com.lpro.fbrest.db.EstablishmentDAO;
 
+/**
+ * Service for establishment management
+ */
 public abstract class EstablishmentService {
 
 	@CreateSqlObject

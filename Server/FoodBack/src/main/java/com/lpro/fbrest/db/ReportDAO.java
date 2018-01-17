@@ -11,8 +11,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import com.lpro.fbrest.api.Report;
 
 /**
- * @author Daniel
- *
+ * DAO for Report data access
  */
 @RegisterMapper(ReportMapper.class)
 public interface ReportDAO {
