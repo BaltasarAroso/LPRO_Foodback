@@ -1,5 +1,7 @@
 package com.foodback.foodback.config;
 
+import android.support.annotation.NonNull;
+
 import com.foodback.foodback.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FoodbackClient {
 
 //    protected static final String BASE_URL = "http://10.0.2.2:3000";
-    private static final String BASE_URL = "http://192.168.1.11:3000";
+    private static final String BASE_URL = "http://192.168.1.5:3000";
 
     public static Retrofit retrofit =  new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -54,7 +56,7 @@ public class FoodbackClient {
         if(BuildConfig.DEBUG) {
             okHttpClient  = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
                 @Override
-                public okhttp3.Response intercept(Chain chain) throws IOException {
+                public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
                     Request originalRequest = chain.request();
 
                     Request.Builder builder = originalRequest.newBuilder().header("Authorization",
@@ -67,7 +69,7 @@ public class FoodbackClient {
         } else {
             okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
                 @Override
-                public okhttp3.Response intercept(Chain chain) throws IOException {
+                public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
                     Request originalRequest = chain.request();
 
                     Request.Builder builder = originalRequest.newBuilder().header("Authorization",

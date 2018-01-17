@@ -101,6 +101,6 @@ public class UserChangeInfo extends Fragment {
 
 
     private void onChangeUserSuccess() {
-        //TODO change the Estab parameters on success
+        //TODO change the User parameters on success
     }
 }

@@ -50,17 +50,17 @@ public class EstablishmentRegister extends AppCompatActivity  {
         setContentView(R.layout.activity_establishment_register);
 
         // Initializing Views
-        editname = (EditText) findViewById(R.id.name);
-        editcategory = (Spinner) findViewById(R.id.category);
-        editaddress = (EditText) findViewById(R.id.address);
-        editemail = (EditText) findViewById(R.id.email);
-        editcontact = (EditText) findViewById(R.id.contact);
-        editusername = (EditText) findViewById(R.id.username);
-        editpassword = (EditText) findViewById(R.id.password);
-        editzone = (EditText) findViewById(R.id.zone);
-        editcity = (EditText) findViewById(R.id.city);
+        editname = findViewById(R.id.name);
+        editcategory = findViewById(R.id.category);
+        editaddress = findViewById(R.id.address);
+        editemail = findViewById(R.id.email);
+        editcontact = findViewById(R.id.contact);
+        editusername = findViewById(R.id.username);
+        editpassword = findViewById(R.id.password);
+        editzone = findViewById(R.id.zone);
+        editcity = findViewById(R.id.city);
 
-        buttonRegisterEstab = (Button) findViewById(R.id.buttonRegisterEstab);
+        buttonRegisterEstab = findViewById(R.id.buttonRegisterEstab);
 
         // Adding listener to button
         buttonRegisterEstab.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
                 }
             }
             estab = new Establishment(name, category_id, address, zone, city, email,
-                    contact, username, password, delivery);
+                    contact, 0, null, null, username, password, delivery);
             onRegisterSuccess(estab);
         }
     }
@@ -161,13 +161,13 @@ public class EstablishmentRegister extends AppCompatActivity  {
                                     "No establishment categories found.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            List<String> spinnerArray = new ArrayList<String>();
+                            List<String> spinnerArray = new ArrayList<>();
 
                             for(Category x: categoryList) {
                                 spinnerArray.add(x.getName());
                             }
 
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(
                                     EstablishmentRegister.this,
                                     android.R.layout.simple_spinner_item,
                                     spinnerArray);

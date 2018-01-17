@@ -22,7 +22,6 @@
     <string name="confpass">Confirmação da palavra-passe</string>
     <string name="newpass">Nova palavra-passe</string>
     <string name="oldpass">Antiga palavra-passe</string>
-    <string name="changepass">Alteração da palavra-passe</string>
     <string name="zone">Zona</string>
     <string name="city">Cidade</string>
     <string name="delivery">Entregas ao Domicílio</string>
@@ -49,6 +48,7 @@
     <string name="price">Preço Médio</string>
     <string name="schedule1">Horário 1</string>
     <string name="schedule2">Horário 2</string>
+    <string name="changepass">Alterar palavra-passe</string>
 
     <string-array name="search_list">
         <item>Pizzaria Toscano</item>
