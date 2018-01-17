@@ -18,10 +18,7 @@ import com.foodback.foodback.utils.APIError;
 import com.foodback.foodback.utils.ErrorUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,7 +35,7 @@ public class SearchField extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_field);
+        setContentView(R.layout.fragment_search_field);
 
         ListView lv  = findViewById(R.id.search_list);
         ArrayList<String> arraySearch = new ArrayList<>();
