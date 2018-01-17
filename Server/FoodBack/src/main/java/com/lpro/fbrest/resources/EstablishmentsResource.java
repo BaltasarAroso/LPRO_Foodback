@@ -1,5 +1,6 @@
 package com.lpro.fbrest.resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
@@ -22,11 +23,8 @@ import com.lpro.fbrest.service.EstablishmentService;
 
 import io.dropwizard.auth.Auth;
 
-
-
 	/**
-	 * @author Beatriz 
-	 *
+	 * Resource for establishment management
 	 */
 	@Path("/establishments")
 	public class EstablishmentsResource {
@@ -69,22 +67,21 @@ import io.dropwizard.auth.Auth;
 		 * @return Establishment with the name specified
 		 */
 		@GET
-		@Path("/{name}")     //MUDAR O PARAM NAME PARA UMA QUERY (por causa dos espaços)
+		@Path("/{name}")  
 		@Produces(MediaType.APPLICATION_JSON)
 		public Establishment getEstablishment(@PathParam("name") String name) {
 			return establishmentService.getEstablishmentByName(name);
 		}
 		
 		/**
-		 * @param client Client that owns the establishment to be edited
 		 * @param newestablishment The establishment the be edited
 		 * @return Response object with http status
 		 */
 		@PUT
-		@RolesAllowed("ESTABLISHMENT")
+		@RolesAllowed("ADMIN")
 		@Consumes(MediaType.APPLICATION_JSON)
-		public Response changeEstablishment(@Auth Client client, @NotNull Establishment newestablishment) {
-			establishmentService.editEstablishment(client.getEstablishment_id(), newestablishment);
+		public Response changeEstablishment(@NotNull Establishment newestablishment) {
+			establishmentService.editEstablishment(newestablishment.getId(), newestablishment);
 			return Response.ok().build();	
 		}
 		
@@ -96,6 +93,48 @@ import io.dropwizard.auth.Auth;
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<Category> getAllCategories(){
 			return establishmentService.getAllCategories();
+		}
+		
+		/**
+		 * @param tmp_establishment_id ID of tmp establishment to be verified
+		 * @return Response with OK http status if successful
+		 */
+		@PUT
+		@RolesAllowed("ADMIN")
+		@Path("/verify/{tmp_establishment_id}")
+		public Response verifyTmpEstablishment(@PathParam("tmp_establishment_id") long tmp_establishment_id) {
+			establishmentService.verifyTmpEstablishment(tmp_establishment_id);
+			return Response.ok().build();
+		}
+		
+		/**
+		 * @return All TMP establishments
+		 */
+		@GET
+		@RolesAllowed({"ADMIN", "ESTABLISHMENT"})
+		@Path("/tmp")
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Establishment> getAllTmpEstablishments(@Auth Client client) {
+			if(client.getEstablishment_id() <= 0) return establishmentService.getAllTmpEstablishments();
+			else {
+				List<Establishment> establishment = new ArrayList<Establishment>();
+				establishment.add(establishmentService.getTmpEstablishment(client.getTmp_establishment_id()));
+				return establishment;
+			}
+		}
+		
+		/**
+		 * @param client Client that authenticated
+		 * @param establishment Establishment to be inserted
+		 * @return Response with OK http status
+		 */
+		@PUT
+		@RolesAllowed("ESTABLISHMENT")
+		@Path("/tmp")
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response editTmpEstablishment(@Auth Client client, Establishment establishment) {
+			establishmentService.editTmpEstablishment(client, establishment);
+			return Response.ok().build();
 		}
 		
 }

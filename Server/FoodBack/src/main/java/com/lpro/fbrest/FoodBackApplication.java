@@ -17,6 +17,7 @@ import com.lpro.fbrest.resources.FeaturedResource;
 import com.lpro.fbrest.resources.ImagesResource;
 import com.lpro.fbrest.resources.MealsResource;
 import com.lpro.fbrest.resources.OrdersResource;
+import com.lpro.fbrest.resources.PromotionsResource;
 import com.lpro.fbrest.resources.ReportsResource;
 import com.lpro.fbrest.resources.UsersResource;
 import com.lpro.fbrest.service.AnswerService;
@@ -25,6 +26,7 @@ import com.lpro.fbrest.service.EstablishmentService;
 import com.lpro.fbrest.service.FeaturedService;
 import com.lpro.fbrest.service.MealService;
 import com.lpro.fbrest.service.OrderService;
+import com.lpro.fbrest.service.PromotionService;
 import com.lpro.fbrest.service.ReportService;
 import com.lpro.fbrest.service.UserService;
 
@@ -83,9 +85,10 @@ public class FoodBackApplication extends Application<FoodBackConfiguration> {
 		environment.jersey().register(new MealsResource(jdbi.onDemand(MealService.class)));
 		environment.jersey().register(new OrdersResource(jdbi.onDemand(OrderService.class)));
 		environment.jersey().register(new FeaturedResource(jdbi.onDemand(FeaturedService.class)));
-		environment.jersey().register(new CredentialsResource());
+		environment.jersey().register(new CredentialsResource(clientdao));
 		environment.jersey().register(new AnswersResource(jdbi.onDemand(AnswerService.class)));
 		environment.jersey().register(new ReportsResource(jdbi.onDemand(ReportService.class)));
+		environment.jersey().register(new PromotionsResource(jdbi.onDemand(PromotionService.class)));
 		
 		environment.jersey().register(new ImagesResource(establishmentImageDao));
 		

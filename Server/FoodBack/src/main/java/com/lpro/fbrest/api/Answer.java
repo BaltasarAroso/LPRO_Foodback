@@ -110,4 +110,17 @@ public class Answer {
 	public void setTime_posted(Timestamp time_posted) {
 		this.time_posted = time_posted;
 	}
+	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Answer)) return false;
+		
+		Answer answer = (Answer)o;
+		if(this.id == answer.getId() &&
+				this.comment_id == answer.getComment_id() &&
+				this.answer.equals(answer.getAnswer()) &&
+				this.time_posted.equals(answer.getTime_posted()))
+			return true;
+		else return false;			
+	}
 }

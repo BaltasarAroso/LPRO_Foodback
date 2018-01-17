@@ -21,8 +21,7 @@ import com.lpro.fbrest.service.ReportService;
 import io.dropwizard.auth.Auth;
 
 /**
- * @author Daniel
- *
+ * Resource for report management
  */
 @Path("/reports")
 public class ReportsResource {

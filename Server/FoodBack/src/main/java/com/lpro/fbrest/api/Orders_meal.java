@@ -36,8 +36,15 @@ public class Orders_meal {
 		this.quantity = quantity;
 	}
 	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Orders_meal)) return false;
+		
+		Orders_meal orders_meal = (Orders_meal)o;
+		if(this.meal_id == orders_meal.getMeal_id() &&
+				this.quantity == orders_meal.getQuantity())
+			return true;
+		else return false;			
+	}
 	
-	
-	
-
 }

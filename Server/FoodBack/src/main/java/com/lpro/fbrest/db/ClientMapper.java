@@ -19,9 +19,11 @@ public class ClientMapper implements ResultSetMapper<Client>{
 	 */
 	@Override
 	public Client map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-		return new Client(r.getString("username"),
+		return new Client(r.getLong("id"),
+						r.getString("username"),
 						r.getString("role"),
-						r.getInt("users_id"),
-						r.getInt("establishment_id"));
+						r.getLong("users_id"),
+						r.getLong("establishment_id"),
+						r.getLong("tmp_establishment_id"));
 	}
 }

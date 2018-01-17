@@ -20,7 +20,7 @@ public interface ClientDAO {
 	 * @param password Password to be searched
 	 * @return Client if there is one that matches arguments
 	 */
-	@SqlQuery("SELECT * "
+	@SqlQuery("SELECT credential.* , role "
 			+ "FROM credential JOIN role ON role_id = role.id "
 			+ "WHERE username = :username AND password = :password")
 	public Client getClientByNameAndPassword(@Bind("username") String username, @Bind("password") String password);
@@ -29,7 +29,7 @@ public interface ClientDAO {
 	 * @param username Username to be searched
 	 * @return Client if there is one that matches arguments
 	 */
-	@SqlQuery("SELECT *"
+	@SqlQuery("SELECT credential.* , role "
 			+ "FROM credential JOIN role ON role_id = role.id "
 			+ "WHERE username = :username")
 	public Client getClient(@Bind("username") String username);
@@ -54,10 +54,46 @@ public interface ClientDAO {
 	 * 
 	 * Creates a establishment client entry
 	 */
-	@SqlUpdate("INSERT INTO credential (id, username, password, role_id, establishment_id) "
-			+ "VALUES (DEFAULT, :username, :password, 2, :establishment_id)")
+	@SqlUpdate("INSERT INTO credential (id, username, password, role_id, tmp_establishment_id) "
+			+ "VALUES (DEFAULT, :username, :password, 2, :tmp_establishment_id)")
 	public void insertEstablishmentClient(@Bind("username") String username,
 										@Bind("password") String password,
-										@Bind("establishment_id") long establishment_id);
+										@Bind("tmp_establishment_id") long tmp_establishment_id);
+	
+	/**
+	 * @param username New username to be inserted
+	 */
+	@SqlUpdate("UPDATE credential "
+			+ "SET username = :username "
+			+ "WHERE username = :lastusername")
+	public void updateClientUsername(@Bind("username") String username, @Bind("lastusername") String lastusername);
+	
+	/**
+	 * @param password New password to be inserted
+	 */
+	@SqlUpdate("UPDATE credential "
+			+ "SET password = :password "
+			+ "WHERE username = :lastusername")
+	public void updateClientPassword(@Bind("password") String password, @Bind("lastusername") String lastusername);
+	
+	/**
+	 * @param new_establishment_id ID to be inserted
+	 * @param last_establishment_id ID before insertion
+	 */
+	@SqlUpdate("UPDATE credential "
+			+ "SET establishment_id = :new_establishment_id "
+			+ "WHERE tmp_establishment_id = :tmp_establishment_id")
+	public void updateClientEstablishmentId(@Bind("new_establishment_id") long new_establishment_id, 
+											@Bind("tmp_establishment_id") long tmp_establishment_id);
+
+	@SqlUpdate("UPDATE credential "
+			+ "SET tmp_establishment_id = :tmp_id "
+			+ "WHERE id = :id")
+	public void addTmpEstablishment(@Bind("tmp_id") long tmp_id, @Bind("id") long id);
+
+	@SqlQuery("SELECT credential.* , role "
+			+ "FROM credential JOIN role ON role_id = role.id "
+			+ "WHERE tmp_establishment_id = :tmp_id")
+	public Client getClientByTmpEstablishment(@Bind("tmp_id") long tmp_establishment_id);
 
 }

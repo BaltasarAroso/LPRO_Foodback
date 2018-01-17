@@ -60,4 +60,15 @@ public class Category {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public boolean equals(Object o) {
+		if(o == null) return false;
+		if(!(o instanceof Category)) return false;
+		
+		Category category = (Category)o;
+		if(this.id == category.getId() &&
+				this.category.equals(category.getCategory()))
+			return true;
+		else return false;			
+	}
 }
