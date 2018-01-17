@@ -148,3 +148,11 @@ CREATE TABLE establishment_tmp (
 	schedule1 VARCHAR(64),
 	schedule2 VARCHAR(64)
 );
+
+CREATE TABLE promotion (
+	id SERIAL PRIMARY KEY,
+	title VARCHAR(64),
+	description VARCHAR(256),
+	code VARCHAR(64),
+	good_until DATE
+);
