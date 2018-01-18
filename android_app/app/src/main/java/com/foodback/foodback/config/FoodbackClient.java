@@ -12,6 +12,7 @@ import okhttp3.Credentials;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -38,47 +39,36 @@ public class FoodbackClient {
     }
 
     public static void setCredentials(String user, String pw) {
-        username = user;
-        password = pw;
+        if(user != null) username = user;
+        if(pw != null) password = pw;
+        new FoodbackClient();
     }
 
-    public FoodbackClient() {
+    private FoodbackClient() {
         this.addAuth();
     }
 
     private void addAuth() {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        // set desired log level
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
 
-        OkHttpClient okHttpClient;
+        okHttpClient.addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
+                Request originalRequest = chain.request();
+
+                Request.Builder builder = originalRequest.newBuilder().header("Authorization",
+                        Credentials.basic(username, password));
+
+                Request newRequest = builder.build();
+                return chain.proceed(newRequest);
+            }
+        });
 
         if(BuildConfig.DEBUG) {
-            okHttpClient  = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
-                @Override
-                public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
-                    Request originalRequest = chain.request();
-
-                    Request.Builder builder = originalRequest.newBuilder().header("Authorization",
-                            Credentials.basic(username, password));
-
-                    Request newRequest = builder.build();
-                    return chain.proceed(newRequest);
-                }
-            }).addInterceptor(logging).build();
-        } else {
-            okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
-                @Override
-                public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
-                    Request originalRequest = chain.request();
-
-                    Request.Builder builder = originalRequest.newBuilder().header("Authorization",
-                            Credentials.basic(username, password));
-
-                    Request newRequest = builder.build();
-                    return chain.proceed(newRequest);
-                }
-            }).build();
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            // set desired log level
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            okHttpClient.addInterceptor(logging);
         }
 
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
@@ -86,7 +76,7 @@ public class FoodbackClient {
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(okHttpClient)
+                .client(okHttpClient.build())
                 .build();
     }
 

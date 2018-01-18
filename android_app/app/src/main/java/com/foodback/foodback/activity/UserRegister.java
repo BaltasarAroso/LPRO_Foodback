@@ -25,6 +25,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.utils.ErrorDisplay.isBad;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
+
 import com.foodback.foodback.utils.APIError;
 import com.foodback.foodback.utils.ErrorUtils;
 
@@ -49,19 +53,19 @@ public class UserRegister extends AppCompatActivity {
         setContentView(R.layout.activity_user_register);
 
         // Initializing Views
-        editname = (EditText) findViewById(R.id.name);
-        editaddress = (EditText) findViewById(R.id.address);
-        editemail = (EditText) findViewById(R.id.email);
-        editcontact = (EditText) findViewById(R.id.contact);
-        editusername = (EditText) findViewById(R.id.username);
-        editpassword = (EditText) findViewById(R.id.password);
-        editcity = (EditText) findViewById(R.id.city);
-        editzone = (EditText) findViewById(R.id.zone);
-        editbirth = (DatePicker) findViewById(R.id.birth);
+        editname = findViewById(R.id.name);
+        editaddress = findViewById(R.id.address);
+        editemail = findViewById(R.id.email);
+        editcontact = findViewById(R.id.contact);
+        editusername = findViewById(R.id.username);
+        editpassword = findViewById(R.id.password);
+        editcity = findViewById(R.id.city);
+        editzone = findViewById(R.id.zone);
+        editbirth = findViewById(R.id.birth);
 
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        buttonRegister = findViewById(R.id.buttonRegister);
 
-        linkestab_signup = (TextView) findViewById(R.id.estab_signup);
+        linkestab_signup = findViewById(R.id.estab_signup);
 
         // Adding listener to button
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -162,21 +166,23 @@ public class UserRegister extends AppCompatActivity {
                         Toast.makeText(UserRegister.this, "Registered Successfully.", Toast.LENGTH_SHORT).show();
                         //change activity
                     } else {
-                        APIError apiError = ErrorUtils.parseError(response);
-                        Toast.makeText(UserRegister.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(UserRegister.this, response.message(), Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(UserRegister.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        isBad(UserRegister.this, response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("DEBUG",Log.getStackTraceString(t));
-                    Toast.makeText(UserRegister.this, "Error getting server response.", Toast.LENGTH_SHORT).show();
+//                    Log.e("DEBUG",Log.getStackTraceString(t));
+//                    Toast.makeText(UserRegister.this, R.string.error_server_response, Toast.LENGTH_SHORT).show();
+                    isFailure(UserRegister.this, t);
                 }
             });
         } catch(Exception e) {
-            Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(UserRegister.this, "Unexpected error.", Toast.LENGTH_SHORT).show();
+//            Log.e("DEBUG",Log.getStackTraceString(e));
+//            Toast.makeText(UserRegister.this, R.string.error_unexpected, Toast.LENGTH_SHORT).show();
+            isException(UserRegister.this, e);
         }
     }
 

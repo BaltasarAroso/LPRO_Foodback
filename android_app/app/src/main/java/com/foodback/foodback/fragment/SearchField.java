@@ -26,6 +26,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.utils.ErrorDisplay.isBad;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class SearchField extends AppCompatActivity {
 
@@ -65,22 +68,24 @@ public class SearchField extends AppCompatActivity {
                         }
                         Collections.sort(possibilities);
                     } else {
-                        APIError apiError = ErrorUtils.parseError(response);
-                        Toast.makeText(getApplicationContext(), apiError.getMessage(), Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(getApplicationContext(), apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        isBad(getApplicationContext(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<List<Establishment>> call, Throwable t) {
-                    Log.e("DEBUG",Log.getStackTraceString(t));
-                    Toast.makeText(getApplicationContext(), "Error getting server response.", Toast.LENGTH_SHORT).show();
-
+//                    Log.e("DEBUG",Log.getStackTraceString(t));
+//                    Toast.makeText(getApplicationContext(), "Error getting server response.", Toast.LENGTH_SHORT).show();
+                    isFailure(getApplicationContext(), t);
                 }
             });
 
         } catch(Exception e) {
-            Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(getApplicationContext(), "Unexpected error.", Toast.LENGTH_SHORT).show();
+//            Log.e("DEBUG",Log.getStackTraceString(e));
+//            Toast.makeText(getApplicationContext(), "Unexpected error.", Toast.LENGTH_SHORT).show();
+            isException(getApplicationContext(), e);
         }
     }
 

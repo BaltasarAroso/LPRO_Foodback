@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 /**
  * Created by FoodBack.
@@ -48,5 +49,8 @@ public interface EstablishmentEndpoints {
     //establishment - own tmp establishment
     @GET("/establishments/tmp")
     Call<List<Establishment>> getAllTmpEstablishments();
+
+    @GET("/establishments/{name}")
+    Call<Establishment> getEstablishment(@Path("name") String name);
 
 }

@@ -20,6 +20,7 @@ import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Category;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.APIError;
+import com.foodback.foodback.utils.CategoryUtils;
 import com.foodback.foodback.utils.ErrorUtils;
 
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.config.FoodbackClient.setCredentials;
+import static com.foodback.foodback.utils.ErrorDisplay.isBad;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class EstablishmentChangeInfo extends Fragment {
 
@@ -39,6 +44,7 @@ public class EstablishmentChangeInfo extends Fragment {
             editoldpass, editnewpass, editconfpass;
     protected Spinner editcategory;
     protected Button buttonChangeEstab;
+    protected CheckBox editdelivery;
 
     protected String name, category, address, zone, city, email, contact, schedule1, schedule2, username, password;
     protected Integer avg_price;
@@ -49,7 +55,10 @@ public class EstablishmentChangeInfo extends Fragment {
     List<Category> categoryList;
     protected int category_id;
 
+    EstablishmentEndpoints dataServices;
     CredentialsEndpoints credentialServices;
+
+    CategoryUtils catUtils;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,19 +98,26 @@ public class EstablishmentChangeInfo extends Fragment {
 
         });
 
+        // fetch establishment data and asynchronously fill it
+        populateFields();
+
         // fetch categories for spinner and asynchronously fill it
-        populateSpinner();
+//        populateSpinner();
+        //TODO: test (important: see if estab.getCategory_id() works right)
+        catUtils = new CategoryUtils();
+        catUtils.populateSpinner(getActivity(), editcategory, estab.getCategory_id());
     }
 
     private void changeEstab() {
         initialize();
         if (validateChangesEstab()) {
-            for(Category x: categoryList) {
-                if(category.equals(x.getName())) {
-                    category_id = x.getId();
-                    break;
-                }
-            }
+//            for(Category x: categoryList) {
+//                if(category.equals(x.getName())) {
+//                    category_id = x.getId();
+//                    break;
+//                }
+//            }
+            category_id = catUtils.nameToID(category);
             estab = new Establishment(name, category_id, address, zone, city, email,
                     contact, 0, schedule1, schedule2, username, password, delivery);
             verifyOldPassword(estab, password);
@@ -121,7 +137,7 @@ public class EstablishmentChangeInfo extends Fragment {
         schedule2 = editschedule2.getText().toString();
         username = editusername.getText().toString();
         password = editoldpass.getText().toString();
-        delivery = ((CheckBox) getView().findViewById(R.id.delivery)).isChecked();
+        delivery = editdelivery.isChecked();
     }
 
     private boolean validateChangesEstab() {
@@ -144,58 +160,109 @@ public class EstablishmentChangeInfo extends Fragment {
         return true;
     }
 
-    public void populateSpinner(){
+    private void populateFields() {
         try {
-            EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
-            Call<List<Category>> call = services.getAllCategories();
+            dataServices = retrofit.create(EstablishmentEndpoints.class);
+            //TODO: update getEstablishment after issue #75 is resolved
+            Call<Establishment> call = dataServices.getEstablishment(null);
 
-            call.enqueue(new Callback<List<Category>>() {
+            call.enqueue(new Callback<Establishment>() {
                 @Override
-                public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                public void onResponse(Call<Establishment> call, Response<Establishment> response) {
                     if(response.isSuccessful()) {
-                        categoryList = response.body();
-                        if(categoryList.size() == 0) {
-                            Toast.makeText(getActivity(),
-                                    "No establishment categories found.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            List<String> spinnerArray = new ArrayList<>();
-
-                            for(Category x: categoryList) {
-                                spinnerArray.add(x.getName());
-                                Log.e("DEBUG", "x.getName(): " + x.getName());
-                            }
-
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                                    getActivity(),
-                                    android.R.layout.simple_spinner_item,
-                                    spinnerArray);
-
-                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            editcategory.setAdapter(adapter);
-                        }
+                        estab = response.body();
+                        editname.setText(estab.getName());
+                        editaddress.setText(estab.getAddress());
+                        editzone.setText(estab.getAddress());
+                        editcity.setText(estab.getCategory_id());
+                        editemail.setText(estab.getEmail());
+                        editcontact.setText(estab.getContact());
+                        editschedule1.setText(estab.getSchedule1());
+                        editschedule2.setText(estab.getSchedule2());
+                        if(estab.getDelivery()) editdelivery.setChecked(true);
                     } else {
-                        APIError apiError = ErrorUtils.parseError(response);
-                        Toast.makeText(getActivity(),
-                                apiError.getMessage(),
-                                Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(getActivity(),
+//                                apiError.getMessage(),
+//                                Toast.LENGTH_SHORT).show();
+                        isBad(getActivity(), response);
                     }
                 }
 
                 @Override
-                public void onFailure(Call<List<Category>> call, Throwable t) {
-                    Toast.makeText(getActivity(),
-                            "Error getting server response.",
-                            Toast.LENGTH_SHORT).show();
+                public void onFailure(Call<Establishment> call, Throwable t) {
+//                    Log.e("DEBUG",Log.getStackTraceString(t));
+//                    Toast.makeText(getActivity(),
+//                            R.string.error_server_response,
+//                            Toast.LENGTH_SHORT).show();
+                    isFailure(getActivity(), t);
                 }
             });
+
         } catch(Exception e) {
-            Log.e("DEBUG", Log.getStackTraceString(e));
-            Toast.makeText(getActivity(),
-                    "The program has encountered an error.",
-                    Toast.LENGTH_SHORT).show();
+//            Log.e("DEBUG",Log.getStackTraceString(e));
+//            Toast.makeText(getActivity(),
+//                    R.string.error_unexpected,
+//                    Toast.LENGTH_SHORT).show();
+            isException(getActivity(), e);
         }
+
     }
+
+//    public void populateSpinner(){
+//        try {
+//            Call<List<Category>> call = dataServices.getAllCategories();
+//
+//            call.enqueue(new Callback<List<Category>>() {
+//                @Override
+//                public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+//                    if(response.isSuccessful()) {
+//                        categoryList = response.body();
+//                        if(categoryList.size() == 0) {
+//                            Toast.makeText(getActivity(),
+//                                    "No establishment categories found.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            List<String> spinnerArray = new ArrayList<>();
+//
+//                            for(Category x: categoryList) {
+//                                spinnerArray.add(x.getName());
+//                            }
+//
+//                            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+//                                    getActivity(),
+//                                    android.R.layout.simple_spinner_item,
+//                                    spinnerArray);
+//
+//                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                            editcategory.setAdapter(adapter);
+//                            editcategory.setSelection(estab.getCategory_id());
+//                        }
+//                    } else {
+////                        APIError apiError = ErrorUtils.parseError(response);
+////                        Toast.makeText(getActivity(),
+////                                apiError.getMessage(),
+////                                Toast.LENGTH_SHORT).show();
+//                        isBad(getActivity(), response);
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<List<Category>> call, Throwable t) {
+////                    Toast.makeText(getActivity(),
+////                            "Error getting server response.",
+////                            Toast.LENGTH_SHORT).show();
+//                    isFailure(getActivity(), t);
+//                }
+//            });
+//        } catch(Exception e) {
+////            Log.e("DEBUG", Log.getStackTraceString(e));
+////            Toast.makeText(getActivity(),
+////                    "The program has encountered an error.",
+////                    Toast.LENGTH_SHORT).show();
+//            isException(getActivity(), e);
+//        }
+//    }
 
     private void verifyOldPassword(final Establishment estab, final String password) {
         try {
@@ -213,32 +280,34 @@ public class EstablishmentChangeInfo extends Fragment {
                     } else {
                         editoldpass.setError("Wrong password");
 
-                        APIError apiError = ErrorUtils.parseError(response);
-                        Toast.makeText(getActivity(),
-                                apiError.getMessage(),
-                                Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(getActivity(),
+//                                apiError.getMessage(),
+//                                Toast.LENGTH_SHORT).show();
+                        isBad(getActivity(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("DEBUG",Log.getStackTraceString(t));
-                    Toast.makeText(getActivity(),
-                            "Error getting server response.",
-                            Toast.LENGTH_SHORT).show();
+//                    Log.e("DEBUG",Log.getStackTraceString(t));
+//                    Toast.makeText(getActivity(),
+//                            "Error getting server response.",
+//                            Toast.LENGTH_SHORT).show();
+                    isFailure(getActivity(), t);
                 }
             });
         } catch(Exception e) {
-            Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(getActivity(),
-                    "Unexpected error.",
-                    Toast.LENGTH_SHORT).show();
+//            Log.e("DEBUG",Log.getStackTraceString(e));
+//            Toast.makeText(getActivity(),
+//                    "Unexpected error.",
+//                    Toast.LENGTH_SHORT).show();
+            isException(getActivity(), e);
         }
     }
 
     private void changeEstabOnServer(Establishment estab, final String password) {
         try {
-            EstablishmentEndpoints dataServices = retrofit.create(EstablishmentEndpoints.class);
             Call<ResponseBody> dataCall = dataServices.editTmpEstablishment(estab);
 
 
@@ -251,30 +320,33 @@ public class EstablishmentChangeInfo extends Fragment {
                                 Toast.LENGTH_SHORT).show();
                         changeCredentials(password);
                     } else {
-                        APIError apiError = ErrorUtils.parseError(response);
-                        Toast.makeText(getActivity(),
-                                apiError.getMessage(),
-                                Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(getActivity(),
+//                                apiError.getMessage(),
+//                                Toast.LENGTH_SHORT).show();
+                        isBad(getActivity(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("DEBUG",Log.getStackTraceString(t));
-                    Toast.makeText(getActivity(),
-                            "Error getting server response.",
-                            Toast.LENGTH_SHORT).show();
+//                    Log.e("DEBUG",Log.getStackTraceString(t));
+//                    Toast.makeText(getActivity(),
+//                            R.string.error_server_response,
+//                            Toast.LENGTH_SHORT).show();
+                    isFailure(getActivity(), t);
                 }
             });
         } catch(Exception e) {
-            Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(getActivity(),
-                    "Unexpected error.",
-                    Toast.LENGTH_SHORT).show();
+//            Log.e("DEBUG",Log.getStackTraceString(e));
+//            Toast.makeText(getActivity(),
+//                    R.string.error_unexpected,
+//                    Toast.LENGTH_SHORT).show();
+            isException(getActivity(), e);
         }
     }
 
-    private void changeCredentials(String password) {
+    private void changeCredentials(final String password) {
         try {
             Call<ResponseBody> credentialCall = credentialServices
                     .updateCredentials(null, password);
@@ -286,28 +358,32 @@ public class EstablishmentChangeInfo extends Fragment {
                         Toast.makeText(getActivity(),
                                 "Establishment updated successfully.",
                                 Toast.LENGTH_SHORT).show();
-                        //TODO change activity
+                        setCredentials(null, password);
+                        //TODO change activity or "remove"/"exit" fragment
                     } else {
-                        APIError apiError = ErrorUtils.parseError(response);
-                        Toast.makeText(getActivity(),
-                                apiError.getMessage(),
-                                Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(getActivity(),
+//                                apiError.getMessage(),
+//                                Toast.LENGTH_SHORT).show();
+                        isBad(getActivity(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("DEBUG",Log.getStackTraceString(t));
-                    Toast.makeText(getActivity(),
-                            "Error getting server response.",
-                            Toast.LENGTH_SHORT).show();
+//                    Log.e("DEBUG",Log.getStackTraceString(t));
+//                    Toast.makeText(getActivity(),
+//                            R.string.error_server_response,
+//                            Toast.LENGTH_SHORT).show();
+                    isFailure(getActivity(), t);
                 }
             });
         } catch(Exception e) {
-            Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(getActivity(),
-                    "Unexpected error.",
-                    Toast.LENGTH_SHORT).show();
+//            Log.e("DEBUG",Log.getStackTraceString(e));
+//            Toast.makeText(getActivity(),
+//                    R.string.error_unexpected,
+//                    Toast.LENGTH_SHORT).show();
+            isException(getActivity(), e);
         }
     }
 

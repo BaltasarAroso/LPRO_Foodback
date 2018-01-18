@@ -104,5 +104,5 @@ public class UserMenu extends AppCompatActivity
         return true;
     }
 
-    //TODO if user is premimium do display none to id advert
+    //TODO if user is premium do display none to id advert
 }

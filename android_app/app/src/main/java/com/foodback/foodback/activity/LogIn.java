@@ -3,7 +3,6 @@ package com.foodback.foodback.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,13 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foodback.foodback.config.CredentialsEndpoints;
-//import com.foodback.foodback.utils.APIError;
-//import com.foodback.foodback.utils.ErrorUtils;
 
-import com.foodback.foodback.config.FoodbackClient;
 import com.foodback.foodback.R;
-import com.foodback.foodback.utils.APIError;
-import com.foodback.foodback.utils.ErrorUtils;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -26,6 +20,9 @@ import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
 import static com.foodback.foodback.config.FoodbackClient.setCredentials;
+import static com.foodback.foodback.utils.ErrorDisplay.isBad;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class LogIn extends AppCompatActivity {
 
@@ -57,7 +54,6 @@ public class LogIn extends AppCompatActivity {
                     tryLogin(username, password);
                 }
             }
-
         });
 
         linksignup.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +82,6 @@ public class LogIn extends AppCompatActivity {
     private void tryLogin(String username, String password) {
         try {
             setCredentials(username, password);
-            new FoodbackClient();
 
             services = retrofit.create(CredentialsEndpoints.class);
             Call<ResponseBody> call = services.verifyUserCredentials();
@@ -98,21 +93,23 @@ public class LogIn extends AppCompatActivity {
                         Toast.makeText(LogIn.this, "Login successful!", Toast.LENGTH_SHORT).show();
                         //change activity
                     } else {
-                        APIError apiError = ErrorUtils.parseError(response);
-                        Toast.makeText(LogIn.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(LogIn.this, response.message(), Toast.LENGTH_SHORT).show();
+//                        APIError apiError = ErrorUtils.parseError(response);
+//                        Toast.makeText(LogIn.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        isBad(LogIn.this, response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("DEBUG",Log.getStackTraceString(t));
-                    Toast.makeText(LogIn.this, "Error! Please try again!", Toast.LENGTH_SHORT).show();
+//                    Log.e("DEBUG",Log.getStackTraceString(t));
+//                    Toast.makeText(LogIn.this, R.string.error_server_response, Toast.LENGTH_SHORT).show();
+                    isFailure(LogIn.this, t);
                 }
             });
         } catch(Exception e) {
-            Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(LogIn.this, "An error occurred.", Toast.LENGTH_SHORT).show();
+//            Log.e("DEBUG",Log.getStackTraceString(e));
+//            Toast.makeText(LogIn.this, R.string.error_unexpected, Toast.LENGTH_SHORT).show();
+            isException(LogIn.this, e);
         }
     }
 
