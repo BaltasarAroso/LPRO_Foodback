@@ -78,4 +78,6 @@
     <string name="notices">Notificações dos Estabelecimentos</string>
     <string name="error_unexpected">Unexpected error.</string>
     <string name="error_server_response">Error getting server response.</string>
+    <string name="error_no_role">Something unexpected occurred. Please try signing in again.</string>
+    <string name="login_success">Login successful!</string>
 </resources>

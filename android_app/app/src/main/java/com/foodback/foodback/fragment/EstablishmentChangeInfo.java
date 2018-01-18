@@ -163,8 +163,8 @@ public class EstablishmentChangeInfo extends Fragment {
     private void populateFields() {
         try {
             dataServices = retrofit.create(EstablishmentEndpoints.class);
-            //TODO: update getEstablishment after issue #75 is resolved
-            Call<Establishment> call = dataServices.getEstablishment(null);
+            //TODO: application crashes changing to this fragment
+            Call<Establishment> call = dataServices.getMyEstablishment();
 
             call.enqueue(new Callback<Establishment>() {
                 @Override

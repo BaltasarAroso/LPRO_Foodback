@@ -17,8 +17,8 @@ public interface CredentialsEndpoints {
 //    GET     /credentials (com.lpro.fbrest.resources.CredentialsResource)  -check
 //    GET     /credentials/establishment (com.lpro.fbrest.resources.CredentialsResource)  -check
 //    GET     /credentials/user (com.lpro.fbrest.resources.CredentialsResource)  -check
-//    GET     /credentials/admin (com.lpro.fbrest.resources.CredentialsResource)
-//    PUT     /credentials (com.lpro.fbrest.resources.CredentialsResource)
+//    GET     /credentials/admin (com.lpro.fbrest.resources.CredentialsResource)  -check
+//    PUT     /credentials (com.lpro.fbrest.resources.CredentialsResource)  -check
 
     /**
      * @return Status Code, meaning there is a connection
@@ -38,5 +38,8 @@ public interface CredentialsEndpoints {
             @Field("username") String username,
             @Field("password") String password
     );
+
+    @GET("/credentials/admin")
+    Call<ResponseBody> verifyAdminCredentials();
 
 }

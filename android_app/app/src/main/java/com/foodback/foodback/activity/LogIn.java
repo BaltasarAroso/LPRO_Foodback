@@ -80,37 +80,89 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void tryLogin(String username, String password) {
-        try {
-            setCredentials(username, password);
+        setCredentials(username, password);
+        services = retrofit.create(CredentialsEndpoints.class);
+        checkIfUser();
+    }
 
-            services = retrofit.create(CredentialsEndpoints.class);
+    private void checkIfUser() {
+        try {
             Call<ResponseBody> call = services.verifyUserCredentials();
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()) {
-                        Toast.makeText(LogIn.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        //change activity
+                        Toast.makeText(LogIn.this, R.string.login_success, Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent();
+                        i.setClass(LogIn.this, UserMenu.class);
+                        startActivity(i);
                     } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(LogIn.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        checkIfEstablishment();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(LogIn.this, t);
+                }
+            });
+        } catch(Exception e) {
+            isException(LogIn.this, e);
+        }
+    }
+
+    private void checkIfEstablishment() {
+        try {
+            Call<ResponseBody> call = services.verifyEstablishmentCredentials();
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(LogIn.this, R.string.login_success, Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent();
+                        i.setClass(LogIn.this, EstablishmentMenu.class);
+                        startActivity(i);
+                    } else {
+                        checkIfAdmin();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(LogIn.this, t);
+                }
+            });
+        } catch(Exception e) {
+            isException(LogIn.this, e);
+        }
+    }
+
+    private void checkIfAdmin() {
+        try {
+            Call<ResponseBody> call = services.verifyAdminCredentials();
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(LogIn.this, R.string.login_success, Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent();
+                        i.setClass(LogIn.this, AdminMenu.class);
+                        startActivity(i);
+                    } else {
                         isBad(LogIn.this, response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(LogIn.this, R.string.error_server_response, Toast.LENGTH_SHORT).show();
                     isFailure(LogIn.this, t);
                 }
             });
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(LogIn.this, R.string.error_unexpected, Toast.LENGTH_SHORT).show();
             isException(LogIn.this, e);
         }
     }
-
 }
