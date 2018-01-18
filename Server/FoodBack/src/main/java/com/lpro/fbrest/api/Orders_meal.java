@@ -5,19 +5,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Orders_meal {
 	
 	@JsonProperty
+	private long id;
+	
+	@JsonProperty
 	private long meal_id;
 	
 	@JsonProperty
+	private long orders_id;
+	
+	@JsonProperty
 	private int quantity;
+	
+	@JsonProperty
+	private String state;
 	
 	public Orders_meal() {
 		super();
 	}
 
-	public Orders_meal(long meal_id, int quantity) {
+	public Orders_meal(long id, long meal_id, long orders_id, int quantity, String state) {
 		super();
+		this.id = id;
 		this.meal_id = meal_id;
+		this.orders_id = orders_id;
 		this.quantity = quantity;
+		this.state = state;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public long getMeal_id() {
@@ -28,6 +48,14 @@ public class Orders_meal {
 		this.meal_id = meal_id;
 	}
 
+	public long getOrders_id() {
+		return orders_id;
+	}
+
+	public void setOrders_id(long orders_id) {
+		this.orders_id = orders_id;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -36,6 +64,14 @@ public class Orders_meal {
 		this.quantity = quantity;
 	}
 	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public boolean equals(Object o) {
 		if(o == null) return false;
 		if(!(o instanceof Orders_meal)) return false;

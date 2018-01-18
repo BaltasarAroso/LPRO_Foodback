@@ -12,7 +12,11 @@ public class Orders_mealMapper implements ResultSetMapper<Orders_meal>{
 	
 	@Override
 	public Orders_meal map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-		return new Orders_meal(r.getLong("meal_id"),
-							r.getInt("quantity"));
+		return new Orders_meal(
+				r.getLong("id"),
+				r.getLong("meal_id"),
+				r.getLong("orders_id"),
+				r.getInt("quantity"),
+				r.getString("state"));
 	} 
 }

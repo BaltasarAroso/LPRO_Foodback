@@ -95,6 +95,7 @@ CREATE TABLE orders_meal (
 	orders_id INTEGER REFERENCES orders 
 		ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
 	quantity INTEGER NOT NULL,
+	state VARCHAR(64),
 	PRIMARY KEY(meal_id, orders_id)
 );
 

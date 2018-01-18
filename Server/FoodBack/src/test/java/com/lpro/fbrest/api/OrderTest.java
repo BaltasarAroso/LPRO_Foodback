@@ -17,8 +17,8 @@ public class OrderTest {
     @Test
     public void serializesToJSON() throws Exception {
     		List<Orders_meal> meals = new ArrayList<Orders_meal>();
-    		meals.add(new Orders_meal(5, 10));
-    		meals.add(new Orders_meal(10, 15));
+    		meals.add(new Orders_meal(20, 5, 25, 10, "estado.."));
+    		meals.add(new Orders_meal(5, 20, 10, 25, "estado..."));
         final Order order = new Order(20, meals, 1234, "Pronto");
 
         final String expected = MAPPER.writeValueAsString(
@@ -30,8 +30,8 @@ public class OrderTest {
     @Test
     public void deserializesFromJSON() throws Exception {
 		List<Orders_meal> meals = new ArrayList<Orders_meal>();
-		meals.add(new Orders_meal(5, 10));
-		meals.add(new Orders_meal(10, 15));
+		meals.add(new Orders_meal(20, 5, 25, 10, "estado.."));
+		meals.add(new Orders_meal(5, 20, 10, 25, "estado..."));
 		final Order order = new Order(20, meals, 1234, "Pronto");
           
         assertThat(MAPPER.readValue(fixture("fixtures/order.json"), Order.class)).isEqualTo(order);

@@ -20,13 +20,13 @@ public class Comment {
 	 *  id of the establishment that is being commented
 	 */
 	@JsonProperty
-	private int establishment_id;
+	private long establishment_id;
 	
 	/**
 	 *  id of the user that is commenting
 	 */
 	@JsonProperty
-	private int commenter_id;
+	private long commenter_id;
 	
 	/**
 	 *  Time the comment was made
@@ -63,7 +63,7 @@ public class Comment {
 	 * 
 	 * Constructor for one comment
 	 */
-	public Comment(long id, int establishment_id, int commenter_id, Timestamp time_posted, int rating, String comment) {
+	public Comment(long id, long establishment_id, long commenter_id, Timestamp time_posted, int rating, String comment) {
 		super();
 		this.id = id;
 		this.establishment_id = establishment_id;
@@ -90,28 +90,28 @@ public class Comment {
 	/**
 	 * @return establishment id
 	 */
-	public int getEstablishment_id() {
+	public long getEstablishment_id() {
 		return establishment_id;
 	}
 
 	/**
 	 * @param establishment_id Id of establishment
 	 */
-	public void setEstablishment_id(int establishment_id) {
+	public void setEstablishment_id(long establishment_id) {
 		this.establishment_id = establishment_id;
 	}
 
 	/**
 	 * @return commenter id
 	 */
-	public int getCommenter_id() {
+	public long getCommenter_id() {
 		return commenter_id;
 	}
 
 	/**
 	 * @param commenter_id Id of commenter
 	 */
-	public void setCommenter_id(int commenter_id) {
+	public void setCommenter_id(long commenter_id) {
 		this.commenter_id = commenter_id;
 	}
 
