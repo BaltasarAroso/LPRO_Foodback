@@ -43,8 +43,8 @@ public interface EstablishmentDAO {
 
 	@SqlQuery("SELECT * "
 			+ "FROM establishment "
-			+ "WHERE name = :name")
-	public Establishment getEstablishment(@Bind("name") String name);
+			+ "WHERE id = :id")
+	public Establishment getEstablishmentById(@Bind("id") long id);
 	
 	@SqlUpdate("UPDATE establishment "
 			+"SET name = :name, category_id = :category_id, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price, schedule1 = :schedule1, schedule2 = :schedule2 "
@@ -110,4 +110,9 @@ public interface EstablishmentDAO {
 									@Bind("avg_price") int avg_price,
 									@Bind("schedule1") String schedule1,
 									@Bind("schedule2") String schedule2);
+	
+	@SqlQuery("SELECT * "
+			+ "FROM establishment "
+			+ "WHERE category_id = :category_id")
+	public List<Establishment> getEstablishmentsByCategoryId(@Bind("category_id") long category_id);
 }

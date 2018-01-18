@@ -13,6 +13,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -63,14 +64,40 @@ import io.dropwizard.auth.Auth;
 		}
 		
 		/**
-		 * @param name of the wanted establishment
-		 * @return Establishment with the name specified
+		 * @param ID of the wanted establishment
+		 * @return Establishment with the ID specified
 		 */
 		@GET
-		@Path("/{name}")  
+		@Path("/{id}")  
 		@Produces(MediaType.APPLICATION_JSON)
-		public Establishment getEstablishment(@PathParam("name") String name) {
-			return establishmentService.getEstablishmentByName(name);
+		public Establishment getEstablishmentById(@PathParam("id") long id) {
+			return establishmentService.getEstablishmentById(id);
+		}
+		
+		/**
+		 * @param category_id ID of category 
+		 * @return Establishments of that category
+		 */
+		@GET
+		@Path("/filtered")
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Establishment> getEstablishmentsFiltered(@QueryParam("category_id") long category_id) {
+			if(category_id > 0) 
+				return establishmentService.getEstablishmentsByCategoryId(category_id);
+			else
+				return null;
+		}
+		
+		/**
+		 * @param client Client that authenticated
+		 * @return Establishment the client owns
+		 */
+		@GET
+		@Path("/mine")
+		@RolesAllowed("ESTABLISHMENT")
+		@Produces(MediaType.APPLICATION_JSON)
+		public Establishment getMyEstablishment(@Auth Client client) {
+			return establishmentService.getEstablishmentById(client.getEstablishment_id());
 		}
 		
 		/**

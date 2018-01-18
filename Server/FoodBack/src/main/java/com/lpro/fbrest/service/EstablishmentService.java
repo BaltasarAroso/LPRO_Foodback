@@ -83,8 +83,8 @@ public abstract class EstablishmentService {
 	 * @param name Name of establishment to be searched
 	 * @return Establishment if it exists
 	 */
-	public Establishment getEstablishmentByName(String name) {
-		Establishment establishment = establishmentdao().getEstablishment(name);
+	public Establishment getEstablishmentById(long id) {
+		Establishment establishment = establishmentdao().getEstablishmentById(id);
 		if(establishment == null) {
 			throw new WebApplicationException(404);
 		}
@@ -123,12 +123,16 @@ public abstract class EstablishmentService {
 	 * @return List of all categories
 	 */
 	public List<Category> getAllCategories(){
+		List<Category> categories;
 		try {
-			return establishmentdao().getAllCategories();
+			categories = establishmentdao().getAllCategories();
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
 		}
+		if(categories == null) throw new WebApplicationException(404);
+		if(categories.isEmpty()) throw new WebApplicationException(404);
+		return categories;
 	}
 
 	/**
@@ -259,6 +263,19 @@ public abstract class EstablishmentService {
 				throw new WebApplicationException(500);
 			}
 		}
+	}
+
+	public List<Establishment> getEstablishmentsByCategoryId(long category_id) {
+		List<Establishment> establishments;
+		try {
+			establishments = establishmentdao().getEstablishmentsByCategoryId(category_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+		if(establishments == null) throw new WebApplicationException(404);
+		if(establishments.isEmpty()) throw new WebApplicationException(404);
+		return establishments;
 	}
 	
 }
