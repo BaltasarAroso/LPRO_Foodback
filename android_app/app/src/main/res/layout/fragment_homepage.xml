@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.foodback.foodback.fragment.Homepage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/_70sdp">
 
     <view
         android:id="@+id/viewPager"

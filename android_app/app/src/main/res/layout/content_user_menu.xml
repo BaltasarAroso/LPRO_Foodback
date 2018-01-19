@@ -21,17 +21,26 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/advert"
+    <!-- TODO arranjar maneira de que a publicidade não se sobreponha e quando deparecer que não deixe um pedaço em branco -->
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#FFFF00"
         android:layout_alignParentBottom="true">
-        <TextView
-            android:layout_width="wrap_content"
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/advert"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Publicidade"/>
-    </android.support.v7.widget.Toolbar>
+            android:layout_weight="1"
+            android:background="#FFFF00">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Publicidade"/>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
 
 </RelativeLayout>

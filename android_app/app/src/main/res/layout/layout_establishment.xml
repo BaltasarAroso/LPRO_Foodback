@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_80sdp"
+    android:layout_margin="@dimen/_8sdp">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/estab_image"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_80sdp"
+            app:layout_alignSelf="flex_start"
+            app:srcCompat="@drawable/foodback_logo"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            app:justifyContent="space_around"
+            app:flexDirection="column">
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:flexDirection="row">
+
+                <TextView
+                    android:id="@+id/estab_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tasca do Zé"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_14sdp"/>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:alignItems="flex_end"
+                    app:justifyContent="flex_end">
+
+                    <TextView
+                        android:id="@+id/estab_zone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Baixa"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_4sdp"/>
+
+                    <View
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        app:layout_alignSelf="center"
+                        android:background="#999999" />
+
+                    <TextView
+                        android:id="@+id/estab_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Porto"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_4sdp"/>
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:id="@+id/estab_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cozinha Portuguesa"
+                android:textStyle="normal"
+                android:textSize="@dimen/_10sdp"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:justifyContent="space_between"
+                app:flexDirection="row">
+
+                <TextView
+                    android:id="@+id/estab_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="223456789"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_10sdp"/>
+
+                <TextView
+                    android:id="@+id/estab_avg_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10€"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_8sdp"
+                    app:layout_alignSelf="flex_end"/>
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+        </com.google.android.flexbox.FlexboxLayout> -->
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</RelativeLayout>
