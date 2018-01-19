@@ -23,6 +23,19 @@ CREATE TABLE category (
 	category VARCHAR(32) NOT NULL UNIQUE
 );
 
+INSERT INTO category VALUES(1, 'Café');
+INSERT INTO category VALUES(2, 'Bar');
+INSERT INTO category VALUES(3, 'Sobremesa');
+INSERT INTO category VALUES(4, 'Cozinha Portuguesa');
+INSERT INTO category VALUES(5, 'Cozinha Italiana');
+INSERT INTO category VALUES(6, 'Cozinha Chinesa');
+INSERT INTO category VALUES(7, 'Cozinha Japonesa');
+INSERT INTO category VALUES(8, 'Marisqueira');
+INSERT INTO category VALUES(9, 'Hamburgaria');
+INSERT INTO category VALUES(10, 'Fast-Food');
+INSERT INTO category VALUES(11, 'Pizzaria');
+
+
 CREATE TABLE establishment (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(64) NOT NULL,
