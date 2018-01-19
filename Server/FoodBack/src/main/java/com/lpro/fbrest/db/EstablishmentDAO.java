@@ -115,4 +115,9 @@ public interface EstablishmentDAO {
 			+ "FROM establishment "
 			+ "WHERE category_id = :category_id")
 	public List<Establishment> getEstablishmentsByCategoryId(@Bind("category_id") long category_id);
+
+	@SqlQuery("SELECT * "
+			+ "FROM establishment "
+			+ "WHERE category_id >= 4")
+	public List<Establishment> getRestaurants();
 }

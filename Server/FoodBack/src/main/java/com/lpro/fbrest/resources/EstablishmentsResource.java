@@ -82,8 +82,11 @@ import io.dropwizard.auth.Auth;
 		@Path("/filtered")
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<Establishment> getEstablishmentsFiltered(@QueryParam("category_id") long category_id) {
-			if(category_id > 0) 
+			if(category_id > 0 && category_id != 123456789) 
 				return establishmentService.getEstablishmentsByCategoryId(category_id);
+			else if(category_id == 123456789) {
+				return establishmentService.getRestaurants();
+			}
 			else
 				return null;
 		}
