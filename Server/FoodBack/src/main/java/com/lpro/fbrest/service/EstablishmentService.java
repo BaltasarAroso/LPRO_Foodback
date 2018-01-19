@@ -277,5 +277,18 @@ public abstract class EstablishmentService {
 		if(establishments.isEmpty()) throw new WebApplicationException(404);
 		return establishments;
 	}
+
+	public List<Establishment> getRestaurants() {
+		List<Establishment> establishments;
+		try {
+			establishments = establishmentdao().getRestaurants();
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+		if(establishments == null) throw new WebApplicationException(404);
+		if(establishments.isEmpty()) throw new WebApplicationException(404);
+		return establishments;
+	}
 	
 }
