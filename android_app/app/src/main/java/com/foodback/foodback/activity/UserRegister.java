@@ -112,7 +112,7 @@ public class UserRegister extends AppCompatActivity {
         boolean valid = true;
 
         // username must have something that not exceeds 32 characters
-        if (name.isEmpty() || name.length() > 32) {
+        if (name.isEmpty() || name.length() > 64) {
             editname.setError("Please enter a valid name");
             valid = false;
         }

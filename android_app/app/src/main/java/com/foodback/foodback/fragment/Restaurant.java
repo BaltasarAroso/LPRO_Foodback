@@ -6,14 +6,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
 import com.amigold.fundapter.extractors.StringExtractor;
+import com.amigold.fundapter.interfaces.DynamicImageLoader;
+import com.bumptech.glide.Glide;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.MyAppGlideModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.foodback.foodback.config.FoodbackClient.getBaseUrl;
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
 import static com.foodback.foodback.utils.ErrorDisplay.isBad;
 import static com.foodback.foodback.utils.ErrorDisplay.isException;
@@ -46,69 +51,7 @@ public class Restaurant extends Fragment {
 
         View view = inflater.inflate(R.layout.tab_restaurant, container, false);
 
-        /*
-         * a declaração dos estabelecimentos devia ser feita dentro
-         * de uma função que os vá buscar à base de dados
-         */
-        //getEstablishments()
-
-//        Establishment e1 = new Establishment(
-//                "Li Yun",
-//                1,
-//                "Rua da Boavista",
-//                "Boavista",
-//                "Porto",
-//                "liyun@restaurant.com",
-//                "223456789",
-//                20,
-//                "Seg. a Sex. - 11h às 15h | 19h às 00h",
-//                "Sab e Dom - 11h Às 15h",
-//                "liyun",
-//                "chinatown",
-//                true
-//        );
-//
-//        Establishment e2 = new Establishment(
-//                "Hamburgueria O Gordo",
-//                1,
-//                "Rua Mouzinho da Silveira",
-//                "Baixa",
-//                "Porto",
-//                "ogordo@restaurant.com",
-//                "223456789",
-//                20,
-//                "Seg. a Sex. - 11h às 15h | 19h às 00h",
-//                "Sab e Dom - 11h Às 15h",
-//                "badoxa",
-//                "controlar",
-//                false
-//        );
-//
-//        Establishment e3 = new Establishment(
-//                "Li Yun",
-//                1,
-//                "Rua da Boavista",
-//                "Boavista",
-//                "Porto",
-//                "liyun@restaurant.com",
-//                "223456789",
-//                20,
-//                "Seg. a Sex. - 11h às 15h | 19h às 00h",
-//                "Sab e Dom - 11h Às 15h",
-//                "liyun",
-//                "chinatown",
-//                true
-//        );
-
         fillEstablishmentDictionary(view);
-
-//        restaurants.add(e1);
-//        restaurants.add(e2);
-//        restaurants.add(e3);
-//
-//        BindDictionary<Establishment> dictionary = createDictionary();
-//
-//        declareList(view, dictionary);
 
         return view;
     }
@@ -165,6 +108,7 @@ public class Restaurant extends Fragment {
                 return estab.getCity();
             }
         });
+        //TODO show category name, not id
         dictionary.addStringField(R.id.estab_category, new StringExtractor<Establishment>() {
             @Override
             public String getStringValue(Establishment estab, int position) {
@@ -183,7 +127,6 @@ public class Restaurant extends Fragment {
                 return "" + estab.getAvg_price() + "€";
             }
         });
-
         dictionary.addStringField(R.id.estab_delivery, new StringExtractor<Establishment>() {
             @Override
             public String getStringValue(Establishment estab, int position) {
@@ -192,6 +135,21 @@ public class Restaurant extends Fragment {
                 } else {
                     return null;
                 }
+            }
+        });
+        dictionary.addDynamicImageField(R.id.estab_image, new StringExtractor<Establishment>() {
+            @Override
+            public String getStringValue(Establishment estab, int position) {
+                return getBaseUrl() + "/image/establishment/profile/" + estab.getId();
+            }
+        }, new DynamicImageLoader() {
+            @Override
+            public void loadImage(String url, ImageView view) {
+                //TODO try to use GlideApp (utils/MyAppGlideModule)
+                Glide.with(getActivity())
+                        .load(url)
+                        .thumbnail(0.1f)
+                        .into(view);
             }
         });
 

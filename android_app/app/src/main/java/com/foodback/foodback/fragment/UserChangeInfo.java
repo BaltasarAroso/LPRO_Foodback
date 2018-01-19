@@ -87,7 +87,7 @@ public class UserChangeInfo extends Fragment {
         boolean valid = true;
 
         // username must have something that not exceeds 32 characters
-        if (name.length() > 32) {
+        if (name.length() > 64) {
             editname.setError("Please enter a valid name (max size of 32 characters)");
             valid = false;
         }
