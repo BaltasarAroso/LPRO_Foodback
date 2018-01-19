@@ -63,16 +63,12 @@ public class ConnectServer extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(ConnectServer.this, R.string.error_server_response, Toast.LENGTH_SHORT).show();
                     isFailure(ConnectServer.this, t);
                     connect.setVisibility(View.VISIBLE);
                 }
             });
 
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(ConnectServer.this, R.string.error_unexpected, Toast.LENGTH_SHORT).show();
             isException(ConnectServer.this, e);
             connect.setVisibility(View.VISIBLE);
         }

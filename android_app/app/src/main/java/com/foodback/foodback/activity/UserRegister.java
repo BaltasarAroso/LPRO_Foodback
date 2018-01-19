@@ -3,7 +3,6 @@ package com.foodback.foodback.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -29,14 +28,11 @@ import static com.foodback.foodback.utils.ErrorDisplay.isBad;
 import static com.foodback.foodback.utils.ErrorDisplay.isException;
 import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
-import com.foodback.foodback.utils.APIError;
-import com.foodback.foodback.utils.ErrorUtils;
-
 
 public class UserRegister extends AppCompatActivity {
 
-    protected EditText editname, editaddress, editemail, editcontact, editusername, editpassword,
-            editcity, editzone;
+    protected EditText editname, editaddress, editemail, editcontact,
+            editusername, editpassword, editcity, editzone;
     protected Button buttonRegister;
     protected TextView linkestab_signup;
     protected DatePicker editbirth;
@@ -166,22 +162,16 @@ public class UserRegister extends AppCompatActivity {
                         Toast.makeText(UserRegister.this, "Registered Successfully.", Toast.LENGTH_SHORT).show();
                         //change activity
                     } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(UserRegister.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
                         isBad(UserRegister.this, response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(UserRegister.this, R.string.error_server_response, Toast.LENGTH_SHORT).show();
                     isFailure(UserRegister.this, t);
                 }
             });
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(UserRegister.this, R.string.error_unexpected, Toast.LENGTH_SHORT).show();
             isException(UserRegister.this, e);
         }
     }

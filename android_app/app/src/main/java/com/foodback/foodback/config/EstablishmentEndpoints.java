@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by FoodBack.
@@ -27,7 +28,7 @@ public interface EstablishmentEndpoints {
 //    GET     /establishments/tmp (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 //    PUT     /establishments/tmp (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 //    PUT     /establishments/verify/{tmp_establishment_id} (com.lpro.fbrest.resources.EstablishmentsResource)
-//    GET     /establishments/filtered (com.lpro.fbrest.resources.EstablishmentsResource)
+//    GET     /establishments/filtered (com.lpro.fbrest.resources.EstablishmentsResource) -check
 //    GET     /establishments/mine (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 
 
@@ -57,5 +58,8 @@ public interface EstablishmentEndpoints {
 
     @GET("/establishments/mine")
     Call<Establishment> getMyEstablishment();
+
+    @GET("/establishments/filtered")
+    Call<List<Establishment>> getEstablishmentsFiltered(@Query("category_id") long category_id);
 
 }
