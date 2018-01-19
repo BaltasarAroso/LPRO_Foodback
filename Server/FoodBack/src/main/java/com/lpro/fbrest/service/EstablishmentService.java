@@ -69,14 +69,24 @@ public abstract class EstablishmentService {
 	 * @return List of all establishments
 	 */
 	public List<Establishment> getAllEstablishments() {
-		return establishmentdao().getAllEstablishments();
+		try {
+			return establishmentdao().getAllEstablishments();
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
 	}
 	
 	/**
 	 * @return List of all temporary establishments
 	 */
 	public List<Establishment> getAllTmpEstablishments() {
-		return establishmentdao().getAllTmpEstablishments();
+		try {
+			return establishmentdao().getAllTmpEstablishments();
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
 	}
 	
 	/**
@@ -290,5 +300,4 @@ public abstract class EstablishmentService {
 		if(establishments.isEmpty()) throw new WebApplicationException(404);
 		return establishments;
 	}
-	
 }

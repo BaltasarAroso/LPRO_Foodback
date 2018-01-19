@@ -27,7 +27,8 @@ public class EstablishmentTest {
 						        								true,
 						        								25,
 						        								"Horário 1",
-						        								"Horário 2");
+						        								"Horário 2",
+						        								3.87);
 
         final String expected = MAPPER.writeValueAsString(
                 MAPPER.readValue(fixture("fixtures/establishment.json"), Establishment.class));
@@ -50,7 +51,8 @@ public class EstablishmentTest {
 															true,
 															25,
 						        								"Horário 1",
-						        								"Horário 2");
+						        								"Horário 2",
+						        								3.87);
           
         assertThat(MAPPER.readValue(fixture("fixtures/establishment.json"), Establishment.class)).isEqualTo(restaurante);
     }

@@ -120,4 +120,5 @@ public interface EstablishmentDAO {
 			+ "FROM establishment "
 			+ "WHERE category_id >= 4")
 	public List<Establishment> getRestaurants();
+	
 }

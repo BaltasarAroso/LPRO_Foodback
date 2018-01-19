@@ -1,5 +1,7 @@
 package com.lpro.fbrest.api;
 
+import java.math.BigDecimal;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Establishment {
@@ -11,7 +13,7 @@ public class Establishment {
 	private String name;
 
 	@JsonProperty
-	private int category_id;
+	private long category_id;
 	
 	@JsonProperty
 	private String address;
@@ -46,13 +48,16 @@ public class Establishment {
 	@JsonProperty
 	private String schedule2;
 	
+	@JsonProperty
+	private BigDecimal rating;
+	
 	public Establishment() {
 		super();
 	}
 	
-	public Establishment(long id, String name, int category_id, String address, String zone, String city, String email,
+	public Establishment(long id, String name, long category_id, String address, String zone, String city, String email,
 			String contact, String username, String password, Boolean delivery, int avg_price, String schedule1,
-			String schedule2) {
+			String schedule2, double rating) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -68,6 +73,7 @@ public class Establishment {
 		this.avg_price = avg_price;
 		this.schedule1 = schedule1;
 		this.schedule2 = schedule2;
+		this.rating = new BigDecimal(rating).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public long getId() {
@@ -86,11 +92,11 @@ public class Establishment {
 		this.name = name;
 	}
 
-	public int getCategory_id() {
+	public long getCategory_id() {
 		return category_id;
 	}
 
-	public void setCategory_id(int category_id) {
+	public void setCategory_id(long category_id) {
 		this.category_id = category_id;
 	}
 
@@ -181,6 +187,14 @@ public class Establishment {
 	public void setSchedule2(String schedule2) {
 		this.schedule2 = schedule2;
 	}
+	
+	public BigDecimal getRating() {
+		return rating;
+	}
+	
+	public void setRating(double rating) {
+		this.rating = new BigDecimal(rating).setScale(2, BigDecimal.ROUND_HALF_UP);
+	}
 
 	public boolean equals(Object o) {
 		if(o == null) return false;
@@ -200,7 +214,8 @@ public class Establishment {
 				this.delivery.equals(restaurante.getDelivery()) &&
 				this.avg_price == restaurante.getAvg_price() &&
 				this.schedule1.equals(restaurante.getSchedule1()) &&
-				this.schedule2.equals(restaurante.getSchedule2())) 
+				this.schedule2.equals(restaurante.getSchedule2()) &&
+				this.rating.equals(restaurante.getRating())) 
 			return true;
 		else return false;			
 	}
