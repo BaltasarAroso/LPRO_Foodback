@@ -49,7 +49,8 @@ CREATE TABLE establishment (
 	delivery BOOLEAN DEFAULT FALSE,
 	avg_price INTEGER,
 	schedule1 VARCHAR(64),
-	schedule2 VARCHAR(64)
+	schedule2 VARCHAR(64),
+	rating NUMERIC(3,2)
 );
 
 CREATE TABLE credential (
@@ -160,7 +161,8 @@ CREATE TABLE establishment_tmp (
 	delivery BOOLEAN DEFAULT FALSE,
 	avg_price INTEGER,
 	schedule1 VARCHAR(64),
-	schedule2 VARCHAR(64)
+	schedule2 VARCHAR(64),
+	rating NUMERIC(3,2)
 );
 
 CREATE TABLE promotion (
