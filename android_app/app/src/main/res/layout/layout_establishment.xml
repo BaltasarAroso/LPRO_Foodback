@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_80sdp"
+    android:layout_height="@dimen/_100sdp"
     android:layout_margin="@dimen/_8sdp">
 
     <com.google.android.flexbox.FlexboxLayout
@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/estab_image"
             android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_height="@dimen/_100sdp"
             app:layout_alignSelf="flex_start"
             app:srcCompat="@drawable/foodback_logo"/>
 
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
-            app:justifyContent="space_around"
+            app:justifyContent="space_between"
             app:flexDirection="column">
 
             <com.google.android.flexbox.FlexboxLayout
@@ -106,6 +106,14 @@
 
             </com.google.android.flexbox.FlexboxLayout>
 
+            <TextView
+                android:id="@+id/estab_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLogo"
+                android:textStyle="normal"
+                android:textSize="@dimen/_8sdp"
+                app:layout_alignSelf="flex_end"/>
 
         </com.google.android.flexbox.FlexboxLayout> -->
 

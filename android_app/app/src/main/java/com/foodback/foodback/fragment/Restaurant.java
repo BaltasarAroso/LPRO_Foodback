@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.amigold.fundapter.BindDictionary;
@@ -15,7 +14,6 @@ import com.amigold.fundapter.extractors.StringExtractor;
 import com.foodback.foodback.R;
 import com.foodback.foodback.logic.Establishment;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -23,20 +21,9 @@ import java.util.ArrayList;
  */
 public class Restaurant extends Fragment {
 
-    /*protected String name;
-    protected String zone;
-    protected String city;
-    protected Integer avg_price;
-
-    public Restaurant(String name, String zone, String city, Integer avg_price) {
-        this.name = name;
-        this.zone = zone;
-        this.city = city;
-        this.avg_price = avg_price
-    }*/
-
     // TODO Andre faz a ligacao ao servidor e verifica que o metodo declareList() esta bem implementado
 
+    ArrayList<Establishment> restaurants = new ArrayList<>();
 
     public Restaurant() {
 
@@ -48,60 +35,11 @@ public class Restaurant extends Fragment {
 
         View view = inflater.inflate(R.layout.tab_restaurant, container, false);
 
-        /*ArrayList<Restaurant> restaurants = new ArrayList<>();
-
-        restaurants.add(
-                "Pizzaria do Chiado",
-                "Baixa",
-                "Porto",
-                15,
-        );*/
-
-        /*ArrayList<String> restaurants = new ArrayList<>();
-
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-        restaurants.add("Pizzaria Torino");
-        restaurants.add("Restaurante Alves");
-        restaurants.add("Marisqueira de Grijó");
-        restaurants.add("Tasca do André");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getContext(),
-                android.R.layout.simple_list_item_1,
-                restaurants
-        );
-
-        ListView listRestaurants = view.findViewById(R.id.list_restaurants);
-        listRestaurants.setAdapter(adapter); */
-
-        ArrayList<Establishment> restaurants = new ArrayList<>();
+        /**
+         * a declaração dos estabelecimentos devia ser feita dentro
+         * de uma função que os vá buscar à base de dados
+         */
+        //getEstablishments()
 
         Establishment e1 = new Establishment(
                 "Li Yun",
@@ -132,7 +70,7 @@ public class Restaurant extends Fragment {
                 "Sab e Dom - 11h Às 15h",
                 "badoxa",
                 "controlar",
-                true
+                false
         );
 
         Establishment e3 = new Establishment(
@@ -155,6 +93,14 @@ public class Restaurant extends Fragment {
         restaurants.add(e2);
         restaurants.add(e3);
 
+        BindDictionary<Establishment> dictionary = createDictionary();
+        
+        declareList(view, dictionary);
+
+        return view;
+    }
+
+    private BindDictionary<Establishment> createDictionary() {
 
         BindDictionary<Establishment> dictionary = new BindDictionary<>();
 
@@ -195,15 +141,28 @@ public class Restaurant extends Fragment {
             }
         });
 
+        dictionary.addStringField(R.id.estab_delivery, new StringExtractor<Establishment>() {
+            @Override
+            public String getStringValue(Establishment estab, int position) {
+                if (estab.getDelivery()) {
+                    return "Encomendas pela app!";
+                } else {
+                    return null;
+                }
+            }
+        });
+
+        return dictionary;
+    }
+
+    private void declareList(View view, BindDictionary<Establishment> dictionary) {
+
         FunDapter <Establishment> adapter = new FunDapter<Establishment>(Restaurant.this.getActivity(), restaurants, R.layout.layout_establishment, dictionary);
 
         ListView listRestaurants = view.findViewById(R.id.list_restaurants);
         listRestaurants.setAdapter(adapter);
-
-        //declareList(view);
-
-        return view;
     }
+
 
     @Override
     public void onStart() {

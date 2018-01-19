@@ -16,7 +16,8 @@
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:flexDirection="column">
+        app:flexDirection="column"
+        android:layout_margin="@dimen/_8sdp">
 
         <!-- TODO: Update blank estab page layout -->
 
@@ -29,7 +30,6 @@
                 android:id="@+id/estab_page_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:text="Tasca do Zé"
                 android:textStyle="bold"
                 android:textSize="@dimen/_20sdp"
@@ -50,6 +50,133 @@
                 app:layout_alignSelf="center"/>
 
         </com.google.android.flexbox.FlexboxLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            app:layout_alignSelf="center"
+            android:background="#999999" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="column"
+            android:layout_marginTop="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/estab_page_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cozinha Portuguesa"
+                android:textStyle="bold"
+                android:textSize="@dimen/_10sdp"
+                app:layout_alignSelf="flex_start"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:flexDirection="row"
+                app:justifyContent="space_between"
+                android:layout_marginTop="@dimen/_4sdp">
+
+                <TextView
+                    android:id="@+id/estab_page_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rua Mouzinho da Silveira"
+                    android:textStyle="normal"
+                    app:layout_alignSelf="flex_start"/>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:alignItems="flex_end"
+                    app:justifyContent="flex_end">
+
+                    <TextView
+                        android:id="@+id/estab_zone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Baixa"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_4sdp"/>
+
+                    <View
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        app:layout_alignSelf="center"
+                        android:background="#999999" />
+
+                    <TextView
+                        android:id="@+id/estab_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Porto"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_4sdp"/>
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:justifyContent="space_between"
+            app:flexDirection="row"
+            android:layout_marginTop="@dimen/_4sdp">
+
+            <TextView
+                android:id="@+id/estab_page_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="223456789"
+                android:textStyle="normal"
+                android:textSize="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/estab_page_avg_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10€"
+                android:textStyle="normal"
+                android:textSize="@dimen/_8sdp"
+                app:layout_alignSelf="flex_end"/>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Informações"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/colorLogo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Menu"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/colorLogo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Opiniões"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/colorLogo"/>
 
 
     </com.google.android.flexbox.FlexboxLayout>
