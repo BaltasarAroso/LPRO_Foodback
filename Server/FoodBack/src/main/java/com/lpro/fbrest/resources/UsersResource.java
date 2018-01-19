@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.service.UserService;
@@ -73,6 +74,18 @@ public class UsersResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(@PathParam("username") String username) {
 		return userService.getUserByUsername(username);
+	}
+	
+	/**
+	 * @param client Client that authenticated
+	 * @return User
+	 */
+	@GET
+	@Path("/me")
+	@RolesAllowed("USER")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getSignedUser(@Auth Client client) {
+		return userService.getUserByUsername(client.getUsername());
 	}
 	
 	/**

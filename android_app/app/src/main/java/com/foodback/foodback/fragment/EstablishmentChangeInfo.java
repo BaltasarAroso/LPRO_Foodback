@@ -2,12 +2,11 @@ package com.foodback.foodback.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,11 +18,8 @@ import com.foodback.foodback.config.CredentialsEndpoints;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Category;
 import com.foodback.foodback.logic.Establishment;
-import com.foodback.foodback.utils.APIError;
 import com.foodback.foodback.utils.CategoryUtils;
-import com.foodback.foodback.utils.ErrorUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -40,19 +36,19 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 public class EstablishmentChangeInfo extends Fragment {
 
     protected EditText editname, editaddress, editzone, editcity, editemail,
-            editcontact, editavgprice, editschedule1, editschedule2, editusername,
+            editcontact, editavgprice, editschedule1, editschedule2,
             editoldpass, editnewpass, editconfpass;
     protected Spinner editcategory;
     protected Button buttonChangeEstab;
     protected CheckBox editdelivery;
 
-    protected String name, category, address, zone, city, email, contact, schedule1, schedule2, username, password;
+    protected String name, category, address, zone, city, email, contact,
+            schedule1, schedule2, oldpass, confpass, newpass;
     protected Integer avg_price;
     protected Boolean delivery;
 
     protected Establishment estab;
 
-    List<Category> categoryList;
     protected int category_id;
 
     EstablishmentEndpoints dataServices;
@@ -81,10 +77,10 @@ public class EstablishmentChangeInfo extends Fragment {
         editschedule2 = getView().findViewById(R.id.schedule2);
 //        editavgprice = getView().findViewById(R.id.avg_price);
         //TODO remove avg price from .java and .xml
-        editusername = getView().findViewById(R.id.username);
         editoldpass = getView().findViewById(R.id.oldpass);
         editnewpass = getView().findViewById(R.id.newpass);
         editconfpass = getView().findViewById(R.id.confpass);
+        editdelivery = getView().findViewById(R.id.delivery);
 
         buttonChangeEstab = getView().findViewById(R.id.buttonChangeEstab);
 
@@ -98,29 +94,23 @@ public class EstablishmentChangeInfo extends Fragment {
 
         });
 
-        // fetch establishment data and asynchronously fill it
         populateFields();
 
-        // fetch categories for spinner and asynchronously fill it
-//        populateSpinner();
-        //TODO: test (important: see if estab.getCategory_id() works right)
         catUtils = new CategoryUtils();
-        catUtils.populateSpinner(getActivity(), editcategory, estab.getCategory_id());
     }
 
     private void changeEstab() {
         initialize();
         if (validateChangesEstab()) {
-//            for(Category x: categoryList) {
-//                if(category.equals(x.getName())) {
-//                    category_id = x.getId();
-//                    break;
-//                }
-//            }
             category_id = catUtils.nameToID(category);
-            estab = new Establishment(name, category_id, address, zone, city, email,
-                    contact, 0, schedule1, schedule2, username, password, delivery);
-            verifyOldPassword(estab, password);
+            if(TextUtils.isEmpty(newpass)) {
+                estab = new Establishment(name, category_id, address, zone, city, email,
+                        contact, 0, schedule1, schedule2, null, oldpass, delivery);
+            } else {
+                estab = new Establishment(name, category_id, address, zone, city, email,
+                        contact, 0, schedule1, schedule2, null, newpass, delivery);
+            }
+            verifyOldPassword(estab, oldpass);
         }
     }
 
@@ -135,14 +125,15 @@ public class EstablishmentChangeInfo extends Fragment {
 //        avg_price = Integer.parseInt(editavgprice.getText().toString());;
         schedule1 = editschedule1.getText().toString();
         schedule2 = editschedule2.getText().toString();
-        username = editusername.getText().toString();
-        password = editoldpass.getText().toString();
+        oldpass = editoldpass.getText().toString();
+        newpass = editnewpass.getText().toString();
+        confpass = editconfpass.getText().toString();
         delivery = editdelivery.isChecked();
     }
 
     private boolean validateChangesEstab() {
 
-        // username must have something that not exceeds 32 characters
+        // name must have something that not exceeds 32 characters
         if (name.length() > 32) {
             editname.setError("Please enter a valid name (max size of 32 characters)");
             return false;
@@ -163,7 +154,6 @@ public class EstablishmentChangeInfo extends Fragment {
     private void populateFields() {
         try {
             dataServices = retrofit.create(EstablishmentEndpoints.class);
-            //TODO: application crashes changing to this fragment
             Call<Establishment> call = dataServices.getMyEstablishment();
 
             call.enqueue(new Callback<Establishment>() {
@@ -173,135 +163,58 @@ public class EstablishmentChangeInfo extends Fragment {
                         estab = response.body();
                         editname.setText(estab.getName());
                         editaddress.setText(estab.getAddress());
-                        editzone.setText(estab.getAddress());
-                        editcity.setText(estab.getCategory_id());
+                        editzone.setText(estab.getZone());
+                        editcity.setText(estab.getCity());
                         editemail.setText(estab.getEmail());
                         editcontact.setText(estab.getContact());
                         editschedule1.setText(estab.getSchedule1());
                         editschedule2.setText(estab.getSchedule2());
                         if(estab.getDelivery()) editdelivery.setChecked(true);
+                        catUtils.populateSpinner(
+                                getActivity(),
+                                editcategory,
+                                estab.getCategory_id()
+                        );
                     } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(getActivity(),
-//                                apiError.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
                         isBad(getActivity(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Establishment> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(getActivity(),
-//                            R.string.error_server_response,
-//                            Toast.LENGTH_SHORT).show();
                     isFailure(getActivity(), t);
                 }
             });
 
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(getActivity(),
-//                    R.string.error_unexpected,
-//                    Toast.LENGTH_SHORT).show();
             isException(getActivity(), e);
         }
 
     }
 
-//    public void populateSpinner(){
-//        try {
-//            Call<List<Category>> call = dataServices.getAllCategories();
-//
-//            call.enqueue(new Callback<List<Category>>() {
-//                @Override
-//                public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-//                    if(response.isSuccessful()) {
-//                        categoryList = response.body();
-//                        if(categoryList.size() == 0) {
-//                            Toast.makeText(getActivity(),
-//                                    "No establishment categories found.",
-//                                    Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            List<String> spinnerArray = new ArrayList<>();
-//
-//                            for(Category x: categoryList) {
-//                                spinnerArray.add(x.getName());
-//                            }
-//
-//                            ArrayAdapter<String> adapter = new ArrayAdapter<>(
-//                                    getActivity(),
-//                                    android.R.layout.simple_spinner_item,
-//                                    spinnerArray);
-//
-//                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                            editcategory.setAdapter(adapter);
-//                            editcategory.setSelection(estab.getCategory_id());
-//                        }
-//                    } else {
-////                        APIError apiError = ErrorUtils.parseError(response);
-////                        Toast.makeText(getActivity(),
-////                                apiError.getMessage(),
-////                                Toast.LENGTH_SHORT).show();
-//                        isBad(getActivity(), response);
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<Category>> call, Throwable t) {
-////                    Toast.makeText(getActivity(),
-////                            "Error getting server response.",
-////                            Toast.LENGTH_SHORT).show();
-//                    isFailure(getActivity(), t);
-//                }
-//            });
-//        } catch(Exception e) {
-////            Log.e("DEBUG", Log.getStackTraceString(e));
-////            Toast.makeText(getActivity(),
-////                    "The program has encountered an error.",
-////                    Toast.LENGTH_SHORT).show();
-//            isException(getActivity(), e);
-//        }
-//    }
-
     private void verifyOldPassword(final Establishment estab, final String password) {
         try {
             credentialServices = retrofit.create(CredentialsEndpoints.class);
+            //TODO this doesn't verify old password, it just uses Basic Auth normally
             Call<ResponseBody> credentialCall = credentialServices.verifyEstablishmentCredentials();
 
             credentialCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()) {
-                        Toast.makeText(getActivity(),
-                                "Establishment updated successfully.",
-                                Toast.LENGTH_SHORT).show();
                         changeEstabOnServer(estab, password);
                     } else {
                         editoldpass.setError("Wrong password");
-
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(getActivity(),
-//                                apiError.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
                         isBad(getActivity(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(getActivity(),
-//                            "Error getting server response.",
-//                            Toast.LENGTH_SHORT).show();
                     isFailure(getActivity(), t);
                 }
             });
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(getActivity(),
-//                    "Unexpected error.",
-//                    Toast.LENGTH_SHORT).show();
             isException(getActivity(), e);
         }
     }
@@ -318,30 +231,22 @@ public class EstablishmentChangeInfo extends Fragment {
                         Toast.makeText(getActivity(),
                                 "Establishment updated successfully.",
                                 Toast.LENGTH_SHORT).show();
-                        changeCredentials(password);
+                        if(!TextUtils.isEmpty(newpass)) {
+                            changeCredentials(password);
+                        } else {
+                            //TODO change activity or "remove"/"exit" fragment
+                        }
                     } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(getActivity(),
-//                                apiError.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
                         isBad(getActivity(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(getActivity(),
-//                            R.string.error_server_response,
-//                            Toast.LENGTH_SHORT).show();
                     isFailure(getActivity(), t);
                 }
             });
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(getActivity(),
-//                    R.string.error_unexpected,
-//                    Toast.LENGTH_SHORT).show();
             isException(getActivity(), e);
         }
     }
@@ -356,33 +261,21 @@ public class EstablishmentChangeInfo extends Fragment {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()) {
                         Toast.makeText(getActivity(),
-                                "Establishment updated successfully.",
+                                "Credentials updated successfully.",
                                 Toast.LENGTH_SHORT).show();
                         setCredentials(null, password);
                         //TODO change activity or "remove"/"exit" fragment
                     } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(getActivity(),
-//                                apiError.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
                         isBad(getActivity(), response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(getActivity(),
-//                            R.string.error_server_response,
-//                            Toast.LENGTH_SHORT).show();
                     isFailure(getActivity(), t);
                 }
             });
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(getActivity(),
-//                    R.string.error_unexpected,
-//                    Toast.LENGTH_SHORT).show();
             isException(getActivity(), e);
         }
     }

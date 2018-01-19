@@ -86,7 +86,7 @@ public class CategoryUtils {
 
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner.setAdapter(adapter);
-                            if(id != null) spinner.setSelection(id);
+                            if(id != null) spinner.setSelection(id-1, true);
                         }
                     } else {
                         isBad(context, response);

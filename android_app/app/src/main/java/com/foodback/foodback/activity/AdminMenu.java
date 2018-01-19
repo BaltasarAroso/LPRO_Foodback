@@ -65,7 +65,6 @@ public class AdminMenu extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -81,7 +80,6 @@ public class AdminMenu extends AppCompatActivity
         if (id == R.id.nav_homepage) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
-            Toast.makeText(this, "homepage", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_delivery) {
@@ -89,11 +87,9 @@ public class AdminMenu extends AppCompatActivity
         } else if (id == R.id.nav_notifications) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.admin_menu, new Notifications()).commit();
-            Toast.makeText(this, "notifications", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.admin_menu, new UserChangeInfo()).commit();
-            Toast.makeText(this, "definitions", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_logout) {
             Intent i = new Intent();
             i.setClass(AdminMenu.this, LogIn.class);
