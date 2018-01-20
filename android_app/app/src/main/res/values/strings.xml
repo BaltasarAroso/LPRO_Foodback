@@ -86,5 +86,6 @@
     <string name="correct_estab_changes">Alterar Informações</string>
     <string name="display_price">%d€</string>
     <string name="display_delivery">Encomendas</string>
+    <string name="spotlight">Destacar</string>
 
 </resources>
