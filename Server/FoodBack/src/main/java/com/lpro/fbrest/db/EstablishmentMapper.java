@@ -14,7 +14,7 @@ public class EstablishmentMapper implements ResultSetMapper<Establishment>{
 	public Establishment map(int index, ResultSet r, StatementContext ctx) throws SQLException {
 		return new Establishment(r.getInt("id"),
 						r.getString("name"),
-						r.getInt("category_id"),
+						r.getString("category"),
 						r.getString("address"),
 						r.getString("zone"),
 						r.getString("city"),
@@ -25,6 +25,7 @@ public class EstablishmentMapper implements ResultSetMapper<Establishment>{
 						r.getBoolean("delivery"),
 						r.getInt("avg_price"),
 						r.getString("schedule1"),
-						r.getString("schedule2"));
+						r.getString("schedule2"),
+						r.getDouble("rating"));
 	}
 }

@@ -66,7 +66,7 @@ public class ImagesResource {
 				!fileName.endsWith(".jpeg") &&
 				!fileName.endsWith(".png") &&
 				!fileName.endsWith(".gif"))
-			throw new WebApplicationException(400);
+			throw new WebApplicationException(415);
 		
 		String extension = fileName.substring(fileName.lastIndexOf('.'));
 		
@@ -115,7 +115,9 @@ public class ImagesResource {
 					+ establishmentImageDao.getImageExtension(profileId);
 			try {
 				File file = new File(oldImagePath);
-				if(!file.delete()) throw new WebApplicationException(500);
+				if(file.exists()) {
+					if(!file.delete()) throw new WebApplicationException(500);
+				}
 				establishmentImageDao.deleteImage(profileId);
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -128,7 +130,7 @@ public class ImagesResource {
 				!fileName.endsWith(".jpeg") &&
 				!fileName.endsWith(".png") &&
 				!fileName.endsWith(".gif"))
-			throw new WebApplicationException(400);
+			throw new WebApplicationException(415);
 		
 		String extension = fileName.substring(fileName.lastIndexOf('.'));
 		
@@ -177,16 +179,23 @@ public class ImagesResource {
 	 */
 	@GET
 	@Path("/establishment/profile/{establishment_id}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getEstablishmentProfileImageName(@PathParam("establishment_id") long establishment_id) {
+	@Produces("image/*")
+	public Response getEstablishmentProfileImage(@PathParam("establishment_id") long establishment_id) {
 		long profileId = establishmentImageDao.getProfileId(establishment_id);
 		if(profileId == 0) throw new WebApplicationException(404);
-		return "establishment"
+		String imageName = "establishment"
 				+ "_"
 				+ Long.toString(establishment_id)
 				+ "_"
 				+ Long.toString(profileId)
 				+ establishmentImageDao.getImageExtension(profileId);
+		
+		File f = new File("uploads/" + imageName);
+		if (!f.exists()) {
+			throw new WebApplicationException(404);
+		}
+		String mt = new MimetypesFileTypeMap().getContentType(f);
+		return Response.ok(f, mt).build();
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 {
 	"id": "29",
 	"name": "Ristoranti Italiano",
-	"category_id": "23",
+	"category": "Categoria",
 	"address": "Morada",
 	"zone": "minha zona",
 	"city": "minha cidade",
@@ -12,5 +12,6 @@
 	"delivery": true,
 	"avg_price": "25",
 	"schedule1": "Horário 1",
-	"schedule2": "Horário 2"
+	"schedule2": "Horário 2",
+	"rating": "3.87"
 }

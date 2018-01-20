@@ -39,7 +39,7 @@ INSERT INTO category VALUES(11, 'Pizzaria');
 CREATE TABLE establishment (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(64) NOT NULL,
-	category_id INTEGER REFERENCES category
+	category VARCHAR(32) REFERENCES category (category)
 		ON DELETE SET NULL ON UPDATE CASCADE,
 	address VARCHAR(64),
 	zone VARCHAR(32),
@@ -49,7 +49,8 @@ CREATE TABLE establishment (
 	delivery BOOLEAN DEFAULT FALSE,
 	avg_price INTEGER,
 	schedule1 VARCHAR(64),
-	schedule2 VARCHAR(64)
+	schedule2 VARCHAR(64),
+	rating NUMERIC(3,2)
 );
 
 CREATE TABLE credential (
@@ -150,7 +151,7 @@ CREATE TABLE report (
 CREATE TABLE establishment_tmp (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(64),
-	category_id INTEGER REFERENCES category
+	category VARCHAR(32) REFERENCES category (category)
 		ON DELETE SET NULL ON UPDATE CASCADE,
 	address VARCHAR(64),
 	zone VARCHAR(32),
@@ -160,7 +161,8 @@ CREATE TABLE establishment_tmp (
 	delivery BOOLEAN DEFAULT FALSE,
 	avg_price INTEGER,
 	schedule1 VARCHAR(64),
-	schedule2 VARCHAR(64)
+	schedule2 VARCHAR(64),
+	rating NUMERIC(3,2)
 );
 
 CREATE TABLE promotion (

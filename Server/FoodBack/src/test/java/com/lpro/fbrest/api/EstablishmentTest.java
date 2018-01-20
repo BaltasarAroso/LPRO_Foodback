@@ -16,7 +16,7 @@ public class EstablishmentTest {
     public void serializesToJSON() throws Exception {
         final Establishment restaurante = new Establishment(29,
 						        								"Ristoranti Italiano",
-						        								23,
+						        								"Categoria",
 						        								"Morada",
 						        								"minha zona",
 						        								"minha cidade",
@@ -27,7 +27,8 @@ public class EstablishmentTest {
 						        								true,
 						        								25,
 						        								"Horário 1",
-						        								"Horário 2");
+						        								"Horário 2",
+						        								3.87);
 
         final String expected = MAPPER.writeValueAsString(
                 MAPPER.readValue(fixture("fixtures/establishment.json"), Establishment.class));
@@ -39,7 +40,7 @@ public class EstablishmentTest {
     public void deserializesFromJSON() throws Exception {
         final Establishment restaurante = new Establishment(29,
 															"Ristoranti Italiano",
-															23,
+															"Categoria",
 															"Morada",
 															"minha zona",
 															"minha cidade",
@@ -50,7 +51,8 @@ public class EstablishmentTest {
 															true,
 															25,
 						        								"Horário 1",
-						        								"Horário 2");
+						        								"Horário 2",
+						        								3.87);
           
         assertThat(MAPPER.readValue(fixture("fixtures/establishment.json"), Establishment.class)).isEqualTo(restaurante);
     }

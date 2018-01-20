@@ -49,4 +49,12 @@ public interface CommentDAO {
 			+ "WHERE establishment_id = :establishment_id")
 	public List<Comment> getEstablishmentComments(@Bind("establishment_id") long establishment_id);
 
+	/**
+	 * @param establishment_id ID of establishment to update rating
+	 */
+	@SqlUpdate("UPDATE establishment "
+			+ "SET rating = (SELECT AVG(rating) FROM comment WHERE establishment_id = :id) "
+			+ "WHERE id = :id")
+	public void updateEstablishmentRating(@Bind("id") long establishment_id);
+
 }

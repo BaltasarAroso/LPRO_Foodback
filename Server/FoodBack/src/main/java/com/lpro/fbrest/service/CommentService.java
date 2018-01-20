@@ -21,11 +21,13 @@ public abstract class CommentService {
 	 * @param comment Comment to be inserted 
 	 */
 	public void newComment(Comment comment) {
+		if(comment.getRating() < 1 || comment.getRating() > 5) throw new WebApplicationException(400);
 		try {
 			commentdao().insertComment(comment.getEstablishment_id(),
 									comment.getCommenter_id(),
 									comment.getRating(),
 									comment.getComment());
+			commentdao().updateEstablishmentRating(comment.getEstablishment_id());
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
@@ -38,6 +40,7 @@ public abstract class CommentService {
 	public void deleteComment(Comment comment) {
 		try {
 			commentdao().deleteComment(comment.getId());
+			commentdao().updateEstablishmentRating(comment.getEstablishment_id());
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
