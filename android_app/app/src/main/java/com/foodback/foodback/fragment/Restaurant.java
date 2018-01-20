@@ -108,11 +108,10 @@ public class Restaurant extends Fragment {
                 return estab.getCity();
             }
         });
-        //TODO show category name, not id
         dictionary.addStringField(R.id.estab_category, new StringExtractor<Establishment>() {
             @Override
             public String getStringValue(Establishment estab, int position) {
-                return "" + estab.getCategory_id();
+                return estab.getCategory();
             }
         });
         dictionary.addStringField(R.id.estab_contact, new StringExtractor<Establishment>() {
@@ -124,7 +123,11 @@ public class Restaurant extends Fragment {
         dictionary.addStringField(R.id.estab_avg_price, new StringExtractor<Establishment>() {
             @Override
             public String getStringValue(Establishment estab, int position) {
-                return "" + estab.getAvg_price() + "€";
+                if (estab.getAvg_price() > 0) {
+                    return "" + estab.getAvg_price() + "€";
+                } else {
+                    return null;
+                }
             }
         });
         dictionary.addStringField(R.id.estab_delivery, new StringExtractor<Establishment>() {

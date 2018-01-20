@@ -81,4 +81,7 @@
     <string name="error_no_role">Something unexpected occurred. Please try signing in again.</string>
     <string name="login_success">Login successful!</string>
     <string name="establishment_image">Establishment image</string>
+    <string name="discard">Descartar</string>
+    <string name="delete_comment">Apagar Comentário</string>
+    <string name="correct_estab_changes">Alterar Informações</string>
 </resources>

@@ -21,7 +21,7 @@ public class Establishment {
     /**
      * Establishment's category
      */
-    private int category_id;
+    private String category;
 
     /**
      * Establishment's address
@@ -80,27 +80,27 @@ public class Establishment {
 
     /**
      *
-     * @param name
-     * @param category_id
-     * @param address
-     * @param zone
-     * @param city
-     * @param email
-     * @param contact
-     * @param avg_price
-     * @param schedule1
-     * @param schedule2
-     * @param username
-     * @param password
-     * @param delivery
+     * @param name Establishment's name
+     * @param category Establishment's category
+     * @param address Establishment's address
+     * @param zone Establishment's zone
+     * @param city Establishment's city
+     * @param email Establishment's email
+     * @param contact Establishment's contact
+     * @param avg_price Establishment's average price
+     * @param schedule1 Establishment's schedule part 1
+     * @param schedule2 Establishment's schedule part 2
+     * @param username username of the establishment's app manager
+     * @param password password of the establishment's app manager
+     * @param delivery establishment has delivery service in this app or not
      *
      * Constructor
      */
-    public Establishment(String name, int category_id, String address, String zone, String city, String email,
+    public Establishment(String name, String category, String address, String zone, String city, String email,
                          String contact, int avg_price, String schedule1, String schedule2, String username, String password, boolean delivery) {
         this.id = null;
         this.name = name;
-        this.category_id = category_id;
+        this.category = category;
         this.address = address;
         this.zone = zone;
         this.city = city;
@@ -116,28 +116,28 @@ public class Establishment {
 
     /**
      *
-     * @param id
-     * @param name
-     * @param category_id
-     * @param address
-     * @param zone
-     * @param city
-     * @param email
-     * @param contact
-     * @param avg_price
-     * @param schedule1
-     * @param schedule2
-     * @param username
-     * @param password
-     * @param delivery
+     * @param id Establishment's id
+     * @param name Establishment's name
+     * @param category Establishment's category
+     * @param address Establishment's address
+     * @param zone Establishment's zone
+     * @param city Establishment's city
+     * @param email Establishment's email
+     * @param contact Establishment's contact
+     * @param avg_price Establishment's average price
+     * @param schedule1 Establishment's schedule part 1
+     * @param schedule2 Establishment's schedule part 2
+     * @param username username of the establishment's app manager
+     * @param password password of the establishment's app manager
+     * @param delivery establishment has delivery service in this app or not
      *
      * Constructor
      */
-    public Establishment(int id, String name, int category_id, String address, String zone, String city, String email,
+    public Establishment(int id, String name, String category, String address, String zone, String city, String email,
                          String contact, int avg_price, String schedule1, String schedule2, String username, String password, boolean delivery) {
         this.id = id;
         this.name = name;
-        this.category_id = category_id;
+        this.category = category;
         this.address = address;
         this.zone = zone;
         this.city = city;
@@ -161,7 +161,7 @@ public class Establishment {
 
     /**
      *
-     * @param id
+     * @param id Establishment's id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -177,7 +177,7 @@ public class Establishment {
 
     /**
      *
-     * @param name
+     * @param name Establishment's name
      */
     public void setName(String name) {
         this.name = name;
@@ -187,16 +187,16 @@ public class Establishment {
      *
      * @return establishment's category
      */
-    public int getCategory_id() {
-        return category_id;
+    public String getCategory() {
+        return category;
     }
 
     /**
      *
-     * @param category_id
+     * @param category Establishment's category
      */
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**
@@ -209,7 +209,7 @@ public class Establishment {
 
     /**
      *
-     * @param address
+     * @param address Establishment's address
      */
     public void setAddress(String address) {
         this.address = address;
@@ -225,7 +225,7 @@ public class Establishment {
 
     /**
      *
-     * @param zone
+     * @param zone Establishment's zone
      */
     public void setZone(String zone) {
         this.zone = zone;
@@ -241,7 +241,7 @@ public class Establishment {
 
     /**
      *
-     * @param city
+     * @param city Establishment's city
      */
     public void setCity(String city) {
         this.city = city;
@@ -257,7 +257,7 @@ public class Establishment {
 
     /**
      *
-     * @param email
+     * @param email Establishment's email
      */
     public void setEmail(String email) {
         this.email = email;
@@ -273,7 +273,7 @@ public class Establishment {
 
     /**
      *
-     * @param contact
+     * @param contact Establishment's contact
      */
     public void setContact(String contact) {
         this.contact = contact;
@@ -289,7 +289,7 @@ public class Establishment {
 
     /**
      *
-     * @param avg_price
+     * @param avg_price Establishment's average price
      */
     public void setAvg_price(int avg_price) {
         this.avg_price = avg_price;
@@ -305,7 +305,7 @@ public class Establishment {
 
     /**
      *
-     * @param schedule1
+     * @param schedule1 Establishment's schedule part 1
      */
     public void setSchedule1(String schedule1) {
         this.schedule1 = schedule1;
@@ -321,7 +321,7 @@ public class Establishment {
 
     /**
      *
-     * @param schedule2
+     * @param schedule2 Establishment's schedule part 2
      */
     public void setSchedule2(String schedule2) {
         this.schedule2 = schedule2;
@@ -337,7 +337,7 @@ public class Establishment {
 
     /**
      *
-     * @param username
+     * @param username establishment's manager app username
      */
     public void setUsername(String username) {
         this.username = username;
@@ -353,7 +353,7 @@ public class Establishment {
 
     /**
      *
-     * @param password
+     * @param password establishment's manager app password
      */
     public void setPassword(String password) {
         this.password = password;
@@ -369,7 +369,7 @@ public class Establishment {
 
     /**
      *
-     * @param delivery
+     * @param delivery if this establishment has delivery service or not
      */
     public void setDelivery(Boolean delivery) {
         this.delivery = delivery;
@@ -377,7 +377,7 @@ public class Establishment {
 
     /**
      *
-     * @param o
+     * @param o Establishment used to compare
      * @return if all elements of this establishment are equal
      *         to the elements of the establishment given by parameter
      */
@@ -388,7 +388,7 @@ public class Establishment {
         Establishment restaurante = (Establishment)o;
         return (this.id == restaurante.getId() &&
                 this.name.equals(restaurante.getName()) &&
-                this.category_id == restaurante.getCategory_id() &&
+                this.category.equals(restaurante.getCategory()) &&
                 this.address.equals(restaurante.getAddress()) &&
                 this.zone.equals(restaurante.getZone()) &&
                 this.city.equals(restaurante.getCity()) &&
