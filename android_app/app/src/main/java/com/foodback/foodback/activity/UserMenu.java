@@ -51,6 +51,9 @@ public class UserMenu extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.user_menu, new Homepage()).commit();
+
         fillUserInfo();
     }
 
