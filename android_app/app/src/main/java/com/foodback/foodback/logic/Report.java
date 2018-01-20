@@ -1,7 +1,7 @@
 package com.foodback.foodback.logic;
 
 /**
- * Created by Foodback on 2017/2018.
+ * Created by Foodback.
  */
 
 public class Report {
@@ -35,13 +35,6 @@ public class Report {
      * ID of user that is reporting
      */
     private long reporter_id;
-
-    /**
-     * Constructor for Jackson
-     */
-    public Report() {
-        super();
-    }
 
     /**
      * @param id ID of Report

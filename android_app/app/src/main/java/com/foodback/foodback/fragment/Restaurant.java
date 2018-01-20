@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.GlideApp;
 import com.foodback.foodback.utils.MyAppGlideModule;
 
 import java.util.ArrayList;
@@ -148,9 +149,12 @@ public class Restaurant extends Fragment {
         }, new DynamicImageLoader() {
             @Override
             public void loadImage(String url, ImageView view) {
-                //TODO try to use GlideApp (utils/MyAppGlideModule)
-                Glide.with(getActivity())
+                GlideApp.with(getActivity())
                         .load(url)
+                        .placeholder(R.drawable.foodback_logo)
+                        .error(R.drawable.foodback_logo)
+                        .fallback(R.drawable.foodback_logo)
+                        .fitCenter()
                         .thumbnail(0.1f)
                         .into(view);
             }
