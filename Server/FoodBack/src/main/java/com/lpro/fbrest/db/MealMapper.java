@@ -17,7 +17,7 @@ public class MealMapper implements ResultSetMapper<Meal>{
 		return new Meal(r.getLong("id"),
 						r.getString("meal"),
 						r.getInt("price"),
-						r.getInt("establishment_id"));
+						r.getLong("establishment_id"));
 	}
 	
 

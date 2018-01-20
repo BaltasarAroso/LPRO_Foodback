@@ -14,13 +14,13 @@ public class Meal {
 	private int price;
 	
 	@JsonProperty
-	private int establishment_id;
+	private long establishment_id;
 	
 	public Meal() {
 		super();
 	}
 
-	public Meal(long id, String meal, int price, int establishment_id) {
+	public Meal(long id, String meal, int price, long establishment_id) {
 		super();
 		this.id = id;
 		this.meal = meal;
@@ -52,11 +52,11 @@ public class Meal {
 		this.price = price;
 	}
 
-	public int getEstablishment_id() {
+	public long getEstablishment_id() {
 		return establishment_id;
 	}
 
-	public void setEstablishment_id(int establishment_id) {
+	public void setEstablishment_id(long establishment_id) {
 		this.establishment_id = establishment_id;
 	}
 
