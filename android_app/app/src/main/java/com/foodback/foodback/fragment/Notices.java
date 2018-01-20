@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -55,87 +56,11 @@ public class Notices extends Fragment {
     }
 
 
-    private BindDictionary<Establishment> createDictionary() {
-
-        BindDictionary<Establishment> dictionary = new BindDictionary<>();
-
-        dictionary.addStringField(R.id.estab_name, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getName();
-            }
-        });
-        dictionary.addStringField(R.id.estab_zone, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getZone();
-            }
-        });
-        dictionary.addStringField(R.id.estab_city, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getCity();
-            }
-        });
-        dictionary.addStringField(R.id.estab_category, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getCategory();
-            }
-        });
-        dictionary.addStringField(R.id.estab_contact, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getContact();
-            }
-        });
-        dictionary.addStringField(R.id.estab_avg_price, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                if (estab.getAvg_price() > 0) {
-                    return "" + estab.getAvg_price() + "€";
-                } else {
-                    return null;
-                }
-            }
-        });
-        dictionary.addStringField(R.id.estab_delivery, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                if (estab.getDelivery()) {
-                    return "Encomendas";
-                } else {
-                    return null;
-                }
-            }
-        });
-        dictionary.addDynamicImageField(R.id.estab_image, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return getBaseUrl() + "/image/establishment/profile/" + estab.getId();
-            }
-        }, new DynamicImageLoader() {
-            @Override
-            public void loadImage(String url, ImageView view) {
-                GlideApp.with(getActivity())
-                        .load(url)
-                        .placeholder(R.drawable.foodback_logo)
-                        .error(R.drawable.foodback_logo)
-                        .fallback(R.drawable.foodback_logo)
-                        .fitCenter()
-                        .thumbnail(0.1f)
-                        .into(view);
-            }
-        });
-
-        return dictionary;
-    }
-
     private void declareList(View view, BindDictionary<Establishment> dictionary) {
 
-        FunDapter<Establishment> adapter = new FunDapter<Establishment>(getActivity(), notices, R.layout.layout_notices, dictionary);
+        FunDapter <Establishment> adapter = new FunDapter<Establishment>(getActivity(), notices, R.layout.layout_establishment, dictionary);
 
-        ListView listRestaurants = view.findViewById(R.id.list_restaurants);
+        ListView listRestaurants = view.findViewById(R.id.list_notices);
         listRestaurants.setAdapter(adapter);
         listRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
