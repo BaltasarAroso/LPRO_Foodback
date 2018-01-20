@@ -1,5 +1,6 @@
 package com.lpro.fbrest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
@@ -303,8 +304,10 @@ public abstract class EstablishmentService {
 		return establishments;
 	}
 
-	public List<Establishment> getAllTmpEstablishmentDifferences() {
+	public List<List<Establishment>> getAllTmpEstablishmentDifferences() {
 		List<Establishment> tmp_establishments;
+		List<Establishment> list_element;
+		List<List<Establishment>> list;
 		Establishment establishment;
 		try {
 			tmp_establishments = establishmentdao().getAllTmpEstablishments();
@@ -314,9 +317,12 @@ public abstract class EstablishmentService {
 		}
 		if(tmp_establishments == null) throw new WebApplicationException(404);
 		if(tmp_establishments.isEmpty()) throw new WebApplicationException(404);
+		list = new ArrayList<List<Establishment>>();
 		for(Establishment tmp_establishment : tmp_establishments) {
 			establishment = establishmentdao().getEstablishmentOfTmpEstablishment(tmp_establishment.getId());
 			if(establishment != null) {
+				list_element = new ArrayList<Establishment>();
+				list_element.add(establishment);
 				if(establishment.getName() != null && establishment.getName().equals(tmp_establishment.getName())) tmp_establishment.setName(null);
 				if(establishment.getCategory() != null && establishment.getCategory().equals(tmp_establishment.getCategory())) tmp_establishment.setCategory(null);
 				if(establishment.getAddress() != null && establishment.getAddress().equals(tmp_establishment.getAddress())) tmp_establishment.setAddress(null);
@@ -328,9 +334,11 @@ public abstract class EstablishmentService {
 				if(establishment.getAvg_price() == tmp_establishment.getAvg_price()) tmp_establishment.setAvg_price(0);
 				if(establishment.getSchedule1() != null && establishment.getSchedule1().equals(tmp_establishment.getSchedule1())) tmp_establishment.setSchedule1(null);
 				if(establishment.getSchedule2() != null && establishment.getSchedule2().equals(tmp_establishment.getSchedule2())) tmp_establishment.setSchedule2(null);
+				list_element.add(tmp_establishment);
+				list.add(list_element);
 			}
 		}
-		return tmp_establishments;
+		return list;
 	}
 	
 }

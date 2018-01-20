@@ -192,7 +192,7 @@ import io.dropwizard.auth.Auth;
 		@RolesAllowed("ADMIN")
 		@Path("/tmp/diff")
 		@Produces(MediaType.APPLICATION_JSON)
-		public List<Establishment> getAllTmpEstablishmentDifferences() {
+		public List<List<Establishment>> getAllTmpEstablishmentDifferences() {
 			return establishmentService.getAllTmpEstablishmentDifferences();
 		}
 		
