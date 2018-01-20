@@ -102,7 +102,7 @@ public class EstablishmentUtils {
                 GlideApp.with(context)
                         .load(url)
                         .transition(withCrossFade())
-                        .placeholder(R.drawable.foodback_logo)
+                        .fallback(R.drawable.foodback_logo)
                         .fitCenter()
                         .into(view);
             }

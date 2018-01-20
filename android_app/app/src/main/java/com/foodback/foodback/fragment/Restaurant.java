@@ -1,6 +1,5 @@
 package com.foodback.foodback.fragment;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,11 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.amigold.fundapter.BindDictionary;
-import com.amigold.fundapter.FunDapter;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.EstablishmentListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +25,11 @@ import static com.foodback.foodback.config.FoodbackClient.retrofit;
 import static com.foodback.foodback.utils.ErrorDisplay.isBad;
 import static com.foodback.foodback.utils.ErrorDisplay.isException;
 import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
-import static com.foodback.foodback.utils.EstablishmentUtils.createDictionary;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Restaurant extends Fragment {
-
-    // TODO Andre faz a ligacao ao servidor e verifica que o metodo declareList() esta bem implementado
 
     ArrayList<Establishment> restaurants = new ArrayList<>();
 
@@ -46,12 +41,12 @@ public class Restaurant extends Fragment {
 
         View view = inflater.inflate(R.layout.tab_restaurant, container, false);
 
-        fillEstablishmentDictionary(view);
+        fillEstablishmentList(view);
 
         return view;
     }
 
-    private void fillEstablishmentDictionary(final View view) {
+    private void fillEstablishmentList(final View view) {
         try {
             EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
             Call<List<Establishment>> call = services.getEstablishmentsFiltered(123456789);
@@ -62,9 +57,8 @@ public class Restaurant extends Fragment {
                     if(response.isSuccessful()) {
                         List<Establishment> tmp = response.body();
                         restaurants.addAll(tmp);
-                        BindDictionary<Establishment> dictionary = createDictionary(getActivity());
 
-                        declareList(view, dictionary);
+                        declareList(view);
                     } else {
                         isBad(getActivity(), response);
                     }
@@ -81,12 +75,10 @@ public class Restaurant extends Fragment {
         }
     }
 
-    private void declareList(View view, BindDictionary<Establishment> dictionary) {
-
-        FunDapter <Establishment> adapter = new FunDapter<Establishment>(Restaurant.this.getActivity(), restaurants, R.layout.layout_establishment, dictionary);
+    private void declareList(View view) {
 
         ListView listRestaurants = view.findViewById(R.id.list_restaurants);
-        listRestaurants.setAdapter(adapter);
+        listRestaurants.setAdapter(new EstablishmentListAdapter(getActivity(), restaurants));
         listRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

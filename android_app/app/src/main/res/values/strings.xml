@@ -84,4 +84,7 @@
     <string name="discard">Descartar</string>
     <string name="delete_comment">Apagar Comentário</string>
     <string name="correct_estab_changes">Alterar Informações</string>
+    <string name="display_price">%d€</string>
+    <string name="display_delivery">Encomendas</string>
+
 </resources>
