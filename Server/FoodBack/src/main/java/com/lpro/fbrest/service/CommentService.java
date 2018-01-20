@@ -40,6 +40,7 @@ public abstract class CommentService {
 	public void deleteComment(Comment comment) {
 		try {
 			commentdao().deleteComment(comment.getId());
+			commentdao().updateEstablishmentRating(comment.getEstablishment_id());
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);

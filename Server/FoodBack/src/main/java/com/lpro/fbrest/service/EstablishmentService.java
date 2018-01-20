@@ -300,4 +300,34 @@ public abstract class EstablishmentService {
 		if(establishments.isEmpty()) throw new WebApplicationException(404);
 		return establishments;
 	}
+
+	public List<Establishment> getAllTmpEstablishmentDifferences() {
+		List<Establishment> tmp_establishments;
+		Establishment establishment;
+		try {
+			tmp_establishments = establishmentdao().getAllTmpEstablishments();
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+		if(tmp_establishments == null) throw new WebApplicationException(404);
+		if(tmp_establishments.isEmpty()) throw new WebApplicationException(404);
+		for(Establishment tmp_establishment : tmp_establishments) {
+			establishment = establishmentdao().getEstablishmentOfTmpEstablishment(tmp_establishment.getId());
+			if(establishment != null) {
+				if(establishment.getName() != null && establishment.getName().equals(tmp_establishment.getName())) tmp_establishment.setName(null);
+				if(establishment.getCategory() != null && establishment.getCategory().equals(tmp_establishment.getCategory())) tmp_establishment.setCategory(null);
+				if(establishment.getAddress() != null && establishment.getAddress().equals(tmp_establishment.getAddress())) tmp_establishment.setAddress(null);
+				if(establishment.getZone() != null && establishment.getZone().equals(tmp_establishment.getZone())) tmp_establishment.setZone(null);
+				if(establishment.getCity() != null && establishment.getCity().equals(tmp_establishment.getCity())) tmp_establishment.setCity(null);
+				if(establishment.getEmail() != null && establishment.getEmail().equals(tmp_establishment.getEmail())) tmp_establishment.setEmail(null);
+				if(establishment.getContact() != null && establishment.getContact().equals(tmp_establishment.getContact())) tmp_establishment.setContact(null);
+				if(establishment.getDelivery() != null && establishment.getDelivery().equals(tmp_establishment.getDelivery())) tmp_establishment.setDelivery(null);
+				if(establishment.getAvg_price() == tmp_establishment.getAvg_price()) tmp_establishment.setAvg_price(0);
+				if(establishment.getSchedule1() != null && establishment.getSchedule1().equals(tmp_establishment.getSchedule1())) tmp_establishment.setSchedule1(null);
+				if(establishment.getSchedule2() != null && establishment.getSchedule2().equals(tmp_establishment.getSchedule2())) tmp_establishment.setSchedule2(null);
+			}
+		}
+		return tmp_establishments;
+	}
 }

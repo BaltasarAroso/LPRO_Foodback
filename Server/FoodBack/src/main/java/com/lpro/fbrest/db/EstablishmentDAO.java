@@ -120,5 +120,12 @@ public interface EstablishmentDAO {
 			+ "FROM establishment JOIN category USING(category)"
 			+ "WHERE category.id >= 4")
 	public List<Establishment> getRestaurants();
+
+	@SqlQuery("SELECT establishment.* "
+			+ "FROM establishment "
+			+ "JOIN credential ON establishment.id = establishment_id "
+			+ "JOIN establishment_tmp ON establishment_tmp.id = tmp_establishment_id "
+			+ "WHERE tmp_establishment_id = :tmp_id")
+	public Establishment getEstablishmentOfTmpEstablishment(@Bind("tmp_id") long id);
 	
 }

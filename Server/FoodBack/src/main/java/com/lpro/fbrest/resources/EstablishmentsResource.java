@@ -167,4 +167,15 @@ import io.dropwizard.auth.Auth;
 			return Response.ok().build();
 		}
 		
+		/**
+		 * @return List of establishment differences
+		 */
+		@GET
+		@RolesAllowed("ADMIN")
+		@Path("/tmp/diff")
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Establishment> getAllTmpEstablishmentDifferences() {
+			return establishmentService.getAllTmpEstablishmentDifferences();
+		}
+		
 }
