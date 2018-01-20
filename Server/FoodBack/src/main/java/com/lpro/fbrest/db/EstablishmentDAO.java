@@ -6,7 +6,9 @@ import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
+import org.skife.jdbi.v2.sqlobject.customizers.Define;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
+import org.skife.jdbi.v2.sqlobject.stringtemplate.UseStringTemplate3StatementLocator;
 
 import com.lpro.fbrest.api.Category;
 import com.lpro.fbrest.api.Establishment;
@@ -15,6 +17,7 @@ import com.lpro.fbrest.db.EstablishmentMapper;
 /**
  * DAO to access establishment data
  */
+@UseStringTemplate3StatementLocator
 @RegisterMapper(EstablishmentMapper.class)
 public interface EstablishmentDAO {
 	
@@ -112,14 +115,23 @@ public interface EstablishmentDAO {
 									@Bind("schedule2") String schedule2);
 	
 	@SqlQuery("SELECT establishment.* "
-			+ "FROM establishment JOIN category USING(category)"
-			+ "WHERE category.id = :category_id")
-	public List<Establishment> getEstablishmentsByCategoryId(@Bind("category_id") long category_id);
+			+ "FROM establishment JOIN category USING(category) "
+			+ "WHERE category.id = :category_id "
+			+ "ORDER BY <if(sort)> <order_by> <order_dir> NULLS LAST, <endif>  establishment.id ")
+	public List<Establishment> getEstablishmentsByCategoryId(
+			@Bind("category_id") long category_id,
+			@Define("sort") boolean sort,
+			@Define("order_by") String order_by,
+			@Define("order_dir") String order_dir);
 
 	@SqlQuery("SELECT establishment.* "
-			+ "FROM establishment JOIN category USING(category)"
-			+ "WHERE category.id >= 4")
-	public List<Establishment> getRestaurants();
+			+ "FROM establishment JOIN category USING(category) "
+			+ "WHERE category.id >= 4 "
+			+ "ORDER BY <if(sort)> <order_by> <order_dir> NULLS LAST, <endif>  establishment.id ")
+	public List<Establishment> getRestaurants(
+			@Define("sort") boolean sort,
+			@Define("order_by") String order_by,
+			@Define("order_dir") String order_dir);
 
 	@SqlQuery("SELECT establishment.* "
 			+ "FROM establishment "
