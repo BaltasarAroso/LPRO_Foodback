@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_4sdp"/>
+                    android:layout_marginEnd="@dimen/_4sdp" />
 
                 <View
                     android:layout_width="@dimen/_1sdp"
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"
-                    android:layout_marginLeft="@dimen/_4sdp"/>
+                    android:layout_marginStart="@dimen/_4sdp" />
 
             </com.google.android.flexbox.FlexboxLayout>
 
