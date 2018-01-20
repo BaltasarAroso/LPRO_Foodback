@@ -64,7 +64,7 @@ import io.dropwizard.auth.Auth;
 		}
 		
 		/**
-		 * @param ID of the wanted establishment
+		 * @param id ID of the wanted establishment
 		 * @return Establishment with the ID specified
 		 */
 		@GET
@@ -138,6 +138,7 @@ import io.dropwizard.auth.Auth;
 		}
 		
 		/**
+		 * @param client Client that authenticated
 		 * @return All TMP establishments if client is admin, if it's an establishment returns his tmp establishment
 		 */
 		@GET

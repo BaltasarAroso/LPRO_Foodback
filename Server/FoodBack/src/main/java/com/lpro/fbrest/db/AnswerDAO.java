@@ -20,7 +20,7 @@ public interface AnswerDAO {
 	/**
 	 * @param comment_id ID of comment 
 	 * @param answer Answer
-	 * @return
+	 * @return ID of inserted answer
 	 */
 	@SqlUpdate("INSERT INTO comment_answer "
 			+ "VALUES (DEFAULT, :comment_id, :answer, DEFAULT)")

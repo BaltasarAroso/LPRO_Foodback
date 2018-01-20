@@ -53,6 +53,7 @@ public class PromotionsResource {
 	}
 	
 	/**
+	 * @param client Client that authenticated
 	 * @return List of all active promotions
 	 */
 	@GET
