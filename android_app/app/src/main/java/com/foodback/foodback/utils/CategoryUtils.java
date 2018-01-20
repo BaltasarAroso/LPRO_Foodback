@@ -1,6 +1,7 @@
 package com.foodback.foodback.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -41,24 +42,11 @@ public class CategoryUtils {
     }
 
     /**
-     * @param name
-     * @return corresponding category ID
+     * @param context activity/fragment on screen
+     * @param spinner spinner which will be filled
+     * @param category category (if not null/empty) to be the spinner placeholder
      */
-    public int nameToID(String name) {
-        for(Category x: categoryList) {
-            if(name.equals(x.getName())) {
-                return x.getId();
-            }
-        }
-
-        return 1;
-    }
-
-    /**
-     * @param context
-     * @param spinner
-     */
-    public void populateSpinner(final Context context, final Spinner spinner, final Integer id){
+    public void populateSpinner(final Context context, final Spinner spinner, final String category){
         try {
             EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
             Call<List<Category>> call = services.getAllCategories();
@@ -68,6 +56,7 @@ public class CategoryUtils {
                 public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                     if(response.isSuccessful()) {
                         categoryList = response.body();
+                        int pos = 0;
                         if(categoryList.size() == 0) {
                             Toast.makeText(context,
                                     "No establishment categories found.",
@@ -77,6 +66,9 @@ public class CategoryUtils {
 
                             for(Category x: categoryList) {
                                 spinnerArray.add(x.getName());
+                                if(!TextUtils.isEmpty(category) && x.getName().equals(category)) {
+                                    pos = x.getId();
+                                }
                             }
 
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -86,7 +78,9 @@ public class CategoryUtils {
 
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner.setAdapter(adapter);
-                            if(id != null) spinner.setSelection(id-1, true);
+                            if(!TextUtils.isEmpty(category)) {
+                                spinner.setSelection(pos-1, true);
+                            }
                         }
                     } else {
                         isBad(context, response);
