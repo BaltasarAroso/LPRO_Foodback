@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.foodback.foodback.fragment.Restaurant">
 
-    <!--
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/restaurant" />
-        -->
-
     <!-- <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

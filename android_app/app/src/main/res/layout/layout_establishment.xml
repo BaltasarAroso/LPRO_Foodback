@@ -29,21 +29,54 @@
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:flexDirection="row">
+                app:flexDirection="row"
+                app:justifyContent="space_between">
 
                 <TextView
                     android:id="@+id/estab_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tasca do Zé"
+                    android:text="12345678901234567890123456789012"
                     android:textStyle="bold"
                     android:textSize="@dimen/_14sdp"/>
 
+                <TextView
+                    android:id="@+id/estab_avg_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/_40sdp"
+                    android:text="100€"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_8sdp"
+                    app:layout_alignSelf="flex_end"/>
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:id="@+id/estab_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cozinha Portuguesa"
+                android:textStyle="normal"
+                android:textSize="@dimen/_10sdp"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:justifyContent="space_between"
+                app:flexDirection="row">
+
+                <TextView
+                    android:id="@+id/estab_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="223456789"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_10sdp"/>
+
                 <com.google.android.flexbox.FlexboxLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:alignItems="flex_end"
-                    app:justifyContent="flex_end">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/estab_zone"
@@ -71,39 +104,6 @@
                         android:layout_marginLeft="@dimen/_4sdp"/>
 
                 </com.google.android.flexbox.FlexboxLayout>
-
-            </com.google.android.flexbox.FlexboxLayout>
-
-            <TextView
-                android:id="@+id/estab_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cozinha Portuguesa"
-                android:textStyle="normal"
-                android:textSize="@dimen/_10sdp"/>
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:justifyContent="space_between"
-                app:flexDirection="row">
-
-                <TextView
-                    android:id="@+id/estab_contact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="223456789"
-                    android:textStyle="normal"
-                    android:textSize="@dimen/_10sdp"/>
-
-                <TextView
-                    android:id="@+id/estab_avg_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10€"
-                    android:textStyle="normal"
-                    android:textSize="@dimen/_8sdp"
-                    app:layout_alignSelf="flex_end"/>
 
             </com.google.android.flexbox.FlexboxLayout>
 

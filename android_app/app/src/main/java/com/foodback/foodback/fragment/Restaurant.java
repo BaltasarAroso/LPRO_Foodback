@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
@@ -41,9 +43,7 @@ public class Restaurant extends Fragment {
 
     ArrayList<Establishment> restaurants = new ArrayList<>();
 
-    public Restaurant() {
-
-    }
+    public Restaurant() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -162,6 +162,13 @@ public class Restaurant extends Fragment {
 
         ListView listRestaurants = view.findViewById(R.id.list_restaurants);
         listRestaurants.setAdapter(adapter);
+        listRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Establishment selectedEstab = restaurants.get(position);
+                Toast.makeText(getActivity(), selectedEstab.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
