@@ -1,11 +1,10 @@
 package com.foodback.foodback.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,14 +13,8 @@ import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
-import com.foodback.foodback.logic.Category;
 import com.foodback.foodback.logic.Establishment;
-import com.foodback.foodback.utils.APIError;
 import com.foodback.foodback.utils.CategoryUtils;
-import com.foodback.foodback.utils.ErrorUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -35,19 +28,17 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class EstablishmentRegister extends AppCompatActivity  {
 
-    protected EditText editname, editaddress, editemail, editcontact,
+    protected EditText editname, editaddress, editemail, editcontact, editavgprice,
             editusername, editpassword, editzone, editcity;
     protected Spinner editcategory;
     protected Button buttonRegisterEstab;
     protected CheckBox editdelivery;
 
     protected String name, category, address, email, contact, username, password, zone, city;
+    protected Integer avg_price;
     protected Boolean delivery;
 
     protected Establishment estab;
-
-    List<Category> categoryList;
-    protected int category_id;
 
     CategoryUtils catUtils;
 
@@ -62,6 +53,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
         editaddress = findViewById(R.id.address);
         editemail = findViewById(R.id.email);
         editcontact = findViewById(R.id.contact);
+        editavgprice = findViewById(R.id.avg_price);
         editusername = findViewById(R.id.username);
         editpassword = findViewById(R.id.password);
         editzone = findViewById(R.id.zone);
@@ -80,8 +72,6 @@ public class EstablishmentRegister extends AppCompatActivity  {
         });
 
         // fetch categories for spinner and asynchronously fill it
-//        populateSpinner();
-        //TODO: test
         catUtils = new CategoryUtils();
         catUtils.populateSpinner(EstablishmentRegister.this, editcategory, null);
     }
@@ -89,14 +79,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
     private void register() {
         initialize();
         if (validate()) {
-//            for(Category x: categoryList) {
-//                if(category.equals(x.getName())) {
-//                    category_id = x.getId();
-//                    break;
-//                }
-//            }
-            category_id = catUtils.nameToID(category);
-            estab = new Establishment(name, category_id, address, zone, city, email,
+            estab = new Establishment(name, category, address, zone, city, email,
                     contact, 0, null, null, username, password, delivery);
             onRegisterSuccess(estab);
         }
@@ -108,6 +91,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
         address = editaddress.getText().toString();
         email = editemail.getText().toString();
         contact = editcontact.getText().toString();
+        avg_price = Integer.parseInt(editavgprice.getText().toString());
         username = editusername.getText().toString();
         password = editpassword.getText().toString();
         zone = editzone.getText().toString();
@@ -128,7 +112,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
             valid = false;
         }
 
-        // is needed to add more parameters of validation in this ones
+        // need to add more parameters of validation in these
         if (address.isEmpty()) {
             editaddress.setError("Please enter a valid address");
             valid = false;
@@ -157,61 +141,6 @@ public class EstablishmentRegister extends AppCompatActivity  {
         return valid;
     }
 
-//    public void populateSpinner(){
-//        try {
-//            EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
-//            Call<List<Category>> call = services.getAllCategories();
-//
-//            call.enqueue(new Callback<List<Category>>() {
-//                @Override
-//                public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-//                    if(response.isSuccessful()) {
-//                        categoryList = response.body();
-//                        if(categoryList.size() == 0) {
-//                            Toast.makeText(EstablishmentRegister.this,
-//                                    "No establishment categories found.",
-//                                    Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            List<String> spinnerArray = new ArrayList<>();
-//
-//                            for(Category x: categoryList) {
-//                                spinnerArray.add(x.getName());
-//                            }
-//
-//                            ArrayAdapter<String> adapter = new ArrayAdapter<>(
-//                                    EstablishmentRegister.this,
-//                                    android.R.layout.simple_spinner_item,
-//                                    spinnerArray);
-//
-//                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                            editcategory.setAdapter(adapter);
-//                        }
-//                    } else {
-////                        APIError apiError = ErrorUtils.parseError(response);
-////                        Toast.makeText(EstablishmentRegister.this,
-////                                apiError.getMessage(),
-////                                Toast.LENGTH_SHORT).show();
-//                        isBad(EstablishmentRegister.this, response);
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<Category>> call, Throwable t) {
-////                    Toast.makeText(EstablishmentRegister.this,
-////                            R.string.error_server_response,
-////                            Toast.LENGTH_SHORT).show();
-//                    isFailure(EstablishmentRegister.this, t);
-//                }
-//            });
-//        } catch(Exception e) {
-////            Log.e("DEBUG", Log.getStackTraceString(e));
-////            Toast.makeText(EstablishmentRegister.this,
-////                    R.string.error_unexpected,
-////                    Toast.LENGTH_SHORT).show();
-//            isException(EstablishmentRegister.this, e);
-//        }
-//    }
-
     private void onRegisterSuccess(Establishment estab) {
         try {
             EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
@@ -224,30 +153,20 @@ public class EstablishmentRegister extends AppCompatActivity  {
                         Toast.makeText(EstablishmentRegister.this,
                                 "Registered Successfully.",
                                 Toast.LENGTH_SHORT).show();
-                        //change activity
+                        Intent i = new Intent();
+                        i.setClass(EstablishmentRegister.this, LogIn.class);
+                        startActivity(i);
                     } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(EstablishmentRegister.this,
-//                                apiError.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
                         isBad(EstablishmentRegister.this, response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(EstablishmentRegister.this,
-//                            R.string.error_server_response,
-//                            Toast.LENGTH_SHORT).show();
                     isFailure(EstablishmentRegister.this, t);
                 }
             });
         } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(EstablishmentRegister.this,
-//                    R.string.error_unexpected,
-//                    Toast.LENGTH_SHORT).show();
             isException(EstablishmentRegister.this, e);
         }
     }

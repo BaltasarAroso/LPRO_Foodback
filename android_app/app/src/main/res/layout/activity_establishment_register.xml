@@ -99,6 +99,14 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/avg_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/price"
+                    android:inputType="text"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

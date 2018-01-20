@@ -16,11 +16,8 @@ import android.widget.Toast;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.CredentialsEndpoints;
 import com.foodback.foodback.config.EstablishmentEndpoints;
-import com.foodback.foodback.logic.Category;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.CategoryUtils;
-
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -49,8 +46,6 @@ public class EstablishmentChangeInfo extends Fragment {
 
     protected Establishment estab;
 
-    protected int category_id;
-
     EstablishmentEndpoints dataServices;
     CredentialsEndpoints credentialServices;
 
@@ -75,8 +70,7 @@ public class EstablishmentChangeInfo extends Fragment {
         editcontact = getView().findViewById(R.id.contact);
         editschedule1 = getView().findViewById(R.id.schedule1);
         editschedule2 = getView().findViewById(R.id.schedule2);
-//        editavgprice = getView().findViewById(R.id.avg_price);
-        //TODO remove avg price from .java and .xml
+        editavgprice = getView().findViewById(R.id.avg_price);
         editoldpass = getView().findViewById(R.id.oldpass);
         editnewpass = getView().findViewById(R.id.newpass);
         editconfpass = getView().findViewById(R.id.confpass);
@@ -102,13 +96,12 @@ public class EstablishmentChangeInfo extends Fragment {
     private void changeEstab() {
         initialize();
         if (validateChangesEstab()) {
-            category_id = catUtils.nameToID(category);
             if(TextUtils.isEmpty(newpass)) {
-                estab = new Establishment(name, category_id, address, zone, city, email,
-                        contact, 0, schedule1, schedule2, null, oldpass, delivery);
+                estab = new Establishment(name, category, address, zone, city, email,
+                        contact, avg_price, schedule1, schedule2, null, oldpass, delivery);
             } else {
-                estab = new Establishment(name, category_id, address, zone, city, email,
-                        contact, 0, schedule1, schedule2, null, newpass, delivery);
+                estab = new Establishment(name, category, address, zone, city, email,
+                        contact, avg_price, schedule1, schedule2, null, newpass, delivery);
             }
             verifyOldPassword(estab, oldpass);
         }
@@ -122,7 +115,7 @@ public class EstablishmentChangeInfo extends Fragment {
         city = editcity.getText().toString();
         email = editemail.getText().toString();
         contact = editcontact.getText().toString();
-//        avg_price = Integer.parseInt(editavgprice.getText().toString());;
+        avg_price = Integer.parseInt(editavgprice.getText().toString());
         schedule1 = editschedule1.getText().toString();
         schedule2 = editschedule2.getText().toString();
         oldpass = editoldpass.getText().toString();
@@ -134,7 +127,7 @@ public class EstablishmentChangeInfo extends Fragment {
     private boolean validateChangesEstab() {
 
         // name must have something that not exceeds 32 characters
-        if (name.length() > 64) {
+        if (name.length() > 32) {
             editname.setError("Please enter a valid name (max size of 32 characters)");
             return false;
         }
@@ -169,11 +162,12 @@ public class EstablishmentChangeInfo extends Fragment {
                         editcontact.setText(estab.getContact());
                         editschedule1.setText(estab.getSchedule1());
                         editschedule2.setText(estab.getSchedule2());
-                        if(estab.getDelivery()) editdelivery.setChecked(true);
+                        if(estab.getDelivery())
+                            editdelivery.setChecked(true);
                         catUtils.populateSpinner(
                                 getActivity(),
                                 editcategory,
-                                estab.getCategory_id()
+                                estab.getCategory()
                         );
                     } else {
                         isBad(getActivity(), response);
@@ -233,8 +227,6 @@ public class EstablishmentChangeInfo extends Fragment {
                                 Toast.LENGTH_SHORT).show();
                         if(!TextUtils.isEmpty(newpass)) {
                             changeCredentials(password);
-                        } else {
-                            //TODO change activity or "remove"/"exit" fragment
                         }
                     } else {
                         isBad(getActivity(), response);
@@ -264,7 +256,6 @@ public class EstablishmentChangeInfo extends Fragment {
                                 "Credentials updated successfully.",
                                 Toast.LENGTH_SHORT).show();
                         setCredentials(null, password);
-                        //TODO change activity or "remove"/"exit" fragment
                     } else {
                         isBad(getActivity(), response);
                     }
