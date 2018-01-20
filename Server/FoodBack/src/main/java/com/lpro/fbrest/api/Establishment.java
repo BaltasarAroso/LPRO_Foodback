@@ -13,7 +13,7 @@ public class Establishment {
 	private String name;
 
 	@JsonProperty
-	private long category_id;
+	private String category;
 	
 	@JsonProperty
 	private String address;
@@ -55,13 +55,13 @@ public class Establishment {
 		super();
 	}
 	
-	public Establishment(long id, String name, long category_id, String address, String zone, String city, String email,
+	public Establishment(long id, String name, String category, String address, String zone, String city, String email,
 			String contact, String username, String password, Boolean delivery, int avg_price, String schedule1,
 			String schedule2, double rating) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.category_id = category_id;
+		this.category = category;
 		this.address = address;
 		this.zone = zone;
 		this.city = city;
@@ -92,12 +92,12 @@ public class Establishment {
 		this.name = name;
 	}
 
-	public long getCategory_id() {
-		return category_id;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCategory_id(long category_id) {
-		this.category_id = category_id;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getAddress() {
@@ -203,7 +203,7 @@ public class Establishment {
 		Establishment restaurante = (Establishment)o;
 		if(this.id == restaurante.getId() &&
 				this.name.equals(restaurante.getName()) &&
-				this.category_id == restaurante.getCategory_id() &&
+				this.category.equals(restaurante.getCategory()) &&
 				this.address.equals(restaurante.getAddress()) &&
 				this.zone.equals(restaurante.getZone()) &&
 				this.city.equals(restaurante.getCity()) &&

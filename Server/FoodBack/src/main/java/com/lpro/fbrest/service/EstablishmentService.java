@@ -37,7 +37,7 @@ public abstract class EstablishmentService {
 				.build());
 		try {
 			establishment_id = establishmentdao().insertTmpEstablishment(establishment.getName(), 
-																	establishment.getCategory_id(), 
+																	establishment.getCategory(), 
 																	establishment.getAddress(), 
 																	establishment.getZone(), 
 																	establishment.getCity(), 
@@ -110,7 +110,7 @@ public abstract class EstablishmentService {
 			establishmentdao().updateEstablishment(
 						establishment_id,
 						establishment.getName(),
-						establishment.getCategory_id(),
+						establishment.getCategory(),
 						establishment.getAddress(),
 						establishment.getZone(),
 						establishment.getCity(),
@@ -174,7 +174,7 @@ public abstract class EstablishmentService {
 		if(owner.getEstablishment_id() <= 0) { //Ainda não existe establishment, cria-se
 			try {
 				establishment_id = establishmentdao().insertEstablishment(establishment.getName(), 
-						establishment.getCategory_id(), 
+						establishment.getCategory(), 
 						establishment.getAddress(), 
 						establishment.getZone(), 
 						establishment.getCity(), 
@@ -194,7 +194,7 @@ public abstract class EstablishmentService {
 			try {
 				establishmentdao().updateEstablishment(owner.getEstablishment_id(),
 						establishment.getName(),
-						establishment.getCategory_id(),
+						establishment.getCategory(),
 						establishment.getAddress(),
 						establishment.getZone(),
 						establishment.getCity(),
@@ -238,7 +238,7 @@ public abstract class EstablishmentService {
 			try {
 				establishmentdao().updateTmpEstablishment(client.getTmp_establishment_id(),
 						establishment.getName(), 
-						establishment.getCategory_id(), 
+						establishment.getCategory(), 
 						establishment.getAddress(), 
 						establishment.getZone(), 
 						establishment.getCity(), 
@@ -256,7 +256,7 @@ public abstract class EstablishmentService {
 		} else { //Ainda não há tmp establishment, criamos
 			try {
 				long tmp_id = establishmentdao().insertTmpEstablishment(establishment.getName(), 
-					establishment.getCategory_id(), 
+					establishment.getCategory(), 
 					establishment.getAddress(), 
 					establishment.getZone(), 
 					establishment.getCity(), 

@@ -19,10 +19,10 @@ import com.lpro.fbrest.db.EstablishmentMapper;
 public interface EstablishmentDAO {
 	
 	@SqlUpdate("INSERT INTO establishment "
-			+ "VALUES (DEFAULT, :name, :category_id, :address, :zone, :city, :email, :contact, :delivery, :avg_price, :schedule1, :schedule2)")
+			+ "VALUES (DEFAULT, :name, :category, :address, :zone, :city, :email, :contact, :delivery, :avg_price, :schedule1, :schedule2)")
 	@GetGeneratedKeys
 	public long insertEstablishment(@Bind("name") String name,
-									@Bind("category_id") long category_id,
+									@Bind("category") String category,
 									@Bind("address") String address,
 									@Bind("zone") String zone,
 									@Bind("city") String city,
@@ -47,11 +47,11 @@ public interface EstablishmentDAO {
 	public Establishment getEstablishmentById(@Bind("id") long id);
 	
 	@SqlUpdate("UPDATE establishment "
-			+"SET name = :name, category_id = :category_id, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price, schedule1 = :schedule1, schedule2 = :schedule2 "
+			+"SET name = :name, category = :category, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price, schedule1 = :schedule1, schedule2 = :schedule2 "
 			+"WHERE id = :id")
 	public void updateEstablishment(@Bind("id") long id,
 									@Bind("name") String name,
-									@Bind("category_id") long category_id,
+									@Bind("category") String category,
 									@Bind("address") String address,
 									@Bind("zone") String zone,
 									@Bind("city") String city,
@@ -68,10 +68,10 @@ public interface EstablishmentDAO {
 	public List<Category> getAllCategories();
 	
 	@SqlUpdate("INSERT INTO establishment_tmp "
-			+ "VALUES (DEFAULT, :name, :category_id, :address, :zone, :city, :email, :contact, :delivery, :avg_price, :schedule1, :schedule2)")
+			+ "VALUES (DEFAULT, :name, :category, :address, :zone, :city, :email, :contact, :delivery, :avg_price, :schedule1, :schedule2)")
 	@GetGeneratedKeys
 	public long insertTmpEstablishment(@Bind("name") String name,
-									@Bind("category_id") long category_id,
+									@Bind("category") String category,
 									@Bind("address") String address,
 									@Bind("zone") String zone,
 									@Bind("city") String city,
@@ -96,11 +96,11 @@ public interface EstablishmentDAO {
 	public List<Establishment> getAllTmpEstablishments();
 
 	@SqlUpdate("UPDATE establishment_tmp "
-			+"SET name = :name, category_id = :category_id, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price, schedule1 = :schedule1, schedule2 = :schedule2 "
+			+"SET name = :name, category = :category, address = :address, zone = :zone, city = :city, email = :email, contact = :contact, delivery = :delivery, avg_price = :avg_price, schedule1 = :schedule1, schedule2 = :schedule2 "
 			+"WHERE id = :id")
 	public void updateTmpEstablishment(@Bind("id") long id,
 									@Bind("name") String name,
-									@Bind("category_id") long category_id,
+									@Bind("category") String category,
 									@Bind("address") String address,
 									@Bind("zone") String zone,
 									@Bind("city") String city,
@@ -111,14 +111,14 @@ public interface EstablishmentDAO {
 									@Bind("schedule1") String schedule1,
 									@Bind("schedule2") String schedule2);
 	
-	@SqlQuery("SELECT * "
-			+ "FROM establishment "
-			+ "WHERE category_id = :category_id")
+	@SqlQuery("SELECT establishment.* "
+			+ "FROM establishment JOIN category USING(category)"
+			+ "WHERE category.id = :category_id")
 	public List<Establishment> getEstablishmentsByCategoryId(@Bind("category_id") long category_id);
 
-	@SqlQuery("SELECT * "
-			+ "FROM establishment "
-			+ "WHERE category_id >= 4")
+	@SqlQuery("SELECT establishment.* "
+			+ "FROM establishment JOIN category USING(category)"
+			+ "WHERE category.id >= 4")
 	public List<Establishment> getRestaurants();
 	
 }

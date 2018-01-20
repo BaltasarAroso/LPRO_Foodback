@@ -16,7 +16,7 @@ public class EstablishmentTest {
     public void serializesToJSON() throws Exception {
         final Establishment restaurante = new Establishment(29,
 						        								"Ristoranti Italiano",
-						        								23,
+						        								"Categoria",
 						        								"Morada",
 						        								"minha zona",
 						        								"minha cidade",
@@ -40,7 +40,7 @@ public class EstablishmentTest {
     public void deserializesFromJSON() throws Exception {
         final Establishment restaurante = new Establishment(29,
 															"Ristoranti Italiano",
-															23,
+															"Categoria",
 															"Morada",
 															"minha zona",
 															"minha cidade",
