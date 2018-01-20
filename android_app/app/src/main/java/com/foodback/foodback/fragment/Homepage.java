@@ -72,9 +72,8 @@ public class Homepage extends Fragment {
                     return new Bar();
                 case 3:
                     return new Dessert();
-                default:
-                    return null;
             }
+            return null;
         }
 
         @Override
