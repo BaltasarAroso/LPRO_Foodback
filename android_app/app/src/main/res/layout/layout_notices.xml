@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_8sdp"
+    android:orientation="vertical">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:flexDirection="column"
+        app:justifyContent="space_between">
+
+        <TextView
+            android:id="@+id/notice_estab_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurante Manuel Alves"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/notice_estab_changes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/discardCommentButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@color/colorLogo"
+                android:textColor="#fff"
+                android:text="@string/discard"
+                android:textSize="@dimen/_8sdp"/>
+
+            <Button
+                android:id="@+id/delete_commentButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
+                android:background="@color/colorLogo"
+                android:textColor="#fff"
+                android:text="@string/delete_comment"
+                android:textSize="@dimen/_8sdp"/>
+
+        </LinearLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</LinearLayout>
