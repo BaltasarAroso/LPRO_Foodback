@@ -7,20 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.FunDapter;
-import com.amigold.fundapter.extractors.StringExtractor;
-import com.amigold.fundapter.interfaces.DynamicImageLoader;
-import com.bumptech.glide.Glide;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
-import com.foodback.foodback.utils.GlideApp;
-import com.foodback.foodback.utils.MyAppGlideModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +23,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.foodback.foodback.config.FoodbackClient.getBaseUrl;
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
 import static com.foodback.foodback.utils.ErrorDisplay.isBad;
 import static com.foodback.foodback.utils.ErrorDisplay.isException;
 import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
+import static com.foodback.foodback.utils.EstablishmentUtils.createDictionary;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,7 +62,7 @@ public class Restaurant extends Fragment {
                     if(response.isSuccessful()) {
                         List<Establishment> tmp = response.body();
                         restaurants.addAll(tmp);
-                        BindDictionary<Establishment> dictionary = createDictionary();
+                        BindDictionary<Establishment> dictionary = createDictionary(getActivity());
 
                         declareList(view, dictionary);
                     } else {
@@ -85,82 +79,6 @@ public class Restaurant extends Fragment {
         } catch(Exception e) {
             isException(getActivity(), e);
         }
-    }
-
-    private BindDictionary<Establishment> createDictionary() {
-
-        BindDictionary<Establishment> dictionary = new BindDictionary<>();
-
-        dictionary.addStringField(R.id.estab_name, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getName();
-            }
-        });
-        dictionary.addStringField(R.id.estab_zone, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getZone();
-            }
-        });
-        dictionary.addStringField(R.id.estab_city, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getCity();
-            }
-        });
-        dictionary.addStringField(R.id.estab_category, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getCategory();
-            }
-        });
-        dictionary.addStringField(R.id.estab_contact, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return estab.getContact();
-            }
-        });
-        dictionary.addStringField(R.id.estab_avg_price, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                if (estab.getAvg_price() > 0) {
-                    return "" + estab.getAvg_price() + "€";
-                } else {
-                    return null;
-                }
-            }
-        });
-        dictionary.addStringField(R.id.estab_delivery, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                if (estab.getDelivery()) {
-                    return "Encomendas";
-                } else {
-                    return null;
-                }
-            }
-        });
-        dictionary.addDynamicImageField(R.id.estab_image, new StringExtractor<Establishment>() {
-            @Override
-            public String getStringValue(Establishment estab, int position) {
-                return getBaseUrl() + "/image/establishment/profile/" + estab.getId();
-            }
-        }, new DynamicImageLoader() {
-            @Override
-            public void loadImage(String url, ImageView view) {
-                GlideApp.with(getActivity())
-                        .load(url)
-                        .placeholder(R.drawable.foodback_logo)
-                        .error(R.drawable.foodback_logo)
-                        .fallback(R.drawable.foodback_logo)
-                        .fitCenter()
-                        .thumbnail(0.1f)
-                        .into(view);
-            }
-        });
-
-        return dictionary;
     }
 
     private void declareList(View view, BindDictionary<Establishment> dictionary) {

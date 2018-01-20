@@ -16,7 +16,6 @@
             android:layout_width="@dimen/_180sdp"
             android:layout_height="@dimen/_100sdp"
             app:layout_alignSelf="flex_start"
-            app:srcCompat="@drawable/foodback_logo"
             android:contentDescription="@string/establishment_image" />
 
         <com.google.android.flexbox.FlexboxLayout
@@ -36,7 +35,6 @@
                     android:id="@+id/estab_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12345678901234567890123456789012"
                     android:textStyle="bold"
                     android:textSize="@dimen/_14sdp"/>
 
@@ -50,7 +48,6 @@
                         android:id="@+id/estab_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4.00"
                         android:textColor="@color/colorLogo"
                         android:textStyle="bold"
                         android:textSize="@dimen/_9sdp"/>
@@ -60,7 +57,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minWidth="@dimen/_40sdp"
-                        android:text="100€"
                         android:textStyle="normal"
                         android:textSize="@dimen/_8sdp"
                         app:layout_alignSelf="flex_end"/>
@@ -77,7 +73,6 @@
                     android:id="@+id/estab_zone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Baixa"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_4sdp"/>
@@ -93,7 +88,6 @@
                     android:id="@+id/estab_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Porto"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_4sdp"/>
@@ -110,7 +104,6 @@
                     android:id="@+id/estab_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cozinha Portuguesa"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"/>
 
@@ -118,7 +111,6 @@
                     android:id="@+id/estab_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="223456789"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"/>
 
@@ -133,7 +125,7 @@
                 android:textSize="@dimen/_8sdp"
                 app:layout_alignSelf="flex_end"/>
 
-        </com.google.android.flexbox.FlexboxLayout> -->
+        </com.google.android.flexbox.FlexboxLayout>
 
     </com.google.android.flexbox.FlexboxLayout>
 
