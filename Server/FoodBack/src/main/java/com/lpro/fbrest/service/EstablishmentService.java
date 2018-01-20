@@ -274,27 +274,29 @@ public abstract class EstablishmentService {
 			}
 		}
 	}
-
-	public List<Establishment> getEstablishmentsByCategoryId(long category_id) {
-		List<Establishment> establishments;
-		try {
-			establishments = establishmentdao().getEstablishmentsByCategoryId(category_id);
-		} catch(Exception e) {
-			e.printStackTrace();
-			throw new WebApplicationException(500);
+	
+	public List<Establishment> getEstablishmentsFiltered(
+			long category_id,
+			boolean sort,
+			String order_by,
+			String order_dir) {
+		List<Establishment> establishments = null;
+		
+		if(category_id > 0 && category_id != 123456789) {
+			try {
+				establishments = establishmentdao().getEstablishmentsByCategoryId(category_id, sort, order_by, order_dir);
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new WebApplicationException(500);
+			}
 		}
-		if(establishments == null) throw new WebApplicationException(404);
-		if(establishments.isEmpty()) throw new WebApplicationException(404);
-		return establishments;
-	}
-
-	public List<Establishment> getRestaurants() {
-		List<Establishment> establishments;
-		try {
-			establishments = establishmentdao().getRestaurants();
-		} catch(Exception e) {
-			e.printStackTrace();
-			throw new WebApplicationException(500);
+		else if(category_id == 123456789) {
+			try {
+				establishments = establishmentdao().getRestaurants(sort, order_by, order_dir);
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new WebApplicationException(500);
+			}
 		}
 		if(establishments == null) throw new WebApplicationException(404);
 		if(establishments.isEmpty()) throw new WebApplicationException(404);
@@ -330,4 +332,5 @@ public abstract class EstablishmentService {
 		}
 		return tmp_establishments;
 	}
+	
 }

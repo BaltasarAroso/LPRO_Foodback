@@ -17,6 +17,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.common.collect.ImmutableSet;
 import com.lpro.fbrest.api.Category;
 import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.auth.Client;
@@ -29,6 +30,10 @@ import io.dropwizard.auth.Auth;
 	 */
 	@Path("/establishments")
 	public class EstablishmentsResource {
+		
+		private static ImmutableSet<String> orderByChoices = ImmutableSet.of("rating", "avg_price");
+		private static ImmutableSet<String> orderDirChoices = ImmutableSet.of("ASC", "DESC");
+
 		
 		/**
 		 * Service for the class Establishment
@@ -76,19 +81,31 @@ import io.dropwizard.auth.Auth;
 		
 		/**
 		 * @param category_id ID of category 
-		 * @return Establishments of that category
+		 * @param order_rating If the returned list is ordered by rating or not
+		 * @param order_avg_price If the returned list is ordered by average price or not
+		 * @return Establishments filtered
 		 */
 		@GET
 		@Path("/filtered")
 		@Produces(MediaType.APPLICATION_JSON)
-		public List<Establishment> getEstablishmentsFiltered(@QueryParam("category_id") long category_id) {
-			if(category_id > 0 && category_id != 123456789) 
-				return establishmentService.getEstablishmentsByCategoryId(category_id);
-			else if(category_id == 123456789) {
-				return establishmentService.getRestaurants();
+		public List<Establishment> getEstablishmentsFiltered(
+				@QueryParam("category_id") long category_id,
+				@QueryParam("sort") Boolean sort,
+				@QueryParam("order_by") String order_by,
+				@QueryParam("order_dir") String order_dir) {
+			
+			if(sort == null) sort = new Boolean(false);
+			else {
+				if(order_by == null) order_by = "rating";
+				if(order_dir == null) order_dir = "DESC";
+				if (!orderByChoices.contains(order_by)) order_by = "rating"; //sanitize <order_by>
+				if (!orderDirChoices.contains(order_dir)) order_dir = "asc";  //sanitize <order_dir>
 			}
-			else
-				return null;
+			return establishmentService.getEstablishmentsFiltered(
+					category_id,
+					sort,
+					order_by,
+					order_dir);
 		}
 		
 		/**

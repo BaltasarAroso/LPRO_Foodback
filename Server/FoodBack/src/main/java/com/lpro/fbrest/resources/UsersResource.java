@@ -75,6 +75,14 @@ public class UsersResource {
 		return userService.getUserByUsername(username);
 	}
 	
+	@GET
+	@Path("/me")
+	@RolesAllowed("USER")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getSignedUser(@Auth Client client) {
+		return userService.getUserByUsername(client.getUsername());
+	}
+	
 	/**
 	 * @param client Client that authenticated
 	 * @return Response with OK http status
