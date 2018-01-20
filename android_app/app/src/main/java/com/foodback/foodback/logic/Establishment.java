@@ -79,6 +79,11 @@ public class Establishment {
     private Boolean delivery;
 
     /**
+     * establishment rating from feedback
+     */
+    private double rating;
+
+    /**
      *
      * @param name Establishment's name
      * @param category Establishment's category
@@ -376,6 +381,20 @@ public class Establishment {
     }
 
     /**
+     * @return establishment rating or how good/popular it is
+     */
+    public double getRating() {
+        return rating;
+    }
+
+    /**
+     * @param rating the rating of an establishment
+     */
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    /**
      *
      * @param o Establishment used to compare
      * @return if all elements of this establishment are equal
@@ -401,6 +420,4 @@ public class Establishment {
                 this.password.equals(restaurante.getPassword()) &&
                 this.delivery.equals(restaurante.getDelivery());
     }
-
-
 }
