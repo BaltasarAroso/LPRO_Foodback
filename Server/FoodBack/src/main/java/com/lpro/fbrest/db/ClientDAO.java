@@ -50,7 +50,7 @@ public interface ClientDAO {
 	/**
 	 * @param username to be inserted
 	 * @param password Password to be inserted
-	 * @param establishment_id Id of the establishment entry
+	 * @param tmp_establishment_id Id of the establishment entry
 	 * 
 	 * Creates a establishment client entry
 	 */
@@ -62,6 +62,7 @@ public interface ClientDAO {
 	
 	/**
 	 * @param username New username to be inserted
+	 * @param lastusername Old username 
 	 */
 	@SqlUpdate("UPDATE credential "
 			+ "SET username = :username "
@@ -70,6 +71,7 @@ public interface ClientDAO {
 	
 	/**
 	 * @param password New password to be inserted
+	 * @param lastusername Old username
 	 */
 	@SqlUpdate("UPDATE credential "
 			+ "SET password = :password "
@@ -78,7 +80,7 @@ public interface ClientDAO {
 	
 	/**
 	 * @param new_establishment_id ID to be inserted
-	 * @param last_establishment_id ID before insertion
+	 * @param tmp_establishment_id ID before insertion
 	 */
 	@SqlUpdate("UPDATE credential "
 			+ "SET establishment_id = :new_establishment_id "
@@ -86,11 +88,19 @@ public interface ClientDAO {
 	public void updateClientEstablishmentId(@Bind("new_establishment_id") long new_establishment_id, 
 											@Bind("tmp_establishment_id") long tmp_establishment_id);
 
+	/**
+	 * @param tmp_id ID of tmp establishment
+	 * @param id ID of client
+	 */
 	@SqlUpdate("UPDATE credential "
 			+ "SET tmp_establishment_id = :tmp_id "
 			+ "WHERE id = :id")
 	public void addTmpEstablishment(@Bind("tmp_id") long tmp_id, @Bind("id") long id);
 
+	/**
+	 * @param tmp_establishment_id ID of tmp establishment
+	 * @return Client if found
+	 */
 	@SqlQuery("SELECT credential.* , role "
 			+ "FROM credential JOIN role ON role_id = role.id "
 			+ "WHERE tmp_establishment_id = :tmp_id")

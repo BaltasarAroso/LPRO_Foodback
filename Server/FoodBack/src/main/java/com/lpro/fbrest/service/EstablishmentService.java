@@ -90,7 +90,7 @@ public abstract class EstablishmentService {
 	}
 	
 	/**
-	 * @param name Name of establishment to be searched
+	 * @param id ID of establishment to be searched
 	 * @return Establishment if it exists
 	 */
 	public Establishment getEstablishmentById(long id) {

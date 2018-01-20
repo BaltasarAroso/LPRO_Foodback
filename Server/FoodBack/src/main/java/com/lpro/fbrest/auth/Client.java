@@ -33,6 +33,7 @@ public class Client implements Principal {
 	private long tmp_establishment_id;
 	
 	/**
+	 * @param id ID of client
 	 * @param username Username of the client
 	 * @param role Role of the client
 	 * @param users_id Id of the user
