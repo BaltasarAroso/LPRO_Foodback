@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_8sdp"
+    android:orientation="vertical">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="column"
+        app:justifyContent="space_between">
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_4sdp"
+            app:flexDirection="row"
+            app:justifyContent="space_between">
+
+            <TextView
+                android:id="@+id/comment_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="João Pedro"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/comment_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4,00"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorLogo"
+                android:textStyle="normal"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <TextView
+            android:id="@+id/comment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recomendo! Serviço muito bom, quero lá voltar. Espero comer lá a minha namorada mais vezes. E ainda gostava de comera empregada, que por sua vez era totil boas!"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:justifyContent="flex_end">
+
+            <ImageView
+                android:id="@+id/icon_report"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                app:srcCompat="@drawable/ic_report"/>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</LinearLayout>

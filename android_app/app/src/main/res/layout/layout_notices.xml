@@ -312,7 +312,7 @@
                 android:padding="@dimen/_8sdp"
                 android:background="@color/colorLogo"
                 android:textColor="#fff"
-                android:text="@string/delete_comment"
+                android:text="@string/change_estab_info"
                 android:textSize="@dimen/_8sdp"/>
 
         </LinearLayout>
