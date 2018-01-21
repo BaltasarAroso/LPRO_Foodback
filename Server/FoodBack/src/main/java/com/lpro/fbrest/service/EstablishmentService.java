@@ -282,6 +282,13 @@ public abstract class EstablishmentService {
 		}
 	}
 	
+	/**
+	 * @param category_id ID of category
+	 * @param sort Sort or not
+	 * @param order_by Column to order by
+	 * @param order_dir Dir to order by
+	 * @return List of establishments
+	 */
 	public List<Establishment> getEstablishmentsFiltered(
 			long category_id,
 			boolean sort,
@@ -310,6 +317,9 @@ public abstract class EstablishmentService {
 		return establishments;
 	}
 
+	/**
+	 * @return List of pairs of establishments. In each pair the first establishment is the "normal one" and the second is the differences between the new and the normal
+	 */
 	public List<List<Establishment>> getAllTmpEstablishmentDifferences() {
 		List<Establishment> tmp_establishments;
 		List<Establishment> list_element;
@@ -345,6 +355,23 @@ public abstract class EstablishmentService {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * @param search_string String to search for in establishment names
+	 * @return List of establishments with name ilike specified
+	 */
+	public List<Establishment> getEstablishmentsByName(String search_string) {
+		List<Establishment> establishments;
+		try {
+			establishments = establishmentdao().getEstablishmentsByName('%'+search_string+'%');
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+		if(establishments == null) throw new WebApplicationException(404);
+		if(establishments.isEmpty()) throw new WebApplicationException(404);
+		return establishments;
 	}
 	
 }

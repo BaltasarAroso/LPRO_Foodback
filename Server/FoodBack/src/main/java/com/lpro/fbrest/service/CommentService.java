@@ -48,7 +48,7 @@ public abstract class CommentService {
 			throw new WebApplicationException(500);
 		}
 		if(comment == null) throw new WebApplicationException(404);
-		if(comment.getCommenter_id() != users_id) throw new WebApplicationException(403);
+		if(users_id > 0 && comment.getCommenter_id() != users_id) throw new WebApplicationException(403);
 		try {
 			commentdao().deleteComment(comment_id);
 			commentdao().updateEstablishmentRating(comment.getEstablishment_id());
@@ -78,6 +78,19 @@ public abstract class CommentService {
 	public User getCommenterUser(long comment_id) {
 		try {
 			return commentdao().getCommenterUser(comment_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+	}
+
+	/**
+	 * @param comment_id ID of comment
+	 * @return Comment with specified id
+	 */
+	public Comment getCommentById(long comment_id) {
+		try {
+			return commentdao().getCommentById(comment_id);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);

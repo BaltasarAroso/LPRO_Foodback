@@ -237,5 +237,14 @@ public interface EstablishmentDAO {
 			+ "JOIN establishment_tmp ON establishment_tmp.id = tmp_establishment_id "
 			+ "WHERE tmp_establishment_id = :tmp_id")
 	public Establishment getEstablishmentOfTmpEstablishment(@Bind("tmp_id") long id);
+
+	/**
+	 * @param search_string String to search with ILIKE
+	 * @return List of establishments with name similar to search term
+	 */
+	@SqlQuery("SELECT * "
+			+ "FROM establishment "
+			+ "WHERE name ILIKE :search_string")
+	public List<Establishment> getEstablishmentsByName(@Bind("search_string") String search_string);
 	
 }

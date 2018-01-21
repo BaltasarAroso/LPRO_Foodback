@@ -1,17 +1,12 @@
 package com.lpro.fbrest.resources;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
 
 import com.lpro.fbrest.api.Meal;
 import com.lpro.fbrest.service.MealService;
@@ -29,7 +24,7 @@ public class MealsResourceTest {
 	private static final int TEST_PRICE = 2;
 	private static final long TEST_ESTAID = 3;
 	
-	private static final String MEALS_ENDPOINT = "/meals";
+	//private static final String MEALS_ENDPOINT = "/meals";
 	
 	
 	

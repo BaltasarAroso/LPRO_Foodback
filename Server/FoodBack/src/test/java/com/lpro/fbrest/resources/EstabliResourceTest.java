@@ -1,18 +1,13 @@
 package com.lpro.fbrest.resources;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
 
 import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.service.EstablishmentService;
@@ -39,7 +34,7 @@ public class EstabliResourceTest {
 	private static final String TEST_SCH2 = "BBBB";
 	private static final double TEST_RATING = 3.1234;
 	
-	private static final String ESTABLISHMENTS_ENDPOINT = "/establishments";
+	//private static final String ESTABLISHMENTS_ENDPOINT = "/establishments";
 	
 	private static final EstablishmentService establishmentService = mock(EstablishmentService.class);
 	
