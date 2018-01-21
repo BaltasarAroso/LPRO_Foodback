@@ -105,5 +105,6 @@
     <string name="reports_users">Denúncias Utilizadores</string>
     <string name="reports_estabs">Denúncias Estabelecimento</string>
     <string name="has_delivery">Possui serviço de entregas ao domicílio</string>
+    <string name="estab_page_image">Imagem do Estabelecimento</string>
 
 </resources>
