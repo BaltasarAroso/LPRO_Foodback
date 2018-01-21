@@ -36,14 +36,13 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 public class EstablishmentChangeInfo extends Fragment {
 
     protected EditText editname, editaddress, editzone, editcity, editemail,
-            editcontact, editavgprice, editschedule1, editschedule2,
-            editoldpass, editnewpass, editconfpass;
+            editcontact, editavgprice, editschedule1, editschedule2, editnewpass, editconfpass;
     protected Spinner editcategory;
     protected Button buttonChangeEstab;
     protected CheckBox editdelivery;
 
     protected String name, category, address, zone, city, email, contact,
-            schedule1, schedule2, oldpass, confpass, newpass;
+            schedule1, schedule2, newpass, confpass;
     protected Integer avg_price;
     protected Boolean delivery;
 
@@ -74,7 +73,6 @@ public class EstablishmentChangeInfo extends Fragment {
         editschedule1 = getView().findViewById(R.id.schedule1);
         editschedule2 = getView().findViewById(R.id.schedule2);
         editavgprice = getView().findViewById(R.id.avg_price);
-        editoldpass = getView().findViewById(R.id.oldpass);
         editnewpass = getView().findViewById(R.id.newpass);
         editconfpass = getView().findViewById(R.id.confpass);
         editdelivery = getView().findViewById(R.id.delivery);
@@ -100,12 +98,12 @@ public class EstablishmentChangeInfo extends Fragment {
         if (validateChangesEstab()) {
             if(TextUtils.isEmpty(newpass)) {
                 estab = new Establishment(name, category, address, zone, city, email,
-                        contact, avg_price, schedule1, schedule2, null, oldpass, delivery);
+                        contact, avg_price, schedule1, schedule2, null, null, delivery);
             } else {
                 estab = new Establishment(name, category, address, zone, city, email,
                         contact, avg_price, schedule1, schedule2, null, newpass, delivery);
             }
-            verifyOldPassword(estab, oldpass);
+            verifyOldPassword(estab, null);
         }
     }
 
@@ -120,7 +118,6 @@ public class EstablishmentChangeInfo extends Fragment {
         avg_price = Integer.parseInt(editavgprice.getText().toString());
         schedule1 = editschedule1.getText().toString();
         schedule2 = editschedule2.getText().toString();
-        oldpass = editoldpass.getText().toString();
         newpass = editnewpass.getText().toString();
         confpass = editconfpass.getText().toString();
         delivery = editdelivery.isChecked();
@@ -201,7 +198,7 @@ public class EstablishmentChangeInfo extends Fragment {
                     if(response.isSuccessful()) {
                         changeEstabOnServer(estab, password);
                     } else {
-                        editoldpass.setError("Wrong password");
+                        //editoldpass.setError("Wrong password");
                         isBad(getActivity(), response);
                     }
                 }

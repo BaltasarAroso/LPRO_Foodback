@@ -82,14 +82,6 @@
                     android:inputType="textEmailAddress"
                     android:textSize="@dimen/_10sdp" />
 
-                <EditText
-                    android:id="@+id/contact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/contact"
-                    android:inputType="text"
-                    android:textSize="@dimen/_10sdp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,14 +113,6 @@
                     android:text="@string/changepass"
                     android:textStyle="bold"
                     android:textSize="@dimen/_10sdp"/>
-
-                <EditText
-                    android:id="@+id/oldpass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/oldpass"
-                    android:inputType="text"
-                    android:textSize="@dimen/_10sdp" />
 
                 <EditText
                     android:id="@+id/newpass"
