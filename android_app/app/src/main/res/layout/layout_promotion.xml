@@ -9,4 +9,68 @@
 
     <!-- TODO fazer o layout da ListView das promoções para o admin poder apagar -->
 
+    <TextView
+        android:id="@+id/promotion_title_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="As melhores Francesinhas do Porto a 5€"
+        android:textStyle="bold"
+        android:textSize="@dimen/_12sdp"/>
+
+    <TextView
+        android:id="@+id/promotion_description_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Venha à Tasca do Zé comer e chorar por mais!! Não vai querer perder o melhor fim de semana de sempre a comer sem dar por ela ;)"
+        android:textStyle="normal"
+        android:textSize="@dimen/_10sdp"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:alignItems="flex_end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/code"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp" />
+
+        <TextView
+            android:id="@+id/promotion_code_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12345678"
+            android:textStyle="normal"
+            android:textSize="@dimen/_10sdp"/>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:alignItems="flex_end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/limit_date"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp" />
+
+        <TextView
+            android:id="@+id/promotion_limit_date_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="21/01/2017"
+            android:textStyle="normal"
+            android:textSize="@dimen/_10sdp"/>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
 </LinearLayout>
