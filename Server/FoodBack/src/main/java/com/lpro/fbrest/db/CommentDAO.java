@@ -9,6 +9,9 @@ import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import com.lpro.fbrest.api.Comment;
+import com.lpro.fbrest.api.User;
+
+import com.lpro.fbrest.db.UserMapper;
 
 /**
  * DAO for comment persistent data
@@ -56,5 +59,15 @@ public interface CommentDAO {
 			+ "SET rating = (SELECT AVG(rating) FROM comment WHERE establishment_id = :id) "
 			+ "WHERE id = :id")
 	public void updateEstablishmentRating(@Bind("id") long establishment_id);
+
+	/**
+	 * @param comment_id ID of comment
+	 * @return User who made comment
+	 */
+	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium, zone, city "
+			+ "FROM users JOIN credential ON users_id = users.id "
+			+ "WHERE users.id = (SELECT commenter_id FROM comment WHERE id = :id)")
+	@RegisterMapper(UserMapper.class)
+	public User getCommenterUser(@Bind("id") long comment_id);
 
 }

@@ -7,6 +7,7 @@ import javax.ws.rs.WebApplicationException;
 import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 
 import com.lpro.fbrest.api.Comment;
+import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.db.CommentDAO;
 
 /**
@@ -54,6 +55,19 @@ public abstract class CommentService {
 	public List<Comment> getEstablishmentComments(long establishment_id) {
 		try {
 			return commentdao().getEstablishmentComments(establishment_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+	}
+
+	/**
+	 * @param comment_id ID of comment
+	 * @return User who made comment
+	 */
+	public User getCommenterUser(long comment_id) {
+		try {
+			return commentdao().getCommenterUser(comment_id);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);

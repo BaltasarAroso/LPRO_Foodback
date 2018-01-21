@@ -81,7 +81,7 @@ public abstract class UserService {
 	}
 	
 	/**
-	 * @param username Username to be searched
+	 * @param id ID to be searched
 	 * @return User if it exists
 	 */
 	public User getUserById(long id) {

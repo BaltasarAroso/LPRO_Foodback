@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.lpro.fbrest.api.Comment;
+import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.service.CommentService;
 
@@ -80,6 +81,17 @@ public class CommentsResource {
 		}
 		commentService.deleteComment(comment);
 		return Response.ok().build();
+	}
+	
+	/**
+	 * @param comment_id ID of comment
+	 * @return User who made comment
+	 */
+	@GET
+	@Path("/{comment_id}/commenter")	
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getCommeterUser(@PathParam("comment_id") long comment_id) {
+		return commentService.getCommenterUser(comment_id);
 	}
 	
 }
