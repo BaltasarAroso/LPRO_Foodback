@@ -1,5 +1,6 @@
 package com.foodback.foodback.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.activity.EstablishmentRegister;
+import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
@@ -87,7 +90,10 @@ public class Restaurant extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Establishment selectedEstab = restaurants.get(position);
-                Toast.makeText(getActivity(), selectedEstab.getName(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
+                // TODO provavelmente terá que se fazer um cast da lista de establishments para um vetor de strings
+                i.putExtra("restaurants", (CharSequence) selectedEstab);
+                startActivity(i);
             }
         });
     }

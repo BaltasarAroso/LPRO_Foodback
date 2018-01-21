@@ -31,20 +31,21 @@
         <activity
             android:name=".activity.UserMenu"
             android:label="@string/title_activity_user_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.EstablishmentMenu"
             android:label="@string/title_activity_establishment_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AdminMenu"
             android:label="@string/title_activity_admin_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- <activity android:name=".fragment.SearchField" /> -->
         <activity
             android:name=".activity.VisitorMenu"
             android:label="@string/title_activity_visitor_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.EstablishmentSelectedPage"></activity>
     </application>
 
 </manifest>

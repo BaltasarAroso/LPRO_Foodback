@@ -96,5 +96,14 @@
     <string name="signin">Entrar</string>
     <string name="promotions">Promoções</string>
     <string name="no_establishments_found">No establishments found.</string>
+    <string name="new_promotion">Nova Promoção</string>
+    <string name="promotion_title">Título</string>
+    <string name="promotion_description">Descrição</string>
+    <string name="promotion_code">Código</string>
+    <string name="promotion_limit_date">Data de Validade</string>
+    <string name="promotion_create">Criar Promoção</string>
+    <string name="reports_users">Denúncias Utilizadores</string>
+    <string name="reports_estabs">Denúncias Estabelecimento</string>
+    <string name="has_delivery">Possui serviço de entregas ao domicílio</string>
 
 </resources>

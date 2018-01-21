@@ -7,6 +7,6 @@
     android:layout_margin="@dimen/_8sdp"
     android:orientation="vertical">
 
-
+    <!-- TODO fazer o layout da ListView das promoções para o admin poder apagar -->
 
 </LinearLayout>
