@@ -1,15 +1,28 @@
 package com.foodback.foodback.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
+import com.foodback.foodback.logic.Comment;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.DialogReport;
+import com.foodback.foodback.utils.EstablishmentListAdapter;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,9 +36,10 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EstablishmentPage extends Fragment {
+public class EstablishmentPage extends Fragment implements DialogReport.DialogReportListener {
 
     private Establishment establishment;
+    ArrayList<Comment> comments = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,9 +47,26 @@ public class EstablishmentPage extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_establishment_page, container, false);
 
+        ImageView btnReport = view.findViewById(R.id.icon_report);
+        btnReport.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                opendialog();
+            }
+        });
+
         fillEstablishmentInfo();
 
         return view;
+    }
+
+    private void opendialog() {
+        DialogReport dialogReport = new DialogReport();
+        dialogReport.show(getFragmentManager(), "popup_report");
+    }
+    @Override
+    public void applyfield(String editReport) {
+        // TODO o popup passa para esta string o que foi escrito. Enviar isto para o servidor
     }
 
     private void fillEstablishmentInfo() {
@@ -65,8 +96,19 @@ public class EstablishmentPage extends Fragment {
         }
     }
 
+    //TODO inserir o adapter para o ListView do Menu e para o ListView das opiniões
+
+    private void declareComments(View view) {
+
+        ListView listRestaurants = view.findViewById(R.id.list_comments);
+        //listRestaurants.setAdapter(new CommentListAdapter(getActivity(), comments));
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
     }
+
+
 }

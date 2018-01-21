@@ -1,15 +1,20 @@
 package com.foodback.foodback.activity;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.DialogReport;
 
-public class EstablishmentSelectedPage extends AppCompatActivity {
+public class EstablishmentSelectedPage extends AppCompatActivity implements DialogReport.DialogReportListener {
 
     protected TextView editcategory, editaddress, editcontact, editavgprice, editzone, editcity, editschedule1, editschedule2, editrating;
     protected Toolbar editname;
@@ -17,6 +22,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity {
 
     protected Establishment estab;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,23 @@ public class EstablishmentSelectedPage extends AppCompatActivity {
             editdelivery.setText(bundle.getString(estab.getName()));
             editrating.setText(bundle.getString(String.valueOf(estab.getRating())));
         }
+
+        ImageView btnReport = findViewById(R.id.icon_report);
+        btnReport.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                opendialog();
+            }
+        });
+    }
+
+    private void opendialog() {
+        DialogReport dialogReport = new DialogReport();
+        dialogReport.show(getSupportFragmentManager(), "popup_report");
+    }
+    @Override
+    public void applyfield(String editReport) {
+        // TODO o popup passa para esta string o que foi escrito. Enviar isto para o servidor
     }
 
 
