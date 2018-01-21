@@ -36,7 +36,7 @@ public abstract class OrderService{
 		try {
 			int i;
 			for(i=0; i< order.getMeals().size(); i++) {
-				orderdao().insertMealOrder(order.getMeals().get(i).getMeal_id(),
+				orderdao().insertMealOrder(order.getMeals().get(i).getMeal(),
 						order_id,
 						order.getMeals().get(i).getQuantity());
 			}

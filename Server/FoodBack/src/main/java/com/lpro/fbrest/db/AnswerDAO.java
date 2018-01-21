@@ -63,6 +63,7 @@ public interface AnswerDAO {
 	
 	/**
 	 * @param id ID of answer
+	 * @param answer Answer to be inserted 
 	 */
 	@SqlUpdate("UPDATE comment_answer "
 			+ "SET answer = :answer, time_posted = now() "
