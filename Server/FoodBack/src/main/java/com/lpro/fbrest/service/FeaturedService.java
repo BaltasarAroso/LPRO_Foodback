@@ -11,6 +11,9 @@ import com.lpro.fbrest.db.FeaturedDAO;
 
 public abstract class FeaturedService {
 	
+	/**
+	 * @return 
+	 */
 	@CreateSqlObject
 	abstract FeaturedDAO featuredDao();
 	

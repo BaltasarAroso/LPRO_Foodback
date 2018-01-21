@@ -18,6 +18,8 @@ import com.lpro.fbrest.db.EstablishmentDAO;
  * Service for establishment management
  */
 public abstract class EstablishmentService {
+	
+	private static final String SUCCESS = "Success...";
 
 	@CreateSqlObject
 	abstract ClientDAO clientdao();
@@ -28,7 +30,7 @@ public abstract class EstablishmentService {
 	/**
 	 * @param establishment Establishment to be stored
 	 */
-	public void newEstablishment(Establishment establishment) {
+	public String newEstablishment(Establishment establishment) {
 		long establishment_id;
 		Client prev = clientdao().getClient(establishment.getUsername());
 		if(prev != null) throw new WebApplicationException(Response.serverError()
@@ -63,6 +65,8 @@ public abstract class EstablishmentService {
 			e.printStackTrace();
 			throw new WebApplicationException(500);
 		}
+		
+		return SUCCESS;
 	}
 
 	/**

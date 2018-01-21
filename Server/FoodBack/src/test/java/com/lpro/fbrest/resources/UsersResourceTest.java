@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -33,6 +34,7 @@ public class UsersResourceTest {
 	private static final LocalDate TEST_BIRTH = LocalDate.parse("1996-03-06");
 	private static final String TEST_ZONE = "Minha zona filho";
 	private static final String TEST_CITY = "Cidade fixe";
+
 	
 	private static final String USERS_ENDPOINT = "/users";
 	
@@ -53,10 +55,12 @@ public class UsersResourceTest {
 									TEST_ZONE,
 									TEST_CITY);
 	
+		
 	@Before
 	public void setup() {
 		when(userService.getUserByUsername(eq("dan"))).thenReturn(user);
 		when(userService.newUser(eq(user))).thenReturn(SUCCESS);
+		when(userService.getUserByUsername(eq("xxx"))).thenThrow(new WebApplicationException(404));
 	}
 	
 	@After
@@ -77,5 +81,12 @@ public class UsersResourceTest {
 				.post(Entity.entity(user, MediaType.APPLICATION_JSON_TYPE));
 		assertEquals(response.getStatus(), Response.ok().build().getStatus());
 	}
+	
+	@Test
+	public void testResponseFailUser() {
+		Response response = resources.target(USERS_ENDPOINT + "/xxx").request().get(Response.class);
+		assertEquals(response.getStatus(), Response.status(Response.Status.NOT_FOUND).build().getStatus());
+	}
+
 
 }

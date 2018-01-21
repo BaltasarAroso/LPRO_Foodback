@@ -30,6 +30,10 @@ public class MealsResource {
 		this.mealService = mealService;
 	}
 	
+	/**
+	 * @param meal
+	 * @return @return Response to let client know if request was successful
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response newMeal(@NotNull @Valid Meal meal) {
@@ -37,6 +41,10 @@ public class MealsResource {
 		return Response.ok().build();
 	}
 	
+	/**
+	 * @param establishment_id
+	 * @return all meals of a establishment
+	 */
 	@GET
 	@Path("/{establishment_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -44,10 +52,15 @@ public class MealsResource {
 		return mealService.getAllMeals(establishment_id);
 	}
 	
+	/**
+	 * @param establishment_id
+	 * @param meal
+	 * @return Meal
+	 */
 	@GET
 	@Path("/{establishment_id}/{meal}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Meal getMealbyName(@PathParam("establishment_id") int establishment_id, @PathParam("meal") String meal){
+	public Meal getMealbyName(@PathParam("establishment_id") long establishment_id, @PathParam("meal") String meal){
 		return mealService.getMealbyName(establishment_id, meal);
 	}
 	

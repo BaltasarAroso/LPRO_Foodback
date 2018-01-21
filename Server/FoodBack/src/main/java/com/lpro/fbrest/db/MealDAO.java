@@ -13,6 +13,12 @@ import com.lpro.fbrest.api.Meal;
 @RegisterMapper(MealMapper.class)
 public interface MealDAO {
 	
+	/**
+	 * @param meal
+	 * @param price
+	 * @param establishment_id
+	 * @return
+	 */
 	@SqlUpdate("INSERT INTO meal "
 			+ "VALUES (DEFAULT, :meal, :price, :establishment_id)")
 	@GetGeneratedKeys
@@ -20,12 +26,21 @@ public interface MealDAO {
 					@Bind("price") int price,
 					@Bind("establishment_id") long establishment_id);
 
-	
+
+	/**
+	 * @param establishment_id
+	 * @return
+	 */
 	@SqlQuery("SELECT id, meal, price, establishment_id "
 			+ "FROM meal "
 			+ "WHERE establishment_id = :establishment_id")
 	List<Meal> getAllMeals(@Bind("establishment_id") long establishment_id);
 
+	/**
+	 * @param establishment_id
+	 * @param meal
+	 * @return
+	 */
 	@SqlQuery("SELECT id, meal, price, establishment_id "
 			+ "FROM meal "
 			+ "WHERE establishment_id = :establishment_id AND meal = :meal")

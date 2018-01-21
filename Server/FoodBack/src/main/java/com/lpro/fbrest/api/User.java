@@ -113,7 +113,7 @@ public class User {
 	}
 
 	/**
-	 * @param id id of user
+	 * @param id of user
 	 */
 	public void setId(long id) {
 		this.id = id;
