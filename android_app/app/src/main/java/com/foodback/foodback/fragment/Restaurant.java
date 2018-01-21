@@ -3,16 +3,13 @@ package com.foodback.foodback.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.activity.EstablishmentRegister;
 import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;

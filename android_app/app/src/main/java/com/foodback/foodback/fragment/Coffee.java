@@ -1,9 +1,9 @@
 package com.foodback.foodback.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +12,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 public class Coffee extends Fragment {
 
     ArrayList<Establishment> coffees = new ArrayList<>();
+    ArrayList<String> errors = new ArrayList<>();
 
     public Coffee() {}
 
@@ -63,7 +66,7 @@ public class Coffee extends Fragment {
                         declareList(view);
                     } else {
                         if(response.code() == 404) {
-                            declareList(view);
+                            declareError(view);
                         } else
                             isBad(getActivity(), response);
                     }
@@ -89,6 +92,24 @@ public class Coffee extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Establishment selectedEstab = coffees.get(position);
                 Toast.makeText(getActivity(), selectedEstab.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void declareError(View view) {
+
+        errors.add("No establishment found.");
+
+        ListView listCoffees = view.findViewById(R.id.list_coffees);
+        listCoffees.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
+        listCoffees.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Establishment selectedEstab = coffees.get(position);
+                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
+                // TODO provavelmente terá que se fazer um cast da lista de establishments para um vetor de strings
+                i.putExtra("coffees", (CharSequence) selectedEstab);
+                startActivity(i);
             }
         });
     }
