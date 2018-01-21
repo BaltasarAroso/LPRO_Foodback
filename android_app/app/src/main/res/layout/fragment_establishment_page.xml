@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/_60sdp"
     tools:context="com.foodback.foodback.fragment.EstablishmentPage">
 
     <com.google.android.flexbox.FlexboxLayout
@@ -26,7 +27,6 @@
                     android:id="@+id/estab_page_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tasca do Zé"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20sdp"
                     app:layout_alignSelf="center"/>
@@ -44,7 +44,7 @@
                     android:layout_height="@dimen/_80sdp"
                     app:srcCompat="@drawable/foodback_logo"
                     app:layout_alignSelf="center"
-                    android:contentDescription="Imagem do Estabelecimento" />
+                    android:contentDescription="@string/establishment_image" />
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -59,7 +59,6 @@
                 android:id="@+id/estab_page_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.00"
                 android:textColor="@color/colorLogo"
                 android:textStyle="bold"
                 android:textSize="@dimen/_14sdp"
@@ -83,7 +82,6 @@
                     android:id="@+id/estab_page_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cozinha Portuguesa"
                     android:textStyle="bold"
                     android:textSize="@dimen/_10sdp"
                     app:layout_alignSelf="flex_start"/>
@@ -92,7 +90,6 @@
                     android:id="@+id/estab_page_avg_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10€"
                     android:textStyle="normal"
                     android:textSize="@dimen/_8sdp"
                     app:layout_alignSelf="flex_end"/>
@@ -103,7 +100,6 @@
                 android:id="@+id/estab_page_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rua Mouzinho da Silveira"
                 android:textStyle="normal"
                 app:layout_alignSelf="flex_start"
                 android:layout_marginTop="@dimen/_4sdp"/>
@@ -119,7 +115,6 @@
                     android:id="@+id/estab_page_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="223456789"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"/>
 
@@ -129,10 +124,9 @@
                     app:justifyContent="flex_end">
 
                     <TextView
-                        android:id="@+id/estab_zone"
+                        android:id="@+id/estab_page_zone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Baixa"
                         android:textStyle="normal"
                         android:textSize="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_4sdp"
@@ -146,10 +140,9 @@
                         android:background="#999999" />
 
                     <TextView
-                        android:id="@+id/estab_city"
+                        android:id="@+id/estab_page_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Porto"
                         android:textStyle="normal"
                         android:textSize="@dimen/_10sdp"
                         android:layout_marginStart="@dimen/_4sdp"
@@ -164,7 +157,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:text="Horário 1"
                 android:textStyle="normal"
                 android:textSize="@dimen/_10sdp"/>
 
@@ -173,7 +165,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:text="Horário 2"
                 android:textStyle="normal"
                 android:textSize="@dimen/_10sdp"/>
 
@@ -182,7 +173,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/has_delivery"
-                android:textSize="@dimen/_8sdp"/>
+                android:textSize="@dimen/_8sdp"
+                android:clickable="false"/>
 
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -196,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Menu"
+                android:text="@string/menu"
                 android:textStyle="bold"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="@color/colorLogo"/>
@@ -219,7 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Opiniões"
+                android:text="@string/opinions"
                 android:textStyle="bold"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="@color/colorLogo"/>

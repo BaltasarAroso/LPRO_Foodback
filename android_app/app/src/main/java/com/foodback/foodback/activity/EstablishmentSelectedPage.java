@@ -100,14 +100,6 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
         }
 
         fillMealList();
-
-//        ImageView btnReport = findViewById(R.id.icon_report);
-//        btnReport.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                opendialog();
-//            }
-//        });
     }
 
     private void fillMealList() {

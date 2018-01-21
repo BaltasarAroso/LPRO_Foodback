@@ -86,7 +86,7 @@
     <string name="display_price">%d€</string>
     <string name="display_delivery">Encomendas</string>
     <string name="spotlight">Destacar</string>
-    <string name="title_activity_visitor_menu">Menu de Visitante</string>
+    <string name="title_activity_visitor_menu">VisitorMenu</string>
     <string name="visitor">Visitante</string>
     <string name="content_image_nav_header">Content Image</string>
     <string name="admin">Administrador</string>
@@ -111,13 +111,15 @@
     <string name="code">Código:</string>
     <string name="limit_date">Data de Validade:</string>
     <string name="report_title">%1$s denunciou %2$s</string>
+    <string name="report_content">%1$s: "%2$s"</string>
+    <string name="connection_ip">Introduzir &lt;IP&gt;:&lt;PORT&gt;</string>
     <string name="delivery_name">Nome da Encomenda:</string>
     <string name="delivery_quantity">Quantidade:</string>
     <string name="ready">Pronto a entregar</string>
     <string name="add_meal">Adicionar Pedido</string>
     <string name="end_delivery">Finalizar Pedido</string>
-    <string name="report_content">%1$s: "%2$s"</string>
-    <string name="connection_ip">Introduzir &lt;IP&gt;:&lt;PORT&gt;</string>
+    <string name="menu">Menu</string>
+    <string name="opinions">Opiniões</string>
 
     <string-array name="spotlight_time_options">
         <item>1 dia</item>

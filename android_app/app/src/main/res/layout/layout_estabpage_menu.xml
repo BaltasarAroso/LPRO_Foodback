@@ -17,7 +17,6 @@
             android:id="@+id/menu_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Feijoada à transmontana"
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -26,7 +25,6 @@
             android:id="@+id/menu_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12.90€"
             android:textSize="@dimen/_10sdp"
             android:textStyle="normal"
             android:gravity="center"/>
