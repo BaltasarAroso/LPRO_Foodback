@@ -103,16 +103,6 @@ public class Dessert extends Fragment {
 
         ListView listDesserts = view.findViewById(R.id.list_desserts);
         listDesserts.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
-        listDesserts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = desserts.get(position);
-                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
-                // TODO provavelmente terá que se fazer um cast da lista de establishments para um vetor de strings
-                i.putExtra("desserts", (CharSequence) selectedEstab);
-                startActivity(i);
-            }
-        });
     }
 
     @Override

@@ -39,16 +39,17 @@
         </Spinner>
 
         <Button
-            android:id="@+id/delete_estabinfoButton"
+            android:id="@+id/btnSpotlight"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/_2sdp"
             android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:background="@color/colorLogo"
             android:textColor="#fff"
             android:textSize="@dimen/_8sdp"
-            android:text="@string/spotlight"/>
+            android:text="@string/spotlight" />
 
     </com.google.android.flexbox.FlexboxLayout>
 

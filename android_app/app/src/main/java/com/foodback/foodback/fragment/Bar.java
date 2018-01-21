@@ -102,16 +102,6 @@ public class Bar extends Fragment {
 
         ListView listBars = view.findViewById(R.id.list_bars);
         listBars.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
-        listBars.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = bars.get(position);
-                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
-                // TODO provavelmente terá que se fazer um cast da lista de establishments para um vetor de strings
-                i.putExtra("bars", (CharSequence) selectedEstab);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
