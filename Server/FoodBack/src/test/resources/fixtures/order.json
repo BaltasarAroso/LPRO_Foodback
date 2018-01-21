@@ -3,14 +3,14 @@
 	"meals": [
 		{
 			"id": "20",
-			"meal_id": "5",
+			"meal": "Prato 1",
 			"orders_id": "25",
 			"quantity": "10",
 			"state": "estado.."
 		},
 		{
 			"id": "5",
-			"meal_id": "20",
+			"meal": "Prato 2",
 			"orders_id": "10",
 			"quantity": "25",
 			"state": "estado..."

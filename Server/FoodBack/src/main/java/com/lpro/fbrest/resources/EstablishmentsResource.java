@@ -80,10 +80,11 @@ import io.dropwizard.auth.Auth;
 		}
 		
 		/**
-		 * @param category_id ID of category 
-		 * @param order_rating If the returned list is ordered by rating or not
-		 * @param order_avg_price If the returned list is ordered by average price or not
-		 * @return Establishments filtered
+		 * @param category_id ID of category
+		 * @param sort If sort is needed
+		 * @param order_by Column to order by
+		 * @param order_dir Order asc or desc
+		 * @return List of establishments
 		 */
 		@GET
 		@Path("/filtered")
