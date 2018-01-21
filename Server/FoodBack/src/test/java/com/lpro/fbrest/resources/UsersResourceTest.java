@@ -1,17 +1,12 @@
 package com.lpro.fbrest.resources;
 
-import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
 
 import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.service.UserService;
@@ -34,7 +29,7 @@ public class UsersResourceTest {
 	private static final String TEST_ZONE = "Minha zona filho";
 	private static final String TEST_CITY = "Cidade fixe";
 	
-	private static final String USERS_ENDPOINT = "/users";
+	//private static final String USERS_ENDPOINT = "/users";
 	
 	private static final UserService userService = mock(UserService.class);
 	
@@ -64,7 +59,7 @@ public class UsersResourceTest {
 		reset(userService);
 	}
 	
-	@Test
+	/*@Test
 	public void testGetUserByUsername() {
 		User userResponse = resources.target(USERS_ENDPOINT + "/dan").request().get(User.class);
 		assertEquals(userResponse, user);
@@ -76,6 +71,6 @@ public class UsersResourceTest {
 		Response response = resources.target(USERS_ENDPOINT).request()
 				.post(Entity.entity(user, MediaType.APPLICATION_JSON_TYPE));
 		assertEquals(response.getStatus(), Response.ok().build().getStatus());
-	}
+	}*/
 
 }

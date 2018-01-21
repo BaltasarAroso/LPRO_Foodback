@@ -73,9 +73,34 @@ public interface UserDAO {
 			+ "FROM users JOIN credential ON users_id = users.id")
 	public List<User> getAllUsers();
 
+	/**
+	 * @param users_id ID of user to upgrade
+	 */
 	@SqlUpdate("UPDATE users "
 			+ "SET premium = true "
 			+ "WHERE id = :id")
 	public void upgradePremium(@Bind("id") long users_id);
+
+	/**
+	 * @param id ID of user
+	 * @param name Name of user
+	 * @param email Email of user
+	 * @param address Address of user
+	 * @param birth Birth of user
+	 * @param premium If user is premium or not
+	 * @param zone Zone of user
+	 * @param city City of user
+	 */
+	@SqlUpdate("UPDATE users "
+			+ "SET name = :name, email = :email, address = :address, birth = :birth, premium = :premium, zone = :zone, city = :city "
+			+ "WHERE id = :id")
+	public void editUser(@Bind("id") long id, 
+					@Bind("name") String name,
+					@Bind("email") String email,
+					@Bind("address") String address,
+					@Bind("birth") LocalDate birth,
+					@Bind("premium") boolean premium,
+					@Bind("zone") String zone,
+					@Bind("city") String city);
 	
 }

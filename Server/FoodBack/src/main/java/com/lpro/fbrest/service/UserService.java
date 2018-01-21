@@ -103,6 +103,25 @@ public abstract class UserService {
 			throw new WebApplicationException(500);
 		}
 	}
+
+	/**
+	 * @param user New User object
+	 */
+	public void editUser(User user) {
+		try {
+			userdao().editUser(user.getId(),
+					user.getName(), 
+					user.getEmail(), 
+					user.getAddress(), 
+					user.getBirth(), 
+					user.getPremium(),
+					user.getZone(),
+					user.getCity());		
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+	}
 	
 
 }

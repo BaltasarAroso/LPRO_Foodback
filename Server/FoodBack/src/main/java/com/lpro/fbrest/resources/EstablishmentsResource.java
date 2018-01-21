@@ -197,4 +197,15 @@ import io.dropwizard.auth.Auth;
 			return establishmentService.getAllTmpEstablishmentDifferences();
 		}
 		
+		/**
+		 * @param search_string String to search with ILIKE
+		 * @return List of establishments
+		 */
+		@GET
+		@Path("/ilike/{search_string}")
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Establishment> getEstablishmentsByName(@PathParam("search_string") String search_string) {
+			return establishmentService.getEstablishmentsByName(search_string);
+		}
+		
 }

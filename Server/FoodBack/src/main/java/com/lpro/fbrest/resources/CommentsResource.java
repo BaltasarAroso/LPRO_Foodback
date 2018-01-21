@@ -22,8 +22,6 @@ import com.lpro.fbrest.service.CommentService;
 import io.dropwizard.auth.Auth;
 
 /**
- * @author Daniel
- *
  * Resource to manage comments
  */
 @Path("/comments")
@@ -91,6 +89,17 @@ public class CommentsResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getCommeterUser(@PathParam("comment_id") long comment_id) {
 		return commentService.getCommenterUser(comment_id);
+	}
+	
+	/**
+	 * @param comment_id ID of comment
+	 * @return Comment with specified ID
+	 */
+	@GET
+	@Path("/id/{comment_id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Comment getCommentById(@PathParam("comment_id") long comment_id) {
+		return commentService.getCommentById(comment_id);
 	}
 	
 }
