@@ -16,6 +16,7 @@ import com.foodback.foodback.activity.EstablishmentRegister;
 import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 public class Restaurant extends Fragment {
 
     ArrayList<Establishment> restaurants = new ArrayList<>();
+    ArrayList<String> errors = new ArrayList<>();
 
     public Restaurant() {}
 
@@ -64,10 +66,12 @@ public class Restaurant extends Fragment {
 
                         declareList(view);
                     } else {
-                        if(response.code() == 404) {
+                        if(response.code() != 404) {
                             declareList(view);
-                        } else
+                        } else {
+                            declareError(view);
                             isBad(getActivity(), response);
+                        }
                     }
                 }
 
@@ -96,6 +100,14 @@ public class Restaurant extends Fragment {
                 startActivity(i);
             }
         });
+    }
+
+    private void declareError(View view) {
+
+        errors.add("No establishment found.");
+
+        ListView listRestaurants = view.findViewById(R.id.list_restaurants);
+        listRestaurants.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
     }
 
 

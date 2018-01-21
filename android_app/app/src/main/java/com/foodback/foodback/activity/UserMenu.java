@@ -17,8 +17,10 @@ import android.widget.TextView;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.UserEndpoints;
 import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.SearchField;
 import com.foodback.foodback.fragment.UserChangeInfo;
 import com.foodback.foodback.fragment.UserDelivery;
+import com.foodback.foodback.fragment.UserPromotions;
 import com.foodback.foodback.logic.User;
 
 import retrofit2.Call;
@@ -108,11 +110,23 @@ public class UserMenu extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        /*int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }*/
+
+        Intent i;
+
+        switch (item.getItemId()) {
+
+            case R.id.action_search:
+                i = new Intent();
+                i.setClass(UserMenu.this, SearchField.class);
+                startActivity(i);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

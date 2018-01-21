@@ -19,7 +19,9 @@ import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.fragment.EstablishmentChangeInfo;
 import com.foodback.foodback.fragment.EstablishmentDelivery;
 import com.foodback.foodback.fragment.EstablishmentPage;
+import com.foodback.foodback.fragment.EstablishmentPromotions;
 import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.SearchField;
 import com.foodback.foodback.logic.Establishment;
 
 import retrofit2.Call;
@@ -106,11 +108,23 @@ public class EstablishmentMenu extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        /*int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }*/
+
+        Intent i;
+
+        switch (item.getItemId()) {
+
+            case R.id.action_search:
+                i = new Intent();
+                i.setClass(EstablishmentMenu.this, SearchField.class);
+                startActivity(i);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
