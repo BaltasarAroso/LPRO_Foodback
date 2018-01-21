@@ -111,5 +111,10 @@
     <string name="code">Código:</string>
     <string name="limit_date">Data de Validade:</string>
     <string name="report_title">%1$s denunciou %2$s</string>
+    <string name="delivery_name">Nome da Encomenda:</string>
+    <string name="delivery_quantity">Quantidade:</string>
+    <string name="ready">Pronto a entregar</string>
+    <string name="add_meal">Adicionar Pedido</string>
+    <string name="end_delivery">Finalizar Pedido</string>
 
 </resources>
