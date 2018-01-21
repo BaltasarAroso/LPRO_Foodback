@@ -111,6 +111,7 @@
     <string name="code">Código:</string>
     <string name="limit_date">Data de Validade:</string>
     <string name="report_title">%1$s denunciou %2$s</string>
+    <string name="connection_ip">Introduzir &lt;IP&gt;:&lt;PORT&gt;</string>
     <string name="delivery_name">Nome da Encomenda:</string>
     <string name="delivery_quantity">Quantidade:</string>
     <string name="ready">Pronto a entregar</string>
