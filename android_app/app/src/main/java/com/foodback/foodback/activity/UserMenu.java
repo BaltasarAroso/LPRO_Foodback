@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.UserEndpoints;
@@ -122,16 +121,20 @@ public class UserMenu extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+
+        /*int id = item.getItemId();
 
         if (id == R.id.nav_homepage) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.user_menu, new Homepage()).commit();
-        } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_delivery) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
+
+        } else if (id == R.id.nav_promotions) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.user_menu, new UserPromotions()).commit();
 
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
@@ -143,6 +146,41 @@ public class UserMenu extends AppCompatActivity
             setCredentials(null, null);
             startActivity(i);
 
+        }*/
+
+        FragmentManager fm;
+
+        switch (item.getItemId()){
+
+            case R.id.nav_homepage:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new Homepage()).commit();
+                break;
+
+            case R.id.nav_delivery:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
+                break;
+
+            case R.id.nav_promotions:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new UserPromotions()).commit();
+                break;
+
+            case R.id.nav_settings:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new UserChangeInfo()).commit();
+                break;
+
+            case R.id.nav_logout:
+                Intent i = new Intent();
+                i.setClass(UserMenu.this, LogIn.class);
+                setCredentials(null, null);
+                startActivity(i);
+                break;
+
+            default:
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -2,6 +2,7 @@ package com.foodback.foodback.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,17 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
-import com.foodback.foodback.config.UserEndpoints;
 import com.foodback.foodback.fragment.EstablishmentChangeInfo;
 import com.foodback.foodback.fragment.EstablishmentDelivery;
 import com.foodback.foodback.fragment.EstablishmentPage;
 import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.logic.Establishment;
-import com.foodback.foodback.logic.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -120,26 +118,74 @@ public class EstablishmentMenu extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+
+        /*int id = item.getItemId();
 
         if (id == R.id.nav_homepage) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.establishment_menu, new Homepage()).commit();
+
         } else if (id == R.id.nav_estabpage) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentPage()).commit();
+
         } else if (id == R.id.nav_delivery) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentDelivery()).commit();
+
+        } else if (id == R.id.nav_promotions) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentPromotions()).commit();
+
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentChangeInfo()).commit();
+
         } else if (id == R.id.nav_logout) {
             Intent i = new Intent();
             i.setClass(EstablishmentMenu.this, LogIn.class);
             startActivity(i);
+        }*/
+
+        FragmentManager fm;
+
+        switch (item.getItemId()){
+
+            case R.id.nav_homepage:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.establishment_menu, new Homepage()).commit();
+                break;
+
+            case R.id.nav_estabpage:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentPage()).commit();
+                break;
+
+            case R.id.nav_delivery:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentDelivery()).commit();
+                break;
+
+            case R.id.nav_promotions:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentPromotions()).commit();
+                break;
+
+            case R.id.nav_settings:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.establishment_menu, new EstablishmentChangeInfo()).commit();
+                break;
+
+            case R.id.nav_logout:
+                Intent i = new Intent();
+                i.setClass(EstablishmentMenu.this, LogIn.class);
+                startActivity(i);
+                break;
+
+            default:
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -21,17 +21,10 @@
         android:contentDescription="@string/content_image_nav_header" />
 
     <TextView
-        android:id="@+id/admin_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/admin"
+        android:text="@string/visitor"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/admin_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/admin_email" />
 
 </LinearLayout>

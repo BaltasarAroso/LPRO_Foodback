@@ -87,5 +87,13 @@
     <string name="display_price">%d€</string>
     <string name="display_delivery">Encomendas</string>
     <string name="spotlight">Destacar</string>
+    <string name="title_activity_visitor_menu">VisitorMenu</string>
+    <string name="visitor">Visitante</string>
+    <string name="content_image_nav_header">Content Image</string>
+    <string name="admin">Administrador</string>
+    <string name="admin_email">admin@foodback.pt</string>
+    <string name="register">Registar</string>
+    <string name="signin">Entrar</string>
+    <string name="promotions">Promoções</string>
 
 </resources>

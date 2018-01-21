@@ -42,7 +42,7 @@
             android:id="@+id/comment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recomendo! Serviço muito bom, quero lá voltar. Espero comer lá a minha namorada mais vezes. E ainda gostava de comera empregada, que por sua vez era totil boas!"
+            android:text="Recomendo! Serviço muito bom, quero lá voltar. Espero comer lá a minha namorada mais vezes. E ainda gostava de comer a empregada, que por sua vez era totil boa!"
             android:textSize="@dimen/_10sdp"
             android:textStyle="normal"/>
 
