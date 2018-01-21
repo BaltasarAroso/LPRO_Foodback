@@ -87,5 +87,6 @@
     <string name="display_price">%d€</string>
     <string name="display_delivery">Encomendas</string>
     <string name="spotlight">Destacar</string>
+    <string name="no_establishments_found">No establishments found.</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.foodback.foodback.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class EstablishmentListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        if (null == convertView) {
+        if(null == convertView) {
             convertView = inflater.inflate(R.layout.layout_establishment, parent, false);
         }
 

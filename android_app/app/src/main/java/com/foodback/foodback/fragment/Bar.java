@@ -61,7 +61,10 @@ public class Bar extends Fragment {
 
                         declareList(view);
                     } else {
-                        isBad(getActivity(), response);
+                        if(response.code() == 404) {
+                            declareList(view);
+                        } else
+                            isBad(getActivity(), response);
                     }
                 }
 

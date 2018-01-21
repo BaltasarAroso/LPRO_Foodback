@@ -3,6 +3,7 @@ package com.foodback.foodback.fragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.foodback.foodback.config.CredentialsEndpoints;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.CategoryUtils;
+
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -85,7 +88,6 @@ public class EstablishmentChangeInfo extends Fragment {
                 // confirm register
                 changeEstab();
             }
-
         });
 
         populateFields();
@@ -131,7 +133,7 @@ public class EstablishmentChangeInfo extends Fragment {
             editname.setError("Please enter a valid name (max size of 32 characters)");
             return false;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editemail.setError("Please enter a valid email");
             return false;
         }
@@ -160,6 +162,7 @@ public class EstablishmentChangeInfo extends Fragment {
                         editcity.setText(estab.getCity());
                         editemail.setText(estab.getEmail());
                         editcontact.setText(estab.getContact());
+                        editavgprice.setText(String.format(Locale.UK, "%d", estab.getAvg_price()));
                         editschedule1.setText(estab.getSchedule1());
                         editschedule2.setText(estab.getSchedule2());
                         if(estab.getDelivery())
@@ -216,7 +219,6 @@ public class EstablishmentChangeInfo extends Fragment {
     private void changeEstabOnServer(Establishment estab, final String password) {
         try {
             Call<ResponseBody> dataCall = dataServices.editTmpEstablishment(estab);
-
 
             dataCall.enqueue(new Callback<ResponseBody>() {
                 @Override
