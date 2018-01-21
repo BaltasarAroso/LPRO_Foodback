@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swiperefresh"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/_10sdp"
@@ -11,6 +10,7 @@
 
 
     <com.google.android.flexbox.FlexboxLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_56sdp"
@@ -163,4 +163,4 @@
 
     </com.google.android.flexbox.FlexboxLayout>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+</android.support.constraint.ConstraintLayout>
