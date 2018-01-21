@@ -106,5 +106,10 @@
     <string name="reports_estabs">Denúncias Estabelecimento</string>
     <string name="has_delivery">Possui serviço de entregas ao domicílio</string>
     <string name="estab_page_image">Imagem do Estabelecimento</string>
+    <string name="report_comment">Denunciar Comentário</string>
+    <string name="report_description">Motivo da denúncia</string>
+    <string name="report">Denunciar</string>
+    <string name="code">Código:</string>
+    <string name="limit_date">Data de Validade:</string>
 
 </resources>
