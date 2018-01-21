@@ -69,17 +69,16 @@ public class CommentsResource {
 	}
 	
 	/**
-	 * @param client Client that wants to delete his now comment
-	 * @param comment Comment to be deleted
+	 * @param client Client that wants to delete his own comment
+	 * @param comment_id ID of Comment to be deleted
 	 * @return Response.ok() if comment was successfully deleted
 	 */
 	@DELETE
+	@Path("/{comment_id}")
+	@RolesAllowed({"USER","ADMIN"})
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteComment(@Auth Client client, Comment comment) {
-		if(client.getUsers_id() != comment.getCommenter_id()) {
-			throw new WebApplicationException(401); //not authorized
-		}
-		commentService.deleteComment(comment);
+	public Response deleteComment(@Auth Client client, @PathParam("comment_id") long comment_id) {
+		commentService.deleteComment(client.getUsers_id() ,comment_id);
 		return Response.ok().build();
 	}
 	

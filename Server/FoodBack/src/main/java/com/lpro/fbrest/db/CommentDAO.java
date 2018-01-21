@@ -41,7 +41,7 @@ public interface CommentDAO {
 	 */
 	@SqlUpdate("DELETE FROM comment "
 			+ "WHERE id = :comment_id")
-	public void deleteComment(@Bind("id") long comment_id);
+	public void deleteComment(@Bind("comment_id") long comment_id);
 	
 	/**
 	 * @param establishment_id Id of the establishment
@@ -69,5 +69,14 @@ public interface CommentDAO {
 			+ "WHERE users.id = (SELECT commenter_id FROM comment WHERE id = :id)")
 	@RegisterMapper(UserMapper.class)
 	public User getCommenterUser(@Bind("id") long comment_id);
+
+	/**
+	 * @param comment_id ID of comment
+	 * @return Comment with specified ID
+	 */
+	@SqlQuery("SELECT * "
+			+ "FROM comment "
+			+ "WHERE id = :id")
+	public Comment getCommentById(@Bind("id") long comment_id);
 
 }

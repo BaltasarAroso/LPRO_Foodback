@@ -36,11 +36,21 @@ public abstract class CommentService {
 	}
 	
 	/**
-	 * @param comment Comment to be deleted
+	 * @param comment_id ID of comment to be deleted
+	 * @param users_id ID of user
 	 */
-	public void deleteComment(Comment comment) {
+	public void deleteComment(long users_id, long comment_id) {
+		Comment comment = null;
 		try {
-			commentdao().deleteComment(comment.getId());
+			comment = commentdao().getCommentById(comment_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+		if(comment == null) throw new WebApplicationException(404);
+		if(comment.getCommenter_id() != users_id) throw new WebApplicationException(403);
+		try {
+			commentdao().deleteComment(comment_id);
 			commentdao().updateEstablishmentRating(comment.getEstablishment_id());
 		} catch(Exception e) {
 			e.printStackTrace();
