@@ -79,6 +79,18 @@ public abstract class UserService {
 		}
 		return user;
 	}
+	
+	/**
+	 * @param username Username to be searched
+	 * @return User if it exists
+	 */
+	public User getUserById(long id) {
+		User user = userdao().getUserById(id);
+		if(user == null) {
+			throw new WebApplicationException(404);
+		}
+		return user;
+	}
 
 	/**
 	 * @param users_id Id of user to upgrade
