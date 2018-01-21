@@ -102,9 +102,10 @@
     <string name="promotion_code">Código</string>
     <string name="promotion_limit_date">Data de Validade</string>
     <string name="promotion_create">Criar Promoção</string>
-    <string name="reports_users">Denúncias Utilizadores</string>
-    <string name="reports_estabs">Denúncias Estabelecimento</string>
+    <string name="reports_users">Denúncias a Utilizadores</string>
+    <string name="reports_estabs">Denúncias a Estabelecimentos</string>
     <string name="has_delivery">Possui serviço de entregas ao domicílio</string>
     <string name="estab_page_image">Imagem do Estabelecimento</string>
+    <string name="report_title">%1$s denunciou %2$s</string>
 
 </resources>

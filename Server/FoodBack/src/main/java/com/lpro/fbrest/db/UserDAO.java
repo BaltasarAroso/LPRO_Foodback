@@ -58,6 +58,15 @@ public interface UserDAO {
 	public User getUserByUsername(@Bind("username") String username);
 	
 	/**
+	 * @param id ID to be searched
+	 * @return User if it exists
+	 */
+	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium, zone, city "
+			+ "FROM users JOIN credential ON users_id = users.id "
+			+ "WHERE users.id = :id")
+	public User getUserById(@Bind("id") long id);
+	
+	/**
 	 * @return List with all users
 	 */
 	@SqlQuery("SELECT users.id, username, name, email, address, birth, premium, zone, city "
