@@ -1,17 +1,22 @@
 package com.foodback.foodback.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.ReportEndpoints;
+import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.Report;
 import com.foodback.foodback.utils.CommentReportListAdapter;
+import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentReportListAdapter;
 
 import java.util.ArrayList;
@@ -33,6 +38,7 @@ public class Reports extends Fragment {
 
     ArrayList<Report> commentReports = new ArrayList<>();
     ArrayList<Report> estabReports = new ArrayList<>();
+    ArrayList<String> errors = new ArrayList<>();
 
     ReportEndpoints services;
 
@@ -103,7 +109,7 @@ public class Reports extends Fragment {
                         declareEstablishmentReportList(view);
                     } else {
                         if(response.code() == 404) {
-                            //TODO: not found view (?)
+                            declareError(view);
                         } else {
                             isBad(getActivity(), response);
                         }
@@ -123,6 +129,14 @@ public class Reports extends Fragment {
 
         ListView listEstabReports = view.findViewById(R.id.list_reports_estabs);
         listEstabReports.setAdapter(new EstablishmentReportListAdapter(getActivity(), estabReports));
+    }
+
+    private void declareError(View view) {
+
+        errors.add("Nenhuma denúncia encontrada");
+
+        ListView listRestaurants = view.findViewById(R.id.list_reports_estabs);
+        listRestaurants.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
     }
 
     @Override

@@ -110,18 +110,13 @@ public class UserMenu extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        /*int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }*/
 
         Intent i;
 
         switch (item.getItemId()) {
 
             case R.id.action_search:
+                //TODO não está bem feito, tem que se criar um drawer (video)
                 i = new Intent();
                 i.setClass(UserMenu.this, SearchField.class);
                 startActivity(i);
@@ -135,32 +130,6 @@ public class UserMenu extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-
-        /*int id = item.getItemId();
-
-        if (id == R.id.nav_homepage) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new Homepage()).commit();
-
-        } else if (id == R.id.nav_delivery) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
-
-        } else if (id == R.id.nav_promotions) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new UserPromotions()).commit();
-
-        } else if (id == R.id.nav_settings) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new UserChangeInfo()).commit();
-
-        } else if (id == R.id.nav_logout) {
-            Intent i = new Intent();
-            i.setClass(UserMenu.this, LogIn.class);
-            setCredentials(null, null);
-            startActivity(i);
-
-        }*/
 
         FragmentManager fm;
 

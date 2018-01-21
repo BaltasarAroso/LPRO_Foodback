@@ -29,7 +29,7 @@ public class LogIn extends AppCompatActivity {
     protected EditText editusername;
     protected EditText editpassword;
     protected Button btnLogin;
-    protected TextView linksignup;
+    protected TextView linksignup, linkvisitormenu;
 
     protected CredentialsEndpoints services;
 
@@ -42,6 +42,7 @@ public class LogIn extends AppCompatActivity {
         editpassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.loginButton);
         linksignup = findViewById(R.id.signup);
+        linkvisitormenu = findViewById(R.id.jump_login);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,17 @@ public class LogIn extends AppCompatActivity {
             }
 
         });
+
+        linkvisitormenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.setClass(LogIn.this, VisitorMenu.class);
+                startActivity(i);
+            }
+
+        });
+
     }
 
     private boolean validateLogin (String username, String password) {
