@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by FoodBack.
@@ -19,6 +20,7 @@ public interface UserEndpoints {
 //    PUT     /users/upgrade (com.lpro.fbrest.resources.UsersResource)
 //    GET     /users/{username} (com.lpro.fbrest.resources.UsersResource)
 //    GET     /users/me (com.lpro.fbrest.resources.UsersResource)
+//    GET     /users/id/{id} (com.lpro.fbrest.resources.UsersResource)
 
 
     @POST("/users")
@@ -26,4 +28,7 @@ public interface UserEndpoints {
 
     @GET("users/me")
     Call<User> getAuthUser();
+
+    @GET("users/id/{id}")
+    Call<User> getUserById(@Path("id") long id);
 }

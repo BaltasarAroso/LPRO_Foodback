@@ -66,10 +66,9 @@ public class Restaurant extends Fragment {
 
                         declareList(view);
                     } else {
-                        if(response.code() != 404) {
-                            declareList(view);
-                        } else {
+                        if(response.code() == 404) {
                             declareError(view);
+                        } else {
                             isBad(getActivity(), response);
                         }
                     }

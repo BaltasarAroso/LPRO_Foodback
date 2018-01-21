@@ -13,7 +13,7 @@ public class MealTest {
 
     @Test
     public void serializesToJSON() throws Exception {
-        final Meal meal = new Meal(20, "Bacalhau", 12345, 15);
+        final Meal meal = new Meal(20, "Bacalhau", 13.45, 15);
 
         final String expected = MAPPER.writeValueAsString(
                 MAPPER.readValue(fixture("fixtures/meal.json"), Meal.class));
@@ -23,7 +23,7 @@ public class MealTest {
     
     @Test
     public void deserializesFromJSON() throws Exception {
-        final Meal meal = new Meal(20, "Bacalhau", 12345, 15);
+        final Meal meal = new Meal(20, "Bacalhau", 13.45, 15);
           
         assertThat(MAPPER.readValue(fixture("fixtures/meal.json"), Meal.class)).isEqualTo(meal);
     }

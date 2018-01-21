@@ -13,10 +13,9 @@ public class MealMapper implements ResultSetMapper<Meal>{
 	
 	@Override
 	public Meal map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-		
 		return new Meal(r.getLong("id"),
 						r.getString("meal"),
-						r.getInt("price"),
+						r.getDouble("price"),
 						r.getLong("establishment_id"));
 	}
 	

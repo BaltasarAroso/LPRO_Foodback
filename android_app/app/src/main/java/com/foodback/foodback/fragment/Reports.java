@@ -12,6 +12,7 @@ import com.foodback.foodback.R;
 import com.foodback.foodback.config.ReportEndpoints;
 import com.foodback.foodback.logic.Report;
 import com.foodback.foodback.utils.CommentReportListAdapter;
+import com.foodback.foodback.utils.EstablishmentReportListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class Reports extends Fragment {
     ArrayList<Report> commentReports = new ArrayList<>();
     ArrayList<Report> estabReports = new ArrayList<>();
 
+    ReportEndpoints services;
+
     public Reports() {}
 
     @Override
@@ -40,6 +43,8 @@ public class Reports extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tab_reports, container, false);
+
+        services = retrofit.create(ReportEndpoints.class);
 
         fillCommentReports(view);
 
@@ -49,8 +54,8 @@ public class Reports extends Fragment {
     }
 
     private void fillCommentReports(final View view) {
+
         try {
-            ReportEndpoints services = retrofit.create(ReportEndpoints.class);
             Call<List<Report>> call = services.getAllCommentReports();
 
             call.enqueue(new Callback<List<Report>>() {
@@ -85,12 +90,35 @@ public class Reports extends Fragment {
 
     private void fillEstablishmentReports(final View view) {
 
+        try {
+            Call<List<Report>> call = services.getAllEstablishmentReports();
+
+            call.enqueue(new Callback<List<Report>>() {
+                @Override
+                public void onResponse(Call<List<Report>> call, Response<List<Report>> response) {
+                    if(response.isSuccessful()) {
+                        List<Report> tmp = response.body();
+                        estabReports.addAll(tmp);
+
+                        declareEstablishmentReportList(view);
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Report>> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
     }
 
     private void declareEstablishmentReportList(View view) {
 
         ListView listEstabReports = view.findViewById(R.id.list_reports_estabs);
-        listEstabReports.setAdapter(new CommentReportListAdapter(getActivity(), estabReports));
+        listEstabReports.setAdapter(new EstablishmentReportListAdapter(getActivity(), estabReports));
     }
 
     @Override
