@@ -6,12 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-import com.amigold.fundapter.BindDictionary;
 import com.foodback.foodback.R;
-import com.foodback.foodback.config.EstablishmentEndpoints;
-import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.config.ReportEndpoints;
 import com.foodback.foodback.logic.Report;
+import com.foodback.foodback.utils.CommentReportListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,8 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
  */
 public class Reports extends Fragment {
 
-    ArrayList<Report> reports = new ArrayList<>();
+    ArrayList<Report> commentReports = new ArrayList<>();
+    ArrayList<Report> estabReports = new ArrayList<>();
 
     public Reports() {}
 
@@ -40,11 +41,57 @@ public class Reports extends Fragment {
 
         View view = inflater.inflate(R.layout.tab_reports, container, false);
 
+        fillCommentReports(view);
+
+        fillEstablishmentReports(view);
 
         return view;
     }
 
+    private void fillCommentReports(final View view) {
+        try {
+            ReportEndpoints services = retrofit.create(ReportEndpoints.class);
+            Call<List<Report>> call = services.getAllCommentReports();
 
+            call.enqueue(new Callback<List<Report>>() {
+                @Override
+                public void onResponse(Call<List<Report>> call, Response<List<Report>> response) {
+                    if(response.isSuccessful()) {
+                        List<Report> tmp = response.body();
+                        commentReports.addAll(tmp);
+
+                        declareCommentReportList(view);
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Report>> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
+    }
+
+    private void declareCommentReportList(View view) {
+
+        ListView listCommentReports = view.findViewById(R.id.list_reports_users);
+        listCommentReports.setAdapter(new CommentReportListAdapter(getActivity(), commentReports));
+    }
+
+    private void fillEstablishmentReports(final View view) {
+
+    }
+
+    private void declareEstablishmentReportList(View view) {
+
+        ListView listEstabReports = view.findViewById(R.id.list_reports_estabs);
+        listEstabReports.setAdapter(new CommentReportListAdapter(getActivity(), estabReports));
+    }
 
     @Override
     public void onStart() {

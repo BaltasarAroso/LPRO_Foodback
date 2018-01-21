@@ -24,7 +24,7 @@ public interface EstablishmentEndpoints {
 //    POST    /establishments (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 //    PUT     /establishments (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 //    GET     /establishments/categories (com.lpro.fbrest.resources.EstablishmentsResource)  -check
-//    GET     /establishments/{name} (com.lpro.fbrest.resources.EstablishmentsResource)
+//    GET     /establishments/{id} (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 //    GET     /establishments/tmp (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 //    PUT     /establishments/tmp (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 //    PUT     /establishments/verify/{tmp_establishment_id} (com.lpro.fbrest.resources.EstablishmentsResource)
@@ -53,8 +53,8 @@ public interface EstablishmentEndpoints {
     @GET("/establishments/tmp")
     Call<List<Establishment>> getAllTmpEstablishments();
 
-    @GET("/establishments/{name}")
-    Call<Establishment> getEstablishment(@Path("name") String name);
+    @GET("/establishments/{id}")
+    Call<Establishment> getEstablishment(@Path("id") long id);
 
     @GET("/establishments/mine")
     Call<Establishment> getMyEstablishment();

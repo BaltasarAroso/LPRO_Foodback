@@ -23,8 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FoodbackClient {
 
 //    private static final String BASE_URL = "http://10.0.2.2:3000";
-//    private static final String BASE_URL = "http://172.30.6.175:3000";
-    private static final String BASE_URL = "http://172.30.22.199:8080";
+    private static final String BASE_URL = "http://172.30.6.175:3000";
+//    private static final String BASE_URL = "http://172.30.22.199:8080";
 
     public static Retrofit retrofit =  new Retrofit.Builder()
             .baseUrl(BASE_URL)

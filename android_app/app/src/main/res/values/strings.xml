@@ -95,5 +95,6 @@
     <string name="register">Registar</string>
     <string name="signin">Entrar</string>
     <string name="promotions">Promoções</string>
+    <string name="no_establishments_found">No establishments found.</string>
 
 </resources>
