@@ -15,7 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.service.UserService;
