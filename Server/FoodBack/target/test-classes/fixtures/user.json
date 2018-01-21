@@ -1,0 +1,12 @@
+{
+	"id": "4",
+	"username": "dan",
+	"password": "mypass",
+	"name": "Daniel",
+	"email": "email@mail.com",
+	"address": "Minha morada",
+	"premium": true,
+	"birth": "06-03-1996",
+	"zone": "Minha zona filho",
+	"city": "Cidade fixe"
+}
