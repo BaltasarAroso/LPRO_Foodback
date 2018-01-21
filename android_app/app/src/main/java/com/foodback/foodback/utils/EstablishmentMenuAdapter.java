@@ -12,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.config.FeaturedEndpoints;
+import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.Featured;
 import com.foodback.foodback.logic.Meal;
 
@@ -41,7 +43,7 @@ public class EstablishmentMenuAdapter extends ArrayAdapter {
 
     private ArrayList<Meal> meals;
 
-    private FeaturedEndpoints featuredEndpoints;
+    private FeaturedEndpoints featuredServices;
 
     public EstablishmentMenuAdapter(Context context, ArrayList<Meal> meals) {
         super(context, R.layout.layout_estabpage_menu, meals);
@@ -89,8 +91,8 @@ public class EstablishmentMenuAdapter extends ArrayAdapter {
     private void createNewFeatured(Featured featured, final Button btnSpotlight) {
 
         try {
-            featuredEndpoints = retrofit.create(FeaturedEndpoints.class);
-            Call<ResponseBody> call = featuredEndpoints.newFeatured(featured);
+            featuredServices = retrofit.create(FeaturedEndpoints.class);
+            Call<ResponseBody> call = featuredServices.newFeatured(featured);
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override

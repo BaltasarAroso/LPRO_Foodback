@@ -6,8 +6,19 @@ package com.foodback.foodback.utils;
 
 public class APIError {
 
+    /**
+     * response code
+     */
     private int statusCode;
+
+    /**
+     * endpoint used in http request
+     */
     private String endpoint;
+
+    /**
+     * default message
+     */
     private String message = "Unknown Error.";
 
     public int getStatusCode() {
