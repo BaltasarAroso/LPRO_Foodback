@@ -1,5 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.foodback.foodback.fragment.UserDelivery">
@@ -11,4 +14,4 @@
         android:gravity="center"
         android:text="User faz Encomendas" />
 
-</FrameLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
