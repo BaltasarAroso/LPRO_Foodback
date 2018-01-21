@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.foodback.foodback.fragment.Notifications"
     android:orientation="vertical"
-    android:layout_marginTop="@dimen/_90sdp">
+    android:layout_marginTop="@dimen/_90sdp"
+    android:id="@+id/notifications">
 
     <view
         android:id="@+id/viewPager"

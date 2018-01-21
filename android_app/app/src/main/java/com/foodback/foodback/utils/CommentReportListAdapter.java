@@ -94,7 +94,6 @@ public class CommentReportListAdapter extends ArrayAdapter {
         return convertView;
     }
 
-    //TODO: testar
     private void setReportContent(String report, String comment, TextView reportContent) {
         reportContent.setText(context.getString(R.string.report_content, report, comment));
     }

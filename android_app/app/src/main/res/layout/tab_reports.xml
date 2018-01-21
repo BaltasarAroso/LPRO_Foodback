@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.foodback.foodback.fragment.Reports"
     android:orientation="vertical"
-    android:layout_margin="@dimen/_8sdp">
+    android:layout_margin="@dimen/_8sdp"
+    android:id="@+id/tab_reports">
 
     <ScrollView
         android:layout_width="match_parent"
