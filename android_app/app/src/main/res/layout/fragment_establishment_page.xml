@@ -192,31 +192,6 @@
             app:flexDirection="column"
             app:justifyContent="space_around">
 
-            <!-- TODO Meter ou tirar informações (wifi, esplanada...) -->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="Informações"
-                android:textStyle="bold"
-                android:textSize="@dimen/_15sdp"
-                android:textColor="@color/colorLogo"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/list_infos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                </ListView>
-
-            </LinearLayout>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -72,7 +72,6 @@
         <item>Café Piolho</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reports">Denúncias</string>
     <string name="notices">Notificações dos Estabelecimentos</string>
@@ -114,5 +113,10 @@
     <string name="report_title">%1$s denunciou %2$s</string>
     <string name="report_content">%1$s: "%2$s"</string>
     <string name="connection_ip">Introduzir &lt;IP&gt;:&lt;PORT&gt;</string>
+    <string name="delivery_name">Nome da Encomenda:</string>
+    <string name="delivery_quantity">Quantidade:</string>
+    <string name="ready">Pronto a entregar</string>
+    <string name="add_meal">Adicionar Pedido</string>
+    <string name="end_delivery">Finalizar Pedido</string>
 
 </resources>
