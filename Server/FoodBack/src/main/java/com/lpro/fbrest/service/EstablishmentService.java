@@ -30,7 +30,9 @@ public abstract class EstablishmentService {
 	
 	/**
 	 * @param establishment Establishment to be stored
+	 * @return an error code or a success message
 	 */
+
 	public String newEstablishment(Establishment establishment) {
 		long establishment_id;
 		Client prev = clientdao().getClient(establishment.getUsername());

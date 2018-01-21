@@ -104,21 +104,22 @@ public class Establishment {
 	}
 	
 	/**
-	 * @param id
-	 * @param name
-	 * @param category
-	 * @param address
-	 * @param zone
-	 * @param city
-	 * @param email
-	 * @param contact
-	 * @param username
-	 * @param password
-	 * @param delivery
-	 * @param avg_price
-	 * @param schedule1
-	 * @param schedule2
-	 * @param rating
+	 * @param id of the establishment
+	 * @param name of the establishment
+	 * @param category of the establishment
+	 * @param address of the establishment
+	 * @param zone of the establishment
+	 * @param city of the establishment
+	 * @param email of the establishment
+	 * @param contact of the establishment
+	 * @param username of the establishment
+	 * @param password of the establishment
+	 * @param delivery of the establishment
+	 * @param avg_price of the establishment
+	 * @param schedule1 of the establishment
+	 * @param schedule2 of the establishment
+	 * @param rating of the establishment
+
 	 */
 	public Establishment(long id, String name, String category, String address, String zone, String city, String email,
 			String contact, String username, String password, Boolean delivery, int avg_price, String schedule1,
@@ -142,210 +143,210 @@ public class Establishment {
 	}
 
 	/**
-	 * @return
+	 * @return id of the establishment
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id
+	 * @param id of the establishment
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return
+	 * @return name of the establishment
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @param name
+	 * @param name of the establishment
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @return
+	 * @return category of the establishment
 	 */
 	public String getCategory() {
 		return category;
 	}
 
 	/**
-	 * @param category
+	 * @param category of the establishment
 	 */
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
 	/**
-	 * @return
+	 * @return address of the establishment
 	 */
 	public String getAddress() {
 		return address;
 	}
 
 	/**
-	 * @param address
+	 * @param address of the establishment
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	/**
-	 * @return
+	 * @return zone of the establishment
 	 */
 	public String getZone() {
 		return zone;
 	}
 
 	/**
-	 * @param zone
+	 * @param zone of the establishment
 	 */
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
 
 	/**
-	 * @return
+	 * @return city of the establishment
 	 */
 	public String getCity() {
 		return city;
 	}
 
 	/**
-	 * @param city
+	 * @param city of the establishment
 	 */
 	public void setCity(String city) {
 		this.city = city;
 	}
 
 	/**
-	 * @return
+	 * @return email of the establishment
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * @param email
+	 * @param email of the establishment
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
-	 * @return
+	 * @return contact of the establishment
 	 */
 	public String getContact() {
 		return contact;
 	}
 
 	/**
-	 * @param contact
+	 * @param contact of the establishment
 	 */
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
 
 	/**
-	 * @return
+	 * @return username of the establishment
 	 */
 	public String getUsername() {
 		return username;
 	}
 
 	/**
-	 * @param username
+	 * @param username of the establishment
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	/**
-	 * @return
+	 * @return pass of the establishment
 	 */
 	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * @param password
+	 * @param password of the establishment
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
-	 * @return
+	 * @return delivery boolean of the establishment
 	 */
 	public Boolean getDelivery() {
 		return delivery;
 	}
 
 	/**
-	 * @param delivery
+	 * @param delivery boolean of the establishment
 	 */
 	public void setDelivery(Boolean delivery) {
 		this.delivery = delivery;
 	}
 
 	/**
-	 * @return
+	 * @return average price of the establishment
 	 */
 	public int getAvg_price() {
 		return avg_price;
 	}
 
 	/**
-	 * @param avg_price
+	 * @param avg_price average price of the establishment
 	 */
 	public void setAvg_price(int avg_price) {
 		this.avg_price = avg_price;
 	}
 	
 	/**
-	 * @return
+	 * @return schedule1 of the establishment
 	 */
 	public String getSchedule1() {
 		return schedule1;
 	}
 
 	/**
-	 * @param schedule1
+	 * @param schedule1 of the establishment
 	 */
 	public void setSchedule1(String schedule1) {
 		this.schedule1 = schedule1;
 	}
 
 	/**
-	 * @return
+	 * @return schedule 2 of the establishment
 	 */
 	public String getSchedule2() {
 		return schedule2;
 	}
 
 	/**
-	 * @param schedule2
+	 * @param schedule2 of the establishment
 	 */
 	public void setSchedule2(String schedule2) {
 		this.schedule2 = schedule2;
 	}
 	
 	/**
-	 * @return
+	 * @return rating of the establishment
 	 */
 	public BigDecimal getRating() {
 		return rating;
 	}
 	
 	/**
-	 * @param rating
+	 * @param rating of the establishment
 	 */
 	public void setRating(double rating) {
 		this.rating = new BigDecimal(rating).setScale(2, BigDecimal.ROUND_HALF_UP);

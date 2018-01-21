@@ -38,10 +38,10 @@ public class Featured {
 	}
 
 	/**
-	 * @param id
-	 * @param meal_id
-	 * @param added_date
-	 * @param duration
+	 * @param id of a feature
+	 * @param meal_id of a feature
+	 * @param added_date of a feature
+	 * @param duration of a feature
 	 */
 	public Featured(long id, long meal_id, Timestamp added_date, int duration) {
 		super();
@@ -52,56 +52,56 @@ public class Featured {
 	}
 
 	/**
-	 * @return
+	 * @return id of a feature 
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id
+	 * @param id of a feature 
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return
+	 * @return meal id of a feature 
 	 */
 	public long getMeal_id() {
 		return meal_id;
 	}
 
 	/**
-	 * @param meal_id
+	 * @param meal_id of a feature 
 	 */
 	public void setMeal_id(long meal_id) {
 		this.meal_id = meal_id;
 	}
 
 	/**
-	 * @return
+	 * @return date added of a feature 
 	 */
 	public Timestamp getAdded_date() {
 		return added_date;
 	}
 
 	/**
-	 * @param added_date
+	 * @param added_date of a feature 
 	 */
 	public void setAdded_date(Timestamp added_date) {
 		this.added_date = added_date;
 	}
 
 	/**
-	 * @return
+	 * @return duration of a feature 
 	 */
 	public int getDuration() {
 		return duration;
 	}
 
 	/**
-	 * @param duration
+	 * @param duration of a feature 
 	 */
 	public void setDuration(int duration) {
 		this.duration = duration;

@@ -38,10 +38,10 @@ public class Order {
 	}
 
 	/**
-	 * @param id
-	 * @param meals
-	 * @param user_id
-	 * @param state
+	 * @param id of a order
+	 * @param meals of a order
+	 * @param user_id of a order
+	 * @param state of a order
 	 */
 	public Order(long id, List<Orders_meal> meals, long user_id, String state) {
 		super();
@@ -52,56 +52,56 @@ public class Order {
 	}
 
 	/**
-	 * @return
+	 * @return id of a order
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id
+	 * @param id of a order
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return
+	 * @return meals of a order
 	 */
 	public List<Orders_meal> getMeals() {
 		return meals;
 	}
 
 	/**
-	 * @param meals
+	 * @param meals of a order
 	 */
 	public void setMeals(List<Orders_meal> meals) {
 		this.meals = meals;
 	}
 
 	/**
-	 * @return
+	 * @return user id that do the order
 	 */
 	public long getUser_id() {
 		return user_id;
 	}
 
 	/**
-	 * @param user_id
+	 * @param user_id that do the order
 	 */
 	public void setUser_id(long user_id) {
 		this.user_id = user_id;
 	}
 
 	/**
-	 * @return
+	 * @return state of the order
 	 */
 	public String getState() {
 		return state;
 	}
 
 	/**
-	 * @param state
+	 * @param state of a order
 	 */
 	public void setState(String state) {
 		this.state = state;
