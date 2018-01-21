@@ -7,8 +7,10 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by FoodBack.
@@ -20,7 +22,7 @@ public interface ReportEndpoints {
 //    POST    /reports/comments (com.lpro.fbrest.resources.ReportsResource)  -check
 //    GET     /reports/establishments (com.lpro.fbrest.resources.ReportsResource)  -check
 //    POST    /reports/establishments (com.lpro.fbrest.resources.ReportsResource)  -check
-//    DELETE  /reports/{id} (com.lpro.fbrest.resources.ReportsResource)
+//    DELETE  /reports/{id} (com.lpro.fbrest.resources.ReportsResource)  -check
 
     @POST("/reports/comments")
     Call<ResponseBody> newCommentReport(@Body Report report);
@@ -33,5 +35,8 @@ public interface ReportEndpoints {
 
     @GET("/reports/establishments")
     Call<List<Report>> getAllEstablishmentReports();
+
+    @DELETE("/reports/{id}")
+    Call<ResponseBody> deleteReport(@Path("id") long id);
 
 }

@@ -1,25 +1,30 @@
 package com.foodback.foodback.utils;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
+import com.foodback.foodback.config.ReportEndpoints;
 import com.foodback.foodback.config.UserEndpoints;
+import com.foodback.foodback.fragment.EstablishmentChangeInfo;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.Report;
 import com.foodback.foodback.logic.User;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,6 +47,7 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
 
     private UserEndpoints userServices;
     private EstablishmentEndpoints estabServices;
+    private ReportEndpoints reportServices;
 
     public EstablishmentReportListAdapter(Context context, ArrayList<Report> reports) {
         super(context, R.layout.layout_reports_estab, reports);
@@ -54,25 +60,74 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         if(null == convertView) {
             convertView = inflater.inflate(R.layout.layout_reports_estab, parent, false);
         }
 
         userServices = retrofit.create(UserEndpoints.class);
         estabServices = retrofit.create(EstablishmentEndpoints.class);
+        reportServices = retrofit.create(ReportEndpoints.class);
 
         TextView reportTitle = convertView.findViewById(R.id.report_estab_title);
         TextView reportContent = convertView.findViewById(R.id.report_estab_info);
+        final Button discard = convertView.findViewById(R.id.btnDiscardChangeInfo);
+        final Button delete = convertView.findViewById(R.id.btnDeleteEstabInfo);
+        
+        discard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                discardReport(position);
+            }
+        });
+        
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeEstabInfo(reports.get(position));
+            }
+        });
 
         reportContent.setText(reports.get(position).getReport());
 
-        // call chain that gets necessary info
+        //call chain that does all the work
         getReporterName(position, reportTitle);
 
         return convertView;
     }
 
+    private void discardReport(final int position) {
+        try {
+            Call<ResponseBody> call = reportServices.deleteReport(reports.get(position).getId());
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        reports.remove(position);
+                        EstablishmentReportListAdapter.this.notifyDataSetChanged();
+                    } else {
+                        isBad(context, response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(context, t);
+                }
+            });
+        } catch(Exception e) {
+            isException(context, e);
+        }
+    }
+    
+    private void changeEstabInfo(Report report) {
+//        EstablishmentChangeInfo fragment = new EstablishmentChangeInfo();
+//        Bundle args = new Bundle();
+//        args.putString("establishment_id", "" + report.getEstablishment_id());
+//        fragment.setArguments(args);
+    }
+    
     private void getReporterName(final int position, final TextView reportTitle) {
         try {
             Call<User> call = userServices.getUserById(reports.get(position).getReporter_id());

@@ -36,7 +36,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/discardCommentButton"
+                android:id="@+id/btnDiscardComment"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="@dimen/_10sdp" />
 
             <Button
-                android:id="@+id/delete_commentButton"
+                android:id="@+id/btnDeleteComment"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

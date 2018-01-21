@@ -102,7 +102,11 @@ public class Reports extends Fragment {
 
                         declareEstablishmentReportList(view);
                     } else {
-                        isBad(getActivity(), response);
+                        if(response.code() == 404) {
+                            //TODO: not found view (?)
+                        } else {
+                            isBad(getActivity(), response);
+                        }
                     }
                 }
                 @Override

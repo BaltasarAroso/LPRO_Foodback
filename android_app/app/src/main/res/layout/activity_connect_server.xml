@@ -41,6 +41,17 @@
             android:text="@string/tryagain"
             android:visibility="invisible" />
 
+        <EditText
+            android:id="@+id/ipConnect"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:hint="@string/connection_ip"
+            android:textSize="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_350sdp"
+            android:visibility="invisible"/>
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
