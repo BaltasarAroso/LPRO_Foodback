@@ -15,6 +15,7 @@ import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,10 +90,11 @@ public class Restaurant extends Fragment {
         listRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = restaurants.get(position);
+                Gson gson = new Gson();
+                String serialized = gson.toJson(restaurants.get(position));
+
                 Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
-                // TODO provavelmente terá que se fazer um cast da lista de establishments para um vetor de strings
-                i.putExtra("restaurants", (CharSequence) selectedEstab);
+                i.putExtra("restaurant", serialized);
                 startActivity(i);
             }
         });
@@ -104,16 +106,6 @@ public class Restaurant extends Fragment {
 
         ListView listRestaurants = view.findViewById(R.id.list_restaurants);
         listRestaurants.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
-        listRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = restaurants.get(position);
-                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
-                // TODO provavelmente terá que se fazer um cast da lista de establishments para um vetor de strings
-                i.putExtra("restaurants", (CharSequence) selectedEstab);
-                startActivity(i);
-            }
-        });
     }
 
 

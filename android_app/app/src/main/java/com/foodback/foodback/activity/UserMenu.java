@@ -136,32 +136,6 @@ public class UserMenu extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
 
-        /*int id = item.getItemId();
-
-        if (id == R.id.nav_homepage) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new Homepage()).commit();
-
-        } else if (id == R.id.nav_delivery) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
-
-        } else if (id == R.id.nav_promotions) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new UserPromotions()).commit();
-
-        } else if (id == R.id.nav_settings) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.user_menu, new UserChangeInfo()).commit();
-
-        } else if (id == R.id.nav_logout) {
-            Intent i = new Intent();
-            i.setClass(UserMenu.this, LogIn.class);
-            setCredentials(null, null);
-            startActivity(i);
-
-        }*/
-
         FragmentManager fm;
 
         switch (item.getItemId()){
