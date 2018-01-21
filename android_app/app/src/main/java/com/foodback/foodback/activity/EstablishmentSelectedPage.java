@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.logic.Establishment;
 
 public class EstablishmentSelectedPage extends AppCompatActivity {
 
-    protected TextView editname, editcategory, editaddress, editcontact, editavgprice, editzone, editcity, editschedule1, editschedule2, editrating;
+    protected TextView editcategory, editaddress, editcontact, editavgprice, editzone, editcity, editschedule1, editschedule2, editrating;
+    protected Toolbar editname;
     protected CheckBox editdelivery;
 
     protected Establishment estab;
@@ -32,7 +34,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            editname.setText(bundle.getString(estab.getName()));
+            editname.setTitle(bundle.getString(estab.getName()));
             editcategory.setText(bundle.getString(estab.getCategory()));
             editaddress.setText(bundle.getString(estab.getAddress()));
             editcontact.setText(bundle.getString(estab.getContact()));

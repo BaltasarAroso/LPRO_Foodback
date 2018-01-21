@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.foodback.foodback.activity.EstablishmentSelectedPage">
 
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/estab_page_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorLogo"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    </android.support.v7.widget.Toolbar>
+
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,23 +29,8 @@
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_56sdp"
             app:flexDirection="column">
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                app:justifyContent="center">
-
-                <TextView
-                    android:id="@+id/estab_page_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tasca do Zé"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_20sdp"
-                    app:layout_alignSelf="center"/>
-
-            </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
@@ -44,7 +43,7 @@
                     android:layout_height="@dimen/_80sdp"
                     app:srcCompat="@drawable/foodback_logo"
                     app:layout_alignSelf="center"
-                    android:contentDescription="Imagem do Estabelecimento" />
+                    android:contentDescription="@string/estab_page_image" />
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -191,31 +190,6 @@
             android:layout_height="wrap_content"
             app:flexDirection="column"
             app:justifyContent="space_around">
-
-            <!-- TODO Meter ou tirar informações (wifi, esplanada...) -->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="Informações"
-                android:textStyle="bold"
-                android:textSize="@dimen/_15sdp"
-                android:textColor="@color/colorLogo"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/list_infos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                </ListView>
-
-            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
