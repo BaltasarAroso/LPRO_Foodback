@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.UserEndpoints;
 import com.foodback.foodback.fragment.Homepage;
-import com.foodback.foodback.fragment.SearchField;
 import com.foodback.foodback.fragment.UserChangeInfo;
 import com.foodback.foodback.fragment.UserDelivery;
 import com.foodback.foodback.fragment.UserPromotions;

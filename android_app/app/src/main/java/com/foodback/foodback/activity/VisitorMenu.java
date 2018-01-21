@@ -15,7 +15,6 @@ import android.view.MenuItem;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
-import com.foodback.foodback.fragment.SearchField;
 
 public class VisitorMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

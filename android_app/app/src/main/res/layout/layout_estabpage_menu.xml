@@ -34,7 +34,8 @@
         <Spinner
             android:id="@+id/spotlight_spinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:entries="@array/spotlight_time_options">
         </Spinner>
 
         <Button

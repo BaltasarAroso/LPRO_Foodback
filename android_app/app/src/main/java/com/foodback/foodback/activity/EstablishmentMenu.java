@@ -21,7 +21,6 @@ import com.foodback.foodback.fragment.EstablishmentDelivery;
 import com.foodback.foodback.fragment.EstablishmentPage;
 import com.foodback.foodback.fragment.EstablishmentPromotions;
 import com.foodback.foodback.fragment.Homepage;
-import com.foodback.foodback.fragment.SearchField;
 import com.foodback.foodback.logic.Establishment;
 
 import retrofit2.Call;

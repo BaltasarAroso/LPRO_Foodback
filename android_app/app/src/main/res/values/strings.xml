@@ -119,4 +119,22 @@
     <string name="report_content">%1$s: "%2$s"</string>
     <string name="connection_ip">Introduzir &lt;IP&gt;:&lt;PORT&gt;</string>
 
+    <string-array name="spotlight_time_options">
+        <item>1 dia</item>
+        <item>2 dias</item>
+        <item>3 dias</item>
+        <item>4 dias</item>
+        <item>5 dias</item>
+        <item>6 dias</item>
+        <item>7 dias</item>
+        <item>8 dias</item>
+        <item>9 dias</item>
+        <item>10 dias</item>
+        <item>11 dias</item>
+        <item>12 dias</item>
+        <item>13 dias</item>
+        <item>14 dias</item>
+        <item>15 dias</item>
+    </string-array>
+
 </resources>
