@@ -2,12 +2,12 @@ package com.foodback.foodback.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,15 +15,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.activity.EstablishmentRegister;
+import com.foodback.foodback.config.CredentialsEndpoints;
 import com.foodback.foodback.config.EstablishmentEndpoints;
-import com.foodback.foodback.logic.Category;
 import com.foodback.foodback.logic.Establishment;
-import com.foodback.foodback.utils.APIError;
-import com.foodback.foodback.utils.ErrorUtils;
+import com.foodback.foodback.utils.CategoryUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -31,25 +28,35 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.config.FoodbackClient.setCredentials;
+import static com.foodback.foodback.utils.ErrorDisplay.isBad;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class EstablishmentChangeInfo extends Fragment {
 
-    protected EditText editname, editaddress, editzone, editcity, editemail, editcontact, editusername, editpassword;
+    protected EditText editname, editaddress, editzone, editcity, editemail,
+            editcontact, editavgprice, editschedule1, editschedule2,
+            editoldpass, editnewpass, editconfpass;
     protected Spinner editcategory;
     protected Button buttonChangeEstab;
+    protected CheckBox editdelivery;
 
-    protected String name, category, address, zone, city, email, contact, username, password;
+    protected String name, category, address, zone, city, email, contact,
+            schedule1, schedule2, oldpass, confpass, newpass;
+    protected Integer avg_price;
     protected Boolean delivery;
 
     protected Establishment estab;
 
-    List<Category> categoryList;
-    protected int category_id;
+    EstablishmentEndpoints dataServices;
+    CredentialsEndpoints credentialServices;
+
+    CategoryUtils catUtils;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View myView = inflater.inflate(R.layout.activity_establishment_change_info, container, false);
-        return myView;
+        return inflater.inflate(R.layout.fragment_establishment_change_info, container, false);
     }
 
     @Override
@@ -64,8 +71,13 @@ public class EstablishmentChangeInfo extends Fragment {
         editzone = getView().findViewById(R.id.zone);
         editcity = getView().findViewById(R.id.city);
         editcontact = getView().findViewById(R.id.contact);
-        editusername = getView().findViewById(R.id.username);
-        editpassword = getView().findViewById(R.id.password);
+        editschedule1 = getView().findViewById(R.id.schedule1);
+        editschedule2 = getView().findViewById(R.id.schedule2);
+        editavgprice = getView().findViewById(R.id.avg_price);
+        editoldpass = getView().findViewById(R.id.oldpass);
+        editnewpass = getView().findViewById(R.id.newpass);
+        editconfpass = getView().findViewById(R.id.confpass);
+        editdelivery = getView().findViewById(R.id.delivery);
 
         buttonChangeEstab = getView().findViewById(R.id.buttonChangeEstab);
 
@@ -76,25 +88,24 @@ public class EstablishmentChangeInfo extends Fragment {
                 // confirm register
                 changeEstab();
             }
-
         });
 
-//        // fetch categories for spinner and asynchronously fill it
-//        populateSpinner();
+        populateFields();
+
+        catUtils = new CategoryUtils();
     }
 
     private void changeEstab() {
         initialize();
         if (validateChangesEstab()) {
-//            for(Category x: categoryList) {
-//                if(category.equals(x.getName())) {
-//                    category_id = x.getId();
-//                    break;
-//                }
-//            }
-//            estab = new Establishment(name, category_id, address, zone, city, email,
-//                    contact, username, password, delivery);
-            onChangeEstabSuccess(estab);
+            if(TextUtils.isEmpty(newpass)) {
+                estab = new Establishment(name, category, address, zone, city, email,
+                        contact, avg_price, schedule1, schedule2, null, oldpass, delivery);
+            } else {
+                estab = new Establishment(name, category, address, zone, city, email,
+                        contact, avg_price, schedule1, schedule2, null, newpass, delivery);
+            }
+            verifyOldPassword(estab, oldpass);
         }
     }
 
@@ -106,141 +117,160 @@ public class EstablishmentChangeInfo extends Fragment {
         city = editcity.getText().toString();
         email = editemail.getText().toString();
         contact = editcontact.getText().toString();
-        username = editusername.getText().toString();
-        password = editpassword.getText().toString();
-        delivery = ((CheckBox) getView().findViewById(R.id.delivery)).isChecked();
+        avg_price = Integer.parseInt(editavgprice.getText().toString());
+        schedule1 = editschedule1.getText().toString();
+        schedule2 = editschedule2.getText().toString();
+        oldpass = editoldpass.getText().toString();
+        newpass = editnewpass.getText().toString();
+        confpass = editconfpass.getText().toString();
+        delivery = editdelivery.isChecked();
     }
 
     private boolean validateChangesEstab() {
-        boolean valid = true;
 
-        // username must have something that not exceeds 32 characters
-        if (name.isEmpty() || name.length() > 32) {
-            editname.setError("Please enter a valid name");
-            valid = false;
+        // name must have something that not exceeds 32 characters
+        if (name.length() > 32) {
+            editname.setError("Please enter a valid name (max size of 32 characters)");
+            return false;
         }
-        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editemail.setError("Please enter a valid email");
-            valid = false;
+            return false;
+        }
+        if (editnewpass.toString().equals(editconfpass.toString())) {
+            editnewpass.setError("Passwords don't match");
+            editconfpass.setError("Passwords don't match");
+            return false;
         }
 
-        // is needed to add more parameters of validation in this ones
-        if (address.isEmpty()) {
-            editaddress.setError("Please enter a valid address");
-            valid = false;
-        }
-        if (zone.isEmpty()) {
-            editzone.setError("Please enter a valid zone");
-            valid = false;
-        }
-        if (city.isEmpty()) {
-            editcity.setError("Please enter a valid city");
-            valid = false;
-        }
-        if (contact.isEmpty()) {
-            editcontact.setError("Please enter a valid contact");
-            valid = false;
-        }
-        if (username.isEmpty()) {
-            editusername.setError("Please enter a valid username");
-            valid = false;
-        }
-        if (password.isEmpty()) {
-            editpassword.setError("Please enter a valid password");
-            valid = false;
-        }
-
-        return valid;
+        return true;
     }
 
-    public void populateSpinner(){
-//        try {
-//            EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
-//            Call<List<Category>> call = services.getAllCategories();
-//
-//            call.enqueue(new Callback<List<Category>>() {
-//                @Override
-//                public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-//                    if(response.isSuccessful()) {
-//                        categoryList = response.body();
-//                        if(categoryList.size() == 0) {
-//                            Toast.makeText(getActivity(),
-//                                    "No establishment categories found.",
-//                                    Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            List<String> spinnerArray = new ArrayList<String>();
-//
-//                            for(Category x: categoryList) {
-//                                spinnerArray.add(x.getName());
-//                                Log.e("DEBUG", "x.getName(): " + x.getName());
-//                            }
-//
-//                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                                    getActivity(),
-//                                    android.R.layout.simple_spinner_item,
-//                                    spinnerArray);
-//
-//                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                            editcategory.setAdapter(adapter);
-//                        }
-//                    } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(getActivity(),
-//                                apiError.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<Category>> call, Throwable t) {
-//                    Toast.makeText(getActivity(),
-//                            "Error getting server response.",
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        } catch(Exception e) {
-//            Log.e("DEBUG", Log.getStackTraceString(e));
-//            Toast.makeText(getActivity(),
-//                    "The program has encountered an error.",
-//                    Toast.LENGTH_SHORT).show();
-//        }
+    private void populateFields() {
+        try {
+            dataServices = retrofit.create(EstablishmentEndpoints.class);
+            Call<Establishment> call = dataServices.getMyEstablishment();
+
+            call.enqueue(new Callback<Establishment>() {
+                @Override
+                public void onResponse(Call<Establishment> call, Response<Establishment> response) {
+                    if(response.isSuccessful()) {
+                        estab = response.body();
+                        editname.setText(estab.getName());
+                        editaddress.setText(estab.getAddress());
+                        editzone.setText(estab.getZone());
+                        editcity.setText(estab.getCity());
+                        editemail.setText(estab.getEmail());
+                        editcontact.setText(estab.getContact());
+                        editavgprice.setText(String.format(Locale.UK, "%d", estab.getAvg_price()));
+                        editschedule1.setText(estab.getSchedule1());
+                        editschedule2.setText(estab.getSchedule2());
+                        if(estab.getDelivery())
+                            editdelivery.setChecked(true);
+                        catUtils.populateSpinner(
+                                getActivity(),
+                                editcategory,
+                                estab.getCategory()
+                        );
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Establishment> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
+
     }
 
-    private void onChangeEstabSuccess(Establishment estab) {
-//        try {
-//            EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
-//            Call<ResponseBody> call = services.editEstablishment(estab);
-//
-//            call.enqueue(new Callback<ResponseBody>() {
-//                @Override
-//                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                    if(response.isSuccessful()) {
-//                        Toast.makeText(getActivity(),
-//                                "Establishment updated successfully.",
-//                                Toast.LENGTH_SHORT).show();
-//                        //change activity
-//                    } else {
-//                        APIError apiError = ErrorUtils.parseError(response);
-//                        Toast.makeText(getActivity(),
-//                                apiError.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Log.e("DEBUG",Log.getStackTraceString(t));
-//                    Toast.makeText(getActivity(),
-//                            "Error getting server response.",
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        } catch(Exception e) {
-//            Log.e("DEBUG",Log.getStackTraceString(e));
-//            Toast.makeText(getActivity(),
-//                    "Unexpected error.",
-//                    Toast.LENGTH_SHORT).show();
-//        }
+    private void verifyOldPassword(final Establishment estab, final String password) {
+        try {
+            credentialServices = retrofit.create(CredentialsEndpoints.class);
+            //TODO this doesn't verify old password, it just uses Basic Auth normally
+            Call<ResponseBody> credentialCall = credentialServices.verifyEstablishmentCredentials();
+
+            credentialCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        changeEstabOnServer(estab, password);
+                    } else {
+                        editoldpass.setError("Wrong password");
+                        isBad(getActivity(), response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
+    }
+
+    private void changeEstabOnServer(Establishment estab, final String password) {
+        try {
+            Call<ResponseBody> dataCall = dataServices.editTmpEstablishment(estab);
+
+            dataCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(getActivity(),
+                                "Establishment updated successfully.",
+                                Toast.LENGTH_SHORT).show();
+                        if(!TextUtils.isEmpty(newpass)) {
+                            changeCredentials(password);
+                        }
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
+    }
+
+    private void changeCredentials(final String password) {
+        try {
+            Call<ResponseBody> credentialCall = credentialServices
+                    .updateCredentials(null, password);
+
+            credentialCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(getActivity(),
+                                "Credentials updated successfully.",
+                                Toast.LENGTH_SHORT).show();
+                        setCredentials(null, password);
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
     }
 
 }

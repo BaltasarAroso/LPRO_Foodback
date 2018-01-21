@@ -1,0 +1,67 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.foodback.foodback.fragment.Reports"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_8sdp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/reports_users"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLogo"
+                android:text="@string/reports_users"/>
+
+            <ListView
+                android:id="@+id/list_reports_users"
+                android:layout_below="@+id/reports_users"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/reports_estabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLogo"
+                android:text="@string/reports_estabs"/>
+
+            <ListView
+                android:id="@+id/list_reports_estabs"
+                android:layout_below="@+id/reports_estabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

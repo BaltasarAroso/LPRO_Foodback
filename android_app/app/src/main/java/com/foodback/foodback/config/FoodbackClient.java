@@ -1,5 +1,7 @@
 package com.foodback.foodback.config;
 
+import android.support.annotation.NonNull;
+
 import com.foodback.foodback.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,8 +22,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodbackClient {
 
-//    protected static final String BASE_URL = "http://10.0.2.2:3000";
-    private static final String BASE_URL = "http://192.168.1.11:3000";
+//    private static final String BASE_URL = "http://10.0.2.2:3000";  //simulador
+    private static final String BASE_URL = "http://172.30.6.175:3000";  //andré
+//    private static final String BASE_URL = "http://172.30.22.199:8080";  //malafaia
 
     public static Retrofit retrofit =  new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -36,47 +39,36 @@ public class FoodbackClient {
     }
 
     public static void setCredentials(String user, String pw) {
-        username = user;
-        password = pw;
+        if(user != null) username = user;
+        if(pw != null) password = pw;
+        new FoodbackClient();
     }
 
-    public FoodbackClient() {
+    private FoodbackClient() {
         this.addAuth();
     }
 
     private void addAuth() {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        // set desired log level
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
 
-        OkHttpClient okHttpClient;
+        okHttpClient.addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
+                Request originalRequest = chain.request();
+
+                Request.Builder builder = originalRequest.newBuilder().header("Authorization",
+                        Credentials.basic(username, password));
+
+                Request newRequest = builder.build();
+                return chain.proceed(newRequest);
+            }
+        });
 
         if(BuildConfig.DEBUG) {
-            okHttpClient  = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
-                @Override
-                public okhttp3.Response intercept(Chain chain) throws IOException {
-                    Request originalRequest = chain.request();
-
-                    Request.Builder builder = originalRequest.newBuilder().header("Authorization",
-                            Credentials.basic(username, password));
-
-                    Request newRequest = builder.build();
-                    return chain.proceed(newRequest);
-                }
-            }).addInterceptor(logging).build();
-        } else {
-            okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
-                @Override
-                public okhttp3.Response intercept(Chain chain) throws IOException {
-                    Request originalRequest = chain.request();
-
-                    Request.Builder builder = originalRequest.newBuilder().header("Authorization",
-                            Credentials.basic(username, password));
-
-                    Request newRequest = builder.build();
-                    return chain.proceed(newRequest);
-                }
-            }).build();
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            // set desired log level
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            okHttpClient.addInterceptor(logging);
         }
 
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
@@ -84,7 +76,7 @@ public class FoodbackClient {
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(okHttpClient)
+                .client(okHttpClient.build())
                 .build();
     }
 

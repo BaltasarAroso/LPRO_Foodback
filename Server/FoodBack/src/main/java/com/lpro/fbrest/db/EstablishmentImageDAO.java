@@ -13,7 +13,7 @@ public interface EstablishmentImageDAO {
 	 * @param establishment_id ID of establishment
 	 * @param extension Extension of image
 	 * @param profile If is a profile image or not
-	 * @return
+	 * @return ID of inserted image info
 	 */
 	@SqlUpdate("INSERT INTO establishment_image "
 			+ "VALUES (DEFAULT, :establishment_id, :extension, :profile)")

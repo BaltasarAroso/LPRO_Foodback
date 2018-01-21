@@ -1,10 +1,17 @@
 package com.foodback.foodback.utils;
 
+import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.foodback.foodback.activity.EstablishmentRegister;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -12,6 +19,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.utils.ErrorDisplay.isBad;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 /**
  * Created by FoodBack.
@@ -20,43 +30,23 @@ import static com.foodback.foodback.config.FoodbackClient.retrofit;
 public class CategoryUtils {
 
     /**
-     * Holds temporary error message
+     * stores categories fetched from server
      */
-    private String errorMessage = "";
-
-    /**
-     * For storage of all categories
-     */
-    private List<Category> categories;
-
-    /**
-     * @return temporary error message
-     */
-    public String popErrorMessage() {
-        String tmp = errorMessage;
-        errorMessage = "";
-        return tmp;
-    }
-
-    /**
-     * set error message
-     * @param errorMessage is the error message
-     */
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
+    private List<Category> categoryList;
 
     /**
      * @return list of all categories
      */
     public List<Category> getCategories() {
-        return categories;
+        return categoryList;
     }
 
     /**
-     * fetches all categories from server
+     * @param context activity/fragment on screen
+     * @param spinner spinner which will be filled
+     * @param category category (if not null/empty) to be the spinner placeholder
      */
-    public void fetchAllCategories(){
+    public void populateSpinner(final Context context, final Spinner spinner, final String category){
         try {
             EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
             Call<List<Category>> call = services.getAllCategories();
@@ -65,26 +55,46 @@ public class CategoryUtils {
                 @Override
                 public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                     if(response.isSuccessful()) {
-                        categories = response.body();
-                        if(categories.size() == 0) {
-                            setErrorMessage("No establishment categories found.");
+                        categoryList = response.body();
+                        int pos = 0;
+                        if(categoryList.size() == 0) {
+                            Toast.makeText(context,
+                                    "No establishment categories found.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            List<String> spinnerArray = new ArrayList<>();
+
+                            for(Category x: categoryList) {
+                                spinnerArray.add(x.getName());
+                                if(!TextUtils.isEmpty(category) && x.getName().equals(category)) {
+                                    pos = x.getId();
+                                }
+                            }
+
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                                    context,
+                                    android.R.layout.simple_spinner_item,
+                                    spinnerArray);
+
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinner.setAdapter(adapter);
+                            if(!TextUtils.isEmpty(category)) {
+                                spinner.setSelection(pos-1, true);
+                            }
                         }
                     } else {
-                        APIError apiError = ErrorUtils.parseError(response);
-                        setErrorMessage(apiError.getMessage());
+                        isBad(context, response);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<List<Category>> call, Throwable t) {
-                    setErrorMessage("Error getting server response.");
+                    isFailure(context, t);
                 }
             });
         } catch(Exception e) {
-            Log.e("DEBUG", Log.getStackTraceString(e));
-            setErrorMessage("The program has encountered an error.");
+            isException(context, e);
         }
-
     }
 
 }

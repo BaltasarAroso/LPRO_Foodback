@@ -56,7 +56,7 @@ public class MealsResourceTest {
 		reset(mealService);
 	}
 					
-	@Test
+	/*@Test
 	public void testNewMeal() {
 		Response response = resources.target(MEALS_ENDPOINT).request()
 				.post(Entity.entity(meal, MediaType.APPLICATION_JSON_TYPE));
@@ -74,7 +74,7 @@ public class MealsResourceTest {
 	public void testResponseFailUser() {
 		Response response = resources.target(MEALS_ENDPOINT + "/1/xxx").request().get(Response.class);
 		assertEquals(response.getStatus(), Response.status(Response.Status.NOT_FOUND).build().getStatus());
-	}
+	}*/
 	
 	
 	

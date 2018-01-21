@@ -22,7 +22,6 @@
     <string name="confpass">Confirmação da palavra-passe</string>
     <string name="newpass">Nova palavra-passe</string>
     <string name="oldpass">Antiga palavra-passe</string>
-    <string name="changepass">Alteração da palavra-passe</string>
     <string name="zone">Zona</string>
     <string name="city">Cidade</string>
     <string name="delivery">Entregas ao Domicílio</string>
@@ -46,6 +45,10 @@
     <string name="coffee">Café</string>
     <string name="tryagain">Tentar Novamente</string>
     <string name="birthdate">Data de Nascimento:</string>
+    <string name="price">Preço Médio</string>
+    <string name="schedule1">Horário 1</string>
+    <string name="schedule2">Horário 2</string>
+    <string name="changepass">Alterar palavra-passe</string>
 
     <string-array name="search_list">
         <item>Pizzaria Toscano</item>
@@ -68,4 +71,41 @@
         <item>Creperia Cremosi</item>
         <item>Café Piolho</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reports">Denúncias</string>
+    <string name="notices">Notificações dos Estabelecimentos</string>
+    <string name="error_unexpected">Unexpected error.</string>
+    <string name="error_server_response">Error getting server response.</string>
+    <string name="error_no_role">Something unexpected occurred. Please try signing in again.</string>
+    <string name="login_success">Login successful!</string>
+    <string name="establishment_image">Establishment image</string>
+    <string name="discard">Descartar</string>
+    <string name="delete_comment">Apagar Comentário</string>
+    <string name="correct_estab_changes">Alterar Informações</string>
+    <string name="display_price">%d€</string>
+    <string name="display_delivery">Encomendas</string>
+    <string name="spotlight">Destacar</string>
+    <string name="title_activity_visitor_menu">VisitorMenu</string>
+    <string name="visitor">Visitante</string>
+    <string name="content_image_nav_header">Content Image</string>
+    <string name="admin">Administrador</string>
+    <string name="admin_email">admin@foodback.pt</string>
+    <string name="register">Registar</string>
+    <string name="signin">Entrar</string>
+    <string name="promotions">Promoções</string>
+    <string name="no_establishments_found">No establishments found.</string>
+    <string name="new_promotion">Nova Promoção</string>
+    <string name="promotion_title">Título</string>
+    <string name="promotion_description">Descrição</string>
+    <string name="promotion_code">Código</string>
+    <string name="promotion_limit_date">Data de Validade</string>
+    <string name="promotion_create">Criar Promoção</string>
+    <string name="reports_users">Denúncias a Utilizadores</string>
+    <string name="reports_estabs">Denúncias a Estabelecimentos</string>
+    <string name="has_delivery">Possui serviço de entregas ao domicílio</string>
+    <string name="estab_page_image">Imagem do Estabelecimento</string>
+    <string name="report_title">%1$s denunciou %2$s</string>
+
 </resources>

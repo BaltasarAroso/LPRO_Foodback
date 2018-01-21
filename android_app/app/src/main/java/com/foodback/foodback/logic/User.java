@@ -10,7 +10,7 @@ import java.util.Date;
 public class User {
 
     /**
-     * user id
+     *  user id
      */
     private Integer id;
 
@@ -20,7 +20,7 @@ public class User {
     private String username;
 
     /**
-     * user password
+     *  user password
      */
     private String password;
 
@@ -30,32 +30,32 @@ public class User {
     private String name;
 
     /**
-     * user email
+     *  user email
      */
     private String email;
 
     /**
-     * user address
+     *  user address
      */
     private String address;
 
     /**
-     * user birthdate
+     *  user birthdate
      */
     private Date birth;
 
     /**
-     * is premium or not
+     *  is premium or not
      */
     private boolean premium;
 
     /**
-     * Zone of the user
+     *  Zone of the user
      */
     private String zone;
 
     /**
-     * City of the user
+     *  City of the user
      */
     private String city;
 
@@ -133,78 +133,91 @@ public class User {
     public String getUsername() {
         return username;
     }
+
     /**
      * @param username username
      */
     public void setUsername(String username) {
         this.username = username;
     }
+
     /**
      * @return user password
      */
     public String getPassword() {
         return password;
     }
+
     /**
      * @param password user password
      */
     public void setPassword(String password) {
         this.password = password;
     }
+
     /**
      * @return user real name
      */
     public String getName() {
         return name;
     }
+
     /**
      * @param name user real name
      */
     public void setName(String name) {
         this.name = name;
     }
+
     /**
      * @return user email
      */
     public String getEmail() {
         return email;
     }
+
     /**
      * @param email user email
      */
     public void setEmail(String email) {
         this.email = email;
     }
+
     /**
      * @return user address
      */
     public String getAddress() {
         return address;
     }
+
     /**
      * @param address user address
      */
     public void setAddress(String address) {
         this.address = address;
     }
+
     /**
      * @return user birth date
      */
     public Date getBirth() {
         return birth;
     }
+
     /**
      * @param birth user birth date
      */
     public void setBirth(Date birth) {
         this.birth = birth;
     }
+
     /**
      * @return is premium or not
      */
     public boolean getPremium() {
         return premium;
     }
+
     /**
      * @param premium is premium or not
      */
@@ -240,6 +253,12 @@ public class User {
         this.city = city;
     }
 
+    /**
+     *
+     * @param o
+     * @return if all elements of this user are equal
+     *         to the elements of the user given by parameter
+     */
     public boolean equals(Object o) {
         if(o == null) return false;
         if(!(o instanceof User)) return false;

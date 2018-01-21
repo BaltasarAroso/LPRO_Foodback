@@ -33,9 +33,9 @@ public interface OrderDAO {
 	 * @return
 	 */
 	@SqlUpdate("INSERT INTO orders_meal "
-			+ "VALUES (DEFAULT, :meal_id, :orders_id, :quantity, 'waiting')")
+			+ "VALUES (DEFAULT, :meal, :orders_id, :quantity, 'waiting')")
 	@GetGeneratedKeys
-	public long insertMealOrder(@Bind("meal_id") long meal_id,@Bind("orders_id") long orders_id,@Bind("quantity") int quantity);
+	public long insertMealOrder(@Bind("meal") String meal,@Bind("orders_id") long orders_id,@Bind("quantity") int quantity);
 	
 	/**
 	 * @param order_id
@@ -71,7 +71,7 @@ public interface OrderDAO {
 	 */
 	@RegisterMapper(Orders_mealMapper.class)
 	@SqlQuery("SELECT orders_meal.* "
-			+ "FROM orders_meal JOIN meal ON meal.id = meal_id "
+			+ "FROM orders_meal JOIN meal ON meal.meal = orders_meal.meal "
 			+ "WHERE establishment_id = :establishment_id AND state = 'waiting'")
 	public List<Orders_meal> getUnpreparedOrdersByEstablishmentId(@Bind("establishment_id") long establishment_id);
 
@@ -80,7 +80,7 @@ public interface OrderDAO {
 	 * @return
 	 */
 	@SqlQuery("SELECT establishment_id "
-			+ "FROM orders_meal JOIN meal ON meal.id = meal_id "
+			+ "FROM orders_meal JOIN meal ON meal.meal = orders_meal.meal "
 			+ "WHERE orders_meal.id = :orders_meal_id")
 	public long getDishOwnerId(@Bind("orders_meal_id") long orders_meal_id);
 

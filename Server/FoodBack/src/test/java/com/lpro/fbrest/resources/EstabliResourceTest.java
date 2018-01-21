@@ -4,11 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
@@ -79,7 +74,7 @@ public class EstabliResourceTest {
 		reset(establishmentService);
 	}
 
-	@Test
+	/*@Test
 	public void testNewEstablishemnt() {
 		Response response = resources.target(ESTABLISHMENTS_ENDPOINT).request()
 				.post(Entity.entity(establishment, MediaType.APPLICATION_JSON_TYPE));
@@ -90,7 +85,7 @@ public class EstabliResourceTest {
 	public void testResponseFailEstablishment() {
 		Response response = resources.target(ESTABLISHMENTS_ENDPOINT + "/4").request().get(Response.class);
 		assertEquals(response.getStatus(), Response.status(Response.Status.NOT_FOUND).build().getStatus());
-	}
+	}*/
 	
 
 }

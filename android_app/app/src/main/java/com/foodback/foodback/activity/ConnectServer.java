@@ -17,6 +17,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class ConnectServer extends AppCompatActivity {
 
@@ -36,6 +38,7 @@ public class ConnectServer extends AppCompatActivity {
             connect.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     testConnection();
+                    connect.setVisibility(View.INVISIBLE);
                 }
             });
         } catch(Exception e) {
@@ -60,15 +63,13 @@ public class ConnectServer extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("DEBUG",Log.getStackTraceString(t));
-                    Toast.makeText(ConnectServer.this, "No connection to server.", Toast.LENGTH_SHORT).show();
+                    isFailure(ConnectServer.this, t);
                     connect.setVisibility(View.VISIBLE);
                 }
             });
 
         } catch(Exception e) {
-            Log.e("DEBUG",Log.getStackTraceString(e));
-            Toast.makeText(ConnectServer.this, "Unexpected error.", Toast.LENGTH_SHORT).show();
+            isException(ConnectServer.this, e);
             connect.setVisibility(View.VISIBLE);
         }
     }

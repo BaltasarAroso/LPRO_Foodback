@@ -2,6 +2,7 @@ package com.foodback.foodback.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,12 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.Notifications;
 import com.foodback.foodback.fragment.SearchField;
 import com.foodback.foodback.fragment.UserChangeInfo;
+import com.foodback.foodback.fragment.UserDelivery;
+
 
 public class AdminMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,22 +28,22 @@ public class AdminMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -60,12 +63,23 @@ public class AdminMenu extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        /*int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
             return true;
+        }*/
+
+        Intent i;
+
+        switch (item.getItemId()) {
+
+            case R.id.action_search:
+                i = new Intent();
+                i.setClass(AdminMenu.this, SearchField.class);
+                startActivity(i);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -73,31 +87,67 @@ public class AdminMenu extends AppCompatActivity
 
 //    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+
+        /*int id = item.getItemId();
 
         if (id == R.id.nav_homepage) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
-            Toast.makeText(this, "homepage", Toast.LENGTH_LONG).show();
-        } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_delivery) {
 
+
         } else if (id == R.id.nav_notifications) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.admin_menu, new Notifications()).commit();
 
         } else if (id == R.id.nav_settings) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.admin_menu, new UserChangeInfo()).commit();
-            Toast.makeText(this, "definitions", Toast.LENGTH_LONG).show();
+
         } else if (id == R.id.nav_logout) {
             Intent i = new Intent();
             i.setClass(AdminMenu.this, LogIn.class);
             startActivity(i);
+        }*/
+
+        FragmentManager fm;
+
+        switch (item.getItemId()){
+
+            case R.id.nav_homepage:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
+                break;
+
+            case R.id.nav_delivery:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
+                break;
+
+            case R.id.nav_notifications:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.admin_menu, new Notifications()).commit();
+                break;
+
+            case R.id.nav_settings:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.admin_menu, new UserChangeInfo()).commit();
+                break;
+
+            case R.id.nav_logout:
+                Intent i = new Intent();
+                i.setClass(AdminMenu.this, LogIn.class);
+                startActivity(i);
+                break;
+
+            default:
+                break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

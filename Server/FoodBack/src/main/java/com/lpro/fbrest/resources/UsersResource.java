@@ -71,8 +71,33 @@ public class UsersResource {
 	@GET
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUser(@PathParam("username") String username) {
+	public User getUserByUsername(@PathParam("username") String username) {
 		return userService.getUserByUsername(username);
+	}
+	
+	/**
+	 * @param id ID of the User to be found
+	 * @return Returns a User if it was found
+	 * 
+	 * If there is no user with this ID a WebApplicationException is thrown with the http code 404 (not found)
+	 */
+	@GET
+	@Path("/id/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUserById(@PathParam("id") long id) {
+		return userService.getUserById(id);
+	}
+	
+	/**
+	 * @param client Client that authenticated
+	 * @return User
+	 */
+	@GET
+	@Path("/me")
+	@RolesAllowed("USER")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getSignedUser(@Auth Client client) {
+		return userService.getUserByUsername(client.getUsername());
 	}
 	
 	/**

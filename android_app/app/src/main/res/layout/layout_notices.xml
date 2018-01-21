@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_8sdp"
+    android:orientation="vertical">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="column"
+        app:justifyContent="space_between">
+
+        <TextView
+            android:id="@+id/notice_estab_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurante Manuel Alves"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:orientation="horizontal"
+            app:justifyContent="space_around">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Morada"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zona"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cidade"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Conacto"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preço Médio"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horário 1"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horário 2"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entregas"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@id/notice_estab_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Morada"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_zone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zona"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cidade"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Conacto"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_avg_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preço Médio"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_schedule1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horário 1"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_schedule2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horário 2"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_estab_delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entregas"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/notice_new_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Morada"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_zone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zona"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cidade"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Conacto"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_avg_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preço Médio"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_schedule1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horário 1"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_schedule2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horário 2"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/notice_new_delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entregas"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/colorLogo"
+                    android:textStyle="normal"/>
+
+            </LinearLayout>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/discardCommentButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@color/colorLogo"
+                android:textColor="#fff"
+                android:text="@string/discard"
+                android:textSize="@dimen/_8sdp"/>
+
+            <Button
+                android:id="@+id/delete_commentButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:background="@color/colorLogo"
+                android:textColor="#fff"
+                android:text="@string/change_estab_info"
+                android:textSize="@dimen/_8sdp"/>
+
+        </LinearLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</LinearLayout>

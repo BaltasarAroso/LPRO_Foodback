@@ -20,7 +20,7 @@ public interface AnswerDAO {
 	/**
 	 * @param comment_id ID of comment 
 	 * @param answer Answer
-	 * @return
+	 * @return ID of inserted answer
 	 */
 	@SqlUpdate("INSERT INTO comment_answer "
 			+ "VALUES (DEFAULT, :comment_id, :answer, DEFAULT)")
@@ -63,6 +63,7 @@ public interface AnswerDAO {
 	
 	/**
 	 * @param id ID of answer
+	 * @param answer Answer to be inserted 
 	 */
 	@SqlUpdate("UPDATE comment_answer "
 			+ "SET answer = :answer, time_posted = now() "

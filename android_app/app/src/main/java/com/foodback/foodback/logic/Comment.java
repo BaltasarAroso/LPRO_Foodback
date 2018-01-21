@@ -3,7 +3,7 @@ package com.foodback.foodback.logic;
 import java.sql.Timestamp;
 
 /**
- * Created by Foodback on 14/12/2017.
+ * Created by Foodback.
  */
 
 public class Comment {
@@ -141,19 +141,23 @@ public class Comment {
         this.comment = comment;
     }
 
+    /**
+     *
+     * @param o
+     * @return if all elements of this comment are equal
+     *         to the elements of the comment given by parameter
+     */
     public boolean equals(Object o) {
         if(o == null) return false;
         if(!(o instanceof Comment)) return false;
 
         Comment comment = (Comment)o;
-        if(this.id == comment.getId() &&
+        return this.id == comment.getId() &&
                 this.establishment_id == comment.getEstablishment_id() &&
                 this.commenter_id == comment.getCommenter_id() &&
                 this.time_posted.equals(comment.getTime_posted()) &&
                 this.rating == comment.getRating() &&
-                this.comment.equals(comment.getComment()))
-            return true;
-        else return false;
+                this.comment.equals(comment.getComment());
     }
 
 }

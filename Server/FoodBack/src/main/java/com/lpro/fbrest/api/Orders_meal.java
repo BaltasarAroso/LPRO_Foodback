@@ -5,123 +5,123 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Orders_meal {
 	
 	/**
-	 * Id 
+	 * ID of order_meal
 	 */
 	@JsonProperty
 	private long id;
 	
 	/**
-	 * ID of a meal 
+	 * Meal name
 	 */
 	@JsonProperty
-	private long meal_id;
+	private String meal;
 	
 	/**
-	 * OD of the order 
+	 * ID of order
 	 */
 	@JsonProperty
 	private long orders_id;
 	
 	/**
-	 * Quantity of the meal in the order 
+	 * Quantity of meal's
 	 */
 	@JsonProperty
 	private int quantity;
 	
 	/**
-	 * State of the meal  
+	 * State of this part of the order
 	 */
 	@JsonProperty
 	private String state;
 	
 	/**
-	 *  Constructor of Jackson
+	 * Contructor for Jackson
 	 */
 	public Orders_meal() {
 		super();
 	}
 
 	/**
-	 * @param id
-	 * @param meal_id
-	 * @param orders_id
-	 * @param quantity
-	 * @param state
+	 * @param id ID of order_meal
+	 * @param meal Meal name
+	 * @param orders_id ID of order
+	 * @param quantity Quantity of meals
+	 * @param state State of this part of the order
 	 */
-	public Orders_meal(long id, long meal_id, long orders_id, int quantity, String state) {
+	public Orders_meal(long id, String meal, long orders_id, int quantity, String state) {
 		super();
 		this.id = id;
-		this.meal_id = meal_id;
+		this.meal = meal;
 		this.orders_id = orders_id;
 		this.quantity = quantity;
 		this.state = state;
 	}
 
 	/**
-	 * @return
+	 * @return ID of order_meal
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id
+	 * @param id ID of order_meal
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return
+	 * @return Meal name
 	 */
-	public long getMeal_id() {
-		return meal_id;
+	public String getMeal() {
+		return meal;
 	}
 
 	/**
-	 * @param meal_id
+	 * @param meal Meal name
 	 */
-	public void setMeal_id(long meal_id) {
-		this.meal_id = meal_id;
+	public void setMeal(String meal) {
+		this.meal = meal;
 	}
 
 	/**
-	 * @return
+	 * @return ID of order
 	 */
 	public long getOrders_id() {
 		return orders_id;
 	}
 
 	/**
-	 * @param orders_id
+	 * @param orders_id ID of order
 	 */
 	public void setOrders_id(long orders_id) {
 		this.orders_id = orders_id;
 	}
 
 	/**
-	 * @return
+	 * @return Quantity of meals
 	 */
 	public int getQuantity() {
 		return quantity;
 	}
 
 	/**
-	 * @param quantity
+	 * @param quantity Quantity of meals
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	
 	/**
-	 * @return
+	 * @return State of this part of the order
 	 */
 	public String getState() {
 		return state;
 	}
 
 	/**
-	 * @param state
+	 * @param state State of this part of the order
 	 */
 	public void setState(String state) {
 		this.state = state;
@@ -135,8 +135,8 @@ public class Orders_meal {
 		if(!(o instanceof Orders_meal)) return false;
 		
 		Orders_meal orders_meal = (Orders_meal)o;
-		if(this.meal_id == orders_meal.getMeal_id() &&
-				this.quantity == orders_meal.getQuantity())
+		if(this.meal.equals(orders_meal.getMeal()) &&
+			this.quantity == orders_meal.getQuantity())
 			return true;
 		else return false;			
 	}

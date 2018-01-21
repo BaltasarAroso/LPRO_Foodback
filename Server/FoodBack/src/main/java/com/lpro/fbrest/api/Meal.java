@@ -1,31 +1,33 @@
 package com.lpro.fbrest.api;
 
+import java.math.BigDecimal;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class Meal {
 	
-	
+
 	/**
-	 * id of meal
+	 * Meal's ID
 	 */
 	@JsonProperty
 	private long id;
 
 	/**
-	 * Name of the meal
+	 * Meal's name
 	 */
 	@JsonProperty
 	private String meal;
 	
 	/**
-	 * Price of meal
+	 * Meal's price
 	 */
 	@JsonProperty
-	private int price;
+	private BigDecimal price;
 	
 	/**
-	 * Id of establishment
+	 * ID of establishment
 	 */
 	@JsonProperty
 	private long establishment_id;
@@ -37,79 +39,80 @@ public class Meal {
 		super();
 	}
 
-	
+
 	/**
-	 * @param id
-	 * @param meal
-	 * @param price
-	 * @param establishment_id
-	 * 
-	 * Constructor
+	 * @param id Meal's ID
+	 * @param meal Meal's name
+	 * @param price Meal's price
+	 * @param establishment_id ID of establishment
 	 */
-	public Meal(long id, String meal, int price, long establishment_id) {
+	public Meal(long id, String meal, double price, long establishment_id) {
 		super();
 		this.id = id;
 		this.meal = meal;
-		this.price = price;
+		this.price = new BigDecimal(price).setScale(2, BigDecimal.ROUND_HALF_UP);
 		this.establishment_id = establishment_id;
 	}
 
 	/**
-	 * @return id
+	 * @return Meal's ID
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id
+	 * @param id Meal's ID
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return meal
+	 * @return Meal's name
 	 */
 	public String getMeal() {
 		return meal;
 	}
 
 	/**
-	 * @param meal
+	 * @param meal Meal's name
 	 */
 	public void setMeal(String meal) {
 		this.meal = meal;
 	}
 
 	/**
-	 * @return price
+	 * @return Meal's price
 	 */
-	public int getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
 	/**
-	 * @param price
+	 * @param price Meal's price
 	 */
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(double price) {
+		this.price = new BigDecimal(price).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	/**
-	 * @return establishment_id
+	 * @return ID of establishment
 	 */
 	public long getEstablishment_id() {
 		return establishment_id;
 	}
 
 	/**
-	 * @param establishment_id
+	 * @param establishment_id ID of establishment
 	 */
 	public void setEstablishment_id(long establishment_id) {
 		this.establishment_id = establishment_id;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object o) {
 		if(o == null) return false;
 		if(!(o instanceof Meal)) return false;
@@ -117,7 +120,7 @@ public class Meal {
 		Meal meal = (Meal)o;
 		if(this.id == meal.getId() &&
 				this.meal.equals(meal.getMeal()) &&
-				this.price == meal.getPrice() &&
+				this.price.equals(meal.getPrice()) &&
 				this.establishment_id == meal.getEstablishment_id())
 			return true;
 		else return false;			

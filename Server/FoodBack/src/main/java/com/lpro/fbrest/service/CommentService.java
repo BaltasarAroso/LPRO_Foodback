@@ -7,6 +7,7 @@ import javax.ws.rs.WebApplicationException;
 import org.skife.jdbi.v2.sqlobject.CreateSqlObject;
 
 import com.lpro.fbrest.api.Comment;
+import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.db.CommentDAO;
 
 /**
@@ -35,11 +36,21 @@ public abstract class CommentService {
 	}
 	
 	/**
-	 * @param comment Comment to be deleted
+	 * @param comment_id ID of comment to be deleted
+	 * @param users_id ID of user
 	 */
-	public void deleteComment(Comment comment) {
+	public void deleteComment(long users_id, long comment_id) {
+		Comment comment = null;
 		try {
-			commentdao().deleteComment(comment.getId());
+			comment = commentdao().getCommentById(comment_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+		if(comment == null) throw new WebApplicationException(404);
+		if(comment.getCommenter_id() != users_id) throw new WebApplicationException(403);
+		try {
+			commentdao().deleteComment(comment_id);
 			commentdao().updateEstablishmentRating(comment.getEstablishment_id());
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -54,6 +65,19 @@ public abstract class CommentService {
 	public List<Comment> getEstablishmentComments(long establishment_id) {
 		try {
 			return commentdao().getEstablishmentComments(establishment_id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+	}
+
+	/**
+	 * @param comment_id ID of comment
+	 * @return User who made comment
+	 */
+	public User getCommenterUser(long comment_id) {
+		try {
+			return commentdao().getCommenterUser(comment_id);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);

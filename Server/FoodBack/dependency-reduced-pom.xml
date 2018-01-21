@@ -4,7 +4,7 @@
   <groupId>com.lpro</groupId>
   <artifactId>FoodBack</artifactId>
   <name>FoodBack</name>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <prerequisites>
     <maven>3.0.0</maven>
   </prerequisites>

@@ -1,0 +1,46 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.foodback.foodback.fragment.Restaurant">
+
+    <!-- <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:flexDirection="column">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Em destaque"
+            android:layout_margin="@dimen/_8sdp"/>
+
+        <ListView
+            android:id="@+id/list_spotlights"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_200sdp">
+        </ListView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Todos os Restaurantes"
+            android:layout_margin="@dimen/_8sdp"/>
+
+        <ListView
+            android:id="@+id/list_restaurants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </ListView>
+
+    </com.google.android.flexbox.FlexboxLayout> -->
+
+    <ListView
+        android:id="@+id/list_restaurants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ListView>
+
+</RelativeLayout>
