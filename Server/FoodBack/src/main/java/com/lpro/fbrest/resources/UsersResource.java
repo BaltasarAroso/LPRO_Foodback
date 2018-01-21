@@ -76,10 +76,10 @@ public class UsersResource {
 	}
 	
 	/**
-	 * @param username The name of the User to be found
+	 * @param id ID of the User to be found
 	 * @return Returns a User if it was found
 	 * 
-	 * If there is no user with this username a WebApplicationException is thrown with the http code 404 (not found)
+	 * If there is no user with this ID a WebApplicationException is thrown with the http code 404 (not found)
 	 */
 	@GET
 	@Path("/id/{id}")
