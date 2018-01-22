@@ -3,21 +3,19 @@ package com.foodback.foodback.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.activity.EstablishmentRegister;
 import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,10 +90,11 @@ public class Restaurant extends Fragment {
         listRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = restaurants.get(position);
+                Gson gson = new Gson();
+                String serialized = gson.toJson(restaurants.get(position));
+
                 Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
-                // TODO provavelmente terá que se fazer um cast da lista de establishments para um vetor de strings
-                i.putExtra("restaurants", (CharSequence) selectedEstab);
+                i.putExtra("restaurant", serialized);
                 startActivity(i);
             }
         });

@@ -30,6 +30,7 @@ public interface EstablishmentEndpoints {
 //    PUT     /establishments/verify/{tmp_establishment_id} (com.lpro.fbrest.resources.EstablishmentsResource)
 //    GET     /establishments/filtered (com.lpro.fbrest.resources.EstablishmentsResource) -check
 //    GET     /establishments/mine (com.lpro.fbrest.resources.EstablishmentsResource)  -check
+//    GET     /establishments/ilike/{search_string} (com.lpro.fbrest.resources.EstablishmentsResource)  -check
 
 
     @POST("/establishments")
@@ -61,5 +62,8 @@ public interface EstablishmentEndpoints {
 
     @GET("/establishments/filtered")
     Call<List<Establishment>> getEstablishmentsFiltered(@Query("category_id") long category_id);
+
+    @GET("/establishments/ilike/{search_string}")
+    Call<List<Establishment>> searchEstablishment(@Path("search_string") String search_string);
 
 }

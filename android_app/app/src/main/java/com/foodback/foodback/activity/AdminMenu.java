@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.fragment.Notifications;
-import com.foodback.foodback.fragment.SearchField;
 import com.foodback.foodback.fragment.UserChangeInfo;
 import com.foodback.foodback.fragment.UserDelivery;
 
@@ -39,6 +38,9 @@ public class AdminMenu extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
     }
 
     @Override
@@ -54,6 +56,7 @@ public class AdminMenu extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.admin_menu, menu);
         return true;
     }
@@ -63,18 +66,13 @@ public class AdminMenu extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        /*int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }*/
 
         Intent i;
 
         switch (item.getItemId()) {
 
             case R.id.action_search:
+                //TODO não está bem feito, tem que se criar um drawer (video)
                 i = new Intent();
                 i.setClass(AdminMenu.this, SearchField.class);
                 startActivity(i);
@@ -89,29 +87,6 @@ public class AdminMenu extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-
-        /*int id = item.getItemId();
-
-        if (id == R.id.nav_homepage) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
-
-        } else if (id == R.id.nav_delivery) {
-
-
-        } else if (id == R.id.nav_notifications) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.admin_menu, new Notifications()).commit();
-
-        } else if (id == R.id.nav_settings) {
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.admin_menu, new UserChangeInfo()).commit();
-
-        } else if (id == R.id.nav_logout) {
-            Intent i = new Intent();
-            i.setClass(AdminMenu.this, LogIn.class);
-            startActivity(i);
-        }*/
 
         FragmentManager fm;
 

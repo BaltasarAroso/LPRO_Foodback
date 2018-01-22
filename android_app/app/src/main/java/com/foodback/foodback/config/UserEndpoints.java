@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -18,6 +19,7 @@ public interface UserEndpoints {
 //    GET     /users (com.lpro.fbrest.resources.UsersResource)
 //    POST    /users (com.lpro.fbrest.resources.UsersResource)  -check
 //    PUT     /users/upgrade (com.lpro.fbrest.resources.UsersResource)
+//    PUT     /users (com.lpro.fbrest.resources.UsersResource)
 //    GET     /users/{username} (com.lpro.fbrest.resources.UsersResource)
 //    GET     /users/me (com.lpro.fbrest.resources.UsersResource)
 //    GET     /users/id/{id} (com.lpro.fbrest.resources.UsersResource)
@@ -31,4 +33,7 @@ public interface UserEndpoints {
 
     @GET("users/id/{id}")
     Call<User> getUserById(@Path("id") long id);
+
+    @PUT("/users")
+    Call<ResponseBody> changeUser(@Body User user);
 }

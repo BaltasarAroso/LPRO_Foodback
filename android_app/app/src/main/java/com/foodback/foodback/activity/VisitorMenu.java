@@ -15,7 +15,6 @@ import android.view.MenuItem;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
-import com.foodback.foodback.fragment.SearchField;
 
 public class VisitorMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +34,9 @@ public class VisitorMenu extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.visitor_menu, new Homepage()).commit();
     }
 
     @Override
@@ -59,18 +61,13 @@ public class VisitorMenu extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        /*int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }*/
 
         Intent i;
 
         switch (item.getItemId()) {
 
             case R.id.action_search:
+                //TODO não está bem feito, tem que se criar um drawer (video)
                 i = new Intent();
                 i.setClass(VisitorMenu.this, SearchField.class);
                 startActivity(i);

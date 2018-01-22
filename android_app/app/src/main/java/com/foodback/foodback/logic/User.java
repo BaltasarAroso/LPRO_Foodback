@@ -113,6 +113,19 @@ public class User {
         this.city = city;
     }
 
+    public User(String name, String email, String address, Date birth, boolean premium, String zone, String city, String password) {
+
+        super();
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.birth = birth;
+        this.premium = premium;
+        this.zone = zone;
+        this.city = city;
+        this.password = password;
+    }
+
     /**
      * @return user id
      */

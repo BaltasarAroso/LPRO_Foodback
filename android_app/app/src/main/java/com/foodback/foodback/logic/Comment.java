@@ -23,10 +23,10 @@ public class Comment {
      */
     private int commenter_id;
 
-    /**
+    /*
      *  Time of comment creation
      */
-    private Timestamp time_posted;
+    //private Timestamp time_posted;
 
     /**
      *  Score the user gave to the establishment
@@ -52,7 +52,7 @@ public class Comment {
         this.id = id;
         this.establishment_id = establishment_id;
         this.commenter_id = commenter_id;
-        this.time_posted = time_posted;
+        //this.time_posted = time_posted;
         this.rating = rating;
         this.comment = comment;
     }
@@ -102,16 +102,16 @@ public class Comment {
     /**
      * @return time of comment creation
      */
-    public Timestamp getTime_posted() {
+    /*public Timestamp getTime_posted() {
         return time_posted;
-    }
+    }*/
 
     /**
      * @param time_posted time of comment creation
      */
-    public void setTime_posted(Timestamp time_posted) {
+    /*public void setTime_posted(Timestamp time_posted) {
         this.time_posted = time_posted;
-    }
+    }*/
 
     /**
      * @return score the user gave the establishment
@@ -155,7 +155,7 @@ public class Comment {
         return this.id == comment.getId() &&
                 this.establishment_id == comment.getEstablishment_id() &&
                 this.commenter_id == comment.getCommenter_id() &&
-                this.time_posted.equals(comment.getTime_posted()) &&
+                //this.time_posted.equals(comment.getTime_posted()) &&
                 this.rating == comment.getRating() &&
                 this.comment.equals(comment.getComment());
     }

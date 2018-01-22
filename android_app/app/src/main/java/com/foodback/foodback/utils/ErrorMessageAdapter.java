@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class ErrorMessageAdapter extends ArrayAdapter {
 
+    private Context context;
     private LayoutInflater inflater;
 
     private ArrayList<String> errors;
@@ -26,6 +27,7 @@ public class ErrorMessageAdapter extends ArrayAdapter {
     public ErrorMessageAdapter(Context context, ArrayList<String> errors) {
         super(context, R.layout.layout_no_establishments_found, errors);
 
+        this.context = context;
         this.errors = errors;
 
         inflater = LayoutInflater.from(context);

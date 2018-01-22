@@ -1,6 +1,7 @@
 package com.foodback.foodback.config;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.foodback.foodback.BuildConfig;
 import com.google.gson.Gson;
@@ -22,9 +23,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodbackClient {
 
-//    private static final String BASE_URL = "http://10.0.2.2:3000";  //simulador
-    private static final String BASE_URL = "http://172.30.6.175:3000";  //andré
-//    private static final String BASE_URL = "http://172.30.22.199:8080";  //malafaia
+//    private static String BASE_URL = "http://10.0.2.2:3000";  //simulador
+//    private static String BASE_URL = "http://172.30.6.175:3000";  //andré
+    private static String BASE_URL = "http://172.30.22.199:3000";  //malafaia
 
     public static Retrofit retrofit =  new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -33,6 +34,12 @@ public class FoodbackClient {
 
     private static String username = "";
     private static String password = "";
+
+    public static void setBaseUrl(String url) {
+        Log.e("merda", "url: " + url);
+        BASE_URL = "http://" + url;
+        new FoodbackClient();
+    }
 
     public static String getBaseUrl() {
         return BASE_URL;

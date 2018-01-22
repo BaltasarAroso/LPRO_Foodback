@@ -31,13 +31,13 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class UserRegister extends AppCompatActivity {
 
-    protected EditText editname, editaddress, editemail, editcontact,
+    protected EditText editname, editaddress, editemail,
             editusername, editpassword, editcity, editzone;
     protected Button buttonRegister;
     protected TextView linkestab_signup;
     protected DatePicker editbirth;
 
-    protected String name, address, email, contact, username, password, city, zone;
+    protected String name, address, email, username, password, city, zone;
     protected Date birth;
     protected Boolean premium;
 
@@ -52,7 +52,6 @@ public class UserRegister extends AppCompatActivity {
         editname = findViewById(R.id.name);
         editaddress = findViewById(R.id.address);
         editemail = findViewById(R.id.email);
-        editcontact = findViewById(R.id.contact);
         editusername = findViewById(R.id.username);
         editpassword = findViewById(R.id.password);
         editcity = findViewById(R.id.city);
@@ -100,7 +99,6 @@ public class UserRegister extends AppCompatActivity {
         name = editname.getText().toString();
         address = editaddress.getText().toString();
         email = editemail.getText().toString();
-        contact = editcontact.getText().toString();
         username = editusername.getText().toString();
         password = editpassword.getText().toString();
         premium = ((CheckBox) findViewById(R.id.premium)).isChecked();
@@ -124,10 +122,6 @@ public class UserRegister extends AppCompatActivity {
         // is needed to add more parameters of validation in this ones
         if (address.isEmpty()) {
             editaddress.setError("Please enter a valid address");
-            valid = false;
-        }
-        if (contact.isEmpty()) {
-            editcontact.setError("Please enter a valid contact");
             valid = false;
         }
         if (username.isEmpty()) {
@@ -160,7 +154,9 @@ public class UserRegister extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()) {
                         Toast.makeText(UserRegister.this, "Registered Successfully.", Toast.LENGTH_SHORT).show();
-                        //change activity
+                        Intent i = new Intent();
+                        i.setClass(UserRegister.this, LogIn.class);
+                        startActivity(i);
                     } else {
                         isBad(UserRegister.this, response);
                     }

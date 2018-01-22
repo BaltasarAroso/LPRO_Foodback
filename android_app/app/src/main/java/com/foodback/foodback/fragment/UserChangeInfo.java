@@ -12,17 +12,34 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.activity.UserRegister;
+import com.foodback.foodback.config.UserEndpoints;
+import com.foodback.foodback.logic.User;
+
+import java.util.Date;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.utils.ErrorDisplay.isBad;
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class UserChangeInfo extends Fragment {
 
-    protected EditText editname, editaddress, editzone, editcity, editemail, editcontact, editusername, editpassword;
-    protected CheckBox editpremium;
+    protected EditText editname, editaddress, editzone, editcity, editemail, editpassword;
     protected DatePicker editbirth;
 
     protected Button buttonChangeUser;
 
-    protected String name, address, zone, city, email, contact, username, password, premium;
-    protected Integer day, month, year;
+    protected String name, address, zone, city, email, username, password;
+    protected Date birth;
+    protected Boolean premium;
+
+    protected User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,11 +56,8 @@ public class UserChangeInfo extends Fragment {
         editemail = getView().findViewById(R.id.email);
         editzone = getView().findViewById(R.id.zone);
         editcity = getView().findViewById(R.id.city);
-        editcontact = getView().findViewById(R.id.contact);
-        editusername = getView().findViewById(R.id.username);
         editpassword = getView().findViewById(R.id.password);
         editbirth = getView().findViewById(R.id.birth);
-        editpremium = getView().findViewById(R.id.premium);
 
         buttonChangeUser = getView().findViewById(R.id.buttonChangeUser);
 
@@ -63,7 +77,9 @@ public class UserChangeInfo extends Fragment {
         if (!validateChangesUser()) {
             Toast.makeText(getActivity(), "Changes in User have failed", Toast.LENGTH_SHORT).show();
         } else {
-            onChangeUserSuccess();
+            birth = new Date(editbirth.getYear()-1900, editbirth.getMonth(), editbirth.getDayOfMonth());
+            user = new User(name, email, address, birth, premium, zone, city, password);
+            onChangeUserSuccess(user);
         }
     }
 
@@ -73,14 +89,8 @@ public class UserChangeInfo extends Fragment {
         zone = editzone.getText().toString();
         city = editcity.getText().toString();
         email = editemail.getText().toString();
-        contact = editcontact.getText().toString();
-        username = editusername.getText().toString();
         password = editpassword.getText().toString();
-        premium = editpremium.getText().toString();
-
-        day = editbirth.getDayOfMonth();
-        month = editbirth.getMonth() + 1;
-        year = editbirth.getYear();
+        premium = ((CheckBox) getView().findViewById(R.id.premium)).isChecked();
     }
 
     private boolean validateChangesUser() {
@@ -100,7 +110,29 @@ public class UserChangeInfo extends Fragment {
     }
 
 
-    private void onChangeUserSuccess() {
-        //TODO change the User parameters on success
+    private void onChangeUserSuccess(User user) {
+        try {
+            UserEndpoints services = retrofit.create(UserEndpoints.class);
+            Call<ResponseBody> call = services.changeUser(user);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(getActivity(), "Registered Successfully.", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
     }
 }

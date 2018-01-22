@@ -1,6 +1,7 @@
 package com.foodback.foodback.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
+import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
 
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 public class Bar extends Fragment {
 
     ArrayList<Establishment> bars = new ArrayList<>();
+    ArrayList<String> errors = new ArrayList<>();
 
     public Bar() {}
 
@@ -62,7 +66,7 @@ public class Bar extends Fragment {
                         declareList(view);
                     } else {
                         if(response.code() == 404) {
-                            declareList(view);
+                            declareError(view);
                         } else
                             isBad(getActivity(), response);
                     }
@@ -90,6 +94,14 @@ public class Bar extends Fragment {
                 Toast.makeText(getActivity(), selectedEstab.getName(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void declareError(View view) {
+
+        errors.add("No establishment found.");
+
+        ListView listBars = view.findViewById(R.id.list_bars);
+        listBars.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
     }
 
     @Override

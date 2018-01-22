@@ -17,7 +17,6 @@
             android:id="@+id/menu_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Feijoada à transmontana"
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -26,7 +25,6 @@
             android:id="@+id/menu_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12.90€"
             android:textSize="@dimen/_10sdp"
             android:textStyle="normal"
             android:gravity="center"/>
@@ -34,20 +32,22 @@
         <Spinner
             android:id="@+id/spotlight_spinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:entries="@array/spotlight_time_options">
         </Spinner>
 
         <Button
-            android:id="@+id/delete_estabinfoButton"
+            android:id="@+id/btnSpotlight"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/_2sdp"
             android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:background="@color/colorLogo"
             android:textColor="#fff"
             android:textSize="@dimen/_8sdp"
-            android:text="@string/spotlight"/>
+            android:text="@string/spotlight" />
 
     </com.google.android.flexbox.FlexboxLayout>
 

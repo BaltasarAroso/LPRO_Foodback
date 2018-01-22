@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/_8sdp"
     android:orientation="vertical">
@@ -33,10 +33,10 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="right">
 
             <Button
-                android:id="@+id/discardCommentButton"
+                android:id="@+id/btnDiscardComment"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="@dimen/_10sdp" />
 
             <Button
-                android:id="@+id/delete_commentButton"
+                android:id="@+id/btnDeleteComment"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
