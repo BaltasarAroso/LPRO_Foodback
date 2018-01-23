@@ -10,6 +10,7 @@ import com.lpro.fbrest.api.Establishment;
 
 public class EstablishmentMapper implements ResultSetMapper<Establishment>{
 
+	
 	@Override
 	public Establishment map(int index, ResultSet r, StatementContext ctx) throws SQLException {
 		return new Establishment(r.getInt("id"),

@@ -73,7 +73,7 @@ public class MealsResource {
 	@GET
 	@Path("/{establishment_id}/{meal}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Meal getMealbyName(@PathParam("establishment_id") int establishment_id, @PathParam("meal") String meal){
+	public Meal getMealbyName(@PathParam("establishment_id") long establishment_id, @PathParam("meal") String meal){
 		return mealService.getMealbyName(establishment_id, meal);
 	}
 

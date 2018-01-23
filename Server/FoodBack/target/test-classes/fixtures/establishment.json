@@ -1,0 +1,17 @@
+{
+	"id": "29",
+	"name": "Ristoranti Italiano",
+	"category": "Categoria",
+	"address": "Morada",
+	"zone": "minha zona",
+	"city": "minha cidade",
+	"email": "email@mail.com",
+	"contact":  "999999999",
+	"username": "user",
+	"password": "pass",
+	"delivery": true,
+	"avg_price": "25",
+	"schedule1": "Horário 1",
+	"schedule2": "Horário 2",
+	"rating": "3.87"
+}

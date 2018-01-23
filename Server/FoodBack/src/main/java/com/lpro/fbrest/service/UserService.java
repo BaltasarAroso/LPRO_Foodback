@@ -81,7 +81,7 @@ public abstract class UserService {
 	}
 	
 	/**
-	 * @param username Username to be searched
+	 * @param id ID to be searched
 	 * @return User if it exists
 	 */
 	public User getUserById(long id) {
@@ -98,6 +98,25 @@ public abstract class UserService {
 	public void upgradePremium(long users_id) {
 		try {
 			userdao().upgradePremium(users_id);		
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new WebApplicationException(500);
+		}
+	}
+
+	/**
+	 * @param user New User object
+	 */
+	public void editUser(User user) {
+		try {
+			userdao().editUser(user.getId(),
+					user.getName(), 
+					user.getEmail(), 
+					user.getAddress(), 
+					user.getBirth(), 
+					user.getPremium(),
+					user.getZone(),
+					user.getCity());		
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new WebApplicationException(500);

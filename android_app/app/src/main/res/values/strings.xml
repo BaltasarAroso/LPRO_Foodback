@@ -86,7 +86,7 @@
     <string name="display_price">%d€</string>
     <string name="display_delivery">Encomendas</string>
     <string name="spotlight">Destacar</string>
-    <string name="title_activity_visitor_menu">VisitorMenu</string>
+    <string name="title_activity_visitor_menu">Menu de Visitante</string>
     <string name="visitor">Visitante</string>
     <string name="content_image_nav_header">Content Image</string>
     <string name="admin">Administrador</string>

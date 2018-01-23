@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class Meal {
 	
+
 	/**
 	 * Meal's ID
 	 */
@@ -36,6 +38,7 @@ public class Meal {
 	public Meal() {
 		super();
 	}
+
 
 	/**
 	 * @param id Meal's ID

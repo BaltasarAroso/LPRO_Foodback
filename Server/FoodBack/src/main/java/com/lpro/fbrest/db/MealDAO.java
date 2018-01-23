@@ -29,7 +29,6 @@ public interface MealDAO {
 	long insertMeal(@Bind("meal") String meal,
 					@Bind("price") BigDecimal price,
 					@Bind("establishment_id") long establishment_id);
-
 	
 	/**
 	 * @param establishment_id ID of establishment
@@ -49,7 +48,5 @@ public interface MealDAO {
 			+ "FROM meal "
 			+ "WHERE establishment_id = :establishment_id AND meal = :meal")
 	Meal getMealbyName(@Bind("establishment_id") long establishment_id, @Bind("meal") String meal);
-
-	
 
 }

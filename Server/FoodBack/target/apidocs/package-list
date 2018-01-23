@@ -1,0 +1,6 @@
+com.lpro.fbrest
+com.lpro.fbrest.api
+com.lpro.fbrest.auth
+com.lpro.fbrest.db
+com.lpro.fbrest.resources
+com.lpro.fbrest.service

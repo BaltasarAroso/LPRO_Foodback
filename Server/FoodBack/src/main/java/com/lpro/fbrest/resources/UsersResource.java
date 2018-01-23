@@ -12,10 +12,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lpro.fbrest.api.Establishment;
 import com.lpro.fbrest.api.User;
 import com.lpro.fbrest.auth.Client;
 import com.lpro.fbrest.service.UserService;
@@ -23,8 +23,6 @@ import com.lpro.fbrest.service.UserService;
 import io.dropwizard.auth.Auth;
 
 /**
- * @author Daniel
- *
  * Resource to manage users
  */
 @Path("/users")
@@ -77,10 +75,10 @@ public class UsersResource {
 	}
 	
 	/**
-	 * @param username The name of the User to be found
+	 * @param id ID of the User to be found
 	 * @return Returns a User if it was found
 	 * 
-	 * If there is no user with this username a WebApplicationException is thrown with the http code 404 (not found)
+	 * If there is no user with this ID a WebApplicationException is thrown with the http code 404 (not found)
 	 */
 	@GET
 	@Path("/id/{id}")
@@ -110,6 +108,20 @@ public class UsersResource {
 	@RolesAllowed("USER")
 	public Response upgradePremium(@Auth Client client) {
 		userService.upgradePremium(client.getUsers_id());
+		return Response.ok().build();
+	}
+	
+	/**
+	 * @param client Client that authenticated
+	 * @param user New user object
+	 * @return Response with ok http status
+	 */
+	@PUT
+	@RolesAllowed({"USER","ADMIN"})
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response editUser(@Auth Client client, User user) {
+		if(client.getUsers_id() > 0 && client.getUsers_id() != user.getId()) throw new WebApplicationException(403);
+		userService.editUser(user);
 		return Response.ok().build();
 	}
 

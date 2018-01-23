@@ -13,14 +13,16 @@ import com.lpro.fbrest.db.MealDAO;
  * Service for Meal management
  */
 public abstract class MealService {
+	
+	private static final String SUCCESS = "Success...";
 
+	/**
+	 * @return Response if request was successful
+	 */
 	@CreateSqlObject
 	abstract MealDAO mealdao();
 	
-	/**
-	 * @param meal Meal to be stored
-	 */
-	public void newMeal(Meal meal) {
+	public String newMeal(Meal meal) {
 		try {
 			mealdao().insertMeal(meal.getMeal(), meal.getPrice(), meal.getEstablishment_id());
 		} catch(Exception e) {
@@ -28,13 +30,15 @@ public abstract class MealService {
 			throw new WebApplicationException(500);
 		}
 		
+		return SUCCESS;
+		
 	}
 
 	/**
 	 * @param establishment_id ID of establishment
 	 * @return List of meals of the specified establishment
 	 */
-	public List<Meal> getAllMeals(int establishment_id) {
+	public List<Meal> getAllMeals(long establishment_id) {
 		return mealdao().getAllMeals(establishment_id);
 	}
 
@@ -43,7 +47,7 @@ public abstract class MealService {
 	 * @param meal Meal name
 	 * @return Meal with specified name from the specified establishment
 	 */
-	public Meal getMealbyName(int establishment_id, String meal) {
+	public Meal getMealbyName(long establishment_id, String meal) {
 		Meal x = mealdao().getMealbyName(establishment_id, meal);
 		if(x == null) {
 			throw new WebApplicationException(404);
