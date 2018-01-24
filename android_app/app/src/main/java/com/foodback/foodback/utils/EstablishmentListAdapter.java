@@ -78,6 +78,7 @@ public class EstablishmentListAdapter extends ArrayAdapter {
                 .load(getBaseUrl() + "/images/establishment/profile/" + restaurants.get(position).getId())
                 .transition(withCrossFade())
                 .fallback(R.drawable.foodback_logo)
+                .error(R.drawable.foodback_logo)
                 .fitCenter()
                 .into(estab_image);
 

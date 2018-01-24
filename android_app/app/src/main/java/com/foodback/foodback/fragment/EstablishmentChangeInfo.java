@@ -99,11 +99,12 @@ public class EstablishmentChangeInfo extends Fragment {
             if(TextUtils.isEmpty(newpass)) {
                 estab = new Establishment(name, category, address, zone, city, email,
                         contact, avg_price, schedule1, schedule2, null, null, delivery);
+                verifyOldPassword(estab, null);
             } else {
                 estab = new Establishment(name, category, address, zone, city, email,
                         contact, avg_price, schedule1, schedule2, null, newpass, delivery);
+                verifyOldPassword(estab, newpass);
             }
-            verifyOldPassword(estab, null);
         }
     }
 
@@ -134,7 +135,7 @@ public class EstablishmentChangeInfo extends Fragment {
             editemail.setError("Please enter a valid email");
             return false;
         }
-        if (editnewpass.toString().equals(editconfpass.toString())) {
+        if (!newpass.equals(confpass)) {
             editnewpass.setError("Passwords don't match");
             editconfpass.setError("Passwords don't match");
             return false;
