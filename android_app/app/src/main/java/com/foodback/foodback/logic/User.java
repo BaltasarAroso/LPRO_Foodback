@@ -12,7 +12,7 @@ public class User {
     /**
      *  user id
      */
-    private Integer id;
+    private long id;
 
     /**
      *  username
@@ -72,7 +72,7 @@ public class User {
      */
     public User(String username, String password, String name, String email, String address, Date birth,
                 boolean premium, String zone, String city) {
-        this.id = null;
+        this.id = 0;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -98,7 +98,7 @@ public class User {
      *
      * Constructor
      */
-    public User(Integer id, String username, String password, String name, String email, String address, Date birth,
+    public User(long id, String username, String password, String name, String email, String address, Date birth,
                 boolean premium, String zone, String city) {
         super();
         this.id = id;

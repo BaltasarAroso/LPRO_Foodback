@@ -1,6 +1,7 @@
 package com.foodback.foodback.fragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.activity.UserRegister;
+import com.foodback.foodback.config.CredentialsEndpoints;
 import com.foodback.foodback.config.UserEndpoints;
 import com.foodback.foodback.logic.User;
 
@@ -24,22 +25,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.foodback.foodback.config.FoodbackClient.retrofit;
+import static com.foodback.foodback.config.FoodbackClient.setCredentials;
 import static com.foodback.foodback.utils.ErrorDisplay.isBad;
 import static com.foodback.foodback.utils.ErrorDisplay.isException;
 import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 public class UserChangeInfo extends Fragment {
 
-    protected EditText editname, editaddress, editzone, editcity, editemail, editpassword;
+    protected EditText editname, editaddress, editzone, editcity,
+            editemail, editnewpass, editconfpass;
     protected DatePicker editbirth;
+    protected CheckBox editpremium;
 
     protected Button buttonChangeUser;
 
-    protected String name, address, zone, city, email, username, password;
+    protected String name, address, zone, city, email, username, newpass, confpass;
     protected Date birth;
     protected Boolean premium;
 
     protected User user;
+    UserEndpoints services;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,8 +61,10 @@ public class UserChangeInfo extends Fragment {
         editemail = getView().findViewById(R.id.email);
         editzone = getView().findViewById(R.id.zone);
         editcity = getView().findViewById(R.id.city);
-        editpassword = getView().findViewById(R.id.password);
+        editnewpass = getView().findViewById(R.id.newpass);
+        editconfpass = getView().findViewById(R.id.confpass);
         editbirth = getView().findViewById(R.id.birth);
+        editpremium = getView().findViewById(R.id.premium);
 
         buttonChangeUser = getView().findViewById(R.id.buttonChangeUser);
 
@@ -70,16 +77,61 @@ public class UserChangeInfo extends Fragment {
             }
 
         });
+
+        populateFields();
+    }
+
+    private void populateFields() {
+        try {
+            services = retrofit.create(UserEndpoints.class);
+            Call<User> call = services.getAuthUser();
+
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if(response.isSuccessful()) {
+                        user = response.body();
+                        editname.setText(user.getName());
+                        editaddress.setText(user.getAddress());
+                        editzone.setText(user.getZone());
+                        editcity.setText(user.getCity());
+                        editemail.setText(user.getEmail());
+                        editbirth.updateDate(
+                                user.getBirth().getYear()+1900,
+                                user.getBirth().getMonth(),
+                                user.getBirth().getDay()
+                        );
+                        if(user.getPremium())
+                            editpremium.setChecked(true);
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
     }
 
     private void changeUser() {
         initialize();
-        if (!validateChangesUser()) {
-            Toast.makeText(getActivity(), "Changes in User have failed", Toast.LENGTH_SHORT).show();
-        } else {
+        if (validateChangesUser()) {
             birth = new Date(editbirth.getYear()-1900, editbirth.getMonth(), editbirth.getDayOfMonth());
-            user = new User(name, email, address, birth, premium, zone, city, password);
-            onChangeUserSuccess(user);
+            if(TextUtils.isEmpty(newpass)) {
+                user = new User(user.getId(), null, null, name, email, address, birth,
+                        premium, zone, city);
+                onChangeUserSuccess(user, null);
+            } else {
+                user = new User(user.getId(), null, newpass, name, email, address, birth,
+                        premium, zone, city);
+                onChangeUserSuccess(user, newpass);
+            }
         }
     }
 
@@ -89,7 +141,8 @@ public class UserChangeInfo extends Fragment {
         zone = editzone.getText().toString();
         city = editcity.getText().toString();
         email = editemail.getText().toString();
-        password = editpassword.getText().toString();
+        newpass = editnewpass.getText().toString();
+        confpass = editconfpass.getText().toString();
         premium = ((CheckBox) getView().findViewById(R.id.premium)).isChecked();
     }
 
@@ -97,7 +150,7 @@ public class UserChangeInfo extends Fragment {
         boolean valid = true;
 
         // username must have something that not exceeds 32 characters
-        if (name.length() > 64) {
+        if (name.length() == 0 || name.length() > 32) {
             editname.setError("Please enter a valid name (max size of 32 characters)");
             valid = false;
         }
@@ -105,22 +158,57 @@ public class UserChangeInfo extends Fragment {
             editemail.setError("Please enter a valid email");
             valid = false;
         }
+        if (!newpass.equals(confpass)) {
+            editnewpass.setError("Passwords don't match");
+            editconfpass.setError("Passwords don't match");
+            return false;
+        }
 
         return valid;
     }
 
 
-    private void onChangeUserSuccess(User user) {
+    private void onChangeUserSuccess(User user, final String password) {
         try {
-            UserEndpoints services = retrofit.create(UserEndpoints.class);
+            services = retrofit.create(UserEndpoints.class);
             Call<ResponseBody> call = services.changeUser(user);
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()) {
-                        Toast.makeText(getActivity(), "Registered Successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "User info updated successfully.", Toast.LENGTH_SHORT).show();
+                        if(!TextUtils.isEmpty(newpass)) {
+                            changeCredentials(password);
+                        }
+                    } else {
+                        isBad(getActivity(), response);
+                    }
+                }
 
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    isFailure(getActivity(), t);
+                }
+            });
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
+    }
+
+    private void changeCredentials(final String password) {
+        try {
+            CredentialsEndpoints services = retrofit.create(CredentialsEndpoints.class);
+            Call<ResponseBody> call = services.updateCredentials(null, password);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.isSuccessful()) {
+                        Toast.makeText(getActivity(),
+                                "Credentials updated successfully.",
+                                Toast.LENGTH_SHORT).show();
+                        setCredentials(null, password);
                     } else {
                         isBad(getActivity(), response);
                     }

@@ -72,11 +72,11 @@ public class EstablishmentMenuAdapter extends ArrayAdapter {
         btnSpotlight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Long tsLong = System.currentTimeMillis();
-                Timestamp ts = new Timestamp(tsLong);
+//                Long tsLong = System.currentTimeMillis();
+//                Timestamp ts = new Timestamp(tsLong);
                 Featured featured = new Featured(
                         meals.get(position).getId(),
-                        ts,
+                        null,
                         spotlightSpinner.getSelectedItemPosition()+1);
 
                 createNewFeatured(featured, btnSpotlight);

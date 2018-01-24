@@ -1,7 +1,6 @@
 package com.foodback.foodback.config;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.foodback.foodback.BuildConfig;
 import com.google.gson.Gson;
@@ -36,7 +35,6 @@ public class FoodbackClient {
     private static String password = "";
 
     public static void setBaseUrl(String url) {
-        Log.e("merda", "url: " + url);
         BASE_URL = "http://" + url;
         new FoodbackClient();
     }
