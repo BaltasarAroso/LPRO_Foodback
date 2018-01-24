@@ -98,7 +98,7 @@ public class Spotlight extends Fragment {
                 String serialized = gson.toJson(spotlights.get(position));
 
                 Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
-                i.putExtra("spotlights", serialized);
+                i.putExtra("establishment", serialized);
                 startActivity(i);
             }
         });

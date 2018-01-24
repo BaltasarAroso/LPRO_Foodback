@@ -15,14 +15,14 @@
 
         <TextView
             android:id="@+id/notice_estab_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Restaurante Manuel Alves"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_12sdp"
             android:textStyle="bold"/>
 
         <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
@@ -296,8 +296,8 @@
                 android:id="@+id/discardCommentButton"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_8sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:padding="@dimen/_4sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:background="@color/colorLogo"
                 android:textColor="#fff"
@@ -308,8 +308,8 @@
                 android:id="@+id/delete_commentButton"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_8sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:padding="@dimen/_4sdp"
                 android:background="@color/colorLogo"
                 android:textColor="#fff"
                 android:text="@string/change_estab_info"

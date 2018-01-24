@@ -28,6 +28,7 @@
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_wrapBefore="true"
                 app:flexDirection="row"
                 app:justifyContent="space_between">
 
@@ -35,6 +36,8 @@
                     android:id="@+id/estab_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxWidth="@dimen/_130sdp"
+                    android:minHeight="@dimen/_40sdp"
                     android:textStyle="bold"
                     android:textSize="@dimen/_14sdp"/>
 
@@ -55,13 +58,14 @@
 
                     <com.google.android.flexbox.FlexboxLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:minWidth="@dimen/_50sdp">
 
                         <TextView
                             android:id="@+id/estab_avg_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:minWidth="@dimen/_40sdp"
+                            android:minWidth="@dimen/_20sdp"
                             android:textStyle="normal"
                             android:textSize="@dimen/_8sdp"
                             app:layout_alignSelf="flex_end"

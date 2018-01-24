@@ -22,7 +22,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorLogo"
-                android:text="@string/reports_users"/>
+                android:textStyle="bold"
+                android:text="@string/reports_users"
+                android:layout_marginBottom="@dimen/_10sdp"/>
 
             <ListView
                 android:id="@+id/list_reports_users"
@@ -36,32 +38,28 @@
 
     </ScrollView>
 
+    <TextView
+        android:id="@+id/reports_estabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLogo"
+        android:text="@string/reports_estabs"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <RelativeLayout
+        <ListView
+            android:id="@+id/list_reports_estabs"
+            android:layout_below="@+id/reports_estabs"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/_190sdp">
 
-            <TextView
-                android:id="@+id/reports_estabs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorLogo"
-                android:text="@string/reports_estabs"/>
-
-            <ListView
-                android:id="@+id/list_reports_estabs"
-                android:layout_below="@+id/reports_estabs"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_190sdp">
-
-            </ListView>
-
-        </RelativeLayout>
+        </ListView>
 
     </ScrollView>
 
