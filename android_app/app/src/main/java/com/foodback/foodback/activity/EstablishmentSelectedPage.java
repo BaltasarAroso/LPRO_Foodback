@@ -117,7 +117,6 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
     }
 
     private void fillCommentList(long estab_id) {
-        Log.e("teste", "fillCommentList");
         try {
             final CommentEndpoints services = retrofit.create(CommentEndpoints.class);
             Call<List<Comment>> call = services.getEstablishmentComments(estab_id);

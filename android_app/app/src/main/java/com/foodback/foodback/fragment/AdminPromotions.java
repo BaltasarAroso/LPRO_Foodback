@@ -9,22 +9,36 @@ import android.view.ViewGroup;
 
 import com.foodback.foodback.R;
 
+import static com.foodback.foodback.utils.ErrorDisplay.isException;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class AdminPromotions extends Fragment {
 
 
-    public AdminPromotions() {
-        // Required empty public constructor
-    }
+    public AdminPromotions() {}
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_promotions, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_admin_promotions, container, false);
+
+        sendPromotion();
+
+        return view;
+    }
+
+    private void sendPromotion() {
+
+        try {
+
+
+        } catch (Exception e) {
+            isException(getContext(), e);
+        }
     }
 
 }

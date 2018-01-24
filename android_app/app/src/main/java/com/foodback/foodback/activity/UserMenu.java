@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.UserEndpoints;
 import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.Spotlight;
+import com.foodback.foodback.fragment.TrackOrder;
 import com.foodback.foodback.fragment.UserChangeInfo;
 import com.foodback.foodback.fragment.UserDelivery;
 import com.foodback.foodback.fragment.UserPromotions;
@@ -138,9 +140,19 @@ public class UserMenu extends AppCompatActivity
                 fm.beginTransaction().replace(R.id.user_menu, new Homepage()).commit();
                 break;
 
+            case R.id.nav_spotlights:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new Spotlight()).commit();
+                break;
+
             case R.id.nav_delivery:
                 fm = getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
+                break;
+
+            case R.id.nav_tracking:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new TrackOrder()).commit();
                 break;
 
             case R.id.nav_promotions:
