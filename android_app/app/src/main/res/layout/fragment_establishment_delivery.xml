@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.foodback.foodback.fragment.EstablishmentDelivery">
+    tools:context="com.foodback.foodback.fragment.EstablishmentDelivery"
+    android:layout_marginTop="@dimen/_56sdp">
 
     <ListView
         android:id="@+id/list_deliveries_estabs"

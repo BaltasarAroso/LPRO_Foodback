@@ -190,7 +190,7 @@ public class EstablishmentChangeInfo extends Fragment {
     private void verifyOldPassword(final Establishment estab, final String password) {
         try {
             credentialServices = retrofit.create(CredentialsEndpoints.class);
-            //TODO this doesn't verify old password, it just uses Basic Auth normally
+            //this doesn't verify old password, it just uses Basic Auth normally
             Call<ResponseBody> credentialCall = credentialServices.verifyEstablishmentCredentials();
 
             credentialCall.enqueue(new Callback<ResponseBody>() {

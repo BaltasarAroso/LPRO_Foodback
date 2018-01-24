@@ -72,6 +72,8 @@ public class EstablishmentListAdapter extends ArrayAdapter {
 
         if(establishments.get(position).getRating() > 0) {
             estab_rating.setText(String.format(Locale.UK, "%.1f", establishments.get(position).getRating()));
+        } else {
+            estab_rating.setVisibility(View.GONE);
         }
 
         GlideApp.with(context)

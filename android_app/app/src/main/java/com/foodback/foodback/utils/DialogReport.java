@@ -13,7 +13,7 @@ import android.widget.EditText;
 import com.foodback.foodback.R;
 
 /**
- * Created by Foodback on 2017/2018.
+ * Created by Foodback.
  */
 
 public class DialogReport extends AppCompatDialogFragment{
