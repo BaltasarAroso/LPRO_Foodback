@@ -117,7 +117,6 @@ public class EstablishmentMenu extends AppCompatActivity
         switch (item.getItemId()) {
 
             case R.id.action_search:
-                //TODO não está bem feito, tem que se criar um drawer (video)
                 i = new Intent();
                 i.setClass(EstablishmentMenu.this, SearchField.class);
                 startActivity(i);

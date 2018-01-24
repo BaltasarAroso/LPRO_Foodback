@@ -87,7 +87,6 @@ public class EstablishmentPage extends Fragment implements DialogReport.DialogRe
     private void fillFields() {
         if(estab != null) {
             editname.setText(estab.getName());
-            Log.e("merda","name: " + estab.getName());
             editcategory.setText(estab.getCategory());
             editaddress.setText(estab.getAddress());
             editcontact.setText(estab.getContact());

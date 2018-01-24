@@ -75,7 +75,6 @@ public class AdminMenu extends AppCompatActivity
         switch (item.getItemId()) {
 
             case R.id.action_search:
-                //TODO não está bem feito, tem que se criar um drawer (video)
                 i = new Intent();
                 i.setClass(AdminMenu.this, SearchField.class);
                 startActivity(i);
@@ -118,11 +117,6 @@ public class AdminMenu extends AppCompatActivity
             case R.id.nav_notifications:
                 fm = getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.admin_menu, new Notifications()).commit();
-                break;
-
-            case R.id.nav_settings:
-                fm = getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.admin_menu, new UserChangeInfo()).commit();
                 break;
 
             case R.id.nav_logout:
