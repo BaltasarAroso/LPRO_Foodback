@@ -100,6 +100,12 @@
     <string name="opinions">Opiniões</string>
     <string name="priceformeal"> / por refeição</string>
     <string name="spotlight_icon">Destaques</string>
+    <string name="request1">Pedido 1</string>
+    <string name="request2">Pedido 2</string>
+    <string name="request3">Pedido 3</string>
+    <string name="request4">Pedido 4</string>
+    <string name="tracking">Minhas Encomendas</string>
+    <string name="state">Estado da Encomenda:</string>
 
     <string-array name="spotlight_time_options">
         <item>1 dia</item>
