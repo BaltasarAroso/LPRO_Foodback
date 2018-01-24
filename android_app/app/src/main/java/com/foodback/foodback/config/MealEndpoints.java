@@ -14,9 +14,13 @@ import retrofit2.http.Path;
 
 public interface MealEndpoints {
 
-//    GET     /meals/{establishment_id} (com.lpro.fbrest.resources.CommentsResource)  -check
+//    GET     /meals/{establishment_id} (com.lpro.fbrest.resources.MealsResource)  -check
+//    GET     /meals/featured (com.lpro.fbrest.resources.MealsResource)  -check
 
     @GET("/meals/{establishment_id}")
     Call<List<Meal>>  getAllMeals(@Path("establishment_id") long establishment_id);
+
+    @GET("/meals/featured")
+    Call<List<Meal>> getAllFeaturedMeals();
 
 }

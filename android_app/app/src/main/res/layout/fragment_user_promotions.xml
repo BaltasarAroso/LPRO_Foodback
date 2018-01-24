@@ -7,91 +7,11 @@
     android:layout_marginTop="@dimen/_60sdp"
     tools:context="com.foodback.foodback.fragment.UserPromotions">
 
-    <com.google.android.flexbox.FlexboxLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:flexDirection="column">
+    <ListView
+        android:id="@+id/list_promotions_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:flexDirection="column"
-            android:layout_margin="@dimen/_10sdp">
-
-            <TextView
-                android:id="@+id/estab_page_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_promotion"
-                android:textStyle="bold"
-                android:textSize="@dimen/_15sdp"
-                app:layout_alignSelf="center"/>
-
-            <EditText
-                android:id="@+id/promotion_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/promotion_title"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp"/>
-
-            <EditText
-                android:id="@+id/promotion_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/promotion_description"
-                android:inputType="text"
-                android:textSize="@dimen/_10sdp" />
-
-            <EditText
-                android:id="@+id/promotion_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/promotion_code"
-                android:inputType="number"
-                android:textSize="@dimen/_10sdp" />
-
-            <EditText
-                android:id="@+id/promotion_limit_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/promotion_limit_date"
-                android:inputType="date"
-                android:textSize="@dimen/_10sdp" />
-
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/colorLogo"
-                android:text="@string/promotion_create"
-                android:textColor="#fff"
-                android:textSize="@dimen/_8sdp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_1sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_8sdp"
-                app:layout_alignSelf="center"
-                android:background="#999999" />
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ListView
-                android:id="@+id/list_promotions_admin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </ListView>
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-    </com.google.android.flexbox.FlexboxLayout>
+    </ListView>
 
 </RelativeLayout>

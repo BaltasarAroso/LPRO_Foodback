@@ -21,6 +21,7 @@ import com.foodback.foodback.fragment.EstablishmentDelivery;
 import com.foodback.foodback.fragment.EstablishmentPage;
 import com.foodback.foodback.fragment.EstablishmentPromotions;
 import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.Spotlight;
 import com.foodback.foodback.logic.Establishment;
 
 import retrofit2.Call;
@@ -139,6 +140,11 @@ public class EstablishmentMenu extends AppCompatActivity
             case R.id.nav_homepage:
                 fm = getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.establishment_menu, new Homepage()).commit();
+                break;
+
+            case R.id.nav_spotlights:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.establishment_menu, new Spotlight()).commit();
                 break;
 
             case R.id.nav_estabpage:

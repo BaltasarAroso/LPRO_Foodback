@@ -68,7 +68,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {
-            String serialized = bundle.getString("restaurant");
+            String serialized = bundle.getString("establishment");
             Type type = new TypeToken<Establishment>() {}.getType();
             Gson gson = new Gson();
             estab = gson.fromJson(serialized, type);

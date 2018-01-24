@@ -18,6 +18,7 @@ import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,15 +92,19 @@ public class Dessert extends Fragment {
         listDesserts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = desserts.get(position);
-                Toast.makeText(getActivity(), selectedEstab.getName(), Toast.LENGTH_SHORT).show();
+                Gson gson = new Gson();
+                String serialized = gson.toJson(desserts.get(position));
+
+                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
+                i.putExtra("establishment", serialized);
+                startActivity(i);
             }
         });
     }
 
     private void declareError(View view) {
 
-        errors.add("No establishment found.");
+        errors.add("Nenhuma sobremesa encontrado.");
 
         ListView listDesserts = view.findViewById(R.id.list_desserts);
         listDesserts.setAdapter(new ErrorMessageAdapter(getActivity(), errors));

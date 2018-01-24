@@ -126,12 +126,10 @@ public class Featured {
         if(!(o instanceof Featured)) return false;
 
         Featured featured = (Featured)o;
-        if(this.id == featured.getId() &&
+        return this.id == featured.getId() &&
                 this.meal_id == featured.getMeal_id() &&
                 this.added_date.equals(featured.getAdded_date()) &&
-                this.duration == featured.getDuration())
-            return true;
-        else return false;
+                this.duration == featured.getDuration();
     }
 
 }

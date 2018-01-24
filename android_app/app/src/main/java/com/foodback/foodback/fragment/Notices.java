@@ -39,6 +39,8 @@ import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
  */
 public class Notices extends Fragment {
 
+    //TODO
+
     ArrayList<Establishment> notices = new ArrayList<>();
 
     public Notices() {}

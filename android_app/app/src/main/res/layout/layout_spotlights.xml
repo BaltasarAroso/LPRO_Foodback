@@ -25,62 +25,49 @@
             app:justifyContent="space_between"
             app:flexDirection="column">
 
+            <TextView
+                android:id="@+id/meal_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/_14sdp"/>
+
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:flexDirection="row"
                 app:justifyContent="space_between">
 
+
                 <TextView
-                    android:id="@+id/estab_name"
+                    android:id="@+id/meal_limit_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:minWidth="@dimen/_40sdp"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_alignSelf="center"
+                    android:gravity="start"/>
 
-                <com.google.android.flexbox.FlexboxLayout
+                <TextView
+                    android:id="@+id/meal_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:flexDirection="column"
-                    app:justifyContent="space_between">
-
-                    <TextView
-                        android:id="@+id/estab_rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorLogo"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/_9sdp"
-                        android:gravity="end"/>
-
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/estab_avg_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:minWidth="@dimen/_40sdp"
-                            android:textStyle="normal"
-                            android:textSize="@dimen/_8sdp"
-                            app:layout_alignSelf="flex_end"
-                            android:gravity="end"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/priceformeal"
-                            android:textStyle="normal"
-                            android:textSize="@dimen/_6sdp"
-                            app:layout_alignSelf="center"
-                            android:gravity="end" />
-
-                    </com.google.android.flexbox.FlexboxLayout>
-
-                </com.google.android.flexbox.FlexboxLayout>
+                    android:minWidth="@dimen/_40sdp"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_8sdp"
+                    app:layout_alignSelf="center"
+                    android:gravity="end"/>
 
             </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:id="@+id/estab_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="@dimen/_12sdp"/>
+
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
@@ -108,7 +95,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"
-                    android:layout_marginStart="@dimen/_4sdp" />
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginLeft="@dimen/_4sdp" />
 
             </com.google.android.flexbox.FlexboxLayout>
 

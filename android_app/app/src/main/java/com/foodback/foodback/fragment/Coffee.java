@@ -17,6 +17,7 @@ import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,15 +91,19 @@ public class Coffee extends Fragment {
         listCoffees.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = coffees.get(position);
-                Toast.makeText(getActivity(), selectedEstab.getName(), Toast.LENGTH_SHORT).show();
+                Gson gson = new Gson();
+                String serialized = gson.toJson(coffees.get(position));
+
+                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
+                i.putExtra("establishment", serialized);
+                startActivity(i);
             }
         });
     }
 
     private void declareError(View view) {
 
-        errors.add("No establishment found.");
+        errors.add("Nenhum café encontrado.");
 
         ListView listCoffees = view.findViewById(R.id.list_coffees);
         listCoffees.setAdapter(new ErrorMessageAdapter(getActivity(), errors));

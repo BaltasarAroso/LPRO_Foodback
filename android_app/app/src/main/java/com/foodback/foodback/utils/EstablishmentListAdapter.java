@@ -28,13 +28,13 @@ public class EstablishmentListAdapter extends ArrayAdapter {
     private Context context;
     private LayoutInflater inflater;
 
-    private ArrayList<Establishment> restaurants;
+    private ArrayList<Establishment> establishments;
 
-    public EstablishmentListAdapter(Context context, ArrayList<Establishment> restaurants) {
-        super(context, R.layout.layout_establishment, restaurants);
+    public EstablishmentListAdapter(Context context, ArrayList<Establishment> establishments) {
+        super(context, R.layout.layout_establishment, establishments);
 
         this.context = context;
-        this.restaurants = restaurants;
+        this.establishments = establishments;
 
         inflater = LayoutInflater.from(context);
     }
@@ -56,26 +56,26 @@ public class EstablishmentListAdapter extends ArrayAdapter {
         TextView estab_rating = convertView.findViewById(R.id.estab_rating);
         ImageView estab_image = convertView.findViewById(R.id.estab_image);
 
-        estab_name.setText(restaurants.get(position).getName());
-        estab_zone.setText(restaurants.get(position).getZone());
-        estab_city.setText(restaurants.get(position).getCity());
-        estab_category.setText(restaurants.get(position).getCategory());
-        estab_contact.setText(restaurants.get(position).getContact());
+        estab_name.setText(establishments.get(position).getName());
+        estab_zone.setText(establishments.get(position).getZone());
+        estab_city.setText(establishments.get(position).getCity());
+        estab_category.setText(establishments.get(position).getCategory());
+        estab_contact.setText(establishments.get(position).getContact());
 
-        if(restaurants.get(position).getAvg_price() > 0) {
-            estab_avg_price.setText(context.getString(R.string.display_price, restaurants.get(position).getAvg_price()));
+        if(establishments.get(position).getAvg_price() > 0) {
+            estab_avg_price.setText(context.getString(R.string.display_price, establishments.get(position).getAvg_price()));
         }
 
-        if(restaurants.get(position).getDelivery()) {
+        if(establishments.get(position).getDelivery()) {
             estab_delivery.setText(context.getString(R.string.display_delivery));
         }
 
-        if(restaurants.get(position).getRating() > 0) {
-            estab_rating.setText(String.format(Locale.UK, "%.1f", restaurants.get(position).getRating()));
+        if(establishments.get(position).getRating() > 0) {
+            estab_rating.setText(String.format(Locale.UK, "%.1f", establishments.get(position).getRating()));
         }
 
         GlideApp.with(context)
-                .load(getBaseUrl() + "/images/establishment/profile/" + restaurants.get(position).getId())
+                .load(getBaseUrl() + "/images/establishment/profile/" + establishments.get(position).getId())
                 .transition(withCrossFade())
                 .fallback(R.drawable.foodback_logo)
                 .fitCenter()

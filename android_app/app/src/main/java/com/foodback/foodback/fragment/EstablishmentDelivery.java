@@ -14,6 +14,7 @@ import com.foodback.foodback.R;
  */
 public class EstablishmentDelivery extends Fragment {
 
+    //TODO
 
     public EstablishmentDelivery() {
         // Required empty public constructor

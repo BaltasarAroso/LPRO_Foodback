@@ -1,7 +1,5 @@
 package com.foodback.foodback.logic;
 
-import java.math.BigDecimal;
-
 /**
  * Created by FoodBack.
  */
@@ -27,6 +25,16 @@ public class Meal {
      * ID of establishment
      */
     private long establishment_id;
+
+    /**
+     * if is a featured meal or not
+     */
+    private boolean featured;
+
+    /**
+     * duration of the spotlight
+     */
+    private int time_left;
 
     /**
      * Constructor for Jackson
@@ -106,6 +114,22 @@ public class Meal {
         this.establishment_id = establishment_id;
     }
 
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
+    }
+
+    public int getTime_left() {
+        return time_left;
+    }
+
+    public void setTime_left(int time_left) {
+        this.time_left = time_left;
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
@@ -114,12 +138,9 @@ public class Meal {
         if(!(o instanceof Meal)) return false;
 
         Meal meal = (Meal)o;
-        if(this.id == meal.getId() &&
+        return this.id == meal.getId() &&
                 this.meal.equals(meal.getMeal()) &&
                 this.price == meal.getPrice() &&
-                this.establishment_id == meal.getEstablishment_id())
-            return true;
-        else return false;
+                this.establishment_id == meal.getEstablishment_id();
     }
-
 }

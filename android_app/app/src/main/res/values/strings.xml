@@ -50,28 +50,6 @@
     <string name="schedule2">Horário 2</string>
     <string name="changepass">Alterar palavra-passe</string>
 
-    <string-array name="search_list">
-        <item>Pizzaria Toscano</item>
-        <item>Pizzaria Casa d'ouro</item>
-        <item>Pizzaria Tratoria Romana</item>
-        <item>Restaurante O Criado</item>
-        <item>Restaurante Manuel Alves</item>
-        <item>Hamburgueria Macdonalds</item>
-        <item>Creperia Cremosi</item>
-        <item>Café Piolho</item>
-    </string-array>
-
-    <string-array name="establishment_list">
-        <item>Pizzaria Toscano</item>
-        <item>Pizzaria Casa d'ouro</item>
-        <item>Pizzaria Tratoria Romana</item>
-        <item>Restaurante O Criado</item>
-        <item>Restaurante Manuel Alves</item>
-        <item>Hamburgueria Macdonalds</item>
-        <item>Creperia Cremosi</item>
-        <item>Café Piolho</item>
-    </string-array>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reports">Denúncias</string>
     <string name="notices">Notificações dos Estabelecimentos</string>
@@ -120,6 +98,8 @@
     <string name="end_delivery">Finalizar Pedido</string>
     <string name="menu">Menu</string>
     <string name="opinions">Opiniões</string>
+    <string name="priceformeal"> / por refeição</string>
+    <string name="spotlight_icon">Destaques</string>
 
     <string-array name="spotlight_time_options">
         <item>1 dia</item>

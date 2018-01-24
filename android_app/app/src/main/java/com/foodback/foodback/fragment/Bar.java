@@ -4,6 +4,7 @@ package com.foodback.foodback.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.EstablishmentListAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,15 +92,19 @@ public class Bar extends Fragment {
         listBars.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Establishment selectedEstab = bars.get(position);
-                Toast.makeText(getActivity(), selectedEstab.getName(), Toast.LENGTH_SHORT).show();
+                Gson gson = new Gson();
+                String serialized = gson.toJson(bars.get(position));
+
+                Intent i = new Intent(getActivity(), EstablishmentSelectedPage.class);
+                i.putExtra("establishment", serialized);
+                startActivity(i);
             }
         });
     }
 
     private void declareError(View view) {
 
-        errors.add("No establishment found.");
+        errors.add("Nenhum bar encontrado.");
 
         ListView listBars = view.findViewById(R.id.list_bars);
         listBars.setAdapter(new ErrorMessageAdapter(getActivity(), errors));

@@ -15,6 +15,8 @@ import android.view.MenuItem;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
+import com.foodback.foodback.fragment.Spotlight;
+import com.foodback.foodback.fragment.UserDelivery;
 
 public class VisitorMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -91,6 +93,11 @@ public class VisitorMenu extends AppCompatActivity
             case R.id.nav_homepage:
                 fm = getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.visitor_menu, new Homepage()).commit();
+                break;
+
+            case R.id.nav_spotlights:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.visitor_menu, new Spotlight()).commit();
                 break;
 
             case R.id.nav_login:

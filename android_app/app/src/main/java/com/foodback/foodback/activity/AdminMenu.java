@@ -14,10 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.foodback.foodback.R;
+import com.foodback.foodback.fragment.AdminPromotions;
 import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.fragment.Notifications;
+import com.foodback.foodback.fragment.Spotlight;
 import com.foodback.foodback.fragment.UserChangeInfo;
 import com.foodback.foodback.fragment.UserDelivery;
+import com.foodback.foodback.fragment.UserPromotions;
 
 
 public class AdminMenu extends AppCompatActivity
@@ -97,9 +100,19 @@ public class AdminMenu extends AppCompatActivity
                 fm.beginTransaction().replace(R.id.admin_menu, new Homepage()).commit();
                 break;
 
+            case R.id.nav_spotlights:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.admin_menu, new Spotlight()).commit();
+                break;
+
             case R.id.nav_delivery:
                 fm = getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
+                fm.beginTransaction().replace(R.id.admin_menu, new UserDelivery()).commit();
+                break;
+
+            case R.id.nav_promotions:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.admin_menu, new AdminPromotions()).commit();
                 break;
 
             case R.id.nav_notifications:
