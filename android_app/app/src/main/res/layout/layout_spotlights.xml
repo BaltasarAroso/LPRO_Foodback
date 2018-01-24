@@ -25,29 +25,18 @@
             app:justifyContent="space_between"
             app:flexDirection="column">
 
-            <TextView
-                android:id="@+id/meal_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="@dimen/_14sdp"/>
-
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:flexDirection="row"
                 app:justifyContent="space_between">
 
-
                 <TextView
-                    android:id="@+id/meal_limit_date"
+                    android:id="@+id/meal_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="@dimen/_40sdp"
-                    android:textStyle="normal"
-                    android:textSize="@dimen/_10sdp"
-                    app:layout_alignSelf="center"
-                    android:gravity="start"/>
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_14sdp"/>
 
                 <TextView
                     android:id="@+id/meal_price"

@@ -31,15 +31,12 @@ public class UserDelivery extends Fragment {
     ArrayList<Category> categories = new ArrayList<>();
     ArrayList<String> errors = new ArrayList<>();
 
-    public UserDelivery() {
-        // Required empty public constructor
-    }
+    public UserDelivery() {}
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_delivery, container, false);
 
         fillCategoryList(view);

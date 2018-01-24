@@ -68,7 +68,7 @@ public class FeaturedMealsAdapter extends ArrayAdapter {
         } else {
             days = "dia";
         }
-        meal_limit_date.setText(String.format(Locale.UK, "%1$s %2$s", meals.get(position).getTime_left(), days));
+//        meal_limit_date.setText(String.format(Locale.UK, "%1$s %2$s", meals.get(position).getTime_left(), days));
         meal_price.setText(String.format(Locale.UK, "%1$.2f€", meals.get(position).getPrice()));
 
         getEstablishments(position, convertView);

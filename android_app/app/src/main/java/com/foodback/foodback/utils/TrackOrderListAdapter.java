@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.foodback.foodback.R;
@@ -14,7 +13,6 @@ import com.foodback.foodback.logic.Order;
 import com.foodback.foodback.logic.OrderMeal;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by Foodback on 2017/2018.
@@ -47,10 +45,13 @@ public class TrackOrderListAdapter extends ArrayAdapter {
         TextView orderState = convertView.findViewById(R.id.order_state);
 
 
-        String total = null;
+        String total = "";
+        int i = 0;
 
         for (OrderMeal x: orders.get(position).getMeals()) {
             total += x.getMeal();
+            total += " | ";
+            i++;
         }
 
         orderName.setText(total);

@@ -106,6 +106,8 @@
     <string name="request4">Pedido 4</string>
     <string name="tracking">Minhas Encomendas</string>
     <string name="state">Estado da Encomenda:</string>
+    <string name="cost">Custo do Pedido:</string>
+    <string name="total_cost">Custo Total:</string>
 
     <string-array name="spotlight_time_options">
         <item>1 dia</item>
