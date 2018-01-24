@@ -29,7 +29,7 @@
             <ListView
                 android:id="@+id/list_reports_users"
                 android:layout_below="@+id/reports_users"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </ListView>
@@ -56,7 +56,7 @@
         <ListView
             android:id="@+id/list_reports_estabs"
             android:layout_below="@+id/reports_estabs"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_190sdp">
 
         </ListView>
