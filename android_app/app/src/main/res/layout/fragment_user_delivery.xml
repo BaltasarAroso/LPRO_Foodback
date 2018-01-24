@@ -52,8 +52,8 @@
             <Spinner
                 android:id="@+id/quantity_choice1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:entries="@array/meal_quantities">
             </Spinner>
 
 
@@ -92,7 +92,8 @@
             <Spinner
                 android:id="@+id/quantity_choice2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:entries="@array/meal_quantities">
 
             </Spinner>
 
@@ -130,7 +131,8 @@
             <Spinner
                 android:id="@+id/quantity_choice3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:entries="@array/meal_quantities">
 
             </Spinner>
 
@@ -169,7 +171,8 @@
             <Spinner
                 android:id="@+id/quantity_choice4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:entries="@array/meal_quantities">
 
             </Spinner>
 
