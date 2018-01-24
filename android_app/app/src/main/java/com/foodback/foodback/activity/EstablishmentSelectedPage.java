@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,6 +117,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
     }
 
     private void fillCommentList(long estab_id) {
+        Log.e("teste", "fillCommentList");
         try {
             final CommentEndpoints services = retrofit.create(CommentEndpoints.class);
             Call<List<Comment>> call = services.getEstablishmentComments(estab_id);
@@ -210,7 +212,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
 
     @Override
     public void applyfield(String editReport) {
-        // TODO o popup passa para esta string o que foi escrito. Enviar isto para o servidor
+        Log.e("teste", editReport);
     }
 
 
@@ -220,7 +222,6 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
 
         private Context context;
         private LayoutInflater inflater;
-        private User user;
 
         TextView comment_user;
         TextView comment_text;
@@ -241,7 +242,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
         @Override
         public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
             if(null == convertView) {
-                convertView = inflater.inflate(R.layout.layout_estabpage_menu, parent, false);
+                convertView = inflater.inflate(R.layout.layout_estabpage_comments, parent, false);
             }
 
             comment_user = convertView.findViewById(R.id.comment_user);
@@ -258,14 +259,14 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
             btnReport.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //opendialog();
+                    opendialog();
                 }
             });
 
             return convertView;
         }
 
-        private void getCommenterById(int position) {
+        private void getCommenterById(final int position) {
 
             try {
                 UserEndpoints services = retrofit.create(UserEndpoints.class);
@@ -275,8 +276,8 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if(response.isSuccessful()) {
-                            user = response.body();
-                            comment_user.setText(user.getName());
+                            User tmp = response.body();
+                            comment_user.setText(tmp.getName());
                         } else {
                             isBad(context, response);
                         }
