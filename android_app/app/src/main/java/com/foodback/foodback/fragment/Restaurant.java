@@ -108,7 +108,6 @@ public class Restaurant extends Fragment {
         listRestaurants.setAdapter(new ErrorMessageAdapter(getActivity(), errors));
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
