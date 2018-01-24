@@ -145,14 +145,14 @@ public class UserMenu extends AppCompatActivity
                 fm.beginTransaction().replace(R.id.user_menu, new Spotlight()).commit();
                 break;
 
-            case R.id.nav_delivery:
-                fm = getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
-                break;
-
             case R.id.nav_tracking:
                 fm = getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.user_menu, new TrackOrder()).commit();
+                break;
+
+            case R.id.nav_delivery:
+                fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.user_menu, new UserDelivery()).commit();
                 break;
 
             case R.id.nav_promotions:
