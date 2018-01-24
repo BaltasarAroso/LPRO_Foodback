@@ -57,7 +57,7 @@ public class FeaturedMealsAdapter extends ArrayAdapter {
         }
 
         TextView meal_name = convertView.findViewById(R.id.meal_name);
-        TextView meal_limit_date = convertView.findViewById(R.id.meal_limit_date);
+//        TextView meal_limit_date = convertView.findViewById(R.id.meal_limit_date);
         TextView meal_price = convertView.findViewById(R.id.meal_price);
 
         meal_name.setText(meals.get(position).getMeal());

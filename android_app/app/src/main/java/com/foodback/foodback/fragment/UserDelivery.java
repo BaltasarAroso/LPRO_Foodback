@@ -3,11 +3,13 @@ package com.foodback.foodback.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.foodback.foodback.R;
@@ -15,6 +17,8 @@ import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.config.MealEndpoints;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.Meal;
+import com.foodback.foodback.logic.Order;
+import com.foodback.foodback.logic.OrderMeal;
 import com.foodback.foodback.utils.CategoryUtils;
 
 import java.util.ArrayList;
@@ -76,6 +80,50 @@ public class UserDelivery extends Fragment {
         quantity_choice3 = view.findViewById(R.id.quantity_choice3);
         quantity_choice4 = view.findViewById(R.id.quantity_choice4);
 
+        Button btnFinishRequest = view.findViewById(R.id.end_delivery4);
+
+        btnFinishRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<OrderMeal> meals = new ArrayList<>();
+                if(!TextUtils.isEmpty(menu_choice1.getSelectedItem().toString())) {
+                    meals.add(new OrderMeal(
+                            0,
+                            menu_choice1.getSelectedItem().toString(),
+                            0,
+                            quantity_choice1.getSelectedItemPosition(),
+                            "waiting"));
+                }
+                if(!TextUtils.isEmpty(menu_choice2.getSelectedItem().toString())) {
+                    meals.add(new OrderMeal(
+                            0,
+                            menu_choice2.getSelectedItem().toString(),
+                            0,
+                            quantity_choice2.getSelectedItemPosition(),
+                            "waiting"));
+                }
+                if(!TextUtils.isEmpty(menu_choice3.getSelectedItem().toString())) {
+                    meals.add(new OrderMeal(
+                            0,
+                            menu_choice3.getSelectedItem().toString(),
+                            0,
+                            quantity_choice3.getSelectedItemPosition(),
+                            "waiting"));
+                }
+                if(!TextUtils.isEmpty(menu_choice4.getSelectedItem().toString())) {
+                    meals.add(new OrderMeal(
+                            0,
+                            menu_choice4.getSelectedItem().toString(),
+                            0,
+                            quantity_choice4.getSelectedItemPosition(),
+                            "waiting"));
+                }
+                //TODO: get user id
+                Order order = new Order(0, meals, 1, "waiting");
+                wrapUpRequest(order);
+            }
+        });
+
         catUtils = new CategoryUtils();
 
         catUtils.populateSpinner(getActivity(), category_choice1, null);
@@ -130,7 +178,7 @@ public class UserDelivery extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 1, position-1);
+                populateMenuSpinner(view, 1, position+1);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {}
@@ -139,7 +187,7 @@ public class UserDelivery extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 2, position-1);
+                populateMenuSpinner(view, 2, position+1);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {}
@@ -148,7 +196,7 @@ public class UserDelivery extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 3, position-1);
+                populateMenuSpinner(view, 3, position+1);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {}
@@ -157,7 +205,7 @@ public class UserDelivery extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 4, position-1);
+                populateMenuSpinner(view, 4, position+1);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {}
@@ -165,6 +213,14 @@ public class UserDelivery extends Fragment {
 
 
         return view;
+    }
+
+    private void wrapUpRequest(Order order) {
+        try {
+            //TODO: process order
+        } catch(Exception e) {
+            isException(getActivity(), e);
+        }
     }
 
     private void populateMenuSpinner(View view, int k, int i) {
