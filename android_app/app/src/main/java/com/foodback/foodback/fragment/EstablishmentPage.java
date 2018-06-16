@@ -1,30 +1,22 @@
 package com.foodback.foodback.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
-import com.foodback.foodback.logic.Comment;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.Meal;
 import com.foodback.foodback.utils.DialogReport;
-import com.foodback.foodback.utils.EstablishmentListAdapter;
 import com.foodback.foodback.utils.GlideApp;
 
 import java.util.ArrayList;
@@ -57,7 +49,7 @@ public class EstablishmentPage extends Fragment implements DialogReport.DialogRe
     protected ArrayList<String> errors = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_establishment_page, container, false);
@@ -85,7 +77,7 @@ public class EstablishmentPage extends Fragment implements DialogReport.DialogRe
     }
 
     private void fillFields() {
-        if(estab != null) {
+        if (estab != null) {
             editname.setText(estab.getName());
             editcategory.setText(estab.getCategory());
             editaddress.setText(estab.getAddress());
@@ -95,10 +87,10 @@ public class EstablishmentPage extends Fragment implements DialogReport.DialogRe
             editcity.setText(estab.getCity());
             editschedule1.setText(estab.getSchedule1());
             editschedule2.setText(estab.getSchedule2());
-            if(estab.getDelivery()) {
+            if (estab.getDelivery()) {
                 editdelivery.setChecked(true);
             }
-            if(estab.getRating() > 0) {
+            if (estab.getRating() > 0) {
                 editrating.setText(String.format(Locale.UK, "%.1f", estab.getRating()));
             }
 
@@ -119,7 +111,7 @@ public class EstablishmentPage extends Fragment implements DialogReport.DialogRe
             call.enqueue(new Callback<Establishment>() {
                 @Override
                 public void onResponse(Call<Establishment> call, Response<Establishment> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         estab = response.body();
 
                         fillFields();
@@ -133,7 +125,7 @@ public class EstablishmentPage extends Fragment implements DialogReport.DialogRe
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }

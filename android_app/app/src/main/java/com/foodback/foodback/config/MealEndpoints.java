@@ -18,7 +18,7 @@ public interface MealEndpoints {
 //    GET     /meals/featured (com.lpro.fbrest.resources.MealsResource)  -check
 
     @GET("/meals/{establishment_id}")
-    Call<List<Meal>>  getAllMeals(@Path("establishment_id") long establishment_id);
+    Call<List<Meal>> getAllMeals(@Path("establishment_id") long establishment_id);
 
     @GET("/meals/featured")
     Call<List<Meal>> getAllFeaturedMeals();

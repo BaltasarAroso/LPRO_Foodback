@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
@@ -16,11 +17,12 @@ import com.foodback.foodback.R;
  * Created by Foodback.
  */
 
-public class DialogReport extends AppCompatDialogFragment{
+public class DialogReport extends AppCompatDialogFragment {
 
     private EditText editReport;
     private DialogReportListener listener;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.OrderEndpoints;
-import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.OrderMeal;
 
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class EstablishmentOrderListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_establishment_deliveries, parent, false);
         }
 
@@ -80,7 +79,7 @@ public class EstablishmentOrderListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         orders.remove(position);
                         EstablishmentOrderListAdapter.this.notifyDataSetChanged();
                     } else {
@@ -93,7 +92,7 @@ public class EstablishmentOrderListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }

@@ -1,4 +1,4 @@
-<resources xmlns:android="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">FoodBack</string>
     <string name="loading">Welcome</string>
     <string name="logo">Logo</string>
@@ -108,6 +108,13 @@
     <string name="state">Estado da Encomenda:</string>
     <string name="cost">Custo do Pedido:</string>
     <string name="total_cost">Custo Total:</string>
+    <string name="publicidade">Publicidade</string>
+    <string name="sample_francesinhas_title">As melhores Francesinhas do Porto a 5€</string>
+    <string name="sample_francesinhas_desc">Venha à Tasca do Zé comer e chorar por mais!! Não vai querer perder o melhor fim de semana de sempre a comer sem dar por ela ;)</string>
+    <string name="sample_francesinhas_promo">12345678</string>
+    <string name="sample_francesinhas_expiry">21/01/2017</string>
+    <string name="sample_cost_cenas">Cenas</string>
+    <string name="report_button">Report button</string>
 
     <string-array name="spotlight_time_options">
         <item>1 dia</item>

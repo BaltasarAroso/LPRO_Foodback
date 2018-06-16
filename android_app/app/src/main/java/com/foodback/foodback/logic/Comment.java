@@ -9,17 +9,17 @@ import java.sql.Timestamp;
 public class Comment {
 
     /**
-     *  comment id
+     * comment id
      */
     private long id;
 
     /**
-     *  id of the establishment that is being commented
+     * id of the establishment that is being commented
      */
     private int establishment_id;
 
     /**
-     *  id of the user that is commenting
+     * id of the user that is commenting
      */
     private int commenter_id;
 
@@ -29,24 +29,24 @@ public class Comment {
     //private Timestamp time_posted;
 
     /**
-     *  Score the user gave to the establishment
+     * Score the user gave to the establishment
      */
     private int rating;
 
     /**
-     *  Written opinion of the user
+     * Written opinion of the user
      */
     private String comment;
 
     /**
-     * @param id id of comment
+     * @param id               id of comment
      * @param establishment_id id of establishment
-     * @param commenter_id if of commenter
-     * @param time_posted time posted
-     * @param rating rating the user gave
-     * @param comment opinion of the user
-     *
-     * Constructor for one comment
+     * @param commenter_id     if of commenter
+     * @param time_posted      time posted
+     * @param rating           rating the user gave
+     * @param comment          opinion of the user
+     *                         <p>
+     *                         Constructor for one comment
      */
     public Comment(long id, int establishment_id, int commenter_id, Timestamp time_posted, int rating, String comment) {
         this.id = id;
@@ -99,19 +99,19 @@ public class Comment {
         this.commenter_id = commenter_id;
     }
 
-    /**
-     * @return time of comment creation
-     */
-    /*public Timestamp getTime_posted() {
-        return time_posted;
-    }*/
+//    /**
+//     * @return time of comment creation
+//     */
+//    public Timestamp getTime_posted() {
+//        return time_posted;
+//    }
 
-    /**
-     * @param time_posted time of comment creation
-     */
-    /*public void setTime_posted(Timestamp time_posted) {
-        this.time_posted = time_posted;
-    }*/
+//    /**
+//     * @param time_posted time of comment creation
+//     */
+//    public void setTime_posted(Timestamp time_posted) {
+//        this.time_posted = time_posted;
+//    }
 
     /**
      * @return score the user gave the establishment
@@ -142,16 +142,15 @@ public class Comment {
     }
 
     /**
-     *
-     * @param o
+     * @param o comment object received as generic type
      * @return if all elements of this comment are equal
-     *         to the elements of the comment given by parameter
+     * to the elements of the comment given by parameter
      */
     public boolean equals(Object o) {
-        if(o == null) return false;
-        if(!(o instanceof Comment)) return false;
+        if (o == null) return false;
+        if (!(o instanceof Comment)) return false;
 
-        Comment comment = (Comment)o;
+        Comment comment = (Comment) o;
         return this.id == comment.getId() &&
                 this.establishment_id == comment.getEstablishment_id() &&
                 this.commenter_id == comment.getCommenter_id() &&

@@ -32,11 +32,11 @@ public class OrderMeal {
     private String state;
 
     /**
-     * @param id ID of order_meal
-     * @param meal Meal name
+     * @param id        ID of order_meal
+     * @param meal      Meal name
      * @param orders_id ID of order
-     * @param quantity Quantity of meals
-     * @param state State of this part of the order
+     * @param quantity  Quantity of meals
+     * @param state     State of this part of the order
      */
     public OrderMeal(long id, String meal, long orders_id, int quantity, String state) {
         super();
@@ -121,11 +121,11 @@ public class OrderMeal {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object o) {
-        if(o == null) return false;
-        if(!(o instanceof OrderMeal)) return false;
+        if (o == null) return false;
+        if (!(o instanceof OrderMeal)) return false;
 
-        OrderMeal orders_meal = (OrderMeal)o;
-        if(this.meal.equals(orders_meal.getMeal()) &&
+        OrderMeal orders_meal = (OrderMeal) o;
+        if (this.meal.equals(orders_meal.getMeal()) &&
                 this.quantity == orders_meal.getQuantity())
             return true;
         else return false;

@@ -1,6 +1,8 @@
 package com.foodback.foodback.fragment;
-import android.support.v4.app.Fragment;
+
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -47,7 +49,7 @@ public class UserChangeInfo extends Fragment {
     UserEndpoints services;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_user_change_info, container, false);
     }
 
@@ -89,7 +91,7 @@ public class UserChangeInfo extends Fragment {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         user = response.body();
                         editname.setText(user.getName());
                         editaddress.setText(user.getAddress());
@@ -97,11 +99,11 @@ public class UserChangeInfo extends Fragment {
                         editcity.setText(user.getCity());
                         editemail.setText(user.getEmail());
                         editbirth.updateDate(
-                                user.getBirth().getYear()+1900,
+                                user.getBirth().getYear() + 1900,
                                 user.getBirth().getMonth(),
                                 user.getBirth().getDay()
                         );
-                        if(user.getPremium())
+                        if (user.getPremium())
                             editpremium.setChecked(true);
                     } else {
                         isBad(getActivity(), response);
@@ -114,7 +116,7 @@ public class UserChangeInfo extends Fragment {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
@@ -122,8 +124,8 @@ public class UserChangeInfo extends Fragment {
     private void changeUser() {
         initialize();
         if (validateChangesUser()) {
-            birth = new Date(editbirth.getYear()-1900, editbirth.getMonth(), editbirth.getDayOfMonth());
-            if(TextUtils.isEmpty(newpass)) {
+            birth = new Date(editbirth.getYear() - 1900, editbirth.getMonth(), editbirth.getDayOfMonth());
+            if (TextUtils.isEmpty(newpass)) {
                 user = new User(user.getId(), null, null, name, email, address, birth,
                         premium, zone, city);
                 onChangeUserSuccess(user, null);
@@ -176,9 +178,9 @@ public class UserChangeInfo extends Fragment {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(getActivity(), "User info updated successfully.", Toast.LENGTH_SHORT).show();
-                        if(!TextUtils.isEmpty(newpass)) {
+                        if (!TextUtils.isEmpty(newpass)) {
                             changeCredentials(password);
                         }
                     } else {
@@ -191,7 +193,7 @@ public class UserChangeInfo extends Fragment {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
@@ -204,7 +206,7 @@ public class UserChangeInfo extends Fragment {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(getActivity(),
                                 "Credentials updated successfully.",
                                 Toast.LENGTH_SHORT).show();
@@ -219,7 +221,7 @@ public class UserChangeInfo extends Fragment {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }

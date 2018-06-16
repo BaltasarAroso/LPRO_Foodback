@@ -3,8 +3,8 @@ package com.foodback.foodback.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -67,7 +67,7 @@ public class UserMenu extends AppCompatActivity
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         User tmp = response.body();
                         TextView edituser_name = findViewById(R.id.user_name);
                         TextView edituser_email = findViewById(R.id.user_email);
@@ -84,7 +84,7 @@ public class UserMenu extends AppCompatActivity
                     isFailure(UserMenu.this, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(UserMenu.this, e);
         }
     }
@@ -133,7 +133,7 @@ public class UserMenu extends AppCompatActivity
 
         FragmentManager fm;
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.nav_homepage:
                 fm = getSupportFragmentManager();

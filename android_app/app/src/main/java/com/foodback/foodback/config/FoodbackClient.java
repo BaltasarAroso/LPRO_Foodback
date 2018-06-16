@@ -22,11 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodbackClient {
 
-//    private static String BASE_URL = "http://10.0.2.2:3000";  //simulador
+    //    private static String BASE_URL = "http://10.0.2.2:3000";  //simulador
     private static String BASE_URL = "http://172.30.6.175:3000";  //andré
 //    private static String BASE_URL = "http://172.30.22.199:3000";  //malafaia
 
-    public static Retrofit retrofit =  new Retrofit.Builder()
+    public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
@@ -44,8 +44,8 @@ public class FoodbackClient {
     }
 
     public static void setCredentials(String user, String pw) {
-        if(user != null) username = user;
-        if(pw != null) password = pw;
+        if (user != null) username = user;
+        if (pw != null) password = pw;
         new FoodbackClient();
     }
 
@@ -69,7 +69,7 @@ public class FoodbackClient {
             }
         });
 
-        if(BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             // set desired log level
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);

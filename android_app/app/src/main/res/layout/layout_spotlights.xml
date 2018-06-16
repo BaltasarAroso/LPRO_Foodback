@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_100sdp"
@@ -36,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/_14sdp" />
 
                 <TextView
                     android:id="@+id/meal_price"
@@ -46,7 +45,7 @@
                     android:textStyle="normal"
                     android:textSize="@dimen/_8sdp"
                     app:layout_alignSelf="center"
-                    android:gravity="end"/>
+                    android:gravity="end" />
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -55,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp" />
 
 
             <com.google.android.flexbox.FlexboxLayout
@@ -100,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
-                    android:textSize="@dimen/_10sdp"/>
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/estab_contact"
@@ -108,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:textSize="@dimen/_10sdp"
-                    android:gravity="end"/>
+                    android:gravity="end" />
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -120,7 +119,7 @@
                 android:textStyle="normal"
                 android:textSize="@dimen/_8sdp"
                 app:layout_alignSelf="flex_end"
-                android:gravity="end"/>
+                android:gravity="end" />
 
         </com.google.android.flexbox.FlexboxLayout>
 

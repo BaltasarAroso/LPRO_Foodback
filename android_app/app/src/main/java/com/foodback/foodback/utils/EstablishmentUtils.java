@@ -1,14 +1,11 @@
 package com.foodback.foodback.utils;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.amigold.fundapter.BindDictionary;
 import com.amigold.fundapter.extractors.StringExtractor;
 import com.amigold.fundapter.interfaces.DynamicImageLoader;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.foodback.foodback.R;
 import com.foodback.foodback.logic.Establishment;
 
@@ -84,7 +81,7 @@ public class EstablishmentUtils {
         dictionary.addStringField(R.id.estab_rating, new StringExtractor<Establishment>() {
             @Override
             public String getStringValue(Establishment estab, int position) {
-                if(estab.getRating() > 0) {
+                if (estab.getRating() > 0) {
                     return String.format(Locale.UK, "%.1f", estab.getRating());
                 } else {
                     return null;

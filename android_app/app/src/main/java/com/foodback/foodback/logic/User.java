@@ -1,6 +1,5 @@
 package com.foodback.foodback.logic;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -10,65 +9,65 @@ import java.util.Date;
 public class User {
 
     /**
-     *  user id
+     * user id
      */
     private long id;
 
     /**
-     *  username
+     * username
      */
     private String username;
 
     /**
-     *  user password
+     * user password
      */
     private String password;
 
     /**
-     *  user real name
+     * user real name
      */
     private String name;
 
     /**
-     *  user email
+     * user email
      */
     private String email;
 
     /**
-     *  user address
+     * user address
      */
     private String address;
 
     /**
-     *  user birthdate
+     * user birthdate
      */
     private Date birth;
 
     /**
-     *  is premium or not
+     * is premium or not
      */
     private boolean premium;
 
     /**
-     *  Zone of the user
+     * Zone of the user
      */
     private String zone;
 
     /**
-     *  City of the user
+     * City of the user
      */
     private String city;
 
     /**
      * @param username username
      * @param password user password
-     * @param name user real name
-     * @param email user email
-     * @param address user address
-     * @param birth user birth date
-     * @param premium is premium or not
-     *
-     * Constructor
+     * @param name     user real name
+     * @param email    user email
+     * @param address  user address
+     * @param birth    user birth date
+     * @param premium  is premium or not
+     *                 <p>
+     *                 Constructor
      */
     public User(String username, String password, String name, String email, String address, Date birth,
                 boolean premium, String zone, String city) {
@@ -85,18 +84,18 @@ public class User {
     }
 
     /**
-     * @param id Id of user
+     * @param id       Id of user
      * @param username Username of user
      * @param password Password of user
-     * @param name Name of user
-     * @param email Email of user
-     * @param address Address of user
-     * @param birth Birth date of user
-     * @param premium If user is premium or not
-     * @param zone Zone of the user
-     * @param city City of the user
-     *
-     * Constructor
+     * @param name     Name of user
+     * @param email    Email of user
+     * @param address  Address of user
+     * @param birth    Birth date of user
+     * @param premium  If user is premium or not
+     * @param zone     Zone of the user
+     * @param city     City of the user
+     *                 <p>
+     *                 Constructor
      */
     public User(long id, String username, String password, String name, String email, String address, Date birth,
                 boolean premium, String zone, String city) {
@@ -267,16 +266,15 @@ public class User {
     }
 
     /**
-     *
-     * @param o
+     * @param o user object received as generic type
      * @return if all elements of this user are equal
-     *         to the elements of the user given by parameter
+     * to the elements of the user given by parameter
      */
     public boolean equals(Object o) {
-        if(o == null) return false;
-        if(!(o instanceof User)) return false;
+        if (o == null) return false;
+        if (!(o instanceof User)) return false;
 
-        User user = (User)o;
+        User user = (User) o;
         return (this.id == user.getId() &&
                 this.username.equals(user.getUsername()) &&
                 this.password.equals(user.getPassword()) &&

@@ -17,8 +17,6 @@ import com.foodback.foodback.logic.Comment;
 import com.foodback.foodback.logic.Report;
 import com.foodback.foodback.logic.User;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
@@ -58,7 +56,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_reports_user, parent, false);
         }
 
@@ -109,7 +107,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<Comment>() {
                 @Override
                 public void onResponse(Call<Comment> call, Response<Comment> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Comment tmp = response.body();
                         setReportContent(
                                 reports.get(position).getReport(),
@@ -125,7 +123,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }
@@ -138,7 +136,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         reports.remove(position);
                         CommentReportListAdapter.this.notifyDataSetChanged();
                     } else {
@@ -151,7 +149,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }
@@ -163,7 +161,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         reports.remove(position);
                         CommentReportListAdapter.this.notifyDataSetChanged();
                     } else {
@@ -176,7 +174,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }
@@ -188,7 +186,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         User tmp = response.body();
                         getReportedName(position, tmp.getName(), reportTitle);
                     } else {
@@ -201,7 +199,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }
@@ -214,7 +212,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         User tmp = response.body();
                         setReportTitle(reporter, tmp.getName(), reportTitle);
                     } else {
@@ -227,7 +225,7 @@ public class CommentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }

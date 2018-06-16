@@ -1,10 +1,11 @@
 package com.foodback.foodback.fragment;
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -21,10 +22,10 @@ public class Homepage extends Fragment {
     ViewPager viewPager;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.fragment_homepage, container, false);
 
-        View menu = (View)container.getParent();
+        View menu = (View) container.getParent();
         appBar = menu.findViewById(R.id.appBar);
         tabLayout = new TabLayout(getActivity());
         tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
@@ -51,9 +52,9 @@ public class Homepage extends Fragment {
 
     public class Menu_Wrapper extends FragmentStatePagerAdapter {
 
-        private String[] titles = new String[] {"Restaurante", "Café", "Bar", "Sobremesa"};
+        private String[] titles = new String[]{"Restaurante", "Café", "Bar", "Sobremesa"};
 
-        public Menu_Wrapper(FragmentManager fm) {
+        Menu_Wrapper(FragmentManager fm) {
             super(fm);
         }
 
@@ -63,7 +64,7 @@ public class Homepage extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            switch(position) {
+            switch (position) {
                 case 0:
                     return new Restaurant();
                 case 1:

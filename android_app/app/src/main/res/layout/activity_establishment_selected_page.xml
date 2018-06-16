@@ -1,5 +1,4 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -28,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20sdp"
-                    app:layout_alignSelf="center"/>
+                    app:layout_alignSelf="center" />
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -61,7 +60,7 @@
                 android:textColor="@color/colorLogo"
                 android:textStyle="bold"
                 android:textSize="@dimen/_14sdp"
-                app:layout_alignSelf="center"/>
+                app:layout_alignSelf="center" />
 
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -83,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="@dimen/_10sdp"
-                    app:layout_alignSelf="flex_start"/>
+                    app:layout_alignSelf="flex_start" />
 
                 <TextView
                     android:id="@+id/estab_page_avg_price"
@@ -91,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:textSize="@dimen/_8sdp"
-                    app:layout_alignSelf="flex_end"/>
+                    app:layout_alignSelf="flex_end" />
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -101,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
                 app:layout_alignSelf="flex_start"
-                android:layout_marginTop="@dimen/_4sdp"/>
+                android:layout_marginTop="@dimen/_4sdp" />
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
@@ -115,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
-                    android:textSize="@dimen/_10sdp"/>
+                    android:textSize="@dimen/_10sdp" />
 
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="wrap_content"
@@ -157,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:textStyle="normal"
-                android:textSize="@dimen/_10sdp"/>
+                android:textSize="@dimen/_10sdp" />
 
             <TextView
                 android:id="@+id/estab_page_schedule2"
@@ -165,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:textStyle="normal"
-                android:textSize="@dimen/_10sdp"/>
+                android:textSize="@dimen/_10sdp" />
 
             <CheckBox
                 android:id="@+id/estab_page_delivery"
@@ -173,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/has_delivery"
                 android:textSize="@dimen/_8sdp"
-                android:clickable="false"/>
+                android:clickable="false" />
 
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -190,7 +189,7 @@
                 android:text="@string/menu"
                 android:textStyle="bold"
                 android:textSize="@dimen/_15sdp"
-                android:textColor="@color/colorLogo"/>
+                android:textColor="@color/colorLogo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -213,7 +212,7 @@
                 android:text="@string/opinions"
                 android:textStyle="bold"
                 android:textSize="@dimen/_15sdp"
-                android:textColor="@color/colorLogo"/>
+                android:textColor="@color/colorLogo" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

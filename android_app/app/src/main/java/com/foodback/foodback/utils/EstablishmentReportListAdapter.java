@@ -1,11 +1,7 @@
 package com.foodback.foodback.utils;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +13,6 @@ import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.config.ReportEndpoints;
 import com.foodback.foodback.config.UserEndpoints;
-import com.foodback.foodback.fragment.EstablishmentChangeInfo;
 import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.Report;
 import com.foodback.foodback.logic.User;
@@ -61,7 +56,7 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_reports_estab, parent, false);
         }
 
@@ -73,14 +68,14 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
         TextView reportContent = convertView.findViewById(R.id.report_estab_info);
         final Button discard = convertView.findViewById(R.id.btnDiscardChangeInfo);
         final Button delete = convertView.findViewById(R.id.btnDeleteEstabInfo);
-        
+
         discard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 discardReport(position);
             }
         });
-        
+
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +98,7 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         reports.remove(position);
                         EstablishmentReportListAdapter.this.notifyDataSetChanged();
                     } else {
@@ -116,18 +111,18 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }
-    
+
     private void changeEstabInfo(Report report) {
 //        EstablishmentChangeInfo fragment = new EstablishmentChangeInfo();
 //        Bundle args = new Bundle();
 //        args.putString("establishment_id", "" + report.getEstablishment_id());
 //        fragment.setArguments(args);
     }
-    
+
     private void getReporterName(final int position, final TextView reportTitle) {
         try {
             Call<User> call = userServices.getUserById(reports.get(position).getReporter_id());
@@ -135,7 +130,7 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         User tmp = response.body();
                         getEstablishmentName(position, tmp.getName(), reportTitle);
                     } else {
@@ -148,7 +143,7 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }
@@ -162,7 +157,7 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
             call.enqueue(new Callback<Establishment>() {
                 @Override
                 public void onResponse(Call<Establishment> call, Response<Establishment> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Establishment tmp = response.body();
                         setReportFields(reporter, tmp.getName(), reportTitle);
                     } else {
@@ -175,7 +170,7 @@ public class EstablishmentReportListAdapter extends ArrayAdapter {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }

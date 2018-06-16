@@ -15,9 +15,9 @@ import static com.foodback.foodback.config.FoodbackClient.retrofit;
  * Created by FoodBack.
  */
 
-public class ErrorUtils {
+class ErrorUtils {
 
-    public static APIError parseError(Response<?> response) {
+    static APIError parseError(Response<?> response) {
         Converter<ResponseBody, APIError> converter;
         converter = retrofit.responseBodyConverter(APIError.class, new Annotation[0]);
 
@@ -26,7 +26,7 @@ public class ErrorUtils {
         try {
             error = converter.convert(response.errorBody());
         } catch (IOException e) {
-            Log.e("DEBUG",Log.getStackTraceString(e)); //DEBUG
+            Log.e("DEBUG", Log.getStackTraceString(e)); //DEBUG
             return new APIError();
         }
 

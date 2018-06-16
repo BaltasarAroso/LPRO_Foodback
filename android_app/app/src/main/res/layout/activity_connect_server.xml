@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/logo"
@@ -50,7 +50,7 @@
             android:hint="@string/connection_ip"
             android:textSize="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_350sdp"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

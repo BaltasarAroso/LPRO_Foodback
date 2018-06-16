@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,8 +8,7 @@
     tools:context="com.foodback.foodback.fragment.UserChangeInfo">
 
 
-    <com.google.android.flexbox.FlexboxLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <com.google.android.flexbox.FlexboxLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_56sdp"
@@ -96,7 +94,7 @@
                     android:scaleX="0.7"
                     android:scaleY="0.7"
                     android:datePickerMode="spinner"
-                    android:calendarViewShown="false"/>
+                    android:calendarViewShown="false" />
 
                 <CheckBox
                     android:id="@+id/premium"
@@ -112,7 +110,7 @@
                     android:textAlignment="center"
                     android:text="@string/changepass"
                     android:textStyle="bold"
-                    android:textSize="@dimen/_10sdp"/>
+                    android:textSize="@dimen/_10sdp" />
 
                 <EditText
                     android:id="@+id/newpass"

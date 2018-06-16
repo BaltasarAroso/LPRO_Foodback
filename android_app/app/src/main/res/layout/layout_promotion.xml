@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,17 +10,17 @@
         android:id="@+id/promotion_title_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="As melhores Francesinhas do Porto a 5€"
+        android:text="@string/sample_francesinhas_title"
         android:textStyle="bold"
-        android:textSize="@dimen/_12sdp"/>
+        android:textSize="@dimen/_12sdp" />
 
     <TextView
         android:id="@+id/promotion_description_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Venha à Tasca do Zé comer e chorar por mais!! Não vai querer perder o melhor fim de semana de sempre a comer sem dar por ela ;)"
+        android:text="@string/sample_francesinhas_desc"
         android:textStyle="normal"
-        android:textSize="@dimen/_10sdp"/>
+        android:textSize="@dimen/_10sdp" />
 
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="wrap_content"
@@ -41,9 +40,9 @@
             android:id="@+id/promotion_code_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12345678"
+            android:text="@string/sample_francesinhas_promo"
             android:textStyle="normal"
-            android:textSize="@dimen/_10sdp"/>
+            android:textSize="@dimen/_10sdp" />
 
     </com.google.android.flexbox.FlexboxLayout>
 
@@ -65,9 +64,9 @@
             android:id="@+id/promotion_limit_date_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21/01/2017"
+            android:text="@string/sample_francesinhas_expiry"
             android:textStyle="normal"
-            android:textSize="@dimen/_10sdp"/>
+            android:textSize="@dimen/_10sdp" />
 
     </com.google.android.flexbox.FlexboxLayout>
 

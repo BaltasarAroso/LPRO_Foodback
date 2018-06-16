@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.logic.Establishment;
 
 import java.util.ArrayList;
 

@@ -3,13 +3,13 @@ package com.foodback.foodback.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.activity.EstablishmentSelectedPage;
@@ -39,10 +39,11 @@ public class Coffee extends Fragment {
     ArrayList<Establishment> coffees = new ArrayList<>();
     ArrayList<String> errors = new ArrayList<>();
 
-    public Coffee() {}
+    public Coffee() {
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tab_coffee, container, false);
@@ -60,13 +61,13 @@ public class Coffee extends Fragment {
             call.enqueue(new Callback<List<Establishment>>() {
                 @Override
                 public void onResponse(Call<List<Establishment>> call, Response<List<Establishment>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<Establishment> tmp = response.body();
                         coffees.addAll(tmp);
 
                         declareList(view);
                     } else {
-                        if(response.code() == 404) {
+                        if (response.code() == 404) {
                             declareError(view);
                         } else
                             isBad(getActivity(), response);
@@ -79,7 +80,7 @@ public class Coffee extends Fragment {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }

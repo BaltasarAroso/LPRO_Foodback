@@ -1,9 +1,9 @@
 package com.foodback.foodback.fragment;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +54,7 @@ public class EstablishmentChangeInfo extends Fragment {
     CategoryUtils catUtils;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_establishment_change_info, container, false);
     }
 
@@ -96,7 +96,7 @@ public class EstablishmentChangeInfo extends Fragment {
     private void changeEstab() {
         initialize();
         if (validateChangesEstab()) {
-            if(TextUtils.isEmpty(newpass)) {
+            if (TextUtils.isEmpty(newpass)) {
                 estab = new Establishment(name, category, address, zone, city, email,
                         contact, avg_price, schedule1, schedule2, null, null, delivery);
                 verifyOldPassword(estab, null);
@@ -152,7 +152,7 @@ public class EstablishmentChangeInfo extends Fragment {
             call.enqueue(new Callback<Establishment>() {
                 @Override
                 public void onResponse(Call<Establishment> call, Response<Establishment> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         estab = response.body();
                         editname.setText(estab.getName());
                         editaddress.setText(estab.getAddress());
@@ -163,7 +163,7 @@ public class EstablishmentChangeInfo extends Fragment {
                         editavgprice.setText(String.format(Locale.UK, "%d", estab.getAvg_price()));
                         editschedule1.setText(estab.getSchedule1());
                         editschedule2.setText(estab.getSchedule2());
-                        if(estab.getDelivery())
+                        if (estab.getDelivery())
                             editdelivery.setChecked(true);
                         catUtils.populateSpinner(
                                 getActivity(),
@@ -181,7 +181,7 @@ public class EstablishmentChangeInfo extends Fragment {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
 
@@ -196,7 +196,7 @@ public class EstablishmentChangeInfo extends Fragment {
             credentialCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         changeEstabOnServer(estab, password);
                     } else {
                         //editoldpass.setError("Wrong password");
@@ -209,7 +209,7 @@ public class EstablishmentChangeInfo extends Fragment {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
@@ -221,11 +221,11 @@ public class EstablishmentChangeInfo extends Fragment {
             dataCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(getActivity(),
                                 "Establishment updated successfully.",
                                 Toast.LENGTH_SHORT).show();
-                        if(!TextUtils.isEmpty(newpass)) {
+                        if (!TextUtils.isEmpty(newpass)) {
                             changeCredentials(password);
                         }
                     } else {
@@ -238,7 +238,7 @@ public class EstablishmentChangeInfo extends Fragment {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
@@ -251,7 +251,7 @@ public class EstablishmentChangeInfo extends Fragment {
             credentialCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(getActivity(),
                                 "Credentials updated successfully.",
                                 Toast.LENGTH_SHORT).show();
@@ -266,7 +266,7 @@ public class EstablishmentChangeInfo extends Fragment {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }

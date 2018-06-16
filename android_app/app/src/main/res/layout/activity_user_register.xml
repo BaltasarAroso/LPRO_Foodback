@@ -15,8 +15,7 @@
         android:layout_height="match_parent"
         app:alignItems="center"
         app:flexDirection="column"
-        app:justifyContent="center"
-        >
+        app:justifyContent="center">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -56,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
                     android:inputType="text"
-                    android:textSize="@dimen/_10sdp"/>
+                    android:textSize="@dimen/_10sdp" />
 
                 <EditText
                     android:id="@+id/zone"
@@ -112,7 +111,7 @@
                     android:scaleX="0.7"
                     android:scaleY="0.7"
                     android:datePickerMode="spinner"
-                    android:calendarViewShown="false"/>
+                    android:calendarViewShown="false" />
 
                 <CheckBox
                     android:id="@+id/premium"

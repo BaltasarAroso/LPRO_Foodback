@@ -20,7 +20,7 @@ public class Category {
     private String name;
 
     /**
-     * @param id ID of category
+     * @param id   ID of category
      * @param name Name of category
      */
     public Category(int id, String name) {

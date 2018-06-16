@@ -15,8 +15,7 @@
         android:layout_height="match_parent"
         app:alignItems="center"
         app:flexDirection="column"
-        app:justifyContent="center"
-        >
+        app:justifyContent="center">
 
         <ImageView
             android:id="@+id/imageView"

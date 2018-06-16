@@ -10,11 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.config.FeaturedEndpoints;
 import com.foodback.foodback.config.UserEndpoints;
 import com.foodback.foodback.logic.Comment;
-import com.foodback.foodback.logic.Featured;
-import com.foodback.foodback.logic.Meal;
 import com.foodback.foodback.logic.User;
 
 import java.util.ArrayList;
@@ -30,7 +27,7 @@ import static com.foodback.foodback.utils.ErrorDisplay.isException;
 import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 /**
- * Created by Foodback on 2017/2018.
+ * Created by Foodback.
  */
 
 public class EstablishmentCommentAdapter extends ArrayAdapter {
@@ -52,7 +49,7 @@ public class EstablishmentCommentAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_estabpage_menu, parent, false);
         }
 
@@ -91,7 +88,7 @@ public class EstablishmentCommentAdapter extends ArrayAdapter {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         tmp[0] = response.body();
                     } else {
                         isBad(context, response);

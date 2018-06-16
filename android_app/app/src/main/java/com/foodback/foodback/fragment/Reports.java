@@ -2,23 +2,19 @@ package com.foodback.foodback.fragment;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.config.ReportEndpoints;
 import com.foodback.foodback.config.UserEndpoints;
@@ -52,10 +48,11 @@ public class Reports extends Fragment {
 
     ReportEndpoints services;
 
-    public Reports() {}
+    public Reports() {
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tab_reports, container, false);
@@ -77,7 +74,7 @@ public class Reports extends Fragment {
             call.enqueue(new Callback<List<Report>>() {
                 @Override
                 public void onResponse(Call<List<Report>> call, Response<List<Report>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<Report> tmp = response.body();
                         commentReports.addAll(tmp);
 
@@ -97,7 +94,7 @@ public class Reports extends Fragment {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
@@ -124,25 +121,26 @@ public class Reports extends Fragment {
             call.enqueue(new Callback<List<Report>>() {
                 @Override
                 public void onResponse(Call<List<Report>> call, Response<List<Report>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<Report> tmp = response.body();
                         estabReports.addAll(tmp);
 
                         declareEstablishmentReportList(view);
                     } else {
-                        if(response.code() == 404) {
+                        if (response.code() == 404) {
                             declareEstabError(view);
                         } else {
                             isBad(getActivity(), response);
                         }
                     }
                 }
+
                 @Override
                 public void onFailure(Call<List<Report>> call, Throwable t) {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
@@ -179,7 +177,7 @@ public class Reports extends Fragment {
         private EstablishmentEndpoints estabServices;
         private ReportEndpoints reportServices;
 
-        public EstablishmentReportListAdapter(Context context, ArrayList<Report> reports) {
+        EstablishmentReportListAdapter(Context context, ArrayList<Report> reports) {
             super(context, R.layout.layout_reports_estab, reports);
 
             this.context = context;
@@ -191,7 +189,7 @@ public class Reports extends Fragment {
         @NonNull
         @Override
         public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-            if(null == convertView) {
+            if (null == convertView) {
                 convertView = inflater.inflate(R.layout.layout_reports_estab, parent, false);
             }
 
@@ -233,7 +231,7 @@ public class Reports extends Fragment {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             reports.remove(position);
                             EstablishmentReportListAdapter.this.notifyDataSetChanged();
                         } else {
@@ -246,7 +244,7 @@ public class Reports extends Fragment {
                         isFailure(context, t);
                     }
                 });
-            } catch(Exception e) {
+            } catch (Exception e) {
                 isException(context, e);
             }
         }
@@ -270,7 +268,7 @@ public class Reports extends Fragment {
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             User tmp = response.body();
                             getEstablishmentName(position, tmp.getName(), reportTitle);
                         } else {
@@ -283,7 +281,7 @@ public class Reports extends Fragment {
                         isFailure(context, t);
                     }
                 });
-            } catch(Exception e) {
+            } catch (Exception e) {
                 isException(context, e);
             }
         }
@@ -297,7 +295,7 @@ public class Reports extends Fragment {
                 call.enqueue(new Callback<Establishment>() {
                     @Override
                     public void onResponse(Call<Establishment> call, Response<Establishment> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             Establishment tmp = response.body();
                             setReportFields(reporter, tmp.getName(), reportTitle);
                         } else {
@@ -310,7 +308,7 @@ public class Reports extends Fragment {
                         isFailure(context, t);
                     }
                 });
-            } catch(Exception e) {
+            } catch (Exception e) {
                 isException(context, e);
             }
         }

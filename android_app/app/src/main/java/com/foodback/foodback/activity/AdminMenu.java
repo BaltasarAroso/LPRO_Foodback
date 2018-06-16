@@ -3,8 +3,8 @@ package com.foodback.foodback.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,9 +18,7 @@ import com.foodback.foodback.fragment.AdminPromotions;
 import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.fragment.Notifications;
 import com.foodback.foodback.fragment.Spotlight;
-import com.foodback.foodback.fragment.UserChangeInfo;
 import com.foodback.foodback.fragment.UserDelivery;
-import com.foodback.foodback.fragment.UserPromotions;
 
 
 public class AdminMenu extends AppCompatActivity
@@ -85,14 +83,14 @@ public class AdminMenu extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-//    @SuppressWarnings("StatementWithEmptyBody")
+    //    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
 
         FragmentManager fm;
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.nav_homepage:
                 fm = getSupportFragmentManager();

@@ -15,7 +15,7 @@ import com.foodback.foodback.logic.OrderMeal;
 import java.util.ArrayList;
 
 /**
- * Created by Foodback on 2017/2018.
+ * Created by Foodback.
  */
 
 public class TrackOrderListAdapter extends ArrayAdapter {
@@ -37,7 +37,7 @@ public class TrackOrderListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_track_order, parent, false);
         }
 
@@ -45,16 +45,14 @@ public class TrackOrderListAdapter extends ArrayAdapter {
         TextView orderState = convertView.findViewById(R.id.order_state);
 
 
-        String total = "";
-        int i = 0;
+        StringBuilder total = new StringBuilder();
 
-        for (OrderMeal x: orders.get(position).getMeals()) {
-            total += x.getMeal();
-            total += " | ";
-            i++;
+        for (OrderMeal x : orders.get(position).getMeals()) {
+            total.append(x.getMeal());
+            total.append(" | ");
         }
 
-        orderName.setText(total);
+        orderName.setText(total.toString());
         orderState.setText(orders.get(position).getState());
 
         return convertView;

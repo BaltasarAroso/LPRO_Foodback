@@ -20,12 +20,12 @@ public class ErrorDisplay {
     }
 
     public static void isFailure(Context context, Throwable t) {
-        Log.e("DEBUG",Log.getStackTraceString(t));
+        Log.e("DEBUG", Log.getStackTraceString(t));
         Toast.makeText(context, R.string.error_server_response, Toast.LENGTH_SHORT).show();
     }
 
     public static void isException(Context context, Exception e) {
-        Log.e("DEBUG",Log.getStackTraceString(e));
+        Log.e("DEBUG", Log.getStackTraceString(e));
         Toast.makeText(context, R.string.error_unexpected, Toast.LENGTH_SHORT).show();
     }
 

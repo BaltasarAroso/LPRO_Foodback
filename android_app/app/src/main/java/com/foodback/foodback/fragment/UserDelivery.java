@@ -2,6 +2,7 @@ package com.foodback.foodback.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -52,10 +53,11 @@ public class UserDelivery extends Fragment {
     Spinner estab_choice;
     Spinner menu_choice;
 
-    public UserDelivery() {}
+    public UserDelivery() {
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_user_delivery, container, false);
@@ -86,7 +88,7 @@ public class UserDelivery extends Fragment {
             @Override
             public void onClick(View view) {
                 List<OrderMeal> meals = new ArrayList<>();
-                if(!TextUtils.isEmpty(menu_choice1.getSelectedItem().toString())) {
+                if (!TextUtils.isEmpty(menu_choice1.getSelectedItem().toString())) {
                     meals.add(new OrderMeal(
                             0,
                             menu_choice1.getSelectedItem().toString(),
@@ -94,7 +96,7 @@ public class UserDelivery extends Fragment {
                             quantity_choice1.getSelectedItemPosition(),
                             "waiting"));
                 }
-                if(!TextUtils.isEmpty(menu_choice2.getSelectedItem().toString())) {
+                if (!TextUtils.isEmpty(menu_choice2.getSelectedItem().toString())) {
                     meals.add(new OrderMeal(
                             0,
                             menu_choice2.getSelectedItem().toString(),
@@ -102,7 +104,7 @@ public class UserDelivery extends Fragment {
                             quantity_choice2.getSelectedItemPosition(),
                             "waiting"));
                 }
-                if(!TextUtils.isEmpty(menu_choice3.getSelectedItem().toString())) {
+                if (!TextUtils.isEmpty(menu_choice3.getSelectedItem().toString())) {
                     meals.add(new OrderMeal(
                             0,
                             menu_choice3.getSelectedItem().toString(),
@@ -110,7 +112,7 @@ public class UserDelivery extends Fragment {
                             quantity_choice3.getSelectedItemPosition(),
                             "waiting"));
                 }
-                if(!TextUtils.isEmpty(menu_choice4.getSelectedItem().toString())) {
+                if (!TextUtils.isEmpty(menu_choice4.getSelectedItem().toString())) {
                     meals.add(new OrderMeal(
                             0,
                             menu_choice4.getSelectedItem().toString(),
@@ -138,77 +140,93 @@ public class UserDelivery extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateEstablishmentSpinner(view, 1, position+1);
+                populateEstablishmentSpinner(view, 1, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
 
         category_choice2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateEstablishmentSpinner(view, 2, position+1);
+                populateEstablishmentSpinner(view, 2, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
 
         category_choice3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateEstablishmentSpinner(view, 3, position+1);
+                populateEstablishmentSpinner(view, 3, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
 
         category_choice4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateEstablishmentSpinner(view, 4, position+1);
+                populateEstablishmentSpinner(view, 4, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
 
         estab_choice1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 1, position+1);
+                populateMenuSpinner(view, 1, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
         estab_choice2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 2, position+1);
+                populateMenuSpinner(view, 2, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
         estab_choice3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 3, position+1);
+                populateMenuSpinner(view, 3, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
         estab_choice4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
-                populateMenuSpinner(view, 4, position+1);
+                populateMenuSpinner(view, 4, position + 1);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
 
 
@@ -218,14 +236,14 @@ public class UserDelivery extends Fragment {
     private void wrapUpRequest(Order order) {
         try {
             //TODO: process order
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
 
     private void populateMenuSpinner(View view, int k, int i) {
         List<Establishment> estabs = null;
-        switch(k) {
+        switch (k) {
             case 1:
                 estabs = estabs1;
                 menu_choice = menu_choice1;
@@ -246,19 +264,19 @@ public class UserDelivery extends Fragment {
                 break;
         }
         try {
-            if(estabs != null) {
+            if (estabs != null) {
                 Call<List<Meal>> call = mealServices.getAllMeals(estabs.get(i).getId());
 
                 call.enqueue(new Callback<List<Meal>>() {
                     @Override
                     public void onResponse(Call<List<Meal>> call, Response<List<Meal>> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             List<Meal> meals = response.body();
-                            if(meals.size() != 0) {
+                            if (meals.size() != 0) {
                                 List<String> spinnerArray = new ArrayList<>();
 
                                 spinnerArray.add("");
-                                for(Meal x: meals) {
+                                for (Meal x : meals) {
                                     spinnerArray.add(x.getMeal());
                                 }
                                 ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -280,13 +298,13 @@ public class UserDelivery extends Fragment {
                     }
                 });
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }
 
     private void populateEstablishmentSpinner(View view, final int k, long id) {
-        switch(k) {
+        switch (k) {
             case 1:
                 estab_choice = estab_choice1;
                 break;
@@ -308,9 +326,9 @@ public class UserDelivery extends Fragment {
             call.enqueue(new Callback<List<Establishment>>() {
                 @Override
                 public void onResponse(Call<List<Establishment>> call, Response<List<Establishment>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<Establishment> estabs = response.body();
-                        switch(k) {
+                        switch (k) {
                             case 1:
                                 estabs1 = estabs;
                                 break;
@@ -326,11 +344,11 @@ public class UserDelivery extends Fragment {
                             default:
                                 break;
                         }
-                        if(estabs.size() != 0) {
+                        if (estabs.size() != 0) {
                             List<String> spinnerArray = new ArrayList<>();
 
                             spinnerArray.add("");
-                            for(Establishment x: estabs) {
+                            for (Establishment x : estabs) {
                                 spinnerArray.add(x.getName());
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -345,12 +363,13 @@ public class UserDelivery extends Fragment {
                         isBad(getActivity(), response);
                     }
                 }
+
                 @Override
                 public void onFailure(Call<List<Establishment>> call, Throwable t) {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }

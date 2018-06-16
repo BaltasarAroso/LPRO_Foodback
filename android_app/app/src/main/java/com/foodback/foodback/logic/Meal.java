@@ -45,9 +45,9 @@ public class Meal {
 
 
     /**
-     * @param id Meal's ID
-     * @param meal Meal's name
-     * @param price Meal's price
+     * @param id               Meal's ID
+     * @param meal             Meal's name
+     * @param price            Meal's price
      * @param establishment_id ID of establishment
      */
     public Meal(long id, String meal, double price, long establishment_id) {
@@ -134,10 +134,10 @@ public class Meal {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object o) {
-        if(o == null) return false;
-        if(!(o instanceof Meal)) return false;
+        if (o == null) return false;
+        if (!(o instanceof Meal)) return false;
 
-        Meal meal = (Meal)o;
+        Meal meal = (Meal) o;
         return this.id == meal.getId() &&
                 this.meal.equals(meal.getMeal()) &&
                 this.price == meal.getPrice() &&

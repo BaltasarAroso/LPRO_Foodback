@@ -2,6 +2,7 @@ package com.foodback.foodback.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,10 +35,11 @@ public class EstablishmentDelivery extends Fragment {
     ArrayList<OrderMeal> orders = new ArrayList<>();
     ArrayList<String> errors = new ArrayList<>();
 
-    public EstablishmentDelivery() {}
+    public EstablishmentDelivery() {
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_establishment_delivery, container, false);
@@ -55,13 +57,13 @@ public class EstablishmentDelivery extends Fragment {
             call.enqueue(new Callback<List<OrderMeal>>() {
                 @Override
                 public void onResponse(Call<List<OrderMeal>> call, Response<List<OrderMeal>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<OrderMeal> tmp = response.body();
                         orders.addAll(tmp);
 
                         declareList(view);
                     } else {
-                        if(response.code() == 404) {
+                        if (response.code() == 404) {
                             declareError(view);
                         } else {
                             isBad(getActivity(), response);
@@ -74,7 +76,7 @@ public class EstablishmentDelivery extends Fragment {
                     isFailure(getActivity(), t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }

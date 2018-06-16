@@ -40,11 +40,11 @@ public class CategoryUtils {
     }
 
     /**
-     * @param context activity/fragment on screen
-     * @param spinner spinner which will be filled
+     * @param context  activity/fragment on screen
+     * @param spinner  spinner which will be filled
      * @param category category (if not null/empty) to be the spinner placeholder
      */
-    public void populateSpinner(final Context context, final Spinner spinner, final String category){
+    public void populateSpinner(final Context context, final Spinner spinner, final String category) {
         try {
             EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
             Call<List<Category>> call = services.getAllCategories();
@@ -52,19 +52,19 @@ public class CategoryUtils {
             call.enqueue(new Callback<List<Category>>() {
                 @Override
                 public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         categoryList = response.body();
                         int pos = 0;
-                        if(categoryList.size() == 0) {
+                        if (categoryList.size() == 0) {
                             Toast.makeText(context,
                                     "No establishment categories found.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             List<String> spinnerArray = new ArrayList<>();
 
-                            for(Category x: categoryList) {
+                            for (Category x : categoryList) {
                                 spinnerArray.add(x.getName());
-                                if(!TextUtils.isEmpty(category) && x.getName().equals(category)) {
+                                if (!TextUtils.isEmpty(category) && x.getName().equals(category)) {
                                     pos = x.getId();
                                 }
                             }
@@ -76,8 +76,8 @@ public class CategoryUtils {
 
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner.setAdapter(adapter);
-                            if(!TextUtils.isEmpty(category)) {
-                                spinner.setSelection(pos-1, true);
+                            if (!TextUtils.isEmpty(category)) {
+                                spinner.setSelection(pos - 1, true);
                             }
                         }
                     } else {
@@ -90,7 +90,7 @@ public class CategoryUtils {
                     isFailure(context, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
         }
     }

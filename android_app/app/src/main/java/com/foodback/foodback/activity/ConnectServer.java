@@ -1,13 +1,11 @@
 package com.foodback.foodback.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.CredentialsEndpoints;
@@ -46,7 +44,7 @@ public class ConnectServer extends AppCompatActivity {
                     edit_ipConnect.setVisibility(View.INVISIBLE);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(ConnectServer.this, e);
             connect.setVisibility(View.VISIBLE);
             edit_ipConnect.setVisibility(View.VISIBLE);
@@ -55,7 +53,7 @@ public class ConnectServer extends AppCompatActivity {
     }
 
     public void testConnection() {
-        try{
+        try {
             services = retrofit.create(CredentialsEndpoints.class);
             Call<ResponseBody> call = services.checkConnection();
 
@@ -75,7 +73,7 @@ public class ConnectServer extends AppCompatActivity {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(ConnectServer.this, e);
             connect.setVisibility(View.VISIBLE);
             edit_ipConnect.setVisibility(View.VISIBLE);

@@ -29,7 +29,7 @@ import static com.foodback.foodback.utils.ErrorDisplay.isException;
 import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
 /**
- * Created by Foodback on 2017/2018.
+ * Created by Foodback.
  */
 
 public class FeaturedMealsAdapter extends ArrayAdapter {
@@ -52,7 +52,7 @@ public class FeaturedMealsAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_spotlights, parent, false);
         }
 
@@ -86,7 +86,7 @@ public class FeaturedMealsAdapter extends ArrayAdapter {
             call.enqueue(new Callback<Establishment>() {
                 @Override
                 public void onResponse(Call<Establishment> call, Response<Establishment> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Establishment establishment = response.body();
 
                         TextView estab_name = convertView.findViewById(R.id.estab_name);
@@ -104,7 +104,7 @@ public class FeaturedMealsAdapter extends ArrayAdapter {
                         estab_category.setText(establishment.getCategory());
                         estab_contact.setText(establishment.getContact());
 
-                        if(establishment.getDelivery()) {
+                        if (establishment.getDelivery()) {
                             estab_delivery.setText(context.getString(R.string.display_delivery));
                         }
 

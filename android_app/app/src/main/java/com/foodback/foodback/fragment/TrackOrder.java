@@ -1,23 +1,18 @@
 package com.foodback.foodback.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.activity.EstablishmentSelectedPage;
 import com.foodback.foodback.config.OrderEndpoints;
 import com.foodback.foodback.logic.Order;
-import com.foodback.foodback.utils.ErrorMessageAdapter;
-import com.foodback.foodback.utils.EstablishmentListAdapter;
 import com.foodback.foodback.utils.TrackOrderListAdapter;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +34,12 @@ public class TrackOrder extends Fragment {
     ArrayList<Order> orders = new ArrayList<>();
     ArrayList<String> errors = new ArrayList<>();
 
-    public TrackOrder() {}
+    public TrackOrder() {
+    }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_track_order, container, false);
@@ -61,7 +57,7 @@ public class TrackOrder extends Fragment {
             call.enqueue(new Callback<List<Order>>() {
                 @Override
                 public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<Order> tmp = response.body();
                         orders.addAll(tmp);
                         declareTrackingList(view);
@@ -80,7 +76,7 @@ public class TrackOrder extends Fragment {
                 }
             });
 
-        } catch (Exception e){
+        } catch (Exception e) {
             isException(getContext(), e);
         }
     }

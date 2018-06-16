@@ -3,8 +3,8 @@ package com.foodback.foodback.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -40,16 +40,16 @@ public class EstablishmentMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_establishment_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getSupportFragmentManager();
@@ -66,7 +66,7 @@ public class EstablishmentMenu extends AppCompatActivity
             call.enqueue(new Callback<Establishment>() {
                 @Override
                 public void onResponse(Call<Establishment> call, Response<Establishment> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Establishment tmp = response.body();
                         TextView editestab_name = findViewById(R.id.establishment_name);
                         TextView editestab_email = findViewById(R.id.establishment_email);
@@ -83,7 +83,7 @@ public class EstablishmentMenu extends AppCompatActivity
                     isFailure(EstablishmentMenu.this, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(EstablishmentMenu.this, e);
         }
 
@@ -91,7 +91,7 @@ public class EstablishmentMenu extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -134,7 +134,7 @@ public class EstablishmentMenu extends AppCompatActivity
 
         FragmentManager fm;
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.nav_homepage:
                 fm = getSupportFragmentManager();
@@ -176,7 +176,7 @@ public class EstablishmentMenu extends AppCompatActivity
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

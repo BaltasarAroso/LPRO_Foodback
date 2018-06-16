@@ -24,7 +24,7 @@ public class Featured {
     private Timestamp added_date;
 
     /**
-     *  Duration
+     * Duration
      */
     private int duration;
 
@@ -36,9 +36,9 @@ public class Featured {
     }
 
     /**
-     * @param meal_id of a feature
+     * @param meal_id    of a feature
      * @param added_date of a feature
-     * @param duration of a feature
+     * @param duration   of a feature
      */
     public Featured(long meal_id, Timestamp added_date, int duration) {
         super();
@@ -49,10 +49,10 @@ public class Featured {
     }
 
     /**
-     * @param id of a feature
-     * @param meal_id of a feature
+     * @param id         of a feature
+     * @param meal_id    of a feature
      * @param added_date of a feature
-     * @param duration of a feature
+     * @param duration   of a feature
      */
     public Featured(long id, long meal_id, Timestamp added_date, int duration) {
         super();
@@ -122,10 +122,10 @@ public class Featured {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object o) {
-        if(o == null) return false;
-        if(!(o instanceof Featured)) return false;
+        if (o == null) return false;
+        if (!(o instanceof Featured)) return false;
 
-        Featured featured = (Featured)o;
+        Featured featured = (Featured) o;
         return this.id == featured.getId() &&
                 this.meal_id == featured.getMeal_id() &&
                 this.added_date.equals(featured.getAdded_date()) &&

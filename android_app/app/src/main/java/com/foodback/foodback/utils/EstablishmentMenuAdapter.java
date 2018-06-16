@@ -12,13 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foodback.foodback.R;
-import com.foodback.foodback.config.EstablishmentEndpoints;
 import com.foodback.foodback.config.FeaturedEndpoints;
-import com.foodback.foodback.logic.Establishment;
 import com.foodback.foodback.logic.Featured;
 import com.foodback.foodback.logic.Meal;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -57,7 +54,7 @@ public class EstablishmentMenuAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_estabpage_menu, parent, false);
         }
 
@@ -77,7 +74,7 @@ public class EstablishmentMenuAdapter extends ArrayAdapter {
                 Featured featured = new Featured(
                         meals.get(position).getId(),
                         null,
-                        spotlightSpinner.getSelectedItemPosition()+1);
+                        spotlightSpinner.getSelectedItemPosition() + 1);
 
                 createNewFeatured(featured, btnSpotlight);
 
@@ -97,7 +94,7 @@ public class EstablishmentMenuAdapter extends ArrayAdapter {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(context, "Success.", Toast.LENGTH_SHORT).show();
                     } else {
                         isBad(context, response);
@@ -112,7 +109,7 @@ public class EstablishmentMenuAdapter extends ArrayAdapter {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(context, e);
             btnSpotlight.setVisibility(View.VISIBLE);
         }

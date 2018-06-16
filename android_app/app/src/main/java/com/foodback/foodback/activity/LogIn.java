@@ -1,17 +1,16 @@
 package com.foodback.foodback.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.foodback.foodback.config.CredentialsEndpoints;
-
 import com.foodback.foodback.R;
+import com.foodback.foodback.config.CredentialsEndpoints;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -51,7 +50,7 @@ public class LogIn extends AppCompatActivity {
                 String password = editpassword.getText().toString();
 
                 //validate inserted values
-                if(validateLogin(username, password)){
+                if (validateLogin(username, password)) {
                     tryLogin(username, password);
                 }
             }
@@ -79,7 +78,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-    private boolean validateLogin (String username, String password) {
+    private boolean validateLogin(String username, String password) {
         if (username == null || username.trim().length() == 0) {
             Toast.makeText(this, "Username is required", Toast.LENGTH_SHORT).show();
             return false;
@@ -104,7 +103,7 @@ public class LogIn extends AppCompatActivity {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(LogIn.this, R.string.login_success, Toast.LENGTH_SHORT).show();
                         Intent i = new Intent();
                         i.setClass(LogIn.this, UserMenu.class);
@@ -119,7 +118,7 @@ public class LogIn extends AppCompatActivity {
                     isFailure(LogIn.this, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(LogIn.this, e);
         }
     }
@@ -131,7 +130,7 @@ public class LogIn extends AppCompatActivity {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(LogIn.this, R.string.login_success, Toast.LENGTH_SHORT).show();
                         Intent i = new Intent();
                         i.setClass(LogIn.this, EstablishmentMenu.class);
@@ -146,7 +145,7 @@ public class LogIn extends AppCompatActivity {
                     isFailure(LogIn.this, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(LogIn.this, e);
         }
     }
@@ -158,7 +157,7 @@ public class LogIn extends AppCompatActivity {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(LogIn.this, R.string.login_success, Toast.LENGTH_SHORT).show();
                         Intent i = new Intent();
                         i.setClass(LogIn.this, AdminMenu.class);
@@ -173,7 +172,7 @@ public class LogIn extends AppCompatActivity {
                     isFailure(LogIn.this, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(LogIn.this, e);
         }
     }

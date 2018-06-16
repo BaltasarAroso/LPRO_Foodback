@@ -66,8 +66,8 @@ public class UserRegister extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            // confirm register
-            register();
+                // confirm register
+                register();
             }
 
         });
@@ -75,9 +75,9 @@ public class UserRegister extends AppCompatActivity {
         linkestab_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent i = new Intent();
-            i.setClass(UserRegister.this, EstablishmentRegister.class);
-            startActivity(i);
+                Intent i = new Intent();
+                i.setClass(UserRegister.this, EstablishmentRegister.class);
+                startActivity(i);
             }
 
         });
@@ -89,7 +89,7 @@ public class UserRegister extends AppCompatActivity {
         if (!validate()) {
             Toast.makeText(this, "Signup has failed", Toast.LENGTH_SHORT).show();
         } else {
-            birth = new Date(editbirth.getYear()-1900, editbirth.getMonth(), editbirth.getDayOfMonth());
+            birth = new Date(editbirth.getYear() - 1900, editbirth.getMonth(), editbirth.getDayOfMonth());
             user = new User(username, password, name, email, address, birth, premium, zone, city);
             onRegisterSuccess(user);
         }
@@ -152,7 +152,7 @@ public class UserRegister extends AppCompatActivity {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(UserRegister.this, "Registered Successfully.", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent();
                         i.setClass(UserRegister.this, LogIn.class);
@@ -167,7 +167,7 @@ public class UserRegister extends AppCompatActivity {
                     isFailure(UserRegister.this, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(UserRegister.this, e);
         }
     }

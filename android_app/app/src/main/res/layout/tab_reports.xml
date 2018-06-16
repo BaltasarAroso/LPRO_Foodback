@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +23,7 @@
                 android:textColor="@color/colorLogo"
                 android:textStyle="bold"
                 android:text="@string/reports_users"
-                android:layout_marginBottom="@dimen/_10sdp"/>
+                android:layout_marginBottom="@dimen/_10sdp" />
 
             <ListView
                 android:id="@+id/list_reports_users"
@@ -46,7 +45,7 @@
         android:text="@string/reports_estabs"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"/>
+        android:layout_marginBottom="@dimen/_10sdp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -55,7 +54,6 @@
 
         <ListView
             android:id="@+id/list_reports_estabs"
-            android:layout_below="@+id/reports_estabs"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_190sdp">
 

@@ -29,10 +29,10 @@ public class Order {
     private String state;
 
     /**
-     * @param id of a order
-     * @param meals of a order
+     * @param id      of a order
+     * @param meals   of a order
      * @param user_id of a order
-     * @param state of a order
+     * @param state   of a order
      */
     public Order(long id, List<OrderMeal> meals, long user_id, String state) {
         super();
@@ -102,16 +102,14 @@ public class Order {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object o) {
-        if(o == null) return false;
-        if(!(o instanceof Order)) return false;
+        if (o == null) return false;
+        if (!(o instanceof Order)) return false;
 
-        Order order = (Order)o;
-        if(this.id == order.getId() &&
+        Order order = (Order) o;
+        return this.id == order.getId() &&
                 this.meals.equals(order.getMeals()) &&
                 this.user_id == order.getUser_id() &&
-                this.state.equals(order.getState()))
-            return true;
-        else return false;
+                this.state.equals(order.getState());
     }
 
 }

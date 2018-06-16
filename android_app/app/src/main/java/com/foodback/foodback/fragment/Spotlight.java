@@ -3,6 +3,7 @@ package com.foodback.foodback.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,7 @@ import android.widget.ListView;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.activity.EstablishmentSelectedPage;
-import com.foodback.foodback.config.FeaturedEndpoints;
 import com.foodback.foodback.config.MealEndpoints;
-import com.foodback.foodback.logic.Establishment;
-import com.foodback.foodback.logic.Featured;
 import com.foodback.foodback.logic.Meal;
 import com.foodback.foodback.utils.ErrorMessageAdapter;
 import com.foodback.foodback.utils.FeaturedMealsAdapter;
@@ -41,10 +39,11 @@ public class Spotlight extends Fragment {
     ArrayList<Meal> spotlights = new ArrayList<>();
     ArrayList<String> errors = new ArrayList<>();
 
-    public Spotlight() {}
+    public Spotlight() {
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_spotlight, container, false);
@@ -62,13 +61,13 @@ public class Spotlight extends Fragment {
             call.enqueue(new Callback<List<Meal>>() {
                 @Override
                 public void onResponse(Call<List<Meal>> call, Response<List<Meal>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<Meal> tmp = response.body();
                         spotlights.addAll(tmp);
 
                         declareList(view);
                     } else {
-                        if(response.code() == 404) {
+                        if (response.code() == 404) {
                             declareError(view);
                         } else {
                             isBad(getActivity(), response);
@@ -82,7 +81,7 @@ public class Spotlight extends Fragment {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(getActivity(), e);
         }
     }

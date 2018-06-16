@@ -3,8 +3,8 @@ package com.foodback.foodback.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import com.foodback.foodback.R;
 import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.fragment.Spotlight;
-import com.foodback.foodback.fragment.UserDelivery;
 
 public class VisitorMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -87,7 +86,7 @@ public class VisitorMenu extends AppCompatActivity
         FragmentManager fm;
         Intent i;
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.nav_homepage:
                 fm = getSupportFragmentManager();
@@ -115,7 +114,7 @@ public class VisitorMenu extends AppCompatActivity
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

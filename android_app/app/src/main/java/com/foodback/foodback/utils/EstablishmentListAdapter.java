@@ -2,7 +2,6 @@ package com.foodback.foodback.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +41,7 @@ public class EstablishmentListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        if(null == convertView) {
+        if (null == convertView) {
             convertView = inflater.inflate(R.layout.layout_establishment, parent, false);
         }
 
@@ -62,15 +61,15 @@ public class EstablishmentListAdapter extends ArrayAdapter {
         estab_category.setText(establishments.get(position).getCategory());
         estab_contact.setText(establishments.get(position).getContact());
 
-        if(establishments.get(position).getAvg_price() > 0) {
+        if (establishments.get(position).getAvg_price() > 0) {
             estab_avg_price.setText(context.getString(R.string.display_price, establishments.get(position).getAvg_price()));
         }
 
-        if(establishments.get(position).getDelivery()) {
+        if (establishments.get(position).getDelivery()) {
             estab_delivery.setText(context.getString(R.string.display_delivery));
         }
 
-        if(establishments.get(position).getRating() > 0) {
+        if (establishments.get(position).getRating() > 0) {
             estab_rating.setText(String.format(Locale.UK, "%.1f", establishments.get(position).getRating()));
         } else {
             estab_rating.setText("-");

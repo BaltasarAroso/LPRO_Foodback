@@ -1,12 +1,10 @@
 package com.foodback.foodback.activity;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -14,7 +12,6 @@ import android.widget.Toast;
 
 import com.foodback.foodback.R;
 import com.foodback.foodback.config.EstablishmentEndpoints;
-import com.foodback.foodback.fragment.Homepage;
 import com.foodback.foodback.logic.Establishment;
 
 import java.util.ArrayList;
@@ -40,12 +37,12 @@ public class SearchField extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search_field);
 
-        ListView lv  = findViewById(R.id.search_list);
+        ListView lv = findViewById(R.id.search_list);
         ArrayList<String> arraySearch = new ArrayList<>();
         Toast.makeText(this, "A preencher lista de estabelecimentos...", Toast.LENGTH_SHORT).show();
         fillArray(arraySearch);
 
-        adapter = new ArrayAdapter<String>(
+        adapter = new ArrayAdapter<>(
                 SearchField.this,
                 android.R.layout.simple_list_item_1,
                 arraySearch
@@ -54,16 +51,16 @@ public class SearchField extends AppCompatActivity {
     }
 
     private void fillArray(final ArrayList<String> possibilities) {
-        try{
+        try {
             EstablishmentEndpoints services = retrofit.create(EstablishmentEndpoints.class);
             Call<List<Establishment>> call = services.getAllEstablishments();
 
             call.enqueue(new Callback<List<Establishment>>() {
                 @Override
                 public void onResponse(Call<List<Establishment>> call, Response<List<Establishment>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         allEstablishments = response.body();
-                        for(Establishment x: allEstablishments) {
+                        for (Establishment x : allEstablishments) {
                             possibilities.add(x.getName());
                         }
                         Collections.sort(possibilities);
@@ -82,7 +79,7 @@ public class SearchField extends AppCompatActivity {
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
 //            Log.e("DEBUG",Log.getStackTraceString(e));
 //            Toast.makeText(getApplicationContext(), "Unexpected error.", Toast.LENGTH_SHORT).show();
             isException(getApplicationContext(), e);

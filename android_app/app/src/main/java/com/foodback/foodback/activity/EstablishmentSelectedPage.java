@@ -79,13 +79,14 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
 
         Bundle bundle = getIntent().getExtras();
 
-        if(bundle != null) {
+        if (bundle != null) {
             String serialized = bundle.getString("establishment");
-            Type type = new TypeToken<Establishment>() {}.getType();
+            Type type = new TypeToken<Establishment>() {
+            }.getType();
             Gson gson = new Gson();
             estab = gson.fromJson(serialized, type);
 
-            if(estab != null) {
+            if (estab != null) {
                 editname.setText(estab.getName());
                 editcategory.setText(estab.getCategory());
                 editaddress.setText(estab.getAddress());
@@ -95,10 +96,10 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
                 editcity.setText(estab.getCity());
                 editschedule1.setText(estab.getSchedule1());
                 editschedule2.setText(estab.getSchedule2());
-                if(estab.getDelivery()) {
+                if (estab.getDelivery()) {
                     editdelivery.setChecked(true);
                 }
-                if(estab.getRating() > 0) {
+                if (estab.getRating() > 0) {
                     editrating.setText(String.format(Locale.UK, "%.1f", estab.getRating()));
                 }
 
@@ -131,7 +132,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
                     } else {
                         if (response.code() == 404) {
                             declareCommentError();
-                        } else  {
+                        } else {
                             isBad(EstablishmentSelectedPage.this, response);
                         }
                     }
@@ -139,7 +140,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
 
                 @Override
                 public void onFailure(Call<List<Comment>> call, Throwable t) {
-                        isFailure(EstablishmentSelectedPage.this, t);
+                    isFailure(EstablishmentSelectedPage.this, t);
                 }
             });
 
@@ -156,12 +157,12 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
             call.enqueue(new Callback<List<Meal>>() {
                 @Override
                 public void onResponse(Call<List<Meal>> call, Response<List<Meal>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         List<Meal> tmp = response.body();
                         meals.addAll(tmp);
                         declareMealList();
                     } else {
-                        if(response.code() == 404) {
+                        if (response.code() == 404) {
                             declareMealError();
                         } else {
                             isBad(EstablishmentSelectedPage.this, response);
@@ -175,7 +176,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
                 }
             });
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(EstablishmentSelectedPage.this, e);
         }
     }
@@ -229,7 +230,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
 
         private ArrayList<Comment> comments;
 
-        public EstablishmentCommentAdapter(Context context, ArrayList<Comment> comments) {
+        EstablishmentCommentAdapter(Context context, ArrayList<Comment> comments) {
             super(context, R.layout.layout_estabpage_comments, comments);
 
             this.context = context;
@@ -241,7 +242,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
         @NonNull
         @Override
         public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-            if(null == convertView) {
+            if (null == convertView) {
                 convertView = inflater.inflate(R.layout.layout_estabpage_comments, parent, false);
             }
 
@@ -275,7 +276,7 @@ public class EstablishmentSelectedPage extends AppCompatActivity implements Dial
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             User tmp = response.body();
                             comment_user.setText(tmp.getName());
                         } else {

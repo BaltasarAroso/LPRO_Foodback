@@ -1,8 +1,8 @@
 package com.foodback.foodback.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +26,7 @@ import static com.foodback.foodback.utils.ErrorDisplay.isBad;
 import static com.foodback.foodback.utils.ErrorDisplay.isException;
 import static com.foodback.foodback.utils.ErrorDisplay.isFailure;
 
-public class EstablishmentRegister extends AppCompatActivity  {
+public class EstablishmentRegister extends AppCompatActivity {
 
     protected EditText editname, editaddress, editemail, editcontact, editavgprice,
             editusername, editpassword, editzone, editcity;
@@ -149,7 +149,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         Toast.makeText(EstablishmentRegister.this,
                                 "Registered Successfully.",
                                 Toast.LENGTH_SHORT).show();
@@ -166,7 +166,7 @@ public class EstablishmentRegister extends AppCompatActivity  {
                     isFailure(EstablishmentRegister.this, t);
                 }
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             isException(EstablishmentRegister.this, e);
         }
     }

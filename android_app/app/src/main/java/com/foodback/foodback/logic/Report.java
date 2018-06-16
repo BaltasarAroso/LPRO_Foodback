@@ -17,7 +17,7 @@ public class Report {
     private String type;
 
     /**
-     *  Report text
+     * Report text
      */
     private String report;
 
@@ -37,12 +37,12 @@ public class Report {
     private long reporter_id;
 
     /**
-     * @param id ID of Report
-     * @param type Type of Report
-     * @param report Report text
-     * @param comment_id ID of reported comment
+     * @param id               ID of Report
+     * @param type             Type of Report
+     * @param report           Report text
+     * @param comment_id       ID of reported comment
      * @param establishment_id ID of reported establishment
-     * @param reporter_id ID of user that is reporting
+     * @param reporter_id      ID of user that is reporting
      */
     public Report(long id, String type, String report, long comment_id, long establishment_id, long reporter_id) {
         super();
@@ -139,10 +139,10 @@ public class Report {
     }
 
     public boolean equals(Object o) {
-        if(o == null) return false;
-        if(!(o instanceof Report)) return false;
+        if (o == null) return false;
+        if (!(o instanceof Report)) return false;
 
-        Report report = (Report)o;
+        Report report = (Report) o;
         return this.id == report.getId() &&
                 this.type.equals(report.getType()) &&
                 this.report.equals(report.getReport()) &&
